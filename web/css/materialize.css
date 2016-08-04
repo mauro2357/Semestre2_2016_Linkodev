@@ -1012,7 +1012,7 @@
 }
 
 .teal.lighten-2 {
-  background-color: #4db6ac !important;
+  background-color: #ff8f00 !important;
 }
 
 .teal-text.text-lighten-2 {
@@ -1657,6 +1657,10 @@
 
 .orange-text {
   color: #00b0ff !important;
+}
+
+.error-text {
+  color: #ff8f00 !important;
 }
 
 .orange.lighten-5 {
@@ -3402,6 +3406,7 @@ input[type=range] + .thumb {
 
 /* This is needed for some mobile phones to display the Google Icon font properly */
 .material-icons {
+    color: #000000;
   text-rendering: optimizeLegibility;
   -webkit-font-feature-settings: 'liga';
      -moz-font-feature-settings: 'liga';
