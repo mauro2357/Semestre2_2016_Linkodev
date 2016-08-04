@@ -4,14 +4,21 @@
         <servlet-name>cambiarfotodeperfil</servlet-name>
         <servlet-class>controladores.cambiarfotodeperfil</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Registro</servlet-name>
+        <servlet-class>controladores.Registro</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>cambiarfotodeperfil</servlet-name>
         <url-pattern>/cambiarfotodeperfil</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Registro</servlet-name>
+        <url-pattern>/Registro</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-    
 </web-app>

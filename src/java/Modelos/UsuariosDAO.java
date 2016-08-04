@@ -15,7 +15,7 @@ import java.sql.Statement;
  */
 public class UsuariosDAO {
     public void RegistrarUsuario(Usuario persona) throws SQLException{
-    ConexiónBD nuevaconexion=new ConexiónBD();
+        ConexiónBD nuevaconexion=new ConexiónBD();
         Statement stm;
         stm = nuevaconexion.getConeccion().createStatement();
         String query="INSERT INTO usuario VALUES ('"+persona.getNombre()+"','"
