@@ -27,4 +27,19 @@ public class UsuariosDAO {
             throw new SQLException("El correo ingresado ya se encuentra registrado");
         }
     }
+    
+    public void modificarInformacion(Usuario persona) throws SQLException{
+        ConexiónBD nuevaconexion=new ConexiónBD();
+        Statement stm;
+        stm = nuevaconexion.getConeccion().createStatement();
+        String query = "UPDATE usuario SET usu_nombre='"+persona.getNombre()+"', "
+                + "usu_contraseña='"+persona.getContraseña()+"', "
+                + "usu_telefono ='"+persona.getTelefono() +"' "
+                + "where usu_correo = '"+persona.getCorreo()+"'";
+        try{
+            stm.executeUpdate(query);
+        }catch(SQLException ex){
+            throw new SQLException("No metio");
+        }
+    }
 }

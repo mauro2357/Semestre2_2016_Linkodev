@@ -8,6 +8,10 @@
         <servlet-name>Registro</servlet-name>
         <servlet-class>controladores.Registro</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ModificarInformacion</servlet-name>
+        <servlet-class>controladores.ModificarInformacion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>cambiarfotodeperfil</servlet-name>
         <url-pattern>/cambiarfotodeperfil</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>Registro</servlet-name>
         <url-pattern>/Registro</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModificarInformacion</servlet-name>
+        <url-pattern>/ModificarInformacion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
