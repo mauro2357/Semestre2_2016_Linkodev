@@ -57,9 +57,6 @@ public class cambiarfotodeperfil extends HttpServlet {
                         File archivo_server = new File(directorio + File.separator + item.getName());
                         /*y lo escribimos en el servido*/
                         item.write(archivo_server);
-                        
-                        System.out.println(request.getSession().getAttribute("correo"));
-                        System.out.println("aaaaaaaaaaaaaaaaaaaaaaa");
                         /* guardar los datos en la tabla */
  /* fin guardar */
                     }

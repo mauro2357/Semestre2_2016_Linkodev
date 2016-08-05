@@ -39,55 +39,33 @@
             <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">IOInmuebles</a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="fotodeperfil.jsp">Inicio</a></li>
-                    <li><a href="index.html">Registrese!</a></li>
-                    <li><a href="#">Ingrese!</a></li>
                 </ul>
                 <ul id="nav-mobile" class="side-nav">
                     <li><a href="fotodeperfil.jsp">Inicio</a></li>
-                    <li><a href="index.html">Registrese!</a></li>
-                    <li><a href="#">Ingrese!</a></li>
                 </ul>
                 <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
             </div>
         </nav>
-        <div class="container right col s6">
-            <img id="imagenprev" src=""width=250 height=300 />
-        </div>
-        <div class="col s6">
-            <br><br>
+
+        <div class="container">
             <h4>Foto de Perfil</h4>
-            <br><br>
             <div class="row">
+                <div class="push-l10">
+                    <img class="hoverable" id="imagenprev" src="" width=250 height=300 />
+                </div>
                 <form method="POST" action="cambiarfotodeperfil" enctype="multipart/form-data" onsubmit="return cancelarsubmit()">
                     <div class="file-field input-field">
                         <div class="btn-large waves-effect waves-light orange">
                             <span>Elegir foto</span>
                             <input id="imagenperfil"  type="file" name="inputFile" value="" accept="image/*" onchange="previewFile()"/><br>
-          
+
                         </div>
                         <div class="file-path-wrapper col s3">
-                            <input class="file-path validate" type="text">
+                            <input class="file-path validate" type="text" >
                         </div>
                     </div>
-                    <div class="container">
-                        <div class="section">
-
-                            <!--   Icon Section   -->
-                            <div class="row">
-
-                            </div>
-
-                        </div>
-                        <br><br>
-
-                        <div class="section">
-
-                        </div>
-                    </div>
-                    <br>
-                    <br>
-                    <div class="row center col s3">
-                        <button type="submit" name="cambiarfotoboton" class="btn-large waves-effect waves-light orange">Cambiar</button>
+                    <div class="row center col s12">
+                        <button type="submit" name="cambiarfotoboton" class="btn-large waves-effect waves-light orange">Guardar</button>
                     </div>
                 </form>
             </div>
@@ -100,12 +78,8 @@
             <div class="row">
 
             </div>
-
         </div>
-        <br><br>
-
         <div class="section">
-
         </div>
     </div>
 
@@ -117,7 +91,7 @@
         </div>
         <div class="footer-copyright">
             <div class="container">
-                Hecho por <a class="orange-text text-lighten-3" href="cuenta.jsp">Linkcodev</a>
+                Hecho por <a class="orange-text text-lighten-3" href="#">Linkcodev</a>
             </div>
         </div>
     </footer>
