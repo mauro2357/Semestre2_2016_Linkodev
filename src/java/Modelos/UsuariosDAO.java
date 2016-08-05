@@ -41,7 +41,7 @@ public class UsuariosDAO {
         try{
             stm.executeUpdate(query);
         }catch(SQLException ex){
-            throw new SQLException("No metio");
+            throw new SQLException("Error! 404");
         }
     }
     public Usuario  inicioSesion(UsuarioInicioSesion personaregistrada) throws SQLException{

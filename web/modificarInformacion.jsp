@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <%
 String correo = (String) session.getAttribute("correo");
-correo = "ma@gmail.com";
+correo = "mg@gmail.com";
 %>
 
 
@@ -56,7 +56,7 @@ function valida(e){
       <br><br>
       <h4> Modificar Información</h4>
       <div class="row">
-          <form class="col s12" action="modificarInformacion">
+          <form class="col s12" action="ModificarInformacion">
               <div class="input-field col s6">
                   <input name="nombre" type="text" class="validate" required >
                 <label for="last_name">Nombre</label>
