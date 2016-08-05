@@ -7,7 +7,6 @@ package controladores;
 
 import java.io.File;
 import java.io.IOException;
-import static java.lang.System.out;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -37,15 +36,12 @@ public class cambiarfotodeperfil extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            String nombrearchivo = null;
             /*FileItemFactory es una interfaz para crear FileItem*/
             FileItemFactory file_factory = new DiskFileItemFactory();
             /*ServletFileUpload esta clase convierte los input file a FileItem*/
             ServletFileUpload servlet_up = new ServletFileUpload(file_factory);
             /*sacando los FileItem del ServletFileUpload en una lista */
             List items = servlet_up.parseRequest(request);
-            String placa = null, marca = null, modelo = null, color = null, combustible = null, ciudad = null, descripcion = null;
-            int kilometraje = 0, año = 0, precio = 0;
             for (int i = 0; i < items.size(); i++) {
                 /*FileItem representa un archivo en memoria que puede ser pasado al disco duro*/
                 FileItem item = (FileItem) items.get(i);
@@ -56,20 +52,12 @@ public class cambiarfotodeperfil extends HttpServlet {
                             || item.getContentType().equals("image/jpg") || item.getContentType().equals("image/gif")
                             || item.getContentType().equals("image/bmp")) {
                         /*cual sera la ruta al archivo en el servidor*/
-                        System.out.println(getServletContext().getRealPath("imagenes"));
                         File directorio = new File(getServletContext().getRealPath("imagenes/"));
                         directorio.mkdir();
                         File archivo_server = new File(directorio + File.separator + item.getName());
-                        nombrearchivo = item.getName();
                         /*y lo escribimos en el servido*/
                         item.write(archivo_server);
-                        System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
-                        String fileName = item.getName();
-                        String contentType = item.getContentType();
-                        long size = item.getSize();
-                        request.setAttribute("fileName", fileName);
-                        request.setAttribute("contentType", contentType);
-                        request.setAttribute("size", size);
+                        
                         
                         /* guardar los datos en la tabla */
  /* fin guardar */
@@ -77,7 +65,7 @@ public class cambiarfotodeperfil extends HttpServlet {
                 }
             }
             
-            RequestDispatcher rd = request.getRequestDispatcher("fotodeperfil.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("modificarInformacion.jsp");
             rd.forward(request, response);
         } catch (Exception e) {
         }

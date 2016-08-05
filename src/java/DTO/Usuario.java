@@ -14,12 +14,14 @@ public class Usuario {
     String correo;
     String contraseña;
     String telefono;
+    String fotourl;
 
     public Usuario(String nombre, String correo, String contraseña, String telefono) {
         this.nombre = nombre;
         this.correo = correo;
         this.contraseña = contraseña;
         this.telefono = telefono;
+        this.fotourl = "imagenes/nopic.png";
     }
 
     public Usuario() {
@@ -27,6 +29,7 @@ public class Usuario {
         this.correo = "";
         this.contraseña = "";
         this.telefono = "";
+        this.fotourl = "imagenes/nopic.png";
     }
     
 
@@ -60,6 +63,14 @@ public class Usuario {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    public String getFotourl() {
+        return fotourl;
+    }
+
+    public void setFotourl(String fotourl) {
+        this.fotourl = fotourl;
     }
     
 }

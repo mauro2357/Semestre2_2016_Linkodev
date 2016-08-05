@@ -22,7 +22,7 @@ public class UsuariosDAO {
         stm = nuevaconexion.getConeccion().createStatement();
         String query="INSERT INTO usuario VALUES ('"+persona.getNombre()+"','"
             +persona.getCorreo()+"','"+persona.getContraseña()+"','"
-            +persona.getTelefono()+"')";
+            +persona.getTelefono()+"','"+persona.getFotourl()+"')";
         try{
             stm.executeUpdate(query);
         }catch(SQLException ex){
