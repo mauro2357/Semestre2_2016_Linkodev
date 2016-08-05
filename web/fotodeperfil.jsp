@@ -15,17 +15,20 @@
     </head>
     <body>
         <nav class="light-blue lighten-1" role="navigation">
-            <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">IOInmuebles</a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="#">Inicio</a></li>
-                </ul>
-
-                <ul id="nav-mobile" class="side-nav">
-                    <li><a href="#">Inicio</a></li>
-                </ul>
-                <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-            </div>
-        </nav>
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">IOInmuebles</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="fotodeperfil.jsp">Inicio</a></li>
+        <li><a href="index.html">Registrese!</a></li>
+        <li><a href="#">Ingrese!</a></li>
+      </ul>
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="fotodeperfil.jsp">Inicio</a></li>
+        <li><a href="index.html">Registrese!</a></li>
+        <li><a href="#">Ingrese!</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
         <div class="container right col s6">
             <img src="imagenes/${fileName}"width=250 height=300 />
         </div>
