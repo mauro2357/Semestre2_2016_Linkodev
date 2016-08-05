@@ -69,7 +69,7 @@
     </div>
     <div class="footer-copyright">
       <div class="container">
-      Hecho por <a class="orange-text text-lighten-3" href="">Linkcodev</a>
+      Hecho por <a class="orange-text text-lighten-3" href="index.html">Linkcodev</a>
       </div>
     </div>
   </footer>
