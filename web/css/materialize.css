@@ -796,7 +796,7 @@
 }
 
 .light-blue.lighten-1 {
-  background-color: #00c853 !important;
+  background-color: #0091ea !important;
 }
 
 .light-blue-text.text-lighten-1 {
@@ -1652,7 +1652,7 @@
 }
 
 .orange {
-  background-color: #00c853 !important;
+  background-color: #0091ea !important;
 }
 
 .orange-text {
@@ -3406,7 +3406,7 @@ input[type=range] + .thumb {
 
 /* This is needed for some mobile phones to display the Google Icon font properly */
 .material-icons {
-    color: #000000;
+    color: #ffffff;
   text-rendering: optimizeLegibility;
   -webkit-font-feature-settings: 'liga';
      -moz-font-feature-settings: 'liga';
@@ -6820,7 +6820,7 @@ input[type=range]:focus::-ms-fill-upper {
   height: calc(100% + 60px);
   height: -moz-calc(100%);
   padding-bottom: 60px;
-  background-color: #fff;
+  background-color: #00b0ff;
   z-index: 999;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
@@ -6945,8 +6945,8 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .side-nav .userView .circle {
-  height: 64px;
-  width: 64px;
+  height: 100px;
+  width: 100px;
 }
 
 .side-nav .userView .name,
@@ -6956,7 +6956,8 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .side-nav .userView .name {
-  margin-top: 16px;
+  margin-top: 32px;
+  font-size: x-large;
   font-weight: 500;
 }
 
