@@ -50,7 +50,7 @@ function valida(e){
       <br><br>
       <h1 class="header center orange-text">Inicio De Sesión</h1>
       <div class="row">
-          <form class="col s12" action="Loguearse">
+          <form class="col s12" action="login">
           
               <div class="input-field col s12">
                   <input name="correo" type="email" class="validate" required="">
