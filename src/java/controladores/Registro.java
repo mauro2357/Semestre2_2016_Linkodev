@@ -42,6 +42,8 @@ public class Registro extends HttpServlet {
         UsuariosDAO NuevoUsuario=new UsuariosDAO();
         try{
             NuevoUsuario.RegistrarUsuario(persona);
+            request.getSession().setAttribute("usuario",persona ); 
+            request.getRequestDispatcher("cuenta.jsp").forward(request, response);
         }catch(SQLException e){
             String msgError=e.getMessage();
             request.getSession().setAttribute("msg",msgError ); 
