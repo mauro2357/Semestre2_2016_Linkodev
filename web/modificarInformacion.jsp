@@ -76,7 +76,7 @@ function valida(e){
               <div class="input-field col s6">
                 <input name="telefono" type="text" class="validate" onkeypress="return valida(event)">
                 <label for="password">Telefono</label>
-              </div>
+              </div> 
               <br>
               <br>
               <br>
@@ -85,6 +85,9 @@ function valida(e){
                 <button  type="submit" name="actualizar_boton" class="btn-large waves-effect waves-light orange">Actualizar</button>
               </div>
           </form>
+          <div class="row center col s6">
+            <button  name="cambiarFoto_boton" onClick=" window.location.href='fotodeperfil.jsp'" class="btn-large waves-effect waves-light orange">Cambiar Foto</button>
+          </div>
         </div>
       </div>
     </div>

@@ -55,7 +55,7 @@
         </div>
         <div class="col s6">
             <br><br>
-            <h4 class="blue-text" >Foto de Perfil</h4>
+            <h4>Foto de Perfil</h4>
             <br><br>
             <div class="row">
                 <form method="POST" action="cambiarfotodeperfil" enctype="multipart/form-data" onsubmit="return cancelarsubmit()">
@@ -117,7 +117,7 @@
         </div>
         <div class="footer-copyright">
             <div class="container">
-                Hecho por <a class="orange-text text-lighten-3" href="">Linkcodev</a>
+                Hecho por <a class="orange-text text-lighten-3" href="cuenta.jsp">Linkcodev</a>
             </div>
         </div>
     </footer>
