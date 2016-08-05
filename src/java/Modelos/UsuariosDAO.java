@@ -33,7 +33,7 @@ public class UsuariosDAO {
         Statement stm;
         stm = nuevaconexion.getConeccion().createStatement();
         String query = "UPDATE usuario SET usu_nombre='"+persona.getNombre()+"', "
-                + "usu_contraseña='"+persona.getContraseña()+"', "
+                + "usu_contrasena='"+persona.getContraseña()+"', "
                 + "usu_telefono ='"+persona.getTelefono() +"' "
                 + "where usu_correo = '"+persona.getCorreo()+"'";
         try{

@@ -14,11 +14,14 @@
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">IOInmuebles</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#">Inicio</a></li>
+        <li><a href="fotodeperfil.jsp">Inicio</a></li>
+        <li><a href="index.html">Registrese!</a></li>
+        <li><a href="#">Ingrese!</a></li>
       </ul>
-
       <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">Inicio</a></li>
+        <li><a href="fotodeperfil.jsp">Inicio</a></li>
+        <li><a href="index.html">Registrese!</a></li>
+        <li><a href="#">Ingrese!</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
@@ -26,7 +29,7 @@
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <br><br>
-      <h1 class="header center error-text">Error!!</h1>
+      <h1 class="header center error-text">¡Error!</h1>
       
         <div class="row center col s12">
             <div class="card-panel teal lighten-2">

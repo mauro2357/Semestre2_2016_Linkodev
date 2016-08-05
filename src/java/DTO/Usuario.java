@@ -21,6 +21,7 @@ public class Usuario {
         this.contraseña = contraseña;
         this.telefono = telefono;
     }
+    
 
     public String getNombre() {
         return nombre;
