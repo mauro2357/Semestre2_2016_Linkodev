@@ -5,9 +5,9 @@
  */
 package controladores;
 
-import DTO.ValidarUsuario;
+import DTO.Usuario;
+import DTO.UsuarioInicioSesion;
 import Modelos.UsuariosDAO;
-import Modelos.Login;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -18,9 +18,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author MARCS
+ * @author Mateo Ortiz Cano
  */
-public class login extends HttpServlet {
+public class InicioSesion extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,25 +30,23 @@ public class login extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
-     * 
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
             String correous=request.getParameter("correo");
-            System.out.println(correous+" correo");
             String contraseñaus=request.getParameter("contrasena");
-            System.out.println(contraseñaus+" contrasena");
-            ValidarUsuario verificaruser = new ValidarUsuario(correous,contraseñaus);
-            Login verificador = new Login();
+            UsuarioInicioSesion usuario = new UsuarioInicioSesion(correous,contraseñaus);
+            UsuariosDAO verificador = new UsuariosDAO();
         try{
-            verificador.Validar_usuario(verificaruser);
+            Usuario usrActivo=new Usuario();
+            usrActivo=verificador.inicioSesion(usuario);
+            request.getSession().setAttribute("usuario",usrActivo ); 
+            request.getRequestDispatcher("cuenta.jsp").forward(request, response);
         }catch(SQLException ef){
             String msgError=ef.getMessage();
             request.getSession().setAttribute("msg",msgError ); 
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
-           
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

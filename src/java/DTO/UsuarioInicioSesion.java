@@ -9,11 +9,11 @@ package DTO;
  *
  * @author MARCS
  */
-public class ValidarUsuario {
+public class UsuarioInicioSesion {
     String correo;
     String contraseña;
 
-    public ValidarUsuario(String correo, String contraseña) {
+    public UsuarioInicioSesion(String correo, String contraseña) {
         this.correo = correo;
         this.contraseña = contraseña;
     }

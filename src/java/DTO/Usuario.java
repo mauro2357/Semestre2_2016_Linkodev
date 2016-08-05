@@ -21,6 +21,13 @@ public class Usuario {
         this.contraseña = contraseña;
         this.telefono = telefono;
     }
+
+    public Usuario() {
+        this.nombre = "";
+        this.correo = "";
+        this.contraseña = "";
+        this.telefono = "";
+    }
     
 
     public String getNombre() {

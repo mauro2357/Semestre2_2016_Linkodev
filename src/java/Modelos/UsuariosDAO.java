@@ -6,6 +6,8 @@
 package Modelos;
 
 import DTO.Usuario;
+import DTO.UsuarioInicioSesion;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -41,5 +43,28 @@ public class UsuariosDAO {
         }catch(SQLException ex){
             throw new SQLException("No metio");
         }
+    }
+    public Usuario  inicioSesion(UsuarioInicioSesion personaregistrada) throws SQLException{
+        ConexiónBD nuevaconexion=new ConexiónBD();
+        String correo=personaregistrada.getCorreo();
+        String contraseña=personaregistrada.getContraseña();
+        Statement statement=nuevaconexion.getConeccion().createStatement();
+        Usuario persona2=new Usuario();
+        String query="SELECT * FROM usuario WHERE usu_correo ='"+correo+"'";
+	ResultSet res = statement.executeQuery(query);
+        if(!res.next())
+           throw new SQLException("El usuario no esta registrado");
+        else{
+            //res.next();
+            String pass=res.getString("usu_contrasena");
+            if(pass.equals(contraseña)){
+                persona2.setNombre(res.getString("usu_nombre"));
+                persona2.setCorreo(res.getString("usu_correo"));
+                persona2.setTelefono(res.getString("usu_telefono"));
+                return persona2;
+            }
+            else
+                throw new SQLException("La contraseña ingresada no es la correcta");
+        } 
     }
 }
