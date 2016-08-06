@@ -12,27 +12,7 @@
         <title>Foto de perfil</title>
         <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-        <script>
-            function cancelarsubmit() {
-                if (document.getElementById('imagenperfil').files.length === 0) {
-                    alert("Por favor seleccione un archivo");
-                    return false;
-                }
-            }
-            function previewFile() {
-                var preview = document.querySelector('img');
-                var file = document.querySelector('input[type=file]').files[0];
-                var reader = new FileReader();
-
-                reader.addEventListener("load", function () {
-                    preview.src = reader.result;
-                }, false);
-
-                if (file) {
-                    reader.readAsDataURL(file);
-                }
-            }
-        </script>
+        <script src="js/accionesvarias.js"></script>
     </head>
     <body>
         <nav class="light-blue lighten-1" role="navigation">
