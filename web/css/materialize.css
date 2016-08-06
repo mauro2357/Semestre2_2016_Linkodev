@@ -4420,6 +4420,11 @@ small {
   .flow-text {
     font-size: 1.296rem;
   }
+.page-footer orange {
+
+}
+
+
 }
 
 @media only screen and (min-width: 510px) {

@@ -4,12 +4,16 @@
     Author     : felipe
 --%>
 
+<%@page import="DTO.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    Usuario usr = (Usuario) request.getSession().getAttribute("usuario");
+%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Foto de perfil</title>
+        <title>Foto de perfil </title>
         <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <script src="js/accionesvarias.js"></script>
@@ -18,20 +22,20 @@
         <nav class="light-blue lighten-1" role="navigation">
             <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">IOInmuebles</a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="fotodeperfil.jsp">Inicio</a></li>
+                    <li><a href="#">Inicio</a></li>
                 </ul>
                 <ul id="nav-mobile" class="side-nav">
-                    <li><a href="fotodeperfil.jsp">Inicio</a></li>
+                    <li><a href="#">Inicio</a></li>
                 </ul>
                 <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
             </div>
         </nav>
 
         <div class="container">
-            <h4>Foto de Perfil</h4>
+            <h4>Foto de Perfil </h4>
             <div class="row">
                 <div class="push-l10">
-                    <img class="hoverable" id="imagenprev" src="" width=250 height=300 />
+                    <img class="hoverable" id="imagenprev" src="<%=usr.getFotourl()%>" width=250 height=300 />
                 </div>
                 <form method="POST" action="cambiarfotodeperfil" enctype="multipart/form-data" onsubmit="return cancelarsubmit()">
                     <div class="file-field input-field">
@@ -62,19 +66,7 @@
         <div class="section">
         </div>
     </div>
-
-    <footer class="page-footer orange">
-        <div class="container">
-            <div class="row">
-
-            </div>
-        </div>
-        <div class="footer-copyright">
-            <div class="container">
-                Hecho por <a class="orange-text text-lighten-3" href="#">Linkcodev</a>
-            </div>
-        </div>
-    </footer>
+    <%@include file="footer.html" %>
 
     <!--  Scripts-->
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

@@ -21,7 +21,6 @@ public class Usuario {
         this.correo = correo;
         this.contraseña = contraseña;
         this.telefono = telefono;
-        this.fotourl = "imagenes/nopic.png";
     }
 
     public Usuario() {
@@ -29,7 +28,7 @@ public class Usuario {
         this.correo = "";
         this.contraseña = "";
         this.telefono = "";
-        this.fotourl = "imagenes/nopic.png";
+        this.fotourl = "";
     }
     
 

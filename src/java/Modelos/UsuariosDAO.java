@@ -22,7 +22,7 @@ public class UsuariosDAO {
         stm = nuevaconexion.getConeccion().createStatement();
         String query="INSERT INTO usuario VALUES ('"+persona.getNombre()+"','"
             +persona.getCorreo()+"','"+persona.getContraseña()+"','"
-            +persona.getTelefono()+"')";
+            +persona.getTelefono()+"','imagenes/nopic.png')";
         try{
             stm.executeUpdate(query);
         }catch(SQLException ex){
@@ -61,10 +61,24 @@ public class UsuariosDAO {
                 persona2.setNombre(res.getString("usu_nombre"));
                 persona2.setCorreo(res.getString("usu_correo"));
                 persona2.setTelefono(res.getString("usu_telefono"));
+                persona2.setFotourl(res.getString("usu_fotourl"));
                 return persona2;
             }
             else
                 throw new SQLException("La contraseña ingresada no es la correcta");
         } 
+    }
+    
+    public void cambiarFotoDePerfil(String fotourl, String correo) throws SQLException{
+        ConexiónBD nuevaconexion=new ConexiónBD();
+        Statement stm;
+        stm = nuevaconexion.getConeccion().createStatement();
+        String query = "UPDATE usuario SET usu_fotourl ='"+fotourl+"' "
+                + "where usu_correo = '"+correo+"'";
+        try{
+            stm.executeUpdate(query);
+        }catch(SQLException ex){
+            throw new SQLException("Error! 404");
+        }
     }
 }

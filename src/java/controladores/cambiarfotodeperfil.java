@@ -5,6 +5,8 @@
  */
 package controladores;
 
+import DTO.Usuario;
+import Modelos.UsuariosDAO;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -57,6 +59,10 @@ public class cambiarfotodeperfil extends HttpServlet {
                         File archivo_server = new File(directorio + File.separator + item.getName());
                         /*y lo escribimos en el servido*/
                         item.write(archivo_server);
+                        UsuariosDAO usuario = new UsuariosDAO();
+                        Usuario usr;
+                        usr = (Usuario) request.getSession().getAttribute("usuario");
+                        usuario.cambiarFotoDePerfil("imagenes/"+item.getName(),usr.getCorreo());
                         /* guardar los datos en la tabla */
  /* fin guardar */
                     }
