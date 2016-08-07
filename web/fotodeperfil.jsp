@@ -7,6 +7,10 @@
 <%@page import="DTO.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
+    if(request.getSession().getAttribute("usuario") == null){
+        System.out.println("NOOOOOOOOOOOOOOOOOOOOOOOOO");
+    }
+        
     Usuario usr = (Usuario) request.getSession().getAttribute("usuario");
 %>
 <!DOCTYPE html>
@@ -29,7 +33,6 @@
                 </ul>
                 <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
             </div>
-        </nav>
 
         <div class="container">
             <h4>Foto de Perfil </h4>
@@ -40,7 +43,7 @@
                 <form method="POST" action="cambiarfotodeperfil" enctype="multipart/form-data" onsubmit="return cancelarsubmit()">
                     <div class="file-field input-field">
                         <div class="btn-large waves-effect waves-light orange">
-                            <span>Elegir foto</span>
+                            <span>Elegir foto <%=usr.getFotourl()%></span>
                             <input id="imagenperfil"  type="file" name="inputFile" value="" accept="image/*" onchange="previewFile()"/><br>
 
                         </div>
