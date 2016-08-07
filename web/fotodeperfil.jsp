@@ -67,13 +67,39 @@
                 </div>
             </div>
         </div>
+
+
+        <div class="container">
+            <div class="section">
+                <!--   Icon Section   -->
+                <div class="row">
+
+                </div>
+
+                <div class="row">
+                </div>
+            </div>
+            <br><br>
+        </div>
         <%@include file="footer.html" %>
 
+            <div class="section">
         <!--  Scripts-->
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="js/materialize.js"></script>
         <script src="js/init.js"></script>
         
 
+            </div>
+        </div>
+        <%@include file="footer.html" %>
+
+        <!--  Scripts-->
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="js/materialize.js"></script>
+        <script src="js/init.js"></script>
+
+    </body>
+</html>
     </body>
 </html>
