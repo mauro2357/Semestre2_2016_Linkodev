@@ -9,6 +9,8 @@
 <!DOCTYPE html>
 <%
     Usuario usr = (Usuario) request.getSession().getAttribute("usuario");
+    String nombre = usr.getNombre();
+    System.out.println(nombre);
 %>
 
 
@@ -42,25 +44,21 @@
                 <br><br>
                 <h4> Modificar Información</h4>
                 <div class="row">
-                    <form class="col s12" action="ModificarInformacion">
+                    <form method="post" class="col s12" action="ModificarInformacion">
                         <div class="input-field col s6">
-                            <input name="nombre" type="text" class="validate" required >
-                            <label for="last_name">Nombre</label>
-                        </div>
-                        <div class="input-field col s6">
-                            <input name="apellido" type="text" class="validate">
-                            <label for="last_name">Apellido</label>
+                            <input name="nombre" type="text" value="<%=nombre%>" class="validate" required  >
+                            <label for="last_name">Nombre</label >
                         </div>
                         <div class="input-field col s6">
                             <input name="correo" type="email" readonly value = <%= usr.getCorreo()%> >
                             <label for="last_name">Correo</label>
                         </div>
                         <div class="input-field col s6">
-                            <input name="contrasena" type="password" class="validate" required>
+                            <input name="contrasena" type="password" class="validate" required value=<%= usr.getContraseña()%>>
                             <label for="password">Contraseña</label>
                         </div>
                         <div class="input-field col s6">
-                            <input name="telefono" type="text" class="validate" onkeypress="return valida(event)">
+                            <input name="telefono" type="text" class="validate" value=<%= usr.getTelefono()%> onkeypress="return valida(event)">
                             <label for="password">Telefono</label>
                         </div> 
                         <br>
