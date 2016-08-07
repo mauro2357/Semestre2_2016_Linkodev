@@ -32,20 +32,7 @@ public class ModificarInformacion extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nombre=request.getParameter("nombre")+" "+request.getParameter("apellido");
-        String correo=request.getParameter("correo");
-        System.out.println(correo+" correo");
-        String contraseña=request.getParameter("contrasena");
-        String telefono=request.getParameter("telefono");
-        Usuario persona=new Usuario(nombre, correo, contraseña, telefono);
-        UsuariosDAO NuevoUsuario=new UsuariosDAO();
-        try{
-            NuevoUsuario.modificarInformacion(persona);
-        }catch(SQLException e){
-            String msgError=e.getMessage();
-            request.getSession().setAttribute("msg",msgError ); 
-            request.getRequestDispatcher("error.jsp").forward(request, response);
-        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -75,6 +62,20 @@ public class ModificarInformacion extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        String nombre=request.getParameter("nombre")+" "+request.getParameter("apellido");
+        String correo=request.getParameter("correo");
+        System.out.println(correo+" correo");
+        String contraseña=request.getParameter("contrasena");
+        String telefono=request.getParameter("telefono");
+        Usuario persona=new Usuario(nombre, correo, contraseña, telefono);
+        UsuariosDAO NuevoUsuario=new UsuariosDAO();
+        try{
+            NuevoUsuario.modificarInformacion(persona);
+        }catch(SQLException e){
+            String msgError=e.getMessage();
+            request.getSession().setAttribute("msg",msgError ); 
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+        }
     }
 
     /**

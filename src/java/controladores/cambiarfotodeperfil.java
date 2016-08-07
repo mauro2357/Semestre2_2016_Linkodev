@@ -71,6 +71,8 @@ public class cambiarfotodeperfil extends HttpServlet {
             
             RequestDispatcher rd = request.getRequestDispatcher("modificarInformacion.jsp");
             rd.forward(request, response);
+            request.getRequestDispatcher("cuenta.jsp").forward(request, response);
+
         } catch (Exception e) {
         }
     }

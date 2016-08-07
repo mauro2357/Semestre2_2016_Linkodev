@@ -34,12 +34,13 @@ public class InicioSesion extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
             String correous=request.getParameter("correo");
+            System.out.println(correous);
             String contraseñaus=request.getParameter("contrasena");
             UsuarioInicioSesion usuario = new UsuarioInicioSesion(correous,contraseñaus);
             UsuariosDAO verificador = new UsuariosDAO();
         try{
             Usuario usrActivo=new Usuario();
-            usrActivo=verificador.inicioSesion(usuario);
+            usrActivo = verificador.inicioSesion(usuario);
             request.getSession().setAttribute("usuario",usrActivo ); 
             request.getRequestDispatcher("cuenta.jsp").forward(request, response);
         }catch(SQLException ef){
