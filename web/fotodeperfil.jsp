@@ -6,11 +6,7 @@
 
 <%@page import="DTO.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-    if(request.getSession().getAttribute("usuario") == null){
-        System.out.println("NOOOOOOOOOOOOOOOOOOOOOOOOO");
-    }
-        
+<%       
     Usuario usr = (Usuario) request.getSession().getAttribute("usuario");
 %>
 <!DOCTYPE html>
