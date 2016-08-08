@@ -76,8 +76,8 @@ $(function comprobrarClave(){
 
 
 function comprobarClave2(){ 
-   	contrasenaNueva = document.f1.contrasenaNueva.value; 
-   	confirmarContrasena = document.f1.confirmarContrasena.value;     
+   	contrasenaNueva = document.getElementById("contrasena").value;
+   	confirmarContrasena = document.getElementById("confirmarContrasena").value;
    	if (contrasenaNueva != confirmarContrasena){  
             alert("La clave nueva no coincide");
             return false;

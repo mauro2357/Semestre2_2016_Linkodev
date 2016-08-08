@@ -32,7 +32,7 @@
                 <br><br>
                 <h4>Registro</h4>
                 <div class="row">
-                    <form class="col s12" action="Registro" method="post">
+                    <form class="col s12" action="Registro" method="post" onsubmit="return comprobarClave2()">
                         <div class="input-field col s12">
                             <input name="nombre" type="text" class="validate" required>
                             <label for="last_name">Nombre Completo</label >
