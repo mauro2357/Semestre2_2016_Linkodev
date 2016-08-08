@@ -2953,6 +2953,7 @@ ul.staggered-list li {
 }
 
 footer.page-footer {
+  position:relative;
   margin-top: 20px;
   padding-top: 20px;
   background-color: #ee6e73;
@@ -6860,7 +6861,7 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .side-nav a {
-  color: rgba(0, 0, 0, 0.87);
+  color: #ffffff;
   display: block;
   font-size: 14px;
   font-weight: 500;
@@ -6900,7 +6901,7 @@ input[type=range]:focus::-ms-fill-upper {
   line-height: 48px;
   margin: 0 32px 0 0;
   width: 24px;
-  color: rgba(0, 0, 0, 0.54);
+  color: #ffffff;
 }
 
 .side-nav .divider {
