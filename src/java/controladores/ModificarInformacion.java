@@ -71,7 +71,7 @@ public class ModificarInformacion extends HttpServlet {
         UsuariosDAO NuevoUsuario=new UsuariosDAO();
         try{
             Usuario usuarioModificado = NuevoUsuario.modificarInformacionUsuario(persona,contraseñaVieja);
-            request.getSession().setAttribute("usuario",usuarioModificado); 
+            request.getSession().setAttribute("usuario",usuarioModificado);
             request.getRequestDispatcher("cuenta.jsp").forward(request, response);
         }catch(SQLException e){
             String msgError=e.getMessage();
