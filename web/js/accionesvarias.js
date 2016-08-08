@@ -40,9 +40,9 @@ function valida(e){
 }
 
 $(function comprobrarClave(){
-    $('#contrasenaNueva').keyup(function(){
-            var _this = $('#contrasenaNueva');
-            var contrasenaNueva = $('#contrasenaNueva').val();
+    $('#contrasena').keyup(function(){
+            var _this = $('#contrasena');
+            var contrasenaNueva = $('#contrasena').val();
                 _this.attr('style', 'background:white');
             if(contrasenaNueva.charAt(0) == ' '){
                     _this.attr('style', 'background:#FF4A4A');
@@ -54,7 +54,7 @@ $(function comprobrarClave(){
     });
 
     $('#confirmarContrasena').keyup(function(){
-            var contrasenaNueva = $('#contrasenaNueva').val();
+            var contrasenaNueva = $('#contrasena').val();
             var confirmarContrasena = $('#confirmarContrasena').val();
             var _this = $('#confirmarContrasena');
                 _this.attr('style', 'background:white');

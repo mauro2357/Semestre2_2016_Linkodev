@@ -9,8 +9,8 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-        <script src="js/accionesvarias.js"></script>
-
+        <script src="js/jquery-3.1.0.min.js" type="text/javascript"></script>
+        <script src="js/accionesvarias.js"></script> 
     </head>
     <body>
         <nav class="light-blue lighten-1" role="navigation">
@@ -50,7 +50,7 @@
                             <label for="password">Contraseña</label>
                         </div>
                         <div class="input-field col s6">
-                            <input id="contrasena1"  name="contrasena1" type="password" class="validate" required=>
+                            <input id="confirmarContrasena"  name="contrasena1" type="password" class="validate" required=>
                             <label for="password">Confrimar Contraseña</label>
                         </div>
                         
