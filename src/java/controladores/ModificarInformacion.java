@@ -62,15 +62,17 @@ public class ModificarInformacion extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        String nombre=request.getParameter("nombre")+" "+request.getParameter("apellido");
+        String nombre=request.getParameter("nombre");
         String correo=request.getParameter("correo");
-        System.out.println(correo+" correo");
-        String contraseña=request.getParameter("contrasena");
+        String contraseñaNueva=request.getParameter("confirmarContrasena");
+        String contraseñaVieja=request.getParameter("contrasena");
         String telefono=request.getParameter("telefono");
-        Usuario persona=new Usuario(nombre, correo, contraseña, telefono);
+        Usuario persona=new Usuario(nombre, correo, contraseñaNueva, telefono);
         UsuariosDAO NuevoUsuario=new UsuariosDAO();
         try{
-            NuevoUsuario.modificarInformacionUsuario(persona);
+            Usuario usuarioModificado = NuevoUsuario.modificarInformacionUsuario(persona,contraseñaVieja);
+            request.getSession().setAttribute("usuario",usuarioModificado); 
+            request.getRequestDispatcher("cuenta.jsp").forward(request, response);
         }catch(SQLException e){
             String msgError=e.getMessage();
             request.getSession().setAttribute("msg",msgError ); 
