@@ -32,7 +32,7 @@
                 <br><br>
                 <h4>Registro</h4>
                 <div class="row">
-                    <form class="col s12" action="Registro">
+                    <form class="col s12" action="Registro" method="post">
                         <div class="input-field col s6">
                             <input name="nombre" type="text" class="validate" required>
                             <label for="last_name">Nombre</label >

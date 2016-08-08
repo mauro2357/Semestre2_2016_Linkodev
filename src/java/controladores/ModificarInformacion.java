@@ -70,7 +70,7 @@ public class ModificarInformacion extends HttpServlet {
         Usuario persona=new Usuario(nombre, correo, contraseña, telefono);
         UsuariosDAO NuevoUsuario=new UsuariosDAO();
         try{
-            NuevoUsuario.modificarInformacion(persona);
+            NuevoUsuario.modificarInformacionUsuario(persona);
         }catch(SQLException e){
             String msgError=e.getMessage();
             request.getSession().setAttribute("msg",msgError ); 

@@ -40,7 +40,7 @@ public class InicioSesion extends HttpServlet {
             UsuariosDAO verificador = new UsuariosDAO();
         try{
             Usuario usrActivo=new Usuario();
-            usrActivo = verificador.inicioSesion(usuario);
+            usrActivo = verificador.inicioSesionUsuario(usuario);
             request.getSession().setAttribute("usuario",usrActivo ); 
             request.getRequestDispatcher("cuenta.jsp").forward(request, response);
         }catch(SQLException ef){
@@ -49,6 +49,7 @@ public class InicioSesion extends HttpServlet {
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
     }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

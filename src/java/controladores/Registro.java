@@ -32,23 +32,7 @@ public class Registro extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nombre=request.getParameter("nombre")+" "+request.getParameter("apellido");
-        System.out.println(nombre+" nombre");
-        String correo=request.getParameter("correo");
-        System.out.println(correo+" correo");
-        String contraseña=request.getParameter("contrasena");
-        String telefono=request.getParameter("telefono");
-        Usuario persona=new Usuario(nombre, correo, contraseña, telefono);
-        UsuariosDAO NuevoUsuario=new UsuariosDAO();
-        try{
-            NuevoUsuario.RegistrarUsuario(persona);
-            request.getSession().setAttribute("usuario",persona ); 
-            request.getRequestDispatcher("cuenta.jsp").forward(request, response);
-        }catch(SQLException e){
-            String msgError=e.getMessage();
-            request.getSession().setAttribute("msg",msgError ); 
-            request.getRequestDispatcher("error.jsp").forward(request, response);
-        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -77,6 +61,23 @@ public class Registro extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String nombre=request.getParameter("nombre")+" "+request.getParameter("apellido");
+        System.out.println(nombre+" nombre");
+        String correo=request.getParameter("correo");
+        System.out.println(correo+" correo");
+        String contraseña=request.getParameter("contrasena");
+        String telefono=request.getParameter("telefono");
+        Usuario persona=new Usuario(nombre, correo, contraseña, telefono);
+        UsuariosDAO NuevoUsuario=new UsuariosDAO();
+        try{
+            NuevoUsuario.registrarUsuario(persona);
+            request.getSession().setAttribute("usuario",persona ); 
+            request.getRequestDispatcher("cuenta.jsp").forward(request, response);
+        }catch(SQLException e){
+            String msgError=e.getMessage();
+            request.getSession().setAttribute("msg",msgError ); 
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+        }
         processRequest(request, response);
     }
 

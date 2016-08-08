@@ -16,7 +16,8 @@ import java.sql.Statement;
  * @author Mateo Ortiz Cano
  */
 public class UsuariosDAO {
-    public void RegistrarUsuario(Usuario persona) throws SQLException{
+    
+    public void registrarUsuario(Usuario persona) throws SQLException{
         ConexiónBD nuevaconexion=new ConexiónBD();
         Statement stm;
         stm = nuevaconexion.getConeccion().createStatement();
@@ -30,7 +31,7 @@ public class UsuariosDAO {
         }
     }
     
-    public void modificarInformacion(Usuario persona) throws SQLException{
+    public void modificarInformacionUsuario(Usuario persona) throws SQLException{
         ConexiónBD nuevaconexion=new ConexiónBD();
         Statement stm;
         stm = nuevaconexion.getConeccion().createStatement();
@@ -44,7 +45,7 @@ public class UsuariosDAO {
             throw new SQLException("Error! 404");
         }
     }
-    public Usuario  inicioSesion(UsuarioInicioSesion personaregistrada) throws SQLException{
+    public Usuario  inicioSesionUsuario(UsuarioInicioSesion personaregistrada) throws SQLException{
         ConexiónBD nuevaconexion=new ConexiónBD();
         String correo=personaregistrada.getCorreo();
         String contraseña=personaregistrada.getContraseña();
