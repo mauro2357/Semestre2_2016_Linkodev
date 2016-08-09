@@ -8,7 +8,6 @@ package controladores;
 import DTO.Usuario;
 import Modelos.UsuariosDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author mateohenaocardona
  */
-public class ModificarInformacion extends HttpServlet {
+public class ModificacionInformacion extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,7 +31,7 @@ public class ModificarInformacion extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -62,18 +61,20 @@ public class ModificarInformacion extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        String nombre=request.getParameter("nombre")+" "+request.getParameter("apellido");
-        String correo=request.getParameter("correo");
-        System.out.println(correo+" correo");
-        String contraseña=request.getParameter("contrasena");
-        String telefono=request.getParameter("telefono");
-        Usuario persona=new Usuario(nombre, correo, contraseña, telefono);
-        UsuariosDAO NuevoUsuario=new UsuariosDAO();
-        try{
-            NuevoUsuario.modificarInformacionUsuario(persona);
-        }catch(SQLException e){
-            String msgError=e.getMessage();
-            request.getSession().setAttribute("msg",msgError ); 
+        String nombre = request.getParameter("nombre");
+        String correo = request.getParameter("correo");
+        String contraseñaNueva = request.getParameter("confirmarContrasena");
+        String contraseñaVieja = request.getParameter("contrasena");
+        String telefono = request.getParameter("telefono");
+        Usuario persona = new Usuario(nombre, correo, contraseñaNueva, telefono);
+        UsuariosDAO NuevoUsuario = new UsuariosDAO();
+        try {
+            Usuario usuarioModificado = NuevoUsuario.modificarInformacionUsuario(persona, contraseñaVieja);
+            request.getSession().setAttribute("usuario", usuarioModificado);
+            request.getRequestDispatcher("cuenta.jsp").forward(request, response);
+        } catch (SQLException e) {
+            String msgError = e.getMessage();
+            request.getSession().setAttribute("msg", msgError);
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
     }

@@ -9,8 +9,6 @@
 <!DOCTYPE html>
 <%
     Usuario usr = (Usuario) request.getSession().getAttribute("usuario");
-    String nombre = usr.getNombre();
-    System.out.println(nombre);
 %>
 
 
@@ -24,7 +22,9 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <script src="js/jquery-3.1.0.min.js" type="text/javascript"></script>
         <script src="js/accionesvarias.js"></script>
+
     </head>
     <body>
         <nav class="light-blue lighten-1" role="navigation">
@@ -44,23 +44,38 @@
                 <br><br>
                 <h4> Modificar Información</h4>
                 <div class="row">
-                    <form method="post" class="col s12" action="ModificarInformacion">
+                    <form method="post" class="col s12" action="ModificarInformacion" onsubmit="return comprobarClave2()">
                         <div class="input-field col s6">
-                            <input name="nombre" type="text" value="<%=nombre%>" class="validate" required  >
+                            <input name="nombre" type="text" value="<%=usr.getNombre()%>" class="validate" required="">
                             <label for="last_name">Nombre</label >
                         </div>
                         <div class="input-field col s6">
-                            <input name="correo" type="email" readonly value = <%= usr.getCorreo()%> >
+                            <input name="correo" type="email" readonly value ="<%= usr.getCorreo()%>">
                             <label for="last_name">Correo</label>
                         </div>
                         <div class="input-field col s6">
-                            <input name="contrasena" type="password" class="validate" required value=<%= usr.getContraseña()%>>
+                            <input name="contrasena" type="password" class="validate" required="">
                             <label for="password">Contraseña</label>
                         </div>
                         <div class="input-field col s6">
-                            <input name="telefono" type="text" class="validate" value=<%= usr.getTelefono()%> onkeypress="return valida(event)">
+                            <input name="telefono" type="text" class="validate" value="<%= usr.getTelefono()%>" onkeypress="return valida(event)">
                             <label for="password">Telefono</label>
-                        </div> 
+                        </div>
+        
+                        
+                        <div class="input-field col s6">
+                            <input id="contrasena" name="contrasenaNueva" type="password" class="validate" required="">
+                            <label for="password">Contraseña Nueva</label>
+                        </div>
+                            
+                            
+                            
+                        <div class="input-field col s6">
+                            <input id="confirmarContrasena" name="confirmarContrasena" type="password" class="validate" required="">
+                            <label for="password">Confirmar Contraseña Nueva</label>
+                        </div>
+                            
+                            
                         <br>
                         <br>
                         <br>

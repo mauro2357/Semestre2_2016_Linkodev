@@ -31,19 +31,37 @@ public class UsuariosDAO {
         }
     }
     
-    public void modificarInformacionUsuario(Usuario persona) throws SQLException{
+    public Usuario modificarInformacionUsuario(Usuario persona,String contraseñaVieja) throws SQLException{
         ConexiónBD nuevaconexion=new ConexiónBD();
         Statement stm;
         stm = nuevaconexion.getConeccion().createStatement();
-        String query = "UPDATE usuario SET usu_nombre='"+persona.getNombre()+"', "
-                + "usu_contrasena='"+persona.getContraseña()+"', "
-                + "usu_telefono ='"+persona.getTelefono() +"' "
-                + "where usu_correo = '"+persona.getCorreo()+"'";
-        try{
-            stm.executeUpdate(query);
-        }catch(SQLException ex){
-            throw new SQLException("Error! 404");
+        Statement statement=nuevaconexion.getConeccion().createStatement();
+        String query="SELECT * FROM usuario WHERE usu_correo ='"+persona.getCorreo()+"'";
+        ResultSet res = statement.executeQuery(query);
+        res.next();
+        String pass=res.getString("usu_contrasena");
+        if(pass.equals(contraseñaVieja)){
+            String queryModificar = "UPDATE usuario SET usu_nombre='"+persona.getNombre()+"', "
+                    + "usu_contrasena='"+persona.getContraseña()+"', "
+                    + "usu_telefono ='"+persona.getTelefono() +"' "
+                    + "where usu_correo = '"+persona.getCorreo()+"'";
+            try{
+                stm.executeUpdate(queryModificar);
+                persona.setNombre(res.getString("usu_nombre"));
+                persona.setCorreo(res.getString("usu_correo"));
+                persona.setContraseña(res.getString("usu_contrasena"));
+                persona.setTelefono(res.getString("usu_telefono"));
+                persona.setFotourl(res.getString("usu_fotourl"));
+                return persona;
+                
+            }catch(SQLException ex){
+  
+                throw new SQLException("No insertó");
+            }
         }
+        else
+            throw new SQLException("La contraseña vieja no es la correcta");
+            
     }
     public Usuario  inicioSesionUsuario(UsuarioInicioSesion personaregistrada) throws SQLException{
         ConexiónBD nuevaconexion=new ConexiónBD();

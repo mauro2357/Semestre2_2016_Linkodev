@@ -9,8 +9,8 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-        <script src="js/accionesvarias.js"></script>
-
+        <script src="js/jquery-3.1.0.min.js" type="text/javascript"></script>
+        <script src="js/accionesvarias.js"></script> 
     </head>
     <body>
         <nav class="light-blue lighten-1" role="navigation">
@@ -32,27 +32,28 @@
                 <br><br>
                 <h4>Registro</h4>
                 <div class="row">
-                    <form class="col s12" action="Registro" method="post">
-                        <div class="input-field col s6">
+                    <form class="col s12" action="Registro" method="post" onsubmit="return comprobarClave2()">
+                        <div class="input-field col s12">
                             <input name="nombre" type="text" class="validate" required>
-                            <label for="last_name">Nombre</label >
-                        </div>
-                        <div class="input-field col s6">
-                            <input name="apellido" type="text" class="validate" required>
-                            <label for="last_name">Apellido</label>
+                            <label for="last_name">Nombre Completo</label >
                         </div>
                         <div class="input-field col s6">
                             <input name="correo" type="email" class="validate" required>
                             <label for="last_name">Correo</label>
                         </div>
                         <div class="input-field col s6">
-                            <input name="contrasena" type="password" class="validate" required=>
-                            <label for="password">Contraseña</label>
-                        </div>
-                        <div class="input-field col s6">
                             <input name="telefono" type="text" class="validate" onkeypress="return valida(event)" required>
                             <label for="password">Telefono</label>
                         </div>
+                        <div class="input-field col s6">
+                            <input id="contrasena" name="contrasena" type="password" class="validate" required=>
+                            <label for="password">Contraseña</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="confirmarContrasena"  name="contrasena1" type="password" class="validate" required=>
+                            <label for="password">Confirmar Contraseña</label>
+                        </div>
+                        
                         <br>
                         <div class="row center col s12">
                             <button  type="submit" name="registro_boton" class="btn-large waves-effect waves-light orange">Registrar</button>

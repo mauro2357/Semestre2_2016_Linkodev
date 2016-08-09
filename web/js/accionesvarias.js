@@ -38,3 +38,48 @@ function valida(e){
     tecla_final = String.fromCharCode(tecla);
     return patron.test(tecla_final);
 }
+
+$(function comprobrarClave(){
+    $('#contrasena').keyup(function(){
+            var _this = $('#contrasena');
+            var contrasenaNueva = $('#contrasena').val();
+                _this.attr('style', 'background:white');
+            if(contrasenaNueva.charAt(0) == ' '){
+                    _this.attr('style', 'background:#FF4A4A');
+            }
+
+            if(contrasenaNueva.val() == ''){
+                    _this.attr('style', 'background:#FF4A4A');
+            }
+    });
+
+    $('#confirmarContrasena').keyup(function(){
+            var contrasenaNueva = $('#contrasena').val();
+            var confirmarContrasena = $('#confirmarContrasena').val();
+            var _this = $('#confirmarContrasena');
+                _this.attr('style', 'background:white');
+            if(contrasenaNueva != confirmarContrasena && confirmarContrasena != ''){
+                    _this.attr('style', 'background:#ef9a9a ');
+                    return false;
+            }
+            else{
+                if(confirmarContrasena == ''){
+                    _this.attr('style', 'background:white ');
+                }
+                else{
+                    _this.attr('style', 'background:#e8f5e9  ');
+                }
+                
+            }
+    });
+});
+
+
+function comprobarClave2(){ 
+   	contrasenaNueva = document.getElementById("contrasena").value;
+   	confirmarContrasena = document.getElementById("confirmarContrasena").value;
+   	if (contrasenaNueva != confirmarContrasena){  
+            alert("La clave nueva no coincide");
+            return false;
+        }
+}

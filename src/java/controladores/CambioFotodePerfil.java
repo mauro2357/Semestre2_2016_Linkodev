@@ -24,7 +24,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
  *
  * @author felipe
  */
-public class cambiarfotodeperfil extends HttpServlet {
+public class CambioFotodePerfil extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -57,21 +57,19 @@ public class cambiarfotodeperfil extends HttpServlet {
                         File directorio = new File(getServletContext().getRealPath("imagenes/"));
                         directorio.mkdir();
                         File archivo_server = new File(directorio + File.separator + item.getName());
-                        /*y lo escribimos en el servido*/
+                        /*y lo escribimos en el servido*/;
                         item.write(archivo_server);
                         UsuariosDAO usuario = new UsuariosDAO();
                         Usuario usr;
                         usr = (Usuario) request.getSession().getAttribute("usuario");
                         usr.setFotourl("imagenes/"+item.getName());
+                        request.getSession().setAttribute("usuario", usr);
                         usuario.cambiarFotoDePerfil("imagenes/"+item.getName(),usr.getCorreo());
                         /* guardar los datos en la tabla */
  /* fin guardar */
                     }
                 }
             }
-            
-            RequestDispatcher rd = request.getRequestDispatcher("modificarInformacion.jsp");
-            rd.forward(request, response);
             request.getRequestDispatcher("cuenta.jsp").forward(request, response);
 
         } catch (Exception e) {

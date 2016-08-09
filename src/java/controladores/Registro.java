@@ -61,7 +61,7 @@ public class Registro extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nombre=request.getParameter("nombre")+" "+request.getParameter("apellido");
+        String nombre=request.getParameter("nombre");
         System.out.println(nombre+" nombre");
         String correo=request.getParameter("correo");
         System.out.println(correo+" correo");
