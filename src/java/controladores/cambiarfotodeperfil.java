@@ -62,6 +62,7 @@ public class cambiarfotodeperfil extends HttpServlet {
                         UsuariosDAO usuario = new UsuariosDAO();
                         Usuario usr;
                         usr = (Usuario) request.getSession().getAttribute("usuario");
+                        usr.setFotourl("imagenes/"+item.getName());
                         usuario.cambiarFotoDePerfil("imagenes/"+item.getName(),usr.getCorreo());
                         /* guardar los datos en la tabla */
  /* fin guardar */
