@@ -51,7 +51,7 @@
                         </div>
                         <div class="input-field col s6">
                             <input id="confirmarContrasena"  name="contrasena1" type="password" class="validate" required=>
-                            <label for="password">Confrimar Contraseña</label>
+                            <label for="password">Confirmar Contraseña</label>
                         </div>
                         
                         <br>

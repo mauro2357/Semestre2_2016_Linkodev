@@ -76,7 +76,6 @@ public class ModificacionInformacion extends HttpServlet {
         }catch(SQLException e){
             String msgError=e.getMessage();
             request.getSession().setAttribute("msg",msgError ); 
-            request.getRequestDispatcher("error.jsp").forward(request, response);
         }
     }
 

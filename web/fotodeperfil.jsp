@@ -2,7 +2,7 @@
 
 <%@page import="DTO.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%       
+<%
     Usuario usr = (Usuario) request.getSession().getAttribute("usuario");
 %>
 <html lang="en">
@@ -35,12 +35,11 @@
         </nav>
         <div class="section no-pad-bot" id="index-banner">
             <div class="container">
-                <br><br>
                 <h4 class="center">Actualiza tu foto</h4>
 
                 <div class="row center col s12">
                     <div class="card-panel fondoActualizarFoto">
-                        <i class="large material-icons">settings</i>
+                        <i class="medium material-icons">settings</i>
                         <div class="row">
                             <div class="push-l10">
                                 <img class="hoverable" id="imagenprev" src="<%=usr.getFotourl()%>" width=250 height=300 />
@@ -68,38 +67,12 @@
             </div>
         </div>
 
-
-        <div class="container">
-            <div class="section">
-                <!--   Icon Section   -->
-                <div class="row">
-
-                </div>
-
-                <div class="row">
-                </div>
-            </div>
-            <br><br>
-        </div>
         <%@include file="footer.html" %>
-
-            <div class="section">
         <!--  Scripts-->
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="js/materialize.js"></script>
         <script src="js/init.js"></script>
-        
-
-            </div>
-        </div>
-        <%@include file="footer.html" %>
-
-        <!--  Scripts-->
-        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script src="js/materialize.js"></script>
-        <script src="js/init.js"></script>
-
     </body>
 </html>
-    </body>
+</body>
 </html>
