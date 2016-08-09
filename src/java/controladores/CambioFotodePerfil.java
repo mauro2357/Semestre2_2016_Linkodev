@@ -24,7 +24,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
  *
  * @author felipe
  */
-public class cambiarfotodeperfil extends HttpServlet {
+public class CambioFotodePerfil extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
