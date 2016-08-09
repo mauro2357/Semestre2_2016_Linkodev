@@ -24,7 +24,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
  *
  * @author felipe
  */
-public class cambiarfotodeperfil extends HttpServlet {
+public class Cambiofotodeperfil extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,6 +44,9 @@ public class cambiarfotodeperfil extends HttpServlet {
             ServletFileUpload servlet_up = new ServletFileUpload(file_factory);
             /*sacando los FileItem del ServletFileUpload en una lista */
             List items = servlet_up.parseRequest(request);
+            UsuariosDAO usuario = new UsuariosDAO();
+            Usuario usr= new Usuario();
+            FileItem item2 = null;
             for (int i = 0; i < items.size(); i++) {
                 /*FileItem representa un archivo en memoria que puede ser pasado al disco duro*/
                 FileItem item = (FileItem) items.get(i);
@@ -59,20 +62,18 @@ public class cambiarfotodeperfil extends HttpServlet {
                         File archivo_server = new File(directorio + File.separator + item.getName());
                         /*y lo escribimos en el servido*/
                         item.write(archivo_server);
-                        UsuariosDAO usuario = new UsuariosDAO();
-                        Usuario usr;
+                        
                         usr = (Usuario) request.getSession().getAttribute("usuario");
                         usuario.cambiarFotoDePerfil("imagenes/"+item.getName(),usr.getCorreo());
+                        item2=item;
                         /* guardar los datos en la tabla */
  /* fin guardar */
                     }
                 }
             }
-            
-            RequestDispatcher rd = request.getRequestDispatcher("modificarInformacion.jsp");
-            rd.forward(request, response);
+            usr.setFotourl("imagenes/"+item2.getName());
+            request.getSession().setAttribute("usuario",usr);
             request.getRequestDispatcher("cuenta.jsp").forward(request, response);
-
         } catch (Exception e) {
         }
     }

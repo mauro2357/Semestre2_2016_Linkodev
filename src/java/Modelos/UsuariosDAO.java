@@ -47,20 +47,16 @@ public class UsuariosDAO {
                     + "where usu_correo = '"+persona.getCorreo()+"'";
             try{
                 stm.executeUpdate(queryModificar);
-                persona.setNombre(res.getString("usu_nombre"));
-                persona.setCorreo(res.getString("usu_correo"));
-                persona.setContraseña(res.getString("usu_contrasena"));
-                persona.setTelefono(res.getString("usu_telefono"));
                 persona.setFotourl(res.getString("usu_fotourl"));
                 return persona;
                 
             }catch(SQLException ex){
   
-                throw new SQLException("No insertó");
+                throw new SQLException("No se realizo correctamente la actualización");
             }
         }
         else
-            throw new SQLException("La contraseña vieja no es la correcta");
+            throw new SQLException("La contraseña antigua no es la correcta");
             
     }
     public Usuario  inicioSesionUsuario(UsuarioInicioSesion personaregistrada) throws SQLException{

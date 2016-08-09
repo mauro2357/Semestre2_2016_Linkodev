@@ -25,7 +25,7 @@
                             <a href="#!email"><span class="white-text email"><%=usr.getTelefono()%></span></a>
                         </div></li>
                     <li>
-                        <a href="modificarInformacion.jsp"><i class="material-icons">settings</i>Actualizar información</a>            
+                        <a href="modificarInformacion.jsp"><i class="material-icons">settings</i>Actualizar información</a>  
                     </li>
                 </ul>
                 <ul class="right hide-on-med-and-down">

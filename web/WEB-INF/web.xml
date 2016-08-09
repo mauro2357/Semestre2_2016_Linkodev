@@ -2,7 +2,7 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>cambiarfotodeperfil</servlet-name>
-        <servlet-class>controladores.cambiarfotodeperfil</servlet-class>
+        <servlet-class>controladores.Cambiofotodeperfil</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Registro</servlet-name>
@@ -10,7 +10,7 @@
     </servlet>
     <servlet>
         <servlet-name>ModificarInformacion</servlet-name>
-        <servlet-class>controladores.ModificarInformacion</servlet-class>
+        <servlet-class>controladores.ModificacionInformacion</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>InicioSesion</servlet-name>
