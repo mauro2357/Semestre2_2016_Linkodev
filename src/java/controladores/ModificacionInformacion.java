@@ -64,18 +64,18 @@ public class ModificacionInformacion extends HttpServlet {
         processRequest(request, response);
         String nombre=request.getParameter("nombre");
         String correo=request.getParameter("correo");
-        String contraseñaNueva=request.getParameter("confirmarContrasena");
-        String contraseñaVieja=request.getParameter("contrasena");
+        String contraseña=request.getParameter("contrasena");
         String telefono=request.getParameter("telefono");
-        Usuario persona=new Usuario(nombre, correo, contraseñaNueva, telefono);
+        Usuario persona=new Usuario(nombre, correo, contraseña, telefono);
         UsuariosDAO NuevoUsuario=new UsuariosDAO();
         try{
-            Usuario usuarioModificado = NuevoUsuario.modificarInformacionUsuario(persona,contraseñaVieja);
+            Usuario usuarioModificado = NuevoUsuario.modificarInformacionUsuario(persona);
             request.getSession().setAttribute("usuario",usuarioModificado);
             request.getRequestDispatcher("cuenta.jsp").forward(request, response);
         }catch(SQLException e){
             String msgError=e.getMessage();
             request.getSession().setAttribute("msg",msgError ); 
+            request.getRequestDispatcher("error.jsp").forward(request, response);
         }
     }
 

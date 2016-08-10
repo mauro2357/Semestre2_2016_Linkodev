@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>cambiarfotodeperfil</servlet-name>
-        <servlet-class>controladores.CambioFotodePerfil</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>Registro</servlet-name>
         <servlet-class>controladores.Registro</servlet-class>
     </servlet>
@@ -16,10 +12,18 @@
         <servlet-name>InicioSesion</servlet-name>
         <servlet-class>controladores.InicioSesion</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>cambiarfotodeperfil</servlet-name>
-        <url-pattern>/cambiarfotodeperfil</url-pattern>
-    </servlet-mapping>
+    <servlet>
+        <servlet-name>ModificacionContrasena</servlet-name>
+        <servlet-class>controladores.ModificacionContrasena</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DesactivacionCuenta</servlet-name>
+        <servlet-class>controladores.DesactivacionCuenta</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CambioFotoPerfil</servlet-name>
+        <servlet-class>controladores.CambioFotoPerfil</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Registro</servlet-name>
         <url-pattern>/Registro</url-pattern>
@@ -31,6 +35,18 @@
     <servlet-mapping>
         <servlet-name>InicioSesion</servlet-name>
         <url-pattern>/InicioSesion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModificacionContrasena</servlet-name>
+        <url-pattern>/ModificacionContrasena</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DesactivacionCuenta</servlet-name>
+        <url-pattern>/DesactivacionCuenta</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CambioFotoPerfil</servlet-name>
+        <url-pattern>/CambioFotoPerfil</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

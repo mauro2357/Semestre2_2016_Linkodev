@@ -13,6 +13,7 @@ public class Usuario {
     String nombre;
     String correo;
     String contraseña;
+    String contraseñaCambio;
     String telefono;
     String fotourl;
 
@@ -21,6 +22,17 @@ public class Usuario {
         this.correo = correo;
         this.contraseña = contraseña;
         this.telefono = telefono;
+    }
+    
+    public Usuario(String correo, String contraseña, String contraseñaCambio) {
+        this.correo = correo;
+        this.contraseña = contraseña;
+        this.contraseñaCambio=contraseñaCambio;
+    }
+    
+     public Usuario(String correo, String contraseña) {
+        this.correo = correo;
+        this.contraseña = contraseña;
     }
 
     public Usuario() {
@@ -70,6 +82,14 @@ public class Usuario {
 
     public void setFotourl(String fotourl) {
         this.fotourl = fotourl;
+    }
+
+    public String getContraseñaCambio() {
+        return contraseñaCambio;
+    }
+
+    public void setContraseñaCambio(String contraseñaCambio) {
+        this.contraseñaCambio = contraseñaCambio;
     }
     
 }

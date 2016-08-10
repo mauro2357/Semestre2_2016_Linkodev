@@ -23,7 +23,7 @@ public class UsuariosDAO {
         stm = nuevaconexion.getConeccion().createStatement();
         String query="INSERT INTO usuario VALUES ('"+persona.getNombre()+"','"
             +persona.getCorreo()+"','"+persona.getContraseña()+"','"
-            +persona.getTelefono()+"','imagenes/nopic.png')";
+            +persona.getTelefono()+"','imagenes/nopic.png', 1)";
         try{
             stm.executeUpdate(query);
         }catch(SQLException ex){
@@ -31,7 +31,7 @@ public class UsuariosDAO {
         }
     }
     
-    public Usuario modificarInformacionUsuario(Usuario persona,String contraseñaVieja) throws SQLException{
+    public Usuario modificarInformacionUsuario(Usuario persona) throws SQLException{
         ConexiónBD nuevaconexion=new ConexiónBD();
         Statement stm;
         stm = nuevaconexion.getConeccion().createStatement();
@@ -40,9 +40,8 @@ public class UsuariosDAO {
         ResultSet res = statement.executeQuery(query);
         res.next();
         String pass=res.getString("usu_contrasena");
-        if(pass.equals(contraseñaVieja)){
+        if(pass.equals(persona.getContraseña())){
             String queryModificar = "UPDATE usuario SET usu_nombre='"+persona.getNombre()+"', "
-                    + "usu_contrasena='"+persona.getContraseña()+"', "
                     + "usu_telefono ='"+persona.getTelefono() +"' "
                     + "where usu_correo = '"+persona.getCorreo()+"'";
             try{
@@ -56,7 +55,7 @@ public class UsuariosDAO {
             }
         }
         else
-            throw new SQLException("La contraseña antigua no es la correcta");
+            throw new SQLException("La contraseña no es la correcta");
             
     }
     public Usuario  inicioSesionUsuario(UsuarioInicioSesion personaregistrada) throws SQLException{
@@ -95,5 +94,54 @@ public class UsuariosDAO {
         }catch(SQLException ex){
             throw new SQLException("Error! 404");
         }
+    }
+
+    public Usuario modificarContrasena(Usuario usr) throws SQLException {
+        ConexiónBD nuevaconexion=new ConexiónBD();
+        Statement stm;
+        stm = nuevaconexion.getConeccion().createStatement();
+        Statement statement=nuevaconexion.getConeccion().createStatement();
+        String query="SELECT * FROM usuario WHERE usu_correo ='"+usr.getCorreo()+"'";
+        ResultSet res = statement.executeQuery(query);
+        res.next();
+        String pass=res.getString("usu_contrasena");
+        if(pass.equals(usr.getContraseña())){
+            String queryModificar = "UPDATE usuario SET usu_contrasena='"+usr.getContraseñaCambio()+"' "
+                    + "where usu_correo = '"+usr.getCorreo()+"'";
+            try{
+                stm.executeUpdate(queryModificar);
+                usr.setFotourl(res.getString("usu_fotourl"));
+                usr.setNombre(res.getString("usu_nombre"));
+                usr.setTelefono(res.getString("usu_telefono"));
+                usr.setContraseña(usr.getContraseñaCambio());
+                return usr;
+            }catch(SQLException ex){
+                throw new SQLException("No se realizo correctamente la actualización");}
+        }
+        else
+            throw new SQLException("La contraseña antigua no es la correcta");
+            
+    }
+
+    public void desactivarCuenta(Usuario usr) throws SQLException {
+        ConexiónBD nuevaconexion=new ConexiónBD();
+        Statement stm;
+        stm = nuevaconexion.getConeccion().createStatement();
+        Statement statement=nuevaconexion.getConeccion().createStatement();
+        String query="SELECT * FROM usuario WHERE usu_correo ='"+usr.getCorreo()+"'";
+        ResultSet res = statement.executeQuery(query);
+        res.next();
+        String pass=res.getString("usu_contrasena");
+        if(pass.equals(usr.getContraseña())){
+            String queryModificar = "UPDATE usuario SET usu_estado="+0+" "
+                    + "where usu_correo = '"+usr.getCorreo()+"'";
+            try{
+                stm.executeUpdate(queryModificar);
+            }catch(SQLException ex){
+                throw new SQLException("No se pudo desactivar la cuenta");}
+        }
+        else
+            throw new SQLException("La contraseña antigua no es la correcta"+pass+" "+usr.getContraseña());
+            
     }
 }
