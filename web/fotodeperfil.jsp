@@ -44,7 +44,7 @@
                             <div class="push-l10">
                                 <img class="hoverable" id="imagenprev" src="<%=usr.getFotourl()%>" width=250 height=300 />
                             </div>
-                            <form method="POST" action="cambiarfotodeperfil" enctype="multipart/form-data" onsubmit="return cancelarsubmit()">
+                            <form method="POST" action="CambioFotodePerfil" enctype="multipart/form-data" onsubmit="return cancelarsubmit()">
                                 <div class="file-field input-field">
                                     <div class="btn-large waves-effect waves-light orange">
                                         <span>Elegir foto</span>
