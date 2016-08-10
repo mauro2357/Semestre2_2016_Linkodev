@@ -21,8 +21,8 @@
         <servlet-class>controladores.DesactivacionCuenta</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CambioFotodePerfil</servlet-name>
-        <servlet-class>controladores.CambioFotodePerfil</servlet-class>
+        <servlet-name>CambioFotoPerfil</servlet-name>
+        <servlet-class>controladores.CambioFotoPerfil</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Registro</servlet-name>
@@ -45,8 +45,8 @@
         <url-pattern>/DesactivacionCuenta</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CambioFotodePerfil</servlet-name>
-        <url-pattern>/CambioFotodePerfil</url-pattern>
+        <servlet-name>CambioFotoPerfil</servlet-name>
+        <url-pattern>/CambioFotoPerfil</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
