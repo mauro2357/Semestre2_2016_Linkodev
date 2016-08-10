@@ -38,7 +38,6 @@
             </div>
         </nav>
 
-
         <div class="section no-pad-bot" id="index-banner">
             <div class="container">
                 <div class="row">
@@ -57,7 +56,9 @@
             <br><br>
 
             <div class="section">
-
+                <div class="row center col s12">
+                    <a href="crearpublicacion.jsp"><button  type="button" name="publicarboton" class="btn-large waves-effect waves-light orange">Publicar un inmueble</button></a>
+                        </div>
             </div>
         </div>
         <%@include file="footer.html" %>

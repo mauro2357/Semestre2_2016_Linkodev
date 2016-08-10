@@ -15,85 +15,98 @@
         <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     </head>
     <body>
-        <nav class="light-blue lighten-1" role="navigation">
-            <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">IOInmuebles</a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="fotodeperfil.jsp">Inicio</a></li>
-                    <li><a href="index.html">Registrese!</a></li>
-                    <li><a href="#">Ingrese!</a></li>
-                </ul>
-                <ul id="nav-mobile" class="side-nav">
-                    <li><a href="fotodeperfil.jsp">Inicio</a></li>
-                    <li><a href="index.html">Registrese!</a></li>
-                    <li><a href="#">Ingrese!</a></li>
-                </ul>
-                <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-            </div>
-        </nav>
-        <div class="section no-pad-bot" id="index-banner">
-            <div class="container">
-                <br><br>
-                <h4>Nueva publicación</h4>
-                <div class="row">
-                    <form class="col s12" action="Registro" method="post" onsubmit="return comprobarClave2()">
-                        <div class="input-field col s6">
-                            Tipo de oferta:
-                            <select name="tipooferta">
-                                <option value="seleccione">Seleccione</option>
-                                <option value="venta">Venta</option>
-                                <option value="arriendo">Arriendo</option>
-                            </select>
-                        </div>
-                        <div class="input-field col s6">
-                            Tipo de inmueble:
-                            <select name="tipoinmueble">
-                                <option value="">Seleccione</option>
-                                <option value="casa">Casa</option>
-                                <option value="apartamento">Apartamento</option>
-                                <option value="habitacion">Habitación</option>
-                                <option value="local">Local</option>
-                                <option value="finca">Finca</option>
-                            </select>
-                        </div>
-                        <div class="input-field col s6">
-                            Ciudad:
-                            <select name="ciudad">
-                                <option value="">Seleccione</option>
-                                <option value="1">Bogotá</option>
-                                <option value="2">Medellín</option>
-                            </select>
-                        </div>
-                        <div class="input-field col s6">
-                            Dirección:
-                            <input  name="direccion" type="text" class="validate" >
-                        </div>
-                        <div class="col s6">
-                            Barrio:
-                            <input  name="barrio" type="text" class="validate">
-                        </div>
-                        <div class="col s6">
-                            Precio:
-                            <input  name="precio" type="text" class="validate">
-                        </div>
-                        <div class="col s6">
-                            Habitaciones:
-                            <input  name="habitaciones" type="text" class="validate">
-                        </div>
-                        <div class="col s6">
-                            Baños:
-                            <input  name="banos" type="text" class="validate">
-                        </div>
-                        <div class="col s6">
-                            Piso:
-                            <input  name="piso" type="text" class="validate">
-                        </div>
+        <div id="wrap">
 
-                        <br>
-                        <div class="row center col s12">
-                            <button  type="submit" name="publicarboton" class="btn-large waves-effect waves-light orange">Publicar</button>
-                        </div>
-                    </form>
+            <div id="main">
+                <nav class="light-blue lighten-1" role="navigation">
+                    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">IOInmuebles</a>
+                        <ul class="right hide-on-med-and-down">
+                            <li><a href="fotodeperfil.jsp">Inicio</a></li>
+                            <li><a href="index.html">Registrese!</a></li>
+                            <li><a href="#">Ingrese!</a></li>
+                        </ul>
+                        <ul id="nav-mobile" class="side-nav">
+                            <li><a href="fotodeperfil.jsp">Inicio</a></li>
+                            <li><a href="index.html">Registrese!</a></li>
+                            <li><a href="#">Ingrese!</a></li>
+                        </ul>
+                        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+                    </div>
+                </nav>
+                <div class="section no-pad-bot" id="index-banner">
+                    <div class="container">
+                        <br><br>
+                        <h4>Nueva publicación</h4>
+                        <div class="row">
+                            <form class="col s12" action="CreacionPublicacion" method="post">
+                                <div class="input-field col s6">
+                                    Tipo de oferta:
+                                    <select name="tipooferta" required aria-required="true">
+                                        <option></option>
+                                        <option value="venta">Venta</option>
+                                        <option value="arriendo">Arriendo</option>
+                                    </select>
+                                </div>
+                                <div class="input-field col s6">
+                                    Tipo de inmueble:
+                                    <select name="tipoinmueble">
+                                        <option></option>
+                                        <option value="casa">Casa</option>
+                                        <option value="apartamento">Apartamento</option>
+                                        <option value="habitacion">Habitación</option>
+                                        <option value="local">Local</option>
+                                        <option value="finca">Finca</option>
+                                    </select>
+                                </div>
+                                <div class="input-field col s6">
+                                    Ciudad:
+                                    <select name="ciudad">
+                                        <option value="">Seleccione</option>
+                                        <option value="1">Bogotá</option>
+                                        <option value="2">Medellín</option>
+                                    </select>
+                                </div>
+                                <div class="input-field col s6">
+                                    Dirección:
+                                    <input  name="direccion" type="text" class="validate">
+                                </div>
+                                <div class="col s6">
+                                    Barrio:
+                                    <input  name="barrio" type="text" class="validate">
+                                </div>
+                                <div class="col s6">
+                                    Precio:
+                                    <input  name="precio" type="text" class="validate">
+                                </div>
+                                <div class="col s6">
+                                    Habitaciones:
+                                    <input  name="habitaciones" type="number" min="0" max="20" step="1" class="validate">
+                                </div>
+                                <div class="col s6">
+                                    Baños:
+                                    <input  name="banos" type="number" min="0" max="20" step="1" class="validate">
+                                </div>
+                                <div class="col s6">
+                                    Piso:
+                                    <input  name="piso" type="text" class="validate">
+                                </div>
+                                <div class="col s6">
+                                    Área:
+                                    <input  name="area" type="text" class="validate">
+                                </div>
+                                <div class="col s6">
+                                    Estrato:
+                                    <input  name="estrato" type="text" class="validate">
+                                </div>
 
+                                <br>
+                                <div class="row center col s12">
+                                    <button  type="submit" name="publicarboton" class="btn-large waves-effect waves-light orange">Publicar</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

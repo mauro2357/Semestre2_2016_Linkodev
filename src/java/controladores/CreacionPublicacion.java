@@ -6,9 +6,10 @@
 package controladores;
 
 import DTO.Publicacion;
+import DTO.Usuario;
 import Modelos.PublicacionDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -59,17 +60,30 @@ public class CreacionPublicacion extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        Usuario usr = (Usuario) request.getSession().getAttribute("usuario");
         Publicacion publicacion = new Publicacion();
-        PublicacionDAO nuevapublicacion;
-        publicacion.setDueno(request.getParameter("tipooferta"));
+        PublicacionDAO nuevapublicacion = new PublicacionDAO();
+        publicacion.setDueno(usr.getCorreo());
         publicacion.setTipoOferta(request.getParameter("tipooferta"));
         publicacion.setTipoInmueble(request.getParameter("tipoinmueble"));
-        publicacion.setTipoOferta(request.getParameter("tipooferta"));
-        publicacion.setTipoOferta(request.getParameter("tipooferta"));
-        publicacion.setTipoOferta(request.getParameter("tipooferta"));
-        publicacion.setTipoOferta(request.getParameter("tipooferta"));
-        publicacion.setTipoOferta(request.getParameter("tipooferta"));
+        publicacion.setCiudad(request.getParameter("ciudad"));
+        publicacion.setDireccion(request.getParameter("direccion"));
+        publicacion.setBarrio(request.getParameter("barrio"));
+        publicacion.setPrecio(request.getParameter("precio"));
+        publicacion.setHabitaciones(request.getParameter("habitaciones"));
+        publicacion.setBanos(request.getParameter("banos"));
+        publicacion.setPiso(request.getParameter("piso"));
+        publicacion.setArea(request.getParameter("area"));
+        publicacion.setEstrato(request.getParameter("estrato"));
+        try{
+            nuevapublicacion.registrarPublicacion(publicacion);
+            request.getRequestDispatcher("cuenta.jsp").forward(request, response);
+        }catch(SQLException e){
+            String msgError=e.getMessage();
+            request.getSession().setAttribute("msg",msgError ); 
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+        }
+        processRequest(request, response);
     }
 
     /**

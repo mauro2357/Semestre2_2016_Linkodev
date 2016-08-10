@@ -9,7 +9,6 @@ import DTO.Usuario;
 import Modelos.UsuariosDAO;
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -38,36 +37,26 @@ public class CambioFotoPerfil extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            /*FileItemFactory es una interfaz para crear FileItem*/
             FileItemFactory file_factory = new DiskFileItemFactory();
-            /*ServletFileUpload esta clase convierte los input file a FileItem*/
             ServletFileUpload servlet_up = new ServletFileUpload(file_factory);
-            /*sacando los FileItem del ServletFileUpload en una lista */
             List items = servlet_up.parseRequest(request);
             UsuariosDAO usuario = new UsuariosDAO();
             Usuario usr= new Usuario();
             FileItem item2 = null;
             for (int i = 0; i < items.size(); i++) {
-                /*FileItem representa un archivo en memoria que puede ser pasado al disco duro*/
                 FileItem item = (FileItem) items.get(i);
-                /*item.isFormField() false=input file; true=text field*/
                 if (!item.isFormField()) {
-                    //checking content type of file. 
                     if (item.getContentType().equals("image/jpeg") || item.getContentType().equals("image/png")
                             || item.getContentType().equals("image/jpg") || item.getContentType().equals("image/gif")
                             || item.getContentType().equals("image/bmp")) {
-                        /*cual sera la ruta al archivo en el servidor*/
                         File directorio = new File(getServletContext().getRealPath("imagenes/"));
                         directorio.mkdir();
                         File archivo_server = new File(directorio + File.separator + item.getName());
-                        /*y lo escribimos en el servido*/
                         item.write(archivo_server);
                         
                         usr = (Usuario) request.getSession().getAttribute("usuario");
                         usuario.cambiarFotoDePerfil("imagenes/"+item.getName(),usr.getCorreo());
                         item2=item;
-                        /* guardar los datos en la tabla */
- /* fin guardar */
                     }
                 }
             }

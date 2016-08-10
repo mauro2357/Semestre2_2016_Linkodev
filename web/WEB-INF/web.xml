@@ -9,6 +9,10 @@
         <servlet-class>controladores.ModificacionInformacion</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>CreacionPublicacion</servlet-name>
+        <servlet-class>controladores.CreacionPublicacion</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>InicioSesion</servlet-name>
         <servlet-class>controladores.InicioSesion</servlet-class>
     </servlet>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>CambioFotoPerfil</servlet-name>
         <url-pattern>/CambioFotoPerfil</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreacionPublicacion</servlet-name>
+        <url-pattern>/CreacionPublicacion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

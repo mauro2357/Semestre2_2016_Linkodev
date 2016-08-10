@@ -17,16 +17,7 @@
         <script src="js/accionesvarias.js"></script>
     </head>
     <body>
-        <div id="wrap">
-
-            <div id="main">
-
-
-             
-
-            </div>
-
-        </div>
+        
 
         <div id="footer" class="page-footer orange white-text">
    

@@ -8,7 +8,6 @@ package controladores;
 import DTO.Usuario;
 import Modelos.UsuariosDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -62,9 +61,7 @@ public class Registro extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String nombre=request.getParameter("nombre");
-        System.out.println(nombre+" nombre");
         String correo=request.getParameter("correo");
-        System.out.println(correo+" correo");
         String contraseña=request.getParameter("contrasena");
         String telefono=request.getParameter("telefono");
         Usuario persona=new Usuario(nombre, correo, contraseña, telefono);

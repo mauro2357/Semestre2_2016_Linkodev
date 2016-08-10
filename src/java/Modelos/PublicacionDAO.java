@@ -18,8 +18,8 @@ public class PublicacionDAO {
     public void registrarPublicacion(Publicacion publicacion) throws SQLException{
         ConexiónBD nuevaconexion=new ConexiónBD();
         PreparedStatement stm;
-        stm = (PreparedStatement) nuevaconexion.getConeccion().createStatement();
-        String query="INSERT INTO publicacion VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String query="INSERT INTO publicacion VALUES ("+null+",?,?,?,?,?,?,?,?,?,?,?,?)";
+        stm = nuevaconexion.getConeccion().prepareStatement(query);
         stm.setString(1, publicacion.getDueno());
         stm.setString(2, publicacion.getTipoOferta());
         stm.setString(3, publicacion.getTipoInmueble());
@@ -33,7 +33,7 @@ public class PublicacionDAO {
         stm.setString(11, publicacion.getArea());
         stm.setString(12, publicacion.getEstrato());
         try{
-            stm.executeUpdate(query);
+            stm.executeUpdate();
             nuevaconexion.getConeccion().close();
             stm.close();
         }catch(SQLException ex){
