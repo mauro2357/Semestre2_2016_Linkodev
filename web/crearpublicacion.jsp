@@ -38,7 +38,7 @@
                     <form class="col s12" action="Registro" method="post" onsubmit="return comprobarClave2()">
                         <div class="input-field col s6">
                             Tipo de oferta:
-                            <select>
+                            <select name="tipooferta">
                                 <option value="seleccione">Seleccione</option>
                                 <option value="venta">Venta</option>
                                 <option value="arriendo">Arriendo</option>
@@ -46,7 +46,7 @@
                         </div>
                         <div class="input-field col s6">
                             Tipo de inmueble:
-                            <select>
+                            <select name="tipoinmueble">
                                 <option value="">Seleccione</option>
                                 <option value="casa">Casa</option>
                                 <option value="apartamento">Apartamento</option>
@@ -57,7 +57,7 @@
                         </div>
                         <div class="input-field col s6">
                             Ciudad:
-                            <select>
+                            <select name="ciudad">
                                 <option value="">Seleccione</option>
                                 <option value="1">Bogotá</option>
                                 <option value="2">Medellín</option>
@@ -77,15 +77,15 @@
                         </div>
                         <div class="col s6">
                             Habitaciones:
-                            <input  name="precio" type="text" class="validate">
+                            <input  name="habitaciones" type="text" class="validate">
                         </div>
                         <div class="col s6">
                             Baños:
-                            <input  name="precio" type="text" class="validate">
+                            <input  name="banos" type="text" class="validate">
                         </div>
                         <div class="col s6">
                             Piso:
-                            <input  name="precio" type="text" class="validate">
+                            <input  name="piso" type="text" class="validate">
                         </div>
 
                         <br>
