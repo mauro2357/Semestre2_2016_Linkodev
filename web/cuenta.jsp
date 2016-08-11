@@ -36,12 +36,14 @@
                     <a href="crearpublicacion.jsp"><button  type="button" name="publicarboton" class="btn-large waves-effect waves-light orange">Publicar un inmueble</button></a>
                         </div>
             </div>
+            
         </div>
-        <%@include file="footer.html" %>
+        
         <!--  Scripts-->
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="js/materialize.js"></script>
         <script src="js/init.js"></script>
-
+        <a href="crearpublicacion.jsp" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">¿Tienes carros para vender?</a>
+        <%@include file="footer.html" %>
 </body>
 </html>

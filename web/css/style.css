@@ -12,3 +12,13 @@
 .icon-block .material-icons {
 	font-size: inherit;
 }
+
+footer{
+    width: 100%;
+    bottom: 0;
+    text-align: left;
+    background-color: red;
+    color:white;
+    position: absolute;
+    height: 65px;
+}

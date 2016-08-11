@@ -30,7 +30,7 @@
                 </ul>
 
                 <ul id="nav-mobile" class="side-nav">
-                    <li><a href="index2.html">Inicio</a></li>
+                    <li><a href="index.jsp">Inicio</a></li>
                     <li><a href="registrar.jsp">Registrese!</a></li>
                 </ul>
                 <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -60,30 +60,13 @@
                 </div>
             </div>
         </div>
-    </div>
+        
+        
+        <!--  Scripts-->
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="js/materialize.js"></script>
+        <script src="js/init.js"></script>
+        <%@include file="footer.html" %>
 
-
-    <div class="container">
-        <div class="section">
-
-            <!--   Icon Section   -->
-            <div class="row">
-
-            </div>
-
-        </div>
-        <br><br><br>
-
-        <div class="section">
-
-        </div>
-    </div>
-    <%@include file="footer.html" %>
-
-    <!--  Scripts-->
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="js/materialize.js"></script>
-    <script src="js/init.js"></script>
-
-</body>
+    </body>
 </html>
