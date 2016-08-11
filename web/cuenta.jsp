@@ -53,12 +53,13 @@
                     <a href="crearpublicacion.jsp"><button  type="button" name="publicarboton" class="btn-large waves-effect waves-light orange">Publicar un inmueble</button></a>
                 </div>
             </div>
+            
         </div>
-        <%@include file="footer.html" %>
+        
         <!--  Scripts-->
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="js/materialize.js"></script>
         <script src="js/init.js"></script>
-
-    </body>
+        <%@include file="footer.html" %>
+</body>
 </html>
