@@ -7,9 +7,16 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@page import="DTO.Usuario" %>
-<%
-    Usuario usr = (Usuario) request.getSession().getAttribute("usuario");
 
+
+<%
+    HttpSession sesion = request.getSession();
+    Usuario usr = (Usuario) sesion.getAttribute("usuario"); 
+    response.setHeader( "Pragma", "no-cache" ); 
+    response.addHeader( "Cache-Control", "must-revalidate" ); 
+    response.addHeader( "Cache-Control", "no-cache" ); 
+    response.addHeader( "Cache-Control", "no-store" ); 
+    response.setDateHeader("Expires", 0); 
 %>
 <html>
     <head>
@@ -32,7 +39,7 @@
                     <li><a class="waves-effect" href="ModificacionContraseña.jsp"><i class="material-icons">vpn_key</i>Cambio contraseña</a></li>  
                     <li><a class="waves-effect" href="modificarInformacion.jsp"><i class="material-icons">settings</i>Actualizar información</a></li>                        
                     <li><a class="waves-effect" href="DesactivacionCuenta.jsp"><i class="material-icons">delete</i>Desactivar cuenta</a></li>
-                    <li><a class="waves-effect" href="index.jsp"><i class="material-icons">input</i>Cerrar sesion</a></li>  
+                    <li><a class="waves-effect" href="CerrarSesion" ><i class="material-icons">input</i>Cerrar sesion</a></li>  
                 </ul>
                 <ul class="right hide-on-med-and-down">
                     <li><a class="white-text name"><%=usr.getNombre()%></a></li>

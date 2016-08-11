@@ -52,22 +52,22 @@ public class PublicacionDAO {
         ArrayList<Publicacion> arrayPublicaciones = new ArrayList<>();
         try{
             stm = nuevaconexion.getConeccion().createStatement();
-            String query = "select * from publicaciones";
+            String query = "select * from publicacion";
             rs = stm.executeQuery(query);
             while (rs.next()){
                 publicacion = new Publicacion();
-                publicacion.setTipoOferta(rs.getString("pub_dueno"));
+                publicacion.setDueno(rs.getString("usu_correo"));
                 publicacion.setTipoOferta(rs.getString("pub_tipooferta"));
-                publicacion.setTipoOferta(rs.getString("pub_tipoinmueble"));
-                publicacion.setTipoOferta(rs.getString("pub_ciudad"));
-                publicacion.setTipoOferta(rs.getString("pub_direccion"));
-                publicacion.setTipoOferta(rs.getString("pub_barrio"));
-                publicacion.setTipoOferta(rs.getString("pub_precio"));
-                publicacion.setTipoOferta(rs.getString("pub_habitaciones"));
-                publicacion.setTipoOferta(rs.getString("pub_banos"));
-                publicacion.setTipoOferta(rs.getString("pub_piso"));
-                publicacion.setTipoOferta(rs.getString("pub_area"));
-                publicacion.setTipoOferta(rs.getString("pub_estrato"));
+                publicacion.setTipoInmueble(rs.getString("pub_tipoinmueble"));
+                publicacion.setCiudad(rs.getString("pub_ciudad"));
+                publicacion.setDireccion(rs.getString("pub_direccion"));
+                publicacion.setBarrio(rs.getString("pub_barrio"));
+                publicacion.setPrecio(rs.getString("pub_precio"));
+                publicacion.setHabitaciones(rs.getString("pub_habitaciones"));
+                publicacion.setBanos(rs.getString("pub_banos"));
+                publicacion.setPiso(rs.getString("pub_piso"));
+                publicacion.setArea(rs.getString("pub_area"));
+                publicacion.setEstrato(rs.getString("pub_estrato"));
                 arrayPublicaciones.add(publicacion);
             }
         }catch(SQLException e){

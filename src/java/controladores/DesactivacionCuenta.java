@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -60,6 +61,8 @@ public class DesactivacionCuenta extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession sesion = request.getSession();
+
         String usuario=request.getParameter("correo");
         String contrasena=request.getParameter("contrasena");
         Usuario usr=new Usuario(usuario,contrasena);
@@ -69,7 +72,7 @@ public class DesactivacionCuenta extends HttpServlet {
             request.getRequestDispatcher("index.html").forward(request, response);
         }catch(SQLException e){
             String msgError=e.getMessage();
-            request.getSession().setAttribute("msg",msgError ); 
+            sesion.setAttribute("msg",msgError ); 
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
     }

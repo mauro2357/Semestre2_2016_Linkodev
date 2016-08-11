@@ -3,7 +3,8 @@
 <%@page import="DTO.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    Usuario usr = (Usuario) request.getSession().getAttribute("usuario");
+    HttpSession sesion = request.getSession();
+    Usuario usr = (Usuario)sesion.getAttribute("usuario");
 %>
 <html lang="en">
     <head>

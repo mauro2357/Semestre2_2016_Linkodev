@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -36,6 +37,7 @@ public class CambioFotoPerfil extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+            HttpSession sesion = request.getSession();
         try {
             FileItemFactory file_factory = new DiskFileItemFactory();
             ServletFileUpload servlet_up = new ServletFileUpload(file_factory);
@@ -54,14 +56,14 @@ public class CambioFotoPerfil extends HttpServlet {
                         File archivo_server = new File(directorio + File.separator + item.getName());
                         item.write(archivo_server);
                         
-                        usr = (Usuario) request.getSession().getAttribute("usuario");
+                        usr = (Usuario) sesion.getAttribute("usuario");
                         usuario.cambiarFotoDePerfil("imagenes/"+item.getName(),usr.getCorreo());
                         item2=item;
                     }
                 }
             }
             usr.setFotourl("imagenes/"+item2.getName());
-            request.getSession().setAttribute("usuario",usr);
+            sesion.setAttribute("usuario",usr);
             request.getRequestDispatcher("cuenta.jsp").forward(request, response);
         } catch (Exception e) {
         }

@@ -5551,7 +5551,7 @@ button.btn-floating {
 }
 
 .materialboxed {
-  display: block;
+  display: inline-block;
   cursor: -webkit-zoom-in;
   cursor: zoom-in;
   position: relative;

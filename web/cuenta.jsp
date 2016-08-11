@@ -1,10 +1,9 @@
-<%@page import="org.apache.jasper.tagplugins.jstl.ForEach"%>
 <%@page import="DTO.Publicacion"%>
 <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <%
-    HttpSession sesion = request.getSession();
-    ArrayList<Publicacion> publicaciones = (ArrayList) sesion.getAttribute("publicaciones");
+    HttpSession sesion2 = request.getSession();
+    ArrayList<Publicacion> publicaciones = (ArrayList) sesion2.getAttribute("publicaciones");
 %>
 <html lang="en">
     <head>
@@ -30,9 +29,17 @@
             <div class="section">
                 <%                    
                     for (Publicacion pub : publicaciones) {
-                        out.println(pub.getPrecio());
+                        out.println("<a href='#'>");
+                        out.println("<div class='materialboxed preloader-wrapper'>");
+                        out.println("<span>"+pub.getTipoInmueble()+"</span></br>");
+                        out.println("<img src='imagenes/logoCasa.png' width=140 height=110/></br>");
+                        out.println("<span>"+pub.getTipoOferta()+"</span></br>");
+                        out.println("<span>$"+pub.getPrecio()+"</span></br>");
+                        out.println("</div>");
+                        out.println("</a>");
                     }
                 %>
+
                 <!--   Icon Section   -->
                 <div class="row">
 
