@@ -32,21 +32,7 @@ public class InicioSesion extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            String correous=request.getParameter("correo");
-            System.out.println(correous);
-            String contraseñaus=request.getParameter("contrasena");
-            UsuarioInicioSesion usuario = new UsuarioInicioSesion(correous,contraseñaus);
-            UsuariosDAO verificador = new UsuariosDAO();
-        try{
-            Usuario usrActivo=new Usuario();
-            usrActivo = verificador.inicioSesionUsuario(usuario);
-            request.getSession().setAttribute("usuario",usrActivo ); 
-            request.getRequestDispatcher("cuenta.jsp").forward(request, response);
-        }catch(SQLException ef){
-            String msgError=ef.getMessage();
-            request.getSession().setAttribute("msg",msgError ); 
-            request.getRequestDispatcher("error.jsp").forward(request, response);
-        }
+            
     }
     
 
@@ -76,9 +62,24 @@ public class InicioSesion extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+            String correous=request.getParameter("correo");
+            String contraseñaus=request.getParameter("contrasena");
+            UsuarioInicioSesion usuario = new UsuarioInicioSesion(correous,contraseñaus);
+            UsuariosDAO verificador = new UsuariosDAO();
+            try{
+                Usuario usrActivo=new Usuario();
+                usrActivo = verificador.inicioSesionUsuario(usuario);
+                request.getSession().setAttribute("usuario",usrActivo ); 
+                request.getRequestDispatcher("cuenta.jsp").forward(request, response);
+            }catch(SQLException ef){
+                String msgError=ef.getMessage();
+                request.getSession().setAttribute("msg",msgError );
+                request.getRequestDispatcher("error.jsp").forward(request, response);
+            }
+            processRequest(request, response);
     }
-
+    
     /**
      * Returns a short description of the servlet.
      *

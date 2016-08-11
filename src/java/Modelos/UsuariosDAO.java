@@ -66,8 +66,9 @@ public class UsuariosDAO {
         Usuario persona2=new Usuario();
         String query="SELECT * FROM usuario WHERE usu_correo ='"+correo+"'";
 	ResultSet res = statement.executeQuery(query);
-        if(!res.next())
-           throw new SQLException("El usuario no esta registrado");
+        if(!res.next()){
+            throw new SQLException("El usuario no esta registrado");
+        }   
         else{
             //res.next();
             String pass=res.getString("usu_contrasena");

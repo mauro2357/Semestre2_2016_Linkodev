@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Mateo Ortiz Cano
+ * @author linkcodev
  */
 public class ConexiónBD {
     Connection co;    

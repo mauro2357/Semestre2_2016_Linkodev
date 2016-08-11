@@ -7,15 +7,15 @@ package DTO;
 
 /**
  *
- * @author Mateo Ortiz Cano
+ * @author linkcodev
  */
 public class Usuario {
-    String nombre;
-    String correo;
-    String contraseña;
-    String contraseñaCambio;
-    String telefono;
-    String fotourl;
+    private String nombre;
+    private String correo;
+    private String contraseña;
+    private String contraseñaCambio;
+    private String telefono;
+    private String fotourl;
 
     public Usuario(String nombre, String correo, String contraseña, String telefono) {
         this.nombre = nombre;

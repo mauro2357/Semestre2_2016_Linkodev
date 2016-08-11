@@ -1,7 +1,7 @@
 <%-- 
     Document   : login
     Created on : 03-ago-2016, 17:27:14
-    Author     : MARCS
+    Author     : linkcodev
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -23,12 +23,12 @@
         <nav class="light-blue lighten-1" role="navigation">  
             <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">IOInmuebles</a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="index2.html">Inicio</a></li>
                     <li><a href="registrar.jsp">Registrese!</a></li>
                 </ul>
 
                 <ul id="nav-mobile" class="side-nav">
-                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="index2.html">Inicio</a></li>
                     <li><a href="registrar.jsp">Registrese!</a></li>
                 </ul>
                 <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -39,7 +39,7 @@
                 <br><br>
                 <h4>Inicia Sesión</h4>
                 <div class="row">
-                    <form class="col s12" action="InicioSesion">
+                    <form method="post" class="col s12" action="InicioSesion">
 
                         <div class="input-field col s12">
                             <input name="correo" type="email" class="validate" required="">

@@ -1,7 +1,7 @@
 <%-- 
     Document   : crearpublicacion
     Created on : 9/08/2016, 10:24:01 AM
-    Author     : felipe
+    Author     : linkcodev
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -13,26 +13,12 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <script src="js/accionesvarias.js"></script>
     </head>
     <body>
         <div id="wrap">
-
             <div id="main">
-                <nav class="light-blue lighten-1" role="navigation">
-                    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">IOInmuebles</a>
-                        <ul class="right hide-on-med-and-down">
-                            <li><a href="fotodeperfil.jsp">Inicio</a></li>
-                            <li><a href="index.html">Registrese!</a></li>
-                            <li><a href="#">Ingrese!</a></li>
-                        </ul>
-                        <ul id="nav-mobile" class="side-nav">
-                            <li><a href="fotodeperfil.jsp">Inicio</a></li>
-                            <li><a href="index.html">Registrese!</a></li>
-                            <li><a href="#">Ingrese!</a></li>
-                        </ul>
-                        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-                    </div>
-                </nav>
+                <%@include file="barradeNavegacion.jsp"%>
                 <div class="section no-pad-bot" id="index-banner">
                     <div class="container">
                         <br><br>
@@ -88,15 +74,15 @@
                                 </div>
                                 <div class="col s6">
                                     Piso:
-                                    <input  name="piso" type="text" class="validate">
+                                    <input  name="piso" type="text" class="validate" onkeypress="return valida(event)">
                                 </div>
                                 <div class="col s6">
                                     Área:
-                                    <input  name="area" type="text" class="validate">
+                                    <input  name="area" type="text" class="validate" onkeypress="return valida(event)">
                                 </div>
                                 <div class="col s6">
                                     Estrato:
-                                    <input  name="estrato" type="text" class="validate">
+                                    <input  name="estrato" type="text" class="validate" onkeypress="return valida(event)">
                                 </div>
 
                                 <br>

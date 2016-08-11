@@ -22,12 +22,12 @@
             <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">IOInmuebles</a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="fotodeperfil.jsp">Inicio</a></li>
-                    <li><a href="index.html">Registrese!</a></li>
+                    <li><a href="index2.html">Registrese!</a></li>
                     <li><a href="#">Ingrese!</a></li>
                 </ul>
                 <ul id="nav-mobile" class="side-nav">
                     <li><a href="fotodeperfil.jsp">Inicio</a></li>
-                    <li><a href="index.html">Registrese!</a></li>
+                    <li><a href="index2.html">Registrese!</a></li>
                     <li><a href="#">Ingrese!</a></li>
                 </ul>
                 <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>

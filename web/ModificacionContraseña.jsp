@@ -1,14 +1,10 @@
 <%-- 
     Document   : ModificacionContraseña
     Created on : 10/08/2016, 08:47:04 AM
-    Author     : Mateo Ortiz Cano
+    Author     : linkcodev
 --%>
 
-<%@page import="DTO.Usuario" %>
-<%
-    Usuario usr = (Usuario) request.getSession().getAttribute("usuario");
-
-%><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -23,28 +19,7 @@
         <script src="js/accionesvarias.js"></script>
     </head>
     <body>
-        <nav class="light-blue lighten-1" role="navigation">
-            <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">IOInmuebles</a>
-                <ul id="slide-out" class="right side-nav">
-                    <li><div class="userView">
-                            <a href="#!user"><img onClick=" window.location.href = 'fotodeperfil.jsp'" class="circle" src="<%=usr.getFotourl()%>"></a>
-                            <a href="#!name"><span class="white-text name"><%=usr.getNombre()%></span></a>
-                            <a href="#!email"><span class="white-text email"><%=usr.getCorreo()%></span></a>
-                            <a href="#!email"><span class="white-text email"><%=usr.getTelefono()%></span></a>
-                        </div>
-                    </li>
-                    <li><div class="divider"></div></li>
-                    <li><a class="waves-effect" href=""><i class="material-icons">vpn_key</i>Cambio contraseña</a></li>  
-                    <li><a class="waves-effect" href="modificarInformacion.jsp"><i class="material-icons">settings</i>Actualizar información</a></li>                        
-                    <li><a class="waves-effect" href=""><i class="material-icons">delete</i>Desactivar cuenta</a></li>
-                    <li><a class="waves-effect" href=""><i class="material-icons">input</i>Cerrar sesion</a></li>  
-                </ul>
-                <ul class="right hide-on-med-and-down">
-                    <li><a class="white-text name"><%=usr.getNombre()%></a></li>
-                    <li><a data-activates="slide-out" class="button-collapses"><i class="material-icons">person</i></a></li>
-                </ul>
-            </div>
-        </nav>
+        <%@include file="barradeNavegacion.jsp"%>
         <div class="section no-pad-bot" id="index-banner">
             <div class="container">
                 <br><br>

@@ -10,18 +10,18 @@ package DTO;
  * @author felipe
  */
 public class Publicacion {
-    String dueno;
-    String tipoOferta;
-    String tipoInmueble;
-    String ciudad;
-    String direccion;
-    String barrio;
-    String precio;
-    String habitaciones;
-    String banos;
-    String piso;
-    String area;
-    String estrato;
+    private String dueno;
+    private String tipoOferta;
+    private String tipoInmueble;
+    private String ciudad;
+    private String direccion;
+    private String barrio;
+    private String precio;
+    private String habitaciones;
+    private String banos;
+    private String piso;
+    private String area;
+    private String estrato;
 
     public String getDueno() {
         return dueno;

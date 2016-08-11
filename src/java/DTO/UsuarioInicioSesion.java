@@ -7,11 +7,11 @@ package DTO;
 
 /**
  *
- * @author MARCS
+ * @author linkcodev
  */
 public class UsuarioInicioSesion {
-    String correo;
-    String contraseña;
+    private String correo;
+    private String contraseña;
 
     public UsuarioInicioSesion(String correo, String contraseña) {
         this.correo = correo;
