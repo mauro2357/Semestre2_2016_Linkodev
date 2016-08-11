@@ -1,4 +1,11 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.ForEach"%>
+<%@page import="DTO.Publicacion"%>
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
+<%
+    HttpSession sesion = request.getSession();
+    ArrayList<Publicacion> publicaciones = (ArrayList) sesion.getAttribute("publicaciones");
+%>
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -21,7 +28,11 @@
         </div>
         <div class="container">
             <div class="section">
-
+                <%                    
+                    for (Publicacion pub : publicaciones) {
+                        out.println(pub.getPrecio());
+                    }
+                %>
                 <!--   Icon Section   -->
                 <div class="row">
 
@@ -33,7 +44,7 @@
             <div class="section">
                 <div class="row center col s12">
                     <a href="crearpublicacion.jsp"><button  type="button" name="publicarboton" class="btn-large waves-effect waves-light orange">Publicar un inmueble</button></a>
-                        </div>
+                </div>
             </div>
         </div>
         <%@include file="footer.html" %>
@@ -42,5 +53,5 @@
         <script src="js/materialize.js"></script>
         <script src="js/init.js"></script>
 
-</body>
+    </body>
 </html>
