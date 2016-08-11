@@ -1,4 +1,8 @@
+<%@page import="DTO.Usuario"%>
 <!DOCTYPE html>
+<%
+    HttpSession sesion = request.getSession();
+%>
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -20,7 +24,8 @@
                     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">IOInmuebles</a>
                         <ul class="right hide-on-med-and-down">
                             <li><a href="registrar.jsp">Registrese!</a></li>
-                            <li><a href="login.jsp">Ingrese!</a></li>
+                            <li><a href="login.jsp">Ingrese! </a>
+                            </li>
                         </ul>
 
                         <ul id="nav-mobile" class="side-nav">
@@ -29,10 +34,10 @@
                         </ul>
                         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
                     </div>
-                </nav>
-                <h1>Hola papi</h1>
-                <%@include file="prueba footer al fondo.jsp"%>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/pXRviuL6vMY" frameborder="0" allowfullscreen></iframe>
+                </nav> 
             </div>
+            <%@include file="footer.html" %>
         </div>
 
         <!--  Scripts-->

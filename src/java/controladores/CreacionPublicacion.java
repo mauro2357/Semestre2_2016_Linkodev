@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -60,7 +61,9 @@ public class CreacionPublicacion extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Usuario usr = (Usuario) request.getSession().getAttribute("usuario");
+        HttpSession sesion = request.getSession();
+
+        Usuario usr = (Usuario) sesion.getAttribute("usuario");
         Publicacion publicacion = new Publicacion();
         PublicacionDAO nuevapublicacion = new PublicacionDAO();
         publicacion.setDueno(usr.getCorreo());
@@ -80,7 +83,7 @@ public class CreacionPublicacion extends HttpServlet {
             request.getRequestDispatcher("cuenta.jsp").forward(request, response);
         }catch(SQLException e){
             String msgError=e.getMessage();
-            request.getSession().setAttribute("msg",msgError ); 
+            sesion.setAttribute("msg",msgError ); 
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
         processRequest(request, response);

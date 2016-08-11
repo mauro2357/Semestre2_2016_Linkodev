@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -63,6 +64,11 @@ public class InicioSesion extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+            HttpSession sesion = request.getSession();
+            if(sesion.getAttribute("usuario") != null){      
+                request.getRequestDispatcher("cuenta.jsp").forward(request, response);
+                return;
+            }
             String correous=request.getParameter("correo");
             String contraseñaus=request.getParameter("contrasena");
             UsuarioInicioSesion usuario = new UsuarioInicioSesion(correous,contraseñaus);
@@ -70,11 +76,14 @@ public class InicioSesion extends HttpServlet {
             try{
                 Usuario usrActivo=new Usuario();
                 usrActivo = verificador.inicioSesionUsuario(usuario);
-                request.getSession().setAttribute("usuario",usrActivo ); 
+                sesion.setAttribute("usuario", usrActivo);
                 request.getRequestDispatcher("cuenta.jsp").forward(request, response);
+                       
+                //request.getSession().setAttribute("usuario",usrActivo ); 
+                //request.getRequestDispatcher("cuenta.jsp").forward(request, response);
             }catch(SQLException ef){
                 String msgError=ef.getMessage();
-                request.getSession().setAttribute("msg",msgError );
+                sesion.setAttribute("msg",msgError );
                 request.getRequestDispatcher("error.jsp").forward(request, response);
             }
             processRequest(request, response);

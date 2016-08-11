@@ -28,6 +28,10 @@
         <servlet-name>CambioFotoPerfil</servlet-name>
         <servlet-class>controladores.CambioFotoPerfil</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CerrarSesion</servlet-name>
+        <servlet-class>controladores.CierreSesion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Registro</servlet-name>
         <url-pattern>/Registro</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>CreacionPublicacion</servlet-name>
         <url-pattern>/CreacionPublicacion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CerrarSesion</servlet-name>
+        <url-pattern>/CerrarSesion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

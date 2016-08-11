@@ -6,9 +6,8 @@
 package controladores;
 
 import DTO.Usuario;
-import Modelos.UsuariosDAO;
 import java.io.IOException;
-import java.sql.SQLException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +18,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author mateohenaocardona
  */
-public class ModificacionInformacion extends HttpServlet {
+public class CierreSesion extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,7 +31,18 @@ public class ModificacionInformacion extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        System.out.println("Entro al controlador");
+        HttpSession sesion = request.getSession();
+        sesion.invalidate();
+        Usuario usr = new Usuario();   
+        usr = (Usuario) request.getSession().getAttribute("usuario");
+        response.setHeader( "Pragma", "no-cache" ); 
+        response.addHeader( "Cache-Control", "must-revalidate" ); 
+        response.addHeader( "Cache-Control", "no-cache" ); 
+        response.addHeader( "Cache-Control", "no-store" ); 
+        response.setDateHeader("Expires", 2);
+        response.sendRedirect("login.jsp");
+         System.out.println("Debio haber cerrado");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -61,23 +71,7 @@ public class ModificacionInformacion extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession sesion = request.getSession();
         processRequest(request, response);
-        String nombre=request.getParameter("nombre");
-        String correo=request.getParameter("correo");
-        String contraseña=request.getParameter("contrasena");
-        String telefono=request.getParameter("telefono");
-        Usuario persona=new Usuario(nombre, correo, contraseña, telefono);
-        UsuariosDAO NuevoUsuario=new UsuariosDAO();
-        try{
-            Usuario usuarioModificado = NuevoUsuario.modificarInformacionUsuario(persona);
-            sesion.setAttribute("usuario",usuarioModificado);
-            request.getRequestDispatcher("cuenta.jsp").forward(request, response);
-        }catch(SQLException e){
-            String msgError=e.getMessage();
-            sesion.setAttribute("msg",msgError ); 
-            request.getRequestDispatcher("error.jsp").forward(request, response);
-        }
     }
 
     /**
