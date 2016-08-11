@@ -7,7 +7,6 @@ package controladores;
 
 import DTO.Usuario;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,6 +32,7 @@ public class CierreSesion extends HttpServlet {
             throws ServletException, IOException {
         System.out.println("Entro al controlador");
         HttpSession sesion = request.getSession();
+        sesion.removeAttribute("usuario");
         sesion.invalidate();
         Usuario usr = new Usuario();   
         usr = (Usuario) request.getSession().getAttribute("usuario");

@@ -5,12 +5,12 @@
  */
 package controladores;
 
-import DTO.Usuario;
-import DTO.UsuarioInicioSesion;
-import Modelos.UsuariosDAO;
+import DTO.Publicacion;
+import Modelos.PublicacionDAO;
 import java.io.IOException;
-import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,9 +18,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Mateo Ortiz Cano
+ * @author felipe
  */
-public class InicioSesion extends HttpServlet {
+@WebServlet(name = "MuestraPublicacion", urlPatterns = {"/MuestraPublicacion"})
+public class MuestraPublicacion extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,9 +34,7 @@ public class InicioSesion extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            
     }
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -63,32 +62,14 @@ public class InicioSesion extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-            HttpSession sesion = request.getSession();
-            if(sesion.getAttribute("usuario") != null){      
-                request.getRequestDispatcher("cuenta.jsp").forward(request, response);
-                return;
-            }
-            String correous=request.getParameter("correo");
-            String contraseñaus=request.getParameter("contrasena");
-            UsuarioInicioSesion usuario = new UsuarioInicioSesion(correous,contraseñaus);
-            UsuariosDAO verificador = new UsuariosDAO();
-            try{
-                Usuario usrActivo=new Usuario();
-                usrActivo = verificador.inicioSesionUsuario(usuario);
-                sesion.setAttribute("usuario", usrActivo);
-                request.getRequestDispatcher("MuestraPublicacion").forward(request, response);
-                       
-                //request.getSession().setAttribute("usuario",usrActivo ); 
-                //request.getRequestDispatcher("cuenta.jsp").forward(request, response);
-            }catch(SQLException ef){
-                String msgError=ef.getMessage();
-                sesion.setAttribute("msg",msgError );
-                request.getRequestDispatcher("error.jsp").forward(request, response);
-            }
-            processRequest(request, response);
+        PublicacionDAO publicacion = new PublicacionDAO();
+        ArrayList<Publicacion> arrayPublicaciones = publicacion.mostrarPublicaciones();
+        HttpSession sesion = request.getSession();
+        sesion.setAttribute("publicaciones", arrayPublicaciones);
+        request.getRequestDispatcher("cuenta.jsp").forward(request, response);
+        processRequest(request, response);
     }
-    
+
     /**
      * Returns a short description of the servlet.
      *

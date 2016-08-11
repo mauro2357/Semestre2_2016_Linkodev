@@ -7,7 +7,10 @@ package Modelos;
 
 import DTO.Publicacion;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -39,6 +42,38 @@ public class PublicacionDAO {
         }catch(SQLException ex){
             throw new SQLException(ex.getMessage());
         }
+    }
+    
+    public ArrayList<Publicacion> mostrarPublicaciones(){
+        ConexiónBD nuevaconexion=new ConexiónBD();
+        Statement stm;
+        ResultSet rs;
+        Publicacion publicacion;
+        ArrayList<Publicacion> arrayPublicaciones = new ArrayList<>();
+        try{
+            stm = nuevaconexion.getConeccion().createStatement();
+            String query = "select * from publicacion";
+            rs = stm.executeQuery(query);
+            while (rs.next()){
+                publicacion = new Publicacion();
+                publicacion.setDueno(rs.getString("usu_correo"));
+                publicacion.setTipoOferta(rs.getString("pub_tipooferta"));
+                publicacion.setTipoInmueble(rs.getString("pub_tipoinmueble"));
+                publicacion.setCiudad(rs.getString("pub_ciudad"));
+                publicacion.setDireccion(rs.getString("pub_direccion"));
+                publicacion.setBarrio(rs.getString("pub_barrio"));
+                publicacion.setPrecio(rs.getString("pub_precio"));
+                publicacion.setHabitaciones(rs.getString("pub_habitaciones"));
+                publicacion.setBanos(rs.getString("pub_banos"));
+                publicacion.setPiso(rs.getString("pub_piso"));
+                publicacion.setArea(rs.getString("pub_area"));
+                publicacion.setEstrato(rs.getString("pub_estrato"));
+                arrayPublicaciones.add(publicacion);
+            }
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return arrayPublicaciones;
     }
     
 }
