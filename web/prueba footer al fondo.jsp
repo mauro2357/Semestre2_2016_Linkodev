@@ -9,12 +9,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Probar footer</title>
         <link href="css/newcss.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <script src="js/accionesvarias.js"></script>
+        <link rel="shortcut icon" href="imagenes/logoCasa.png">
     </head>
     <body>
         

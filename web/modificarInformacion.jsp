@@ -15,6 +15,7 @@
         <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <script src="js/accionesvarias.js"></script>
+        <link rel="shortcut icon" href="imagenes/logoCasa.png">
     </head>
     <body>
         <%@include file="barradeNavegacion.jsp"%>

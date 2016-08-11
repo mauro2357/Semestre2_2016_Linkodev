@@ -14,7 +14,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Barra de navegacion</title>
+        <link rel="shortcut icon" href="imagenes/logoCasa.png">
     </head>
     <body>
             <nav class="light-blue lighten-1" role="navigation">
