@@ -60,12 +60,8 @@
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="js/materialize.js"></script>
         <script src="js/init.js"></script>
-<<<<<<< HEAD
-        <a href="crearpublicacion.jsp" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">¿Tienes carros para vender?</a>
-        <%@include file="footer.html" %>
-</body>
-=======
 
-    </body>
->>>>>>> 05d59018b7ccea1fa363ab6d9b7e1862615eac6d
+        <%@include file="footer.html" %>
+</body> 
+
 </html>
