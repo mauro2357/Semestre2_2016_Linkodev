@@ -2,9 +2,6 @@
 
 <%@page import="DTO.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<<<<<<< HEAD
-<<<<<<< HEAD
-
 <%
     HttpSession sesion = request.getSession();
     Usuario usr = (Usuario) sesion.getAttribute("usuario"); 

@@ -9,6 +9,8 @@ import DTO.Usuario;
 import Modelos.UsuariosDAO;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -71,13 +73,12 @@ public class Registro extends HttpServlet {
         try{
             NuevoUsuario.registrarUsuario(persona);
             sesion.setAttribute("usuario",persona ); 
-            request.getRequestDispatcher("cuenta.jsp").forward(request, response);
+            request.getRequestDispatcher("MuestraPublicacion").forward(request, response);
         }catch(SQLException e){
             String msgError=e.getMessage();
             sesion.setAttribute("msg",msgError ); 
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
-        processRequest(request, response);
     }
 
     /**

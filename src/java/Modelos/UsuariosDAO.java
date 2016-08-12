@@ -6,7 +6,6 @@
 package Modelos;
 
 import DTO.Usuario;
-import DTO.UsuarioInicioSesion;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,13 +17,13 @@ import java.sql.Statement;
 public class UsuariosDAO {
     
     public void registrarUsuario(Usuario persona) throws SQLException{
-        Encriptacion aencriptar = new Encriptacion();
+        //Encriptacion aencriptar = new Encriptacion();
         ConexiónBD nuevaconexion=new ConexiónBD();
         Statement stm;
-        String contraseña_encriptada= aencriptar.encriptado(persona.getContraseña());
+        //String contraseña_encriptada= aencriptar.encriptar(persona.getContraseña());
         stm = nuevaconexion.getConeccion().createStatement();
         String query="INSERT INTO usuario VALUES ('"+persona.getNombre()+"','"
-            +persona.getCorreo()+"','"+contraseña_encriptada+"','"
+            +persona.getCorreo()+"','"+persona.getContraseña()+"','"
             +persona.getTelefono()+"','imagenes/nopic.png', 1)";
         try{
             stm.executeUpdate(query);
@@ -34,7 +33,7 @@ public class UsuariosDAO {
     }
     
    public Usuario modificarInformacionUsuario(Usuario persona) throws SQLException{
-        Encriptacion encriptado = new Encriptacion();
+        //Encriptacion encriptado = new Encriptacion();
         ConexiónBD nuevaconexion=new ConexiónBD();
         Statement stm;
         stm = nuevaconexion.getConeccion().createStatement();
@@ -42,8 +41,9 @@ public class UsuariosDAO {
         String query="SELECT * FROM usuario WHERE usu_correo ='"+persona.getCorreo()+"'";
         ResultSet res = statement.executeQuery(query);
         res.next();
-        String contraseña_desencriptada = encriptado.desencriptado(res.getString("usu_contrasena"));
-        if(contraseña_desencriptada.equals(persona.getContraseña())){
+        String contraseña=res.getString("usu_contrasena");
+        //String contraseña_desencriptada = encriptado.desencriptar(res.getString("usu_contrasena"));
+        if(contraseña.equals(persona.getContraseña())){
             String queryModificar = "UPDATE usuario SET usu_nombre='"+persona.getNombre()+"', "
                     + "usu_telefono ='"+persona.getTelefono() +"' "
                     + "where usu_correo = '"+persona.getCorreo()+"'";
@@ -61,8 +61,8 @@ public class UsuariosDAO {
             throw new SQLException("La contraseña no es la correcta");
             
     }
-    public Usuario  inicioSesionUsuario(UsuarioInicioSesion personaregistrada) throws SQLException{
-        Encriptacion desencriptar = new Encriptacion();
+    public Usuario  iniciarSesion(Usuario personaregistrada) throws SQLException{
+        //Encriptacion desencriptacion = new Encriptacion();
         ConexiónBD nuevaconexion=new ConexiónBD();
         String correo=personaregistrada.getCorreo();
         String contraseña=personaregistrada.getContraseña();
@@ -74,9 +74,9 @@ public class UsuariosDAO {
             throw new SQLException("El usuario no esta registrado");
         }   
         else{
-            //res.next();
-            String contraseña_desencriptada = desencriptar.desencriptado(res.getString("usu_contrasena"));
-            if(contraseña_desencriptada.equals(contraseña)){
+            String pass= res.getString("usu_contrasena");
+            //String contraseña_desencriptada = desencriptacion.desencriptar(pass);
+            if(pass.equals(contraseña)){
                 persona2.setNombre(res.getString("usu_nombre"));
                 persona2.setCorreo(res.getString("usu_correo"));
                 persona2.setTelefono(res.getString("usu_telefono"));
@@ -103,18 +103,19 @@ public class UsuariosDAO {
 
      public Usuario modificarContrasena(Usuario usr) throws SQLException {
         ConexiónBD nuevaconexion=new ConexiónBD();
-        Encriptacion encriptar = new Encriptacion();
-        Encriptacion desencriptar = new Encriptacion();
+        //Encriptacion encriptar = new Encriptacion();
+        //Encriptacion desencriptar = new Encriptacion();
         Statement stm;
         stm = nuevaconexion.getConeccion().createStatement();
         Statement statement=nuevaconexion.getConeccion().createStatement();
         String query="SELECT * FROM usuario WHERE usu_correo ='"+usr.getCorreo()+"'";
         ResultSet res = statement.executeQuery(query);
         res.next();
-        String contraseña_desencriptada = desencriptar.desencriptado(res.getString("usu_contrasena"));
-        if(contraseña_desencriptada.equals(usr.getContraseña())){
-            String contraseña_encriptada = encriptar.encriptado(usr.getContraseñaCambio());
-            String queryModificar = "UPDATE usuario SET usu_contrasena='"+contraseña_encriptada+"' "
+        String contraseña=res.getString("usu_contrasena");
+        //String contraseña_desencriptada = desencriptar.desencriptar(res.getString("usu_contrasena"));
+        if(contraseña.equals(usr.getContraseña())){
+            //String contraseña_encriptada = encriptar.encriptar(usr.getContraseñaCambio());
+            String queryModificar = "UPDATE usuario SET usu_contrasena='"+usr.getContraseñaCambio()+"' "
                     + "where usu_correo = '"+usr.getCorreo()+"'";
             try{
                 stm.executeUpdate(queryModificar);
@@ -133,15 +134,16 @@ public class UsuariosDAO {
 
     public void desactivarCuenta(Usuario usr) throws SQLException {
         ConexiónBD nuevaconexion=new ConexiónBD();
-        Encriptacion desencriptar = new Encriptacion();
+        //Encriptacion desencriptar = new Encriptacion();
         Statement stm;
         stm = nuevaconexion.getConeccion().createStatement();
         Statement statement=nuevaconexion.getConeccion().createStatement();
         String query="SELECT * FROM usuario WHERE usu_correo ='"+usr.getCorreo()+"'";
         ResultSet res = statement.executeQuery(query);
         res.next();
-        String contraseña_desencriptada = desencriptar.desencriptado(res.getString("usu_contrasena"));
-        if(contraseña_desencriptada.equals(usr.getContraseña())){
+        String contraseña=res.getString("usu_contrasena");
+        //String contraseña_desencriptada = desencriptar.desencriptar(res.getString("usu_contrasena"));
+        if(contraseña.equals(usr.getContraseña())){
             String queryModificar = "UPDATE usuario SET usu_estado="+0+" "
                     + "where usu_correo = '"+usr.getCorreo()+"'";
             try{
@@ -150,7 +152,7 @@ public class UsuariosDAO {
                 throw new SQLException("No se pudo desactivar la cuenta");}
         }
         else
-            throw new SQLException("La contraseña antigua no es la correcta"+contraseña_desencriptada+" "+usr.getContraseña());
+            throw new SQLException("La contraseña antigua no es la correcta");
             
     }
 }

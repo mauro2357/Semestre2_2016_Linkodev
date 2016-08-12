@@ -6,7 +6,6 @@
 package controladores;
 
 import DTO.Usuario;
-import DTO.UsuarioInicioSesion;
 import Modelos.UsuariosDAO;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -63,7 +62,6 @@ public class InicioSesion extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
             HttpSession sesion = request.getSession();
             if(sesion.getAttribute("usuario") != null){      
                 request.getRequestDispatcher("cuenta.jsp").forward(request, response);
@@ -71,16 +69,13 @@ public class InicioSesion extends HttpServlet {
             }
             String correous=request.getParameter("correo");
             String contraseñaus=request.getParameter("contrasena");
-            UsuarioInicioSesion usuario = new UsuarioInicioSesion(correous,contraseñaus);
+            Usuario usuario = new Usuario(correous,contraseñaus);
             UsuariosDAO verificador = new UsuariosDAO();
             try{
                 Usuario usrActivo=new Usuario();
-                usrActivo = verificador.inicioSesionUsuario(usuario);
+                usrActivo = verificador.iniciarSesion(usuario);
                 sesion.setAttribute("usuario", usrActivo);
                 request.getRequestDispatcher("MuestraPublicacion").forward(request, response);
-                       
-                //request.getSession().setAttribute("usuario",usrActivo ); 
-                //request.getRequestDispatcher("cuenta.jsp").forward(request, response);
             }catch(SQLException ef){
                 String msgError=ef.getMessage();
                 sesion.setAttribute("msg",msgError );
