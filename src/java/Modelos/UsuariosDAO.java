@@ -74,6 +74,9 @@ public class UsuariosDAO {
             throw new SQLException("El usuario no esta registrado");
         }   
         else{
+            if("0".equals(res.getString("usu_estado"))){
+                throw new SQLException("su cuenta esta inactiva");
+            }
             String pass= res.getString("usu_contrasena");
             //String contraseña_desencriptada = desencriptacion.desencriptar(pass);
             if(pass.equals(contraseña)){

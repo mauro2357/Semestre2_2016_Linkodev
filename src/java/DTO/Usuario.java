@@ -90,6 +90,5 @@ public class Usuario {
 
     public void setContraseñaCambio(String contraseñaCambio) {
         this.contraseñaCambio = contraseñaCambio;
-    }
-    
+    }  
 }

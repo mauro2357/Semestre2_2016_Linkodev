@@ -27,7 +27,6 @@
                             <li><a href="login.jsp">Ingrese! </a>
                             </li>
                         </ul>
-
                         <ul id="nav-mobile" class="side-nav">
                             <li><a href="registrar.jsp">Registrese!</a></li>
                             <li><a href="login.jsp">Ingrese!</a></li>
@@ -35,15 +34,8 @@
                         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
                     </div>
                 </nav>
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/hnEiUpCNBfo" frameborder="0" allowfullscreen></iframe>
             </div>   
         </div>
-
-
-        <!--  Scripts-->
-        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script src="js/materialize.js"></script>
-        <script src="js/init.js"></script>
         <%@include file="footer.html" %>
     </body>
 </html>

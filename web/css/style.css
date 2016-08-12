@@ -19,6 +19,6 @@ footer{
     text-align: left;
     background-color: red;
     color:white;
-    position: absolute;
+    position: relativetive;
     height: 65px;
 }

@@ -15,10 +15,11 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="css/newcss.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <script src="js/jquery-3.1.0.min.js" type="text/javascript"></script>
         <script src="js/accionesvarias.js"></script>
         <link rel="shortcut icon" href="imagenes/logoCasa.png">
-        
+
     </head>
     <body>
         <div id="wrap">
@@ -41,10 +42,6 @@
                                     <input id="contrasena" name="contrasena" type="password" class="validate" required="">
                                     <label for="password">Contraseña</label>
                                 </div>
-                                <br>
-                                <br>
-                                <br>
-                                <br>
                                 <div class="row center col s12">
                                     <button  type="submit" name="actualizar_boton" class="btn-large waves-effect waves-light orange">Confirmar desactivacion</button>
                                 </div>
@@ -53,30 +50,7 @@
                     </div>
                 </div>
             </div>
-
-
-            <div class="container">
-                <div class="section">
-
-                    <!--   Icon Section   -->
-                    <div class="row">
-
-                    </div>
-
-                </div>
-                <br><br>
-
-                <div class="section">
-
-                </div>
-            </div>
         </div>
-    <%@include file="footer.html" %>
-
-    <!--  Scripts-->
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="js/materialize.js"></script>
-    <script src="js/init.js"></script>
-
-</body>
+        <%@include file="footer.html" %>
+    </body>
 </html>

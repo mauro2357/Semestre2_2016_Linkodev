@@ -69,7 +69,7 @@ public class DesactivacionCuenta extends HttpServlet {
         UsuariosDAO usrdao=new UsuariosDAO();
         try{
             usrdao.desactivarCuenta(usr);
-            request.getRequestDispatcher("index.html").forward(request, response);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }catch(SQLException e){
             String msgError=e.getMessage();
             sesion.setAttribute("msg",msgError ); 

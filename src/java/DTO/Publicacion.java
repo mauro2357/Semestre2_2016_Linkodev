@@ -118,6 +118,4 @@ public class Publicacion {
     public void setEstrato(String estrato) {
         this.estrato = estrato;
     }
-
-
 }
