@@ -1,4 +1,4 @@
-<%@page import="DTO.Publicacion"%>
+<%@page import="DOMAINENTITIES.Publicacion"%>
 <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <%

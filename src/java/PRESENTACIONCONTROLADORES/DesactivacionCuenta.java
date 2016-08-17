@@ -6,9 +6,7 @@
 package PRESENTACIONCONTROLADORES;
 
 import DOMAINENTITIES.Usuario;
-import ConexionBaseDatos.UsuariosDAO;
 import java.io.IOException;
-import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -67,7 +65,7 @@ public class DesactivacionCuenta extends HttpServlet {
         Usuario usr=new Usuario(usuario,contrasena);
         try{
             usr.desactivarCuenta();
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            request.getRequestDispatcher("CerrarSesion").forward(request, response);
         }catch(Exception e){
             String msgError=e.getMessage();
             sesion.setAttribute("msg",msgError ); 

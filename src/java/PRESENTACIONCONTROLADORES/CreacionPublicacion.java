@@ -77,8 +77,9 @@ public class CreacionPublicacion extends HttpServlet {
         publicacion.setPiso(request.getParameter("piso"));
         publicacion.setArea(request.getParameter("area"));
         publicacion.setEstrato(request.getParameter("estrato"));
+        Usuario usuario=new Usuario();
         try{
-            nuevapublicacion.registrarPublicacion(publicacion);
+            usuario.registrarPublicacion(publicacion);
             sesion.setAttribute("usuario", usr);
             request.getRequestDispatcher("MuestraPublicacion").forward(request, response);
         }catch(SQLException e){

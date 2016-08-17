@@ -73,6 +73,7 @@ public class UsuariosDAO {
         ResultSet res = statement.executeQuery(query);
         res.next();
         String estado=res.getString("usu_estado");
+        System.out.println(estado);
         return estado;
     }
    
@@ -105,10 +106,6 @@ public class UsuariosDAO {
                 + "where usu_correo = '"+usr.getCorreo()+"'";
         stm.executeUpdate(queryModificar);
     }
-   
-   
-   
-   
    
     public void cambiarFotoDePerfil(String fotourl, String correo) throws SQLException{
         ConexiónBD nuevaconexion=new ConexiónBD();

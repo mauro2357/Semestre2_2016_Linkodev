@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%@page import="DTO.Usuario" %>
+<%@page import="DOMAINENTITIES.Usuario" %>
 
 
 <%

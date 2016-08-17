@@ -5,6 +5,7 @@
  */
 package DOMAINENTITIES;
 
+import ConexionBaseDatos.PublicacionDAO;
 import ConexionBaseDatos.UsuariosDAO;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -165,5 +166,15 @@ public class Usuario {
         }catch(SQLException ex){
             throw new Exception("La cuenta no se desactivo correctamente, intente nuevamente");
         }
+    }
+    
+    public void registrarPublicacion(Publicacion publicacion) throws SQLException{
+        PublicacionDAO conexion= new PublicacionDAO();
+        try {
+            conexion.registrarPublicacion(publicacion);
+        } catch (SQLException ex) {
+            throw ex;
+        }
+        
     }
 }

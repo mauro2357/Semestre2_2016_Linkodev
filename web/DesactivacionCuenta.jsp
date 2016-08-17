@@ -1,5 +1,4 @@
-<%-- 
-    Document   : DesactivacionCuenta
+<%--Document   : DesactivacionCuenta
     Created on : 10/08/2016, 10:13:33 AM
     Author     : linkcodev
 --%>

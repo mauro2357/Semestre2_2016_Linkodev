@@ -1,4 +1,4 @@
-<%@page import="DTO.Usuario"%>
+<%@page import="DOMAINENTITIES.Usuario"%>
 <!DOCTYPE html>
 <%
     HttpSession sesion = request.getSession();
