@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controladores;
+package PRESENTACIONCONTROLADORES;
 
-import DTO.Publicacion;
-import DTO.Usuario;
-import Modelos.PublicacionDAO;
+import DOMAINENTITIES.Usuario;
+import ConexionBaseDatos.UsuariosDAO;
 import java.io.IOException;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
@@ -18,9 +17,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author felipe
+ * @author Mateo Ortiz Cano
  */
-public class CreacionPublicacion extends HttpServlet {
+public class DesactivacionCuenta extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,6 +32,7 @@ public class CreacionPublicacion extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -62,31 +62,17 @@ public class CreacionPublicacion extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession sesion = request.getSession();
-        Usuario usr = (Usuario) sesion.getAttribute("usuario");
-        Publicacion publicacion = new Publicacion();
-        PublicacionDAO nuevapublicacion = new PublicacionDAO();
-        publicacion.setDueno(usr.getCorreo());
-        publicacion.setTipoOferta(request.getParameter("tipooferta"));
-        publicacion.setTipoInmueble(request.getParameter("tipoinmueble"));
-        publicacion.setCiudad(request.getParameter("ciudad"));
-        publicacion.setDireccion(request.getParameter("direccion"));
-        publicacion.setBarrio(request.getParameter("barrio"));
-        publicacion.setPrecio(request.getParameter("precio"));
-        publicacion.setHabitaciones(request.getParameter("habitaciones"));
-        publicacion.setBanos(request.getParameter("banos"));
-        publicacion.setPiso(request.getParameter("piso"));
-        publicacion.setArea(request.getParameter("area"));
-        publicacion.setEstrato(request.getParameter("estrato"));
+        String usuario=request.getParameter("correo");
+        String contrasena=request.getParameter("contrasena");
+        Usuario usr=new Usuario(usuario,contrasena);
         try{
-            nuevapublicacion.registrarPublicacion(publicacion);
-            sesion.setAttribute("usuario", usr);
-            request.getRequestDispatcher("MuestraPublicacion").forward(request, response);
-        }catch(SQLException e){
+            usr.desactivarCuenta();
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }catch(Exception e){
             String msgError=e.getMessage();
             sesion.setAttribute("msg",msgError ); 
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
-        processRequest(request, response);
     }
 
     /**

@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DTO;
+package DOMAINENTITIES;
 
 /**
  *
- * @author felipe
+ * @author Mateo Ortiz Cano
  */
 public class Publicacion {
     private String dueno;

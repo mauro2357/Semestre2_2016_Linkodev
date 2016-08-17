@@ -2,35 +2,35 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>Registro</servlet-name>
-        <servlet-class>controladores.Registro</servlet-class>
+        <servlet-class>PRESENTACIONCONTROLADORES.Registro</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ModificarInformacion</servlet-name>
-        <servlet-class>controladores.ModificacionInformacion</servlet-class>
+        <servlet-class>PRESENTACIONCONTROLADORES.ModificacionInformacion</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CreacionPublicacion</servlet-name>
-        <servlet-class>controladores.CreacionPublicacion</servlet-class>
+        <servlet-class>PRESENTACIONCONTROLADORES.CreacionPublicacion</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>InicioSesion</servlet-name>
-        <servlet-class>controladores.InicioSesion</servlet-class>
+        <servlet-class>PRESENTACIONCONTROLADORES.InicioSesion</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ModificacionContrasena</servlet-name>
-        <servlet-class>controladores.ModificacionContrasena</servlet-class>
+        <servlet-class>PRESENTACIONCONTROLADORES.ModificacionContrasena</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DesactivacionCuenta</servlet-name>
-        <servlet-class>controladores.DesactivacionCuenta</servlet-class>
+        <servlet-class>PRESENTACIONCONTROLADORES.DesactivacionCuenta</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CambioFotoPerfil</servlet-name>
-        <servlet-class>controladores.CambioFotoPerfil</servlet-class>
+        <servlet-class>PRESENTACIONCONTROLADORES.CambioFotoPerfil</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CerrarSesion</servlet-name>
-        <servlet-class>controladores.CierreSesion</servlet-class>
+        <servlet-class>PRESENTACIONCONTROLADORES.CierreSesion</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Registro</servlet-name>

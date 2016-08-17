@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controladores;
+package PRESENTACIONCONTROLADORES;
 
-import DTO.Usuario;
-import Modelos.UsuariosDAO;
+import ConexionBaseDatos.UsuariosDAO;
+import DOMAINENTITIES.Usuario;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +19,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Mateo Ortiz Cano
  */
-public class Registro extends HttpServlet {
+public class ModificacionContrasena extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,7 +32,6 @@ public class Registro extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -64,17 +61,15 @@ public class Registro extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession sesion = request.getSession();
-        String nombre=request.getParameter("nombre");
-        String correo=request.getParameter("correo");
-        String contraseña=request.getParameter("contrasena");
-        String telefono=request.getParameter("telefono");
-        Usuario persona=new Usuario(nombre, correo, contraseña, telefono);
-        UsuariosDAO NuevoUsuario=new UsuariosDAO();
+        String usuario=request.getParameter("correo");
+        String contrasenaNueva=request.getParameter("contrasenaNueva");
+        String contrasenaAntigua=request.getParameter("contrasena");
+        Usuario usr=new Usuario(usuario,contrasenaAntigua,contrasenaNueva);
         try{
-            NuevoUsuario.registrarUsuario(persona);
-            sesion.setAttribute("usuario",persona ); 
-            request.getRequestDispatcher("MuestraPublicacion").forward(request, response);
-        }catch(SQLException e){
+            Usuario usrmodificado=usr.cambiarContraseña();
+            sesion.setAttribute("usuario",usrmodificado);
+            request.getRequestDispatcher("cuenta.jsp").forward(request, response);
+        }catch(Exception e){
             String msgError=e.getMessage();
             sesion.setAttribute("msg",msgError ); 
             request.getRequestDispatcher("error.jsp").forward(request, response);

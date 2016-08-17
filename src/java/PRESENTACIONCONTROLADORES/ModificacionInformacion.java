@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controladores;
+package PRESENTACIONCONTROLADORES;
 
-import DTO.Usuario;
-import Modelos.UsuariosDAO;
+import ConexionBaseDatos.UsuariosDAO;
+import DOMAINENTITIES.Usuario;
 import java.io.IOException;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
@@ -68,12 +68,11 @@ public class ModificacionInformacion extends HttpServlet {
         String contraseña=request.getParameter("contrasena");
         String telefono=request.getParameter("telefono");
         Usuario persona=new Usuario(nombre, correo, contraseña, telefono);
-        UsuariosDAO NuevoUsuario=new UsuariosDAO();
         try{
-            Usuario usuarioModificado = NuevoUsuario.modificarInformacionUsuario(persona);
+            Usuario usuarioModificado = persona.modificarInformacion();
             sesion.setAttribute("usuario",usuarioModificado);
             request.getRequestDispatcher("cuenta.jsp").forward(request, response);
-        }catch(SQLException e){
+        }catch(Exception e){
             String msgError=e.getMessage();
             sesion.setAttribute("msg",msgError ); 
             request.getRequestDispatcher("error.jsp").forward(request, response);

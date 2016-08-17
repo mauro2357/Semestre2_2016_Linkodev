@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controladores;
+package PRESENTACIONCONTROLADORES;
 
-import DTO.Usuario;
+import DOMAINENTITIES.Usuario;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -42,7 +42,6 @@ public class CierreSesion extends HttpServlet {
         response.addHeader( "Cache-Control", "no-store" ); 
         response.setDateHeader("Expires", 2);
         response.sendRedirect("login.jsp");
-         System.out.println("Debio haber cerrado");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

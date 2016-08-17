@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controladores;
+package PRESENTACIONCONTROLADORES;
 
-import DTO.Usuario;
-import Modelos.UsuariosDAO;
+import ConexionBaseDatos.UsuariosDAO;
+import DOMAINENTITIES.Usuario;  
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +21,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Mateo Ortiz Cano
  */
-public class DesactivacionCuenta extends HttpServlet {
+public class Registro extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -62,15 +64,17 @@ public class DesactivacionCuenta extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession sesion = request.getSession();
-
-        String usuario=request.getParameter("correo");
-        String contrasena=request.getParameter("contrasena");
-        Usuario usr=new Usuario(usuario,contrasena);
-        UsuariosDAO usrdao=new UsuariosDAO();
+        String nombre=request.getParameter("nombre");
+        String correo=request.getParameter("correo");
+        String contraseña=request.getParameter("contrasena");
+        String telefono=request.getParameter("telefono");
+        Usuario persona=new Usuario(nombre, correo, contraseña, telefono);
+        
         try{
-            usrdao.desactivarCuenta(usr);
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-        }catch(SQLException e){
+            persona.registrar();
+            sesion.setAttribute("usuario",persona ); 
+            request.getRequestDispatcher("MuestraPublicacion").forward(request, response);
+        }catch(Exception e){
             String msgError=e.getMessage();
             sesion.setAttribute("msg",msgError ); 
             request.getRequestDispatcher("error.jsp").forward(request, response);

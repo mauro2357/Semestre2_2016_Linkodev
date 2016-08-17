@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controladores;
+package PRESENTACIONCONTROLADORES;
 
-import DTO.Usuario;
-import Modelos.UsuariosDAO;
+import ConexionBaseDatos.UsuariosDAO;
+import DOMAINENTITIES.Usuario;
 import java.io.IOException;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Mateo Ortiz Cano
  */
-public class ModificacionContrasena extends HttpServlet {
+public class InicioSesion extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,7 +32,9 @@ public class ModificacionContrasena extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+            
     }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -60,23 +62,27 @@ public class ModificacionContrasena extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession sesion = request.getSession();
-        String usuario=request.getParameter("correo");
-        String contrasenaNueva=request.getParameter("contrasenaNueva");
-        String contrasenaAntigua=request.getParameter("contrasena");
-        Usuario usr=new Usuario(usuario,contrasenaAntigua,contrasenaNueva);
-        UsuariosDAO usrdao=new UsuariosDAO();
-        try{
-            Usuario usrmodificado=usrdao.modificarContrasena(usr);
-            sesion.setAttribute("usuario",usrmodificado);
-            request.getRequestDispatcher("cuenta.jsp").forward(request, response);
-        }catch(SQLException e){
-            String msgError=e.getMessage();
-            sesion.setAttribute("msg",msgError ); 
-            request.getRequestDispatcher("error.jsp").forward(request, response);
-        }
+            HttpSession sesion = request.getSession();
+            if(sesion.getAttribute("usuario") != null){      
+                request.getRequestDispatcher("cuenta.jsp").forward(request, response);
+                return;
+            }
+            String correous=request.getParameter("correo");
+            String contraseñaus=request.getParameter("contrasena");
+            Usuario usuario = new Usuario(correous,contraseñaus);
+            try{
+                Usuario usrActivo=new Usuario();
+                usrActivo =usuario.iniciarSesion();
+                sesion.setAttribute("usuario", usrActivo);
+                request.getRequestDispatcher("MuestraPublicacion").forward(request, response);
+            }catch(Exception ef){
+                String msgError=ef.getMessage();
+                sesion.setAttribute("msg",msgError );
+                request.getRequestDispatcher("error.jsp").forward(request, response);
+            }
+            processRequest(request, response);
     }
-
+    
     /**
      * Returns a short description of the servlet.
      *
