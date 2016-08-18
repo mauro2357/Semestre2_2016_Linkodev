@@ -83,6 +83,7 @@ public class PublicacionDAO {
         ResultSet res=statement.executeQuery(query);  
         Publicacion publicacion=new Publicacion();
         ArrayList<Publicacion> arrayPublicaciones = new ArrayList<>();
+        boolean existencia=false;
         while (res.next()){
             publicacion = new Publicacion();
             publicacion.setDueno(res.getString("usu_correo"));
@@ -98,7 +99,10 @@ public class PublicacionDAO {
             publicacion.setArea(res.getString("pub_area"));
             publicacion.setEstrato(res.getString("pub_estrato"));
             arrayPublicaciones.add(publicacion);
+            existencia=true;
         }
+        if(!existencia)
+            throw new SQLException("El usuario no tiene publicaciones actualmente");
         return arrayPublicaciones;
     }   
 }

@@ -25,67 +25,59 @@ function previewFile() {
     }
 }
 
-function valida(e){
+function valida(e) {
     tecla = (document.all) ? e.keyCode : e.which;
 
     //Tecla de retroceso para borrar, siempre la permite
-    if (tecla==8){
+    if (tecla == 8) {
         return true;
     }
-        
+
     // Patron de entrada, en este caso solo acepta numeros
-    patron =/[0-9]/;
+    patron = /[0-9]/;
     tecla_final = String.fromCharCode(tecla);
     return patron.test(tecla_final);
 }
 
-$(function comprobrarClave(){
-    $('#contrasena').keyup(function(){
-            var _this = $('#contrasena');
-            var contrasenaNueva = $('#contrasena').val();
-                _this.attr('style', 'background:white');
-            if(contrasenaNueva.charAt(0) == ' '){
-                    _this.attr('style', 'background:#FF4A4A');
-            }
-
-            if(contrasenaNueva.val() == ''){
-                    _this.attr('style', 'background:#FF4A4A');
-            }
-    });
-
-    $('#confirmarContrasena').keyup(function(){
-            var contrasenaNueva = $('#contrasena').val();
-            var confirmarContrasena = $('#confirmarContrasena').val();
-            var _this = $('#confirmarContrasena');
-                _this.attr('style', 'background:white');
-            if(contrasenaNueva != confirmarContrasena && confirmarContrasena != ''){
-                    _this.attr('style', 'background:#ef9a9a ');
-                    return false;
-            }
-            else{
-                if(confirmarContrasena == ''){
-                    _this.attr('style', 'background:white ');
-                }
-                else{
-                    _this.attr('style', 'background:#e8f5e9  ');
-                }
-                
-            }
-    });
-});
-
-
-function comprobarClave2(){ 
-   	contrasenaNueva = document.getElementById("contrasena").value;
-   	confirmarContrasena = document.getElementById("confirmarContrasena").value;
-   	if (contrasenaNueva != confirmarContrasena){  
-            alert("La clave nueva no coincide");
-            return false;
+$(function comprobrarClave() {
+    $('#contrasena').keyup(function () {
+        var _this = $('#contrasena');
+        var contrasenaNueva = $('#contrasena').val();
+        _this.attr('style', 'background:white');
+        if (contrasenaNueva.charAt(0) == ' ') {
+            _this.attr('style', 'background:#FF4A4A');
         }
-}
 
-$(document).ready(function() {
-    $('#gallery').click(function(){
-        $("#central").load('inc/gallery.php');
+        if (contrasenaNueva.val() == '') {
+            _this.attr('style', 'background:#FF4A4A');
+        }
+    });
+
+    $('#confirmarContrasena').keyup(function () {
+        var contrasenaNueva = $('#contrasena').val();
+        var confirmarContrasena = $('#confirmarContrasena').val();
+        var _this = $('#confirmarContrasena');
+        _this.attr('style', 'background:white');
+        if (contrasenaNueva != confirmarContrasena && confirmarContrasena != '') {
+            _this.attr('style', 'background:#ef9a9a ');
+            return false;
+        } else {
+            if (confirmarContrasena == '') {
+                _this.attr('style', 'background:white ');
+            } else {
+                _this.attr('style', 'background:#e8f5e9  ');
+            }
+
+        }
     });
 });
+
+
+function comprobarClave2() {
+    contrasenaNueva = document.getElementById("contrasena").value;
+    confirmarContrasena = document.getElementById("confirmarContrasena").value;
+    if (contrasenaNueva != confirmarContrasena) {
+        alert("La clave nueva no coincide");
+        return false;
+    }
+}
