@@ -83,3 +83,9 @@ function comprobarClave2(){
             return false;
         }
 }
+
+$(document).ready(function() {
+    $('#gallery').click(function(){
+        $("#central").load('inc/gallery.php');
+    });
+});

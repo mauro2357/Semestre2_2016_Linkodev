@@ -75,5 +75,30 @@ public class PublicacionDAO {
         }
         return arrayPublicaciones;
     }
-    
+
+    public ArrayList<Publicacion> consultarByUsuario(String correo) throws SQLException {
+        ConexiónBD conexion = new ConexiónBD();
+        Statement statement=conexion.getConeccion().createStatement();
+        String query="SELECT * FROM publicacion WHERE usu_correo= '"+correo+"'";
+        ResultSet res=statement.executeQuery(query);  
+        Publicacion publicacion=new Publicacion();
+        ArrayList<Publicacion> arrayPublicaciones = new ArrayList<>();
+        while (res.next()){
+            publicacion = new Publicacion();
+            publicacion.setDueno(res.getString("usu_correo"));
+            publicacion.setTipoOferta(res.getString("pub_tipooferta"));
+            publicacion.setTipoInmueble(res.getString("pub_tipoinmueble"));
+            publicacion.setCiudad(res.getString("pub_ciudad"));
+            publicacion.setDireccion(res.getString("pub_direccion"));
+            publicacion.setBarrio(res.getString("pub_barrio"));
+            publicacion.setPrecio(res.getString("pub_precio"));
+            publicacion.setHabitaciones(res.getString("pub_habitaciones"));
+            publicacion.setBanos(res.getString("pub_banos"));
+            publicacion.setPiso(res.getString("pub_piso"));
+            publicacion.setArea(res.getString("pub_area"));
+            publicacion.setEstrato(res.getString("pub_estrato"));
+            arrayPublicaciones.add(publicacion);
+        }
+        return arrayPublicaciones;
+    }   
 }

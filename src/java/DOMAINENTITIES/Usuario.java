@@ -8,6 +8,7 @@ package DOMAINENTITIES;
 import ConexionBaseDatos.PublicacionDAO;
 import ConexionBaseDatos.UsuariosDAO;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -176,5 +177,20 @@ public class Usuario {
             throw ex;
         }
         
+    }
+    
+    public ArrayList<Publicacion> consultarPublicacionesByUsuario(String correo) throws Exception{
+        UsuariosDAO conexUsuario=new UsuariosDAO();
+        if(!conexUsuario.consultarCorreo(correo)){
+            throw new Exception("El usuario ingresado no existe");
+        }
+        PublicacionDAO conexion=new PublicacionDAO();
+        ArrayList<Publicacion> publicaciones= new ArrayList<>();
+        try {
+            publicaciones=conexion.consultarByUsuario(correo);
+        } catch (SQLException ex) {
+            throw new Exception("El usuario: "+correo+" no tiene ningun inmueble publicado");
+        }
+        return publicaciones;
     }
 }

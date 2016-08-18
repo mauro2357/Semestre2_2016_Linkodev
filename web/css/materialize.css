@@ -2008,7 +2008,7 @@
 }
 
 .blue-grey.darken-1 {
-  background-color: #546e7a !important;
+  background-color: #0091ea !important;
 }
 
 .blue-grey-text.text-darken-1 {
@@ -2639,7 +2639,7 @@ ul li {
 }
 
 a {
-  color: #039be5;
+  color: #ffffff;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
 }
@@ -3428,7 +3428,13 @@ input[type=range] + .thumb {
 
 @media only screen and (min-width: 993px) {
   .container {
-    width: 70%;
+    width: 60%;
+  }
+}
+
+@media only screen and (min-width: 993px) {
+  .container1 {
+    width: 95%;
   }
 }
 
@@ -4690,7 +4696,7 @@ small {
 }
 
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
-  color: #ffab40;
+  color: #ffffff;
   margin-right: 20px;
   transition: color .3s ease;
   text-transform: uppercase;
