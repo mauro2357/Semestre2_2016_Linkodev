@@ -53,7 +53,9 @@
                                 <br>
                                 <div class="input-field col s12">
                                     <input  name="contrasena" type="password" class="validate" required="">
+                                    
                                     <label for="password">Contraseña</label>
+                                    <a class="blue-text" href="RecuperacionContrasena.jsp">¿Has olvidado tu contraseña?</a>
                                 </div>
                                 <br>
                                 <div class="row center col s12">

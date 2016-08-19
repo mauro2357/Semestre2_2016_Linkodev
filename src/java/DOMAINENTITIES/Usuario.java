@@ -5,6 +5,8 @@
  */
 package DOMAINENTITIES;
 
+import CLASESAUXILIARES.EnvioMail;
+import CLASESAUXILIARES.GeneracionDeCodigos;
 import ConexionBaseDatos.PublicacionDAO;
 import ConexionBaseDatos.UsuariosDAO;
 import java.sql.SQLException;
@@ -167,6 +169,22 @@ public class Usuario {
         }catch(SQLException ex){
             throw new Exception("La cuenta no se desactivo correctamente, intente nuevamente");
         }
+    }
+    
+    public String reestablecerContrasena(String correoaBuscar) throws Exception{
+        UsuariosDAO conexion = new UsuariosDAO();
+        GeneracionDeCodigos gencodigo = new GeneracionDeCodigos();
+        String codigo = gencodigo.getPassword();
+        EnvioMail mail = new EnvioMail();
+        if(!conexion.consultarCorreo(correoaBuscar)){
+            throw new Exception("No tenemos ningún usuario registrado con ese correo");
+        }
+        mail.enviarMail(correoaBuscar,codigo);
+        return codigo;
+    }
+    
+    public boolean verificarCodigoContrasena(String codigouno, String codigodos){
+        return codigouno == null ? codigodos == null : codigouno.equals(codigodos);
     }
     
     public void registrarPublicacion(Publicacion publicacion) throws SQLException{

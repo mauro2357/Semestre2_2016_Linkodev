@@ -36,6 +36,14 @@
         <servlet-name>BusquedaByUsuario</servlet-name>
         <servlet-class>PRESENTACIONCONTROLADORES.BusquedaByUsuario</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ReestablecimientoContrasena</servlet-name>
+        <servlet-class>PRESENTACIONCONTROLADORES.ReestablecimientoContrasena</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VerificacionCodigoContrasena</servlet-name>
+        <servlet-class>PRESENTACIONCONTROLADORES.VerificacionCodigoContrasena</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Registro</servlet-name>
         <url-pattern>/Registro</url-pattern>
@@ -71,6 +79,14 @@
     <servlet-mapping>
         <servlet-name>BusquedaByUsuario</servlet-name>
         <url-pattern>/BusquedaByUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReestablecimientoContrasena</servlet-name>
+        <url-pattern>/ReestablecimientoContrasena</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VerificacionCodigoContrasena</servlet-name>
+        <url-pattern>/VerificacionCodigoContrasena</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
