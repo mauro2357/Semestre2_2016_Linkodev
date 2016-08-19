@@ -183,8 +183,11 @@ public class Usuario {
         return codigo;
     }
     
-    public boolean verificarCodigoContrasena(String codigouno, String codigodos){
-        return codigouno == null ? codigodos == null : codigouno.equals(codigodos);
+    public void verificarCodigoContrasena(String codigouno, String codigodos) throws Exception{
+        if(codigouno.equals(codigodos)){
+            return;      
+        }
+        throw new Exception("Los codigos de activación no concuerdan");
     }
     
     public void registrarPublicacion(Publicacion publicacion) throws SQLException{
