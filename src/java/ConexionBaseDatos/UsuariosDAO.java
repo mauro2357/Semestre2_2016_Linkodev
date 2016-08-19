@@ -73,7 +73,6 @@ public class UsuariosDAO {
         ResultSet res = statement.executeQuery(query);
         res.next();
         String estado=res.getString("usu_estado");
-        System.out.println(estado);
         return estado;
     }
    
