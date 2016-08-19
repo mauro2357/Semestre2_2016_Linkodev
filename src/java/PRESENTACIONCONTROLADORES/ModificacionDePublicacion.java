@@ -9,6 +9,8 @@ import ConexionBaseDatos.PublicacionDAO;
 import DOMAINENTITIES.Publicacion;
 import DOMAINENTITIES.Usuario;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,22 +21,15 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author felipe
+ * @author MARCS
  */
-@WebServlet(name = "MuestraPublicacion", urlPatterns = {"/MuestraPublicacion"})
-public class MuestraPublicacion extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+public class ModificacionDePublicacion extends HttpServlet {
+
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+            
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -63,13 +58,33 @@ public class MuestraPublicacion extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PublicacionDAO publicacion = new PublicacionDAO();
-        String usuario=request.getParameter("usuario");
-        Usuario usr=new Usuario();
-        ArrayList<Publicacion> arrayPublicaciones = publicacion.mostrarPublicaciones();
         HttpSession sesion = request.getSession();
-        sesion.setAttribute("publicaciones", arrayPublicaciones);
-        request.getRequestDispatcher("cuenta.jsp").forward(request, response);
+        Usuario usr = (Usuario) sesion.getAttribute("usuario");
+        Publicacion publicacion = new Publicacion();
+        PublicacionDAO nuevapublicacion = new PublicacionDAO();
+        publicacion.setDueno(usr.getCorreo());
+        publicacion.setTipoOferta(request.getParameter("tipooferta"));
+        publicacion.setTipoInmueble(request.getParameter("tipoinmueble"));
+        publicacion.setCiudad(request.getParameter("ciudad"));
+        publicacion.setDireccion(request.getParameter("direccion"));
+        publicacion.setBarrio(request.getParameter("barrio"));
+        publicacion.setPrecio(request.getParameter("precio"));
+        publicacion.setHabitaciones(request.getParameter("habitaciones"));
+        publicacion.setBanos(request.getParameter("banos"));
+        publicacion.setPiso(request.getParameter("piso"));
+        publicacion.setArea(request.getParameter("area"));
+        publicacion.setEstrato(request.getParameter("estrato"));
+        Usuario usuario=new Usuario();
+        try{
+            usuario.registrarPublicacion(publicacion);
+            sesion.setAttribute("usuario", usr);
+            request.getRequestDispatcher("PublicacionesEditables").forward(request, response);
+        }catch(SQLException e){
+            String msgError=e.getMessage();
+            sesion.setAttribute("msg",msgError ); 
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+        }
+        processRequest(request, response);
     }
 
     /**

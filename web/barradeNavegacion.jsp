@@ -33,7 +33,8 @@
                     <li><div class="divider"></div></li>
                     <li><a class="waves-effect" href="crearpublicacion.jsp"><i class="material-icons">publish</i>Publicar</a></li>  
                     <li><a class="waves-effect" href="ModificacionContraseña.jsp"><i class="material-icons">vpn_key</i>Cambio contraseña</a></li>  
-                    <li><a class="waves-effect" href="modificarInformacion.jsp"><i class="material-icons">settings</i>Actualizar información</a></li>                        
+                    <li><a class="waves-effect" href="modificarInformacion.jsp"><i class="material-icons">settings</i>Actualizar información</a></li>
+                    <li><a class="waves-effect" href="MuestraPublicacionPropia"><i class="material-icons">settings</i>Editar publicaciones</a></li>
                     <li><a class="waves-effect" href="DesactivacionCuenta.jsp"><i class="material-icons">delete</i>Desactivar cuenta</a></li>
                     <li><a class="waves-effect" href="CerrarSesion" ><i class="material-icons">input</i>Cerrar sesion</a></li>  
                 </ul>
