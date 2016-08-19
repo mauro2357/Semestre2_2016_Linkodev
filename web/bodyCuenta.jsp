@@ -32,7 +32,7 @@
                             out.println("<span class='white-text'> Ciudad: " + pub.getCiudad() + "</span>");
                             out.println("</div>");
                             out.println("<div class='card-action'>");                            
-                            out.println("<a href='#'><i class='material-icons'>more_vert</i></a>");
+                            out.println("<a href='VerDetalles?id="+pub.getId()+"'><i class='material-icons'>more_vert</i></a>");
                             out.println("</div>");
                             out.println("</div>");
                             out.println("</div>");

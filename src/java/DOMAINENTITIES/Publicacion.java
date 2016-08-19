@@ -10,6 +10,7 @@ package DOMAINENTITIES;
  * @author Mateo Ortiz Cano
  */
 public class Publicacion {
+    private String id;
     private String dueno;
     private String tipoOferta;
     private String tipoInmueble;
@@ -22,7 +23,7 @@ public class Publicacion {
     private String piso;
     private String area;
     private String estrato;
-
+    
     public String getDueno() {
         return dueno;
     }
@@ -118,4 +119,13 @@ public class Publicacion {
     public void setEstrato(String estrato) {
         this.estrato = estrato;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+    
 }

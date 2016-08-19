@@ -227,4 +227,11 @@ public class Usuario {
         }
         return publicaciones;
     }
+    
+    public Publicacion DetallarInmueble(String id) throws SQLException{
+        PublicacionDAO conexion=new PublicacionDAO();
+        Publicacion pub=conexion.Detallar(id);
+        System.out.println(pub.getTipoInmueble());
+        return pub;
+    }
 }

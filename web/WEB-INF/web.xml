@@ -46,7 +46,11 @@
     </servlet>
     <servlet>
         <servlet-name>ContraseñaNuevaRecuperacion</servlet-name>
-        <servlet-class>PRESENTACIONCONTROLADORES.ContraseñaNuevaRecuperacion</servlet-class>
+        <servlet-class>PRESENTACIONCONTROLADORES.ContraseñaNuevaRecuperacion</servlet-class>  
+    </servlet>
+    <servlet>
+        <servlet-name>VerDetalles</servlet-name>
+        <servlet-class>PRESENTACIONCONTROLADORES.VerDetalles</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Registro</servlet-name>
@@ -95,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>ContraseñaNuevaRecuperacion</servlet-name>
         <url-pattern>/ContrasenaNuevaRecuperacion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VerDetalles</servlet-name>
+        <url-pattern>/VerDetalles</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
