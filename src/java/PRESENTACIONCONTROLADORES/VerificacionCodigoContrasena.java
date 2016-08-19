@@ -61,10 +61,12 @@ public class VerificacionCodigoContrasena extends HttpServlet {
             throws ServletException, IOException {
         String codigouno = request.getParameter("codigo");
         String codigodos = (String) request.getSession().getAttribute("codigoingresado");
+        Usuario usuario =  (Usuario) request.getSession().getAttribute("usuario");
         Usuario usr = new Usuario();
         try {
             usr.verificarCodigoContrasena(codigouno,codigodos);
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            request.getSession().setAttribute("usuario", usuario);
+            request.getRequestDispatcher("NuevaContraseñaRecuperacion.jsp").forward(request, response);
         } catch (Exception ex) {
             String msgError = ex.getMessage();
             request.getSession().setAttribute("msg", msgError);

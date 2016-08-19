@@ -44,6 +44,10 @@
         <servlet-name>VerificacionCodigoContrasena</servlet-name>
         <servlet-class>PRESENTACIONCONTROLADORES.VerificacionCodigoContrasena</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ContraseñaNuevaRecuperacion</servlet-name>
+        <servlet-class>PRESENTACIONCONTROLADORES.ContraseñaNuevaRecuperacion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Registro</servlet-name>
         <url-pattern>/Registro</url-pattern>
@@ -87,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>VerificacionCodigoContrasena</servlet-name>
         <url-pattern>/VerificacionCodigoContrasena</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ContraseñaNuevaRecuperacion</servlet-name>
+        <url-pattern>/ContrasenaNuevaRecuperacion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

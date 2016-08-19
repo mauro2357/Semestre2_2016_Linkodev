@@ -61,8 +61,10 @@ public class ReestablecimientoContrasena extends HttpServlet {
         HttpSession sesion = request.getSession();
         try {
             Usuario usr = new Usuario();
-            usr.setCorreo(request.getParameter("correo"));
+            String correo = request.getParameter("correo");
+            usr.setCorreo(correo);
             String codigo = usr.reestablecerContrasena(usr.getCorreo());
+            request.getSession().setAttribute("usuario", usr);
             request.getSession().setAttribute("codigoingresado", codigo);
             request.getRequestDispatcher("CodigoReestablecerContrasena.jsp").forward(request, response);
         } catch (Exception ex) {

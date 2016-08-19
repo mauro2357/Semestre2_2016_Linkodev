@@ -39,7 +39,7 @@ public class Usuario {
         this.contraseñaCambio=contraseñaCambio;
     }
     
-     public Usuario(String correo, String contraseña) {
+    public Usuario(String correo, String contraseña) {
         this.correo = correo;
         this.contraseña = contraseña;
     }
@@ -157,6 +157,19 @@ public class Usuario {
         Usuario usuario=conexion.obtenerDatos(this.getCorreo());
         return usuario;
     }
+    
+    public Usuario contraseñaNuevaConfirmacion() throws SQLException, Exception{
+        UsuariosDAO conexion= new UsuariosDAO();
+        try{
+            conexion.modificarContrasena(this);
+        }catch(SQLException ex){
+            throw new Exception("No se pudo colocar la nueva contraseña");
+        }
+        Usuario usuario=conexion.obtenerDatos(this.getCorreo());
+        return usuario;
+    }
+    
+    
     
     public void desactivarCuenta() throws SQLException, Exception{
         UsuariosDAO conexion= new UsuariosDAO();
