@@ -18,42 +18,31 @@
     </head>
     <body>
         <div id="contenidoCuenta" class="container1">
-                    <div class="section">
-                        <div class="row">
-                            <div class="col s12 m9 l9">
-                                <a href="crearpublicacion.jsp"><button  type="button" name="publicarboton" class="btn-large waves-effect waves-light orange">Publicar un inmueble</button></a>
-                            </div>                         
-                            <div class="col hide-on-small-only m3 l3">
-                                <div class="card blue-grey darken-1">
-                                    <div class="card-content white-text">
-                                        <i class="material-icons prefix">account_circle</i><span class="card-title">   Búsqueda</span>
-                                        <form action="BusquedaByUsuario">
-                                            <div>
-                                                <input name="usuario" type="email" class="validate" required="">
-                                            </div>   
-                                            <button  type="submit" name="registro_boton" class="btn-large waves-effect waves-light orange">Consultar</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                        <%                    for (Publicacion pub : publicaciones) {
-                                out.println("<a href='#'>");
-                                out.println("<div id='publicaciones' class='col s3'>");
-                                out.println("<span>" + pub.getTipoInmueble() + "</span></br>");
-                                out.println("<img src='imagenes/logoCasa.png' width=140 height=110/></br>");
-                                out.println("<span>" + pub.getTipoOferta() + "</span></br>");
-                                out.println("<span>$" + pub.getPrecio() + "</span></br>");
-                                out.println("</div>");
-                                out.println("</a>");
-                            }
-                        %>
-                        </div>
-
-                        <!--   Icon Section   -->
-
-                    </div>
+            <div class="section">
+                <div class="row">
+                    <%                    for (Publicacion pub : publicaciones) {
+                            out.println("<div id='publicaciones' class='col s2'>");
+                            out.println("<div class='card'>");
+                            out.println("<div class='card-image'>");
+                            out.println("<img src='imagenes/logoCasa.png'>");                           
+                            out.println("</div>");
+                            out.println("<div class='card-content'>");
+                            out.println("<span class='card-title white-text'>" + pub.getTipoInmueble() + " - " + pub.getTipoOferta() + "</span><br>");
+                            out.println("<span class='white-text'> Precio:$ " + pub.getPrecio() + "</span><br>");
+                            out.println("<span class='white-text'> Ciudad: " + pub.getCiudad() + "</span>");
+                            out.println("</div>");
+                            out.println("<div class='card-action'>");                            
+                            out.println("<a href='#'><i class='material-icons'>more_vert</i></a>");
+                            out.println("</div>");
+                            out.println("</div>");
+                            out.println("</div>");
+                        }
+                    %>
                 </div>
+
+                <!--   Icon Section   -->
+
+            </div>
+        </div>
     </body>
 </html>
