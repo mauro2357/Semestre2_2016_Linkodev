@@ -11,7 +11,7 @@
 
 <%
     HttpSession sesion = request.getSession();
-    Usuario usr = (Usuario) sesion.getAttribute("usuario");  
+    Usuario usr = (Usuario) sesion.getAttribute("usuario");
 %>
 <html>
     <head>
@@ -20,7 +20,7 @@
         <link rel="shortcut icon" href="imagenes/logoCasa.png">
     </head>
     <body>
-            <nav class="light-blue lighten-1" role="navigation">
+        <nav class="light-blue lighten-1" role="navigation">
             <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">IOInmuebles</a>
                 <ul id="slide-out" class="right side-nav">
                     <li><div class="userView">
@@ -31,6 +31,7 @@
                         </div>
                     </li>
                     <li><div class="divider"></div></li>
+                    <li><a class="waves-effect" href="crearpublicacion.jsp"><i class="material-icons">publish</i>Publicar</a></li>  
                     <li><a class="waves-effect" href="ModificacionContraseña.jsp"><i class="material-icons">vpn_key</i>Cambio contraseña</a></li>  
                     <li><a class="waves-effect" href="modificarInformacion.jsp"><i class="material-icons">settings</i>Actualizar información</a></li>                        
                     <li><a class="waves-effect" href="DesactivacionCuenta.jsp"><i class="material-icons">delete</i>Desactivar cuenta</a></li>
@@ -38,9 +39,18 @@
                 </ul>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="cuenta.jsp" id="nombreusr" class="white-text name"><%=usr.getNombre()%></a></li>
-                    <li><a data-activates="slide-out" class="button-collapses"><i class="material-icons">person</i></a></li>
-                </ul>
-            </div>
+                    <li><a data-activates="slide-out" class="button-collapses"><i class="material-icons">person</i></a></li>                    
+                </ul>                
+                <ul class="right hide-on-med-and-down">                    
+                    <form action="BusquedaByUsuario">
+                        <div class="input-field">
+                            <input name="usuario" id="search" type="search" required="" placeholder="Buscar">
+                            <label for="search"><i class="material-icons">search</i></label>
+                            <i class="material-icons">close</i>
+                        </div>
+                    </form>
+                </ul> 
+            </div>                    
         </nav>
     </body>
 </html>

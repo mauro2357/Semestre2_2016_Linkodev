@@ -67,7 +67,6 @@ public class MuestraPublicacion extends HttpServlet {
         HttpSession sesion = request.getSession();
         sesion.setAttribute("publicaciones", arrayPublicaciones);
         request.getRequestDispatcher("cuenta.jsp").forward(request, response);
-        processRequest(request, response);
     }
 
     /**

@@ -4309,7 +4309,7 @@ html {
   line-height: 1.5;
   font-family: "Roboto", sans-serif;
   font-weight: normal;
-  color: rgba(0, 0, 0, 0.87);
+  color: #000;
 }
 
 @media only screen and (min-width: 0) {
@@ -4547,13 +4547,13 @@ small {
 .card {
   position: relative;
   margin: 0.5rem 0 1rem 0;
-  background-color: #fff;
+  background-color: #0091ea;
   transition: box-shadow .25s;
   border-radius: 2px;
 }
 
 .card .card-title {
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 300;
 }
 
@@ -4667,15 +4667,15 @@ small {
 }
 
 .card .card-image .card-title {
-  color: #fff;
+  color: #0091ae;
   position: absolute;
   bottom: 0;
   left: 0;
-  padding: 20px;
+  padding: 5px;
 }
 
 .card .card-content {
-  padding: 20px;
+  padding: 10px ;
   border-radius: 0 0 2px 2px;
 }
 
@@ -4692,7 +4692,7 @@ small {
   position: relative;
   background-color: inherit;
   border-top: 1px solid rgba(160, 160, 160, 0.2);
-  padding: 20px;
+  padding: 5px;
 }
 
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
