@@ -39,7 +39,7 @@
                     <li><a class="waves-effect" href="CerrarSesion" ><i class="material-icons">input</i>Cerrar sesion</a></li>  
                 </ul>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="MuestraPublicacion" id="nombreusr" class="white-text name"><%=usr.getNombre()%></a></li>
+                    <li><a data-activates = "slide-out" class="button-collapses" id="nombreusr" class="white-text name"><%=usr.getNombre()%></a></li>
                     <li><a data-activates="slide-out" class="button-collapses"><i class="material-icons">person</i></a></li>                    
                 </ul>                
                 <ul class="right hide-on-med-and-down">                    

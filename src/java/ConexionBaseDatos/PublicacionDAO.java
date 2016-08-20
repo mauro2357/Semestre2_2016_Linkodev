@@ -43,7 +43,32 @@ public class PublicacionDAO {
             throw new SQLException(ex.getMessage());
         }
     }
-
+    
+    public void ModificarPublicacion(Publicacion publicacion) throws SQLException {
+        ConexiónBD nuevaconexion = new ConexiónBD();
+        PreparedStatement stm;
+        String query = "UPDATE  publicacion set(" + null + ",?,?,?,?,?,?,?,?,?,?,?,?)";
+        stm = nuevaconexion.getConeccion().prepareStatement(query);
+        stm.setString(1, publicacion.getDueno());
+        stm.setString(2, publicacion.getTipoOferta());
+        stm.setString(3, publicacion.getTipoInmueble());
+        stm.setString(4, publicacion.getCiudad());
+        stm.setString(5, publicacion.getDireccion());
+        stm.setString(6, publicacion.getBarrio());
+        stm.setString(7, publicacion.getPrecio());
+        stm.setString(8, publicacion.getHabitaciones());
+        stm.setString(9, publicacion.getBanos());
+        stm.setString(10, publicacion.getPiso());
+        stm.setString(11, publicacion.getArea());
+        stm.setString(12, publicacion.getEstrato());
+        try {
+            stm.executeUpdate();
+            nuevaconexion.getConeccion().close();
+            stm.close();
+        } catch (SQLException ex) {
+            throw new SQLException(ex.getMessage());
+        }
+    }
     public ArrayList<Publicacion> mostrarPublicaciones() {
         ConexiónBD nuevaconexion = new ConexiónBD();
         Statement stm;

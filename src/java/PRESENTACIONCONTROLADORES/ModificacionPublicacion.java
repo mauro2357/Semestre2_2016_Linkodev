@@ -11,11 +11,7 @@ import DOMAINENTITIES.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,8 +21,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author MARCS
  */
-@WebServlet(name = "MuestraPublicacionPropia", urlPatterns = {"/MuestraPublicacionPropia"})
-public class MuestraPublicacionPropia extends HttpServlet {
+public class ModificacionPublicacion extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,19 +35,6 @@ public class MuestraPublicacionPropia extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        Usuario usuarioSesion = (Usuario) request.getSession().getAttribute("usuario");
-        System.out.println("usuario: "+usuarioSesion.getCorreo());
-        String correo = usuarioSesion.getCorreo();
-        Usuario usr = new Usuario();
-
-        try {
-            ArrayList<Publicacion> publicaciones = usr.consultarPublicacionesByUsuario(correo);
-            request.getSession().setAttribute("publicaciones_editables", publicaciones);
-            request.getRequestDispatcher("PublicacionesEditables.jsp").forward(request, response);
-        } catch (Exception ex) {
-            request.getSession().setAttribute("msg", ex.getMessage());
-            request.getRequestDispatcher("error.jsp").forward(request, response);
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -81,21 +63,32 @@ public class MuestraPublicacionPropia extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Usuario usuarioSesion = (Usuario) request.getSession().getAttribute("usuario");
-        System.out.println("usuario: "+usuarioSesion.getCorreo());
-        String correo = usuarioSesion.getCorreo();
-        Usuario usr = new Usuario();
-
-        try {
-            ArrayList<Publicacion> publicaciones = usr.consultarPublicacionesByUsuario(correo);
-            request.getSession().setAttribute("publicaciones_editables", publicaciones);
-            request.getRequestDispatcher("PublicacionesEditables.jsp").forward(request, response);
-        } catch (Exception ex) {
-            request.getSession().setAttribute("msg", ex.getMessage());
+        HttpSession sesion = request.getSession();
+        Usuario usr = (Usuario) sesion.getAttribute("usuario");
+        Publicacion publicacion = new Publicacion();
+        PublicacionDAO nuevapublicacion = new PublicacionDAO();
+        publicacion.setDueno(usr.getCorreo());
+        publicacion.setTipoOferta(request.getParameter("tipooferta"));
+        publicacion.setTipoInmueble(request.getParameter("tipoinmueble"));
+        publicacion.setCiudad(request.getParameter("ciudad"));
+        publicacion.setDireccion(request.getParameter("direccion"));
+        publicacion.setBarrio(request.getParameter("barrio"));
+        publicacion.setPrecio(request.getParameter("precio"));
+        publicacion.setHabitaciones(request.getParameter("habitaciones"));
+        publicacion.setBanos(request.getParameter("banos"));
+        publicacion.setPiso(request.getParameter("piso"));
+        publicacion.setArea(request.getParameter("area"));
+        publicacion.setEstrato(request.getParameter("estrato"));
+        Usuario usuario=new Usuario();
+        try{
+            usuario.registrarPublicacion(publicacion);
+            sesion.setAttribute("usuario", usr);
+            request.getRequestDispatcher("MuestraPublicacion").forward(request, response);
+        }catch(SQLException e){
+            String msgError=e.getMessage();
+            sesion.setAttribute("msg",msgError ); 
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
-        
-        
     }
 
     /**
