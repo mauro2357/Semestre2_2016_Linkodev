@@ -31,7 +31,7 @@
                                 <div class="input-field col s6">
                                     Tipo de oferta:
                                     <select name="tipooferta" required aria-required="true">
-                                        <option></option>
+                                        <option value="">Seleccione</option>
                                         <option value="venta">Venta</option>
                                         <option value="arriendo">Arriendo</option>
                                     </select>
@@ -39,7 +39,7 @@
                                 <div class="input-field col s6">
                                     Tipo de inmueble:
                                     <select name="tipoinmueble">
-                                        <option></option>
+                                        <option value="">Seleccione</option>
                                         <option value="casa">Casa</option>
                                         <option value="apartamento">Apartamento</option>
                                         <option value="habitacion">Habitación</option>
@@ -53,6 +53,7 @@
                                         <option value="">Seleccione</option>
                                         <option value="1">Bogotá</option>
                                         <option value="2">Medellín</option>
+                                        <option value="3">Cali</option>
                                     </select>
                                 </div>
                                 <div class="input-field col s6">
@@ -65,15 +66,15 @@
                                 </div>
                                 <div class="col s6">
                                     Precio:
-                                    <input  name="precio" type="text" class="validate">
+                                    <input  name="precio" type="text" class="validate" onkeypress="return valida(event)">
                                 </div>
                                 <div class="col s6">
                                     Habitaciones:
-                                    <input  name="habitaciones" type="number" min="0" max="20" step="1" class="validate">
+                                    <input  name="habitaciones" type="number" min="0" max="20" step="1" class="validate" onkeypress="return valida(event)">
                                 </div>
                                 <div class="col s6">
                                     Baños:
-                                    <input  name="banos" type="number" min="0" max="20" step="1" class="validate">
+                                    <input  name="banos" type="number" min="0" max="20" step="1" class="validate" onkeypress="return valida(event)">
                                 </div>
                                 <div class="col s6">
                                     Piso:
@@ -85,7 +86,7 @@
                                 </div>
                                 <div class="col s6">
                                     Estrato:
-                                    <input  name="estrato" type="text" class="validate" onkeypress="return valida(event)">
+                                    <input  name="estrato" type="number" min="1" max="6" class="validate"  onkeypress="return valida(event)">
                                 </div>
 
                                 <br>
