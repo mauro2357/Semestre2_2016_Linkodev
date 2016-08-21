@@ -10,20 +10,18 @@ package ConexionBaseDatos;
  * @author MARCS
  */
 import java.io.IOException;
-import java.security.InvalidKeyException;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
-import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
+import ConexionBaseDatos.UsuariosDAO;
+import java.sql.SQLException;
 
-public class Encriptacion {
+
+ public class Encriptacion {
 
     private SecretKey Clave;
     private Cipher cifrar;
@@ -31,7 +29,7 @@ public class Encriptacion {
     private String patroncifrado = "MD5";
     private String clavesecreta = "lmihacle#$%/°óú";
 
-    String Encriptar(String Encriptable) {
+    public String Encriptar(String Encriptable) {
  
         String EncriptadoFinal = "";
  
@@ -54,7 +52,7 @@ public class Encriptacion {
         }
         return EncriptadoFinal;
     }
-   String Desencriptar(String textoEncriptado) throws Exception {
+     public String Desencriptar(String textoEncriptado) throws Exception {
        
         String DesencriptadoFinal = "";
  
@@ -74,5 +72,8 @@ public class Encriptacion {
         }
         return DesencriptadoFinal;
     }
-}
+   
+ }
+
+           
     
