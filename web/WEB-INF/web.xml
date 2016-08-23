@@ -49,8 +49,16 @@
         <servlet-class>PRESENTACIONCONTROLADORES.ContraseñaNuevaRecuperacion</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>VisualizarDetalles</servlet-name>
-        <servlet-class>PRESENTACIONCONTROLADORES.VisualizarDetalles</servlet-class>
+        <servlet-name>DetallesPublicacionesEditables</servlet-name>
+        <servlet-class>PRESENTACIONCONTROLADORES.DetallesPublicacionesEditables</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Modificacionpublicacion</servlet-name>
+        <servlet-class>PRESENTACIONCONTROLADORES.Modificacionpublicacion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VisualizacionDetalles</servlet-name>
+        <servlet-class>PRESENTACIONCONTROLADORES.VisualizacionDetalles</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Registro</servlet-name>
@@ -101,8 +109,16 @@
         <url-pattern>/ContrasenaNuevaRecuperacion</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>VisualizarDetalles</servlet-name>
-        <url-pattern>/VisualizarDetalles</url-pattern>
+        <servlet-name>DetallesPublicacionesEditables</servlet-name>
+        <url-pattern>/DetallesPublicacionesEditables</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Modificacionpublicacion</servlet-name>
+        <url-pattern>/Modificacionpublicacion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VisualizacionDetalles</servlet-name>
+        <url-pattern>/VisualizacionDetalles</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

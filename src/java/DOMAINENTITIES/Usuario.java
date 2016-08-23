@@ -11,8 +11,6 @@ import ConexionBaseDatos.PublicacionDAO;
 import ConexionBaseDatos.UsuariosDAO;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -158,18 +156,14 @@ public class Usuario {
         return usuario;
     }
     
-    public Usuario contraseñaNuevaConfirmacion() throws SQLException, Exception{
+    public void contraseñaNuevaConfirmacion() throws SQLException, Exception{
         UsuariosDAO conexion= new UsuariosDAO();
         try{
             conexion.modificarContrasena(this);
         }catch(SQLException ex){
-            throw new Exception("No se pudo colocar la nueva contraseña");
+            throw new Exception("No se pudo cambiar a la nueva contraseña");
         }
-        Usuario usuario=conexion.obtenerDatos(this.getCorreo());
-        return usuario;
     }
-    
-    
     
     public void desactivarCuenta() throws SQLException, Exception{
         UsuariosDAO conexion= new UsuariosDAO();
@@ -200,7 +194,7 @@ public class Usuario {
         if(codigouno.equals(codigodos)){
             return;      
         }
-        throw new Exception("Los codigos de activación no concuerdan");
+        throw new Exception("El codigo de activación no concuerda");
     }
     
     public void registrarPublicacion(Publicacion publicacion) throws SQLException{
@@ -209,8 +203,7 @@ public class Usuario {
             conexion.registrarPublicacion(publicacion);
         } catch (SQLException ex) {
             throw ex;
-        }
-        
+        }  
     }
     
     public ArrayList<Publicacion> consultarPublicacionesByUsuario(String correo) throws Exception{
@@ -231,7 +224,15 @@ public class Usuario {
     public Publicacion DetallarInmueble(String id) throws SQLException{
         PublicacionDAO conexion=new PublicacionDAO();
         Publicacion pub=conexion.Detallar(id);
-        System.out.println(pub.getTipoInmueble());
         return pub;
+    }
+    
+    public void ModificarPublicacion(Publicacion publicacion) throws SQLException{
+        PublicacionDAO conexion= new PublicacionDAO();
+        try {
+            conexion.ModificarPublicacion(publicacion);
+        } catch (SQLException ex) {
+            throw ex;
+        }  
     }
 }

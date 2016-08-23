@@ -46,7 +46,7 @@ public class EnvioMail {
             mensaje.setFrom(new InternetAddress(correoOrigen));
             mensaje.setRecipient(Message.RecipientType.TO, new InternetAddress(correoDestinatario));
             mensaje.setSubject("Código para reestablecer tu contraseña");
-            mensaje.setText("Recientemente se enviado una solicitud de reestablecimiento de contraseña a este correo, aquí esta tu codigo para hacerlo.\n"
+            mensaje.setText("Recientemente se ha enviado una solicitud de reestablecimiento de contraseña en IOInmuebles a este correo, aquí esta tu codigo para realizarla.\n"
                     + codigo+"\n"
                     + "Si no has hecho tu esta petición puedes omitir este correo. \n"
                     + "Gracias \n"

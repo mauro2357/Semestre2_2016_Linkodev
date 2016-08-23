@@ -67,8 +67,7 @@ public class DesactivacionCuenta extends HttpServlet {
             usr.desactivarCuenta();
             request.getRequestDispatcher("CerrarSesion").forward(request, response);
         }catch(Exception e){
-            String msgError=e.getMessage();
-            sesion.setAttribute("msg",msgError ); 
+            sesion.setAttribute("msg",e.getMessage() ); 
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
     }

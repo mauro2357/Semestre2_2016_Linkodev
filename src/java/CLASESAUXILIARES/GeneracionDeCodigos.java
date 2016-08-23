@@ -37,7 +37,6 @@ public class GeneracionDeCodigos {
         for (int i = 0; i < length; i++) {
             pswd += (key.charAt((int) (Math.random() * key.length())));
         }
-
         return pswd;
     }
 }

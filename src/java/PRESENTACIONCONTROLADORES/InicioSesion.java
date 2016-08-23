@@ -5,10 +5,8 @@
  */
 package PRESENTACIONCONTROLADORES;
 
-import ConexionBaseDatos.UsuariosDAO;
 import DOMAINENTITIES.Usuario;
 import java.io.IOException;
-import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -63,24 +61,21 @@ public class InicioSesion extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
             HttpSession sesion = request.getSession();
-            if(sesion.getAttribute("usuario") != null){      
-                request.getRequestDispatcher("cuenta.jsp").forward(request, response);
-                return;
-            }
+//            if(sesion.getAttribute("usuario") != null){      
+//                request.getRequestDispatcher("login.jsp").forward(request, response);
+//                return;
+//            }
             String correous=request.getParameter("correo");
             String contraseñaus=request.getParameter("contrasena");
             Usuario usuario = new Usuario(correous,contraseñaus);
             try{
-                Usuario usrActivo=new Usuario();
-                usrActivo =usuario.iniciarSesion();
-                sesion.setAttribute("usuario", usrActivo);
+                Usuario usrActivo=usrActivo =usuario.iniciarSesion();
+                sesion.setAttribute("usuario", usrActivo);                
                 request.getRequestDispatcher("MuestraPublicacion").forward(request, response);
             }catch(Exception ef){
-                String msgError=ef.getMessage();
-                sesion.setAttribute("msg",msgError );
+                sesion.setAttribute("msg",ef.getMessage());
                 request.getRequestDispatcher("error.jsp").forward(request, response);
             }
-            processRequest(request, response);
     }
     
     /**

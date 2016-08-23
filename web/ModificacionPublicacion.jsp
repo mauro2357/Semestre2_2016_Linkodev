@@ -4,8 +4,13 @@
     Author     : MARCS
 --%>
 
+<%@page import="DOMAINENTITIES.Publicacion"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+    HttpSession sesionII = request.getSession();
+    Publicacion pub = (Publicacion) sesionII.getAttribute("publicacion");
+%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -25,12 +30,14 @@
                     <div class="container">
                         <br><br>
                         <h4>Nueva publicación</h4>
+                        <br><br>
                         <div class="row">
-                            <form class="col s12" action="ModificacionDePublicacion" method="post">
+                            <form class="col s12" action="Modificacionpublicacion" method="">
+                                <input  name="id" type="text" class="validate" value="<%=pub.getId()%>" hidden="true">
                                 <div class="input-field col s6">
                                     Tipo de oferta:
                                     <select name="tipooferta" required aria-required="true">
-                                        <option></option>
+                                        <option value="<%=pub.getTipoOferta()%>"><%=pub.getTipoOferta()%></option>
                                         <option value="venta">Venta</option>
                                         <option value="arriendo">Arriendo</option>
                                     </select>
@@ -38,7 +45,7 @@
                                 <div class="input-field col s6">
                                     Tipo de inmueble:
                                     <select name="tipoinmueble">
-                                        <option></option>
+                                        <option value="<%=pub.getTipoInmueble()%>"><%=pub.getTipoInmueble()%></option>
                                         <option value="casa">Casa</option>
                                         <option value="apartamento">Apartamento</option>
                                         <option value="habitacion">Habitación</option>
@@ -49,47 +56,46 @@
                                 <div class="input-field col s6">
                                     Ciudad:
                                     <select name="ciudad">
-                                        <option value="">Seleccione</option>
-                                        <option value="1">Bogotá</option>
-                                        <option value="2">Medellín</option>
+                                        <option value="<%=pub.getCiudad()%>"><%=pub.getCiudad()%></option>
+                                        <option value="Bogotá">Bogotá</option>
+                                        <option value="Medellin">Medellín</option>
                                     </select>
                                 </div>
                                 <div class="input-field col s6">
                                     Dirección:
-                                    <input  name="direccion" type="text" class="validate">
+                                    <input  name="direccion" type="text" class="validate" value="<%=pub.getDireccion()%>">
                                 </div>
                                 <div class="col s6">
                                     Barrio:
-                                    <input  name="barrio" type="text" class="validate">
+                                    <input  name="barrio" type="text" class="validate" value="<%=pub.getBarrio()%>">
                                 </div>
                                 <div class="col s6">
                                     Precio:
-                                    <input  name="precio" type="text" class="validate">
+                                    <input  name="precio" type="text" class="validate" value="<%=pub.getPrecio()%>">
                                 </div>
                                 <div class="col s6">
                                     Habitaciones:
-                                    <input  name="habitaciones" type="number" min="0" max="20" step="1" class="validate">
+                                    <input  name="habitaciones" type="number" min="0" max="20" step="1" class="validate" value="<%=pub.getHabitaciones()%>">
                                 </div>
                                 <div class="col s6">
                                     Baños:
-                                    <input  name="banos" type="number" min="0" max="20" step="1" class="validate">
+                                    <input  name="banos" type="number" min="0" max="20" step="1" class="validate" value="<%=pub.getBanos()%>">
                                 </div>
                                 <div class="col s6">
                                     Piso:
-                                    <input  name="piso" type="text" class="validate" onkeypress="return valida(event)">
+                                    <input  name="piso" type="text" class="validate" onkeypress="return valida(event)" value="<%=pub.getPiso()%>">
                                 </div>
                                 <div class="col s6">
                                     Área:
-                                    <input  name="area" type="text" class="validate" onkeypress="return valida(event)">
+                                    <input  name="area" type="text" class="validate" onkeypress="return valida(event)" value="<%=pub.getArea()%>">
                                 </div>
                                 <div class="col s6">
                                     Estrato:
-                                    <input  name="estrato" type="text" class="validate" onkeypress="return valida(event)">
+                                    <input  name="estrato" type="text" class="validate" onkeypress="return valida(event)" value="<%=pub.getEstrato()%>">
                                 </div>
-
                                 <br>
                                 <div class="row center col s12">
-                                    <button  type="submit" name="publicarboton" class="btn-large waves-effect waves-light orange">Editar</button>
+                                    <button  type="submit" name="publicarboton" class="btn-large waves-effect waves-light orange">Actualizar</button>
                                 </div>
                             </form>
 

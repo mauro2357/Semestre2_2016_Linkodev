@@ -6,7 +6,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -26,6 +25,7 @@
                     <div class="container">
                         <br><br>
                         <h4>Nueva publicación</h4>
+                        <br><br>
                         <div class="row">
                             <form class="col s12" action="CreacionPublicacion" method="post">
                                 <div class="input-field col s6">
@@ -51,8 +51,8 @@
                                     Ciudad:
                                     <select name="ciudad">
                                         <option value="">Seleccione</option>
-                                        <option value="1">Bogotá</option>
-                                        <option value="2">Medellín</option>
+                                        <option value="Bogotá">Bogotá</option>
+                                        <option value="Medellin">Medellín</option>
                                     </select>
                                 </div>
                                 <div class="input-field col s6">
@@ -87,13 +87,11 @@
                                     Estrato:
                                     <input  name="estrato" type="text" class="validate" onkeypress="return valida(event)">
                                 </div>
-
                                 <br>
                                 <div class="row center col s12">
                                     <button  type="submit" name="publicarboton" class="btn-large waves-effect waves-light orange">Publicar</button>
                                 </div>
                             </form>
-
                         </div>
                     </div>
                 </div>

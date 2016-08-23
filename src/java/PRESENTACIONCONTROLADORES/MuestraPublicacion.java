@@ -9,7 +9,10 @@ import ConexionBaseDatos.PublicacionDAO;
 import DOMAINENTITIES.Publicacion;
 import DOMAINENTITIES.Usuario;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,6 +38,17 @@ public class MuestraPublicacion extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        PublicacionDAO publicacion = new PublicacionDAO();
+        ArrayList<Publicacion> arrayPublicaciones;
+        try {
+            arrayPublicaciones = publicacion.mostrarPublicaciones();
+            HttpSession sesion = request.getSession();
+            sesion.setAttribute("publicaciones", arrayPublicaciones);
+            request.getRequestDispatcher("cuenta.jsp").forward(request, response);
+        } catch (SQLException e) {
+            request.getSession().setAttribute("msg",e.getMessage()); 
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -49,7 +63,6 @@ public class MuestraPublicacion extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
     }
 
     /**
@@ -64,12 +77,17 @@ public class MuestraPublicacion extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PublicacionDAO publicacion = new PublicacionDAO();
-        String usuario=request.getParameter("usuario");
-        Usuario usr=new Usuario();
-        ArrayList<Publicacion> arrayPublicaciones = publicacion.mostrarPublicaciones();
-        HttpSession sesion = request.getSession();
-        sesion.setAttribute("publicaciones", arrayPublicaciones);
-        request.getRequestDispatcher("cuenta.jsp").forward(request, response);
+        String usuario = request.getParameter("usuario");
+        Usuario usr = new Usuario();
+        ArrayList<Publicacion> arrayPublicaciones;
+        try {
+            arrayPublicaciones = publicacion.mostrarPublicaciones();
+            HttpSession sesion = request.getSession();
+            sesion.setAttribute("publicaciones", arrayPublicaciones);
+            request.getRequestDispatcher("cuenta.jsp").forward(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(MuestraPublicacion.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

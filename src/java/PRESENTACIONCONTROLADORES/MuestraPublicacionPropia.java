@@ -5,21 +5,15 @@
  */
 package PRESENTACIONCONTROLADORES;
 
-import ConexionBaseDatos.PublicacionDAO;
 import DOMAINENTITIES.Publicacion;
 import DOMAINENTITIES.Usuario;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -38,13 +32,10 @@ public class MuestraPublicacionPropia extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
+            throws ServletException, IOException {        
         Usuario usuarioSesion = (Usuario) request.getSession().getAttribute("usuario");
-        System.out.println("usuario: "+usuarioSesion.getCorreo());
         String correo = usuarioSesion.getCorreo();
         Usuario usr = new Usuario();
-
         try {
             ArrayList<Publicacion> publicaciones = usr.consultarPublicacionesByUsuario(correo);
             request.getSession().setAttribute("publicaciones_editables", publicaciones);

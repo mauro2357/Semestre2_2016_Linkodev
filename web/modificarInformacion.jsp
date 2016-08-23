@@ -10,7 +10,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
         <title>Actualizacion de datos</title>
-
         <!-- CSS  -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -31,20 +30,20 @@
                             <form method="post" class="col s12" action="ModificarInformacion" >
                                 <div class="input-field col s6">
                                     <input name="nombre" type="text" value="<%=usr.getNombre()%>" class="validate" required="">
-                                    <label for="last_name">Nombre</label >
+                                    <label for="nombre">Nombre</label >
                                 </div>
                                 <div class="input-field col s6">
                                     <input name="correo" type="email" readonly value ="<%= usr.getCorreo()%>">
-                                    <label for="last_name">Correo</label>
+                                    <label for="correo">Correo</label>
                                 </div>
 
                                 <div class="input-field col s6">
                                     <input name="telefono" type="text" class="validate" value="<%= usr.getTelefono()%>" onkeypress="return valida(event)">
-                                    <label for="password">Telefono</label>
+                                    <label for="telefono">Telefono</label>
                                 </div> 
                                 <div class=" input-field col s6">
                                     <input name="contrasena" type="password" class="validate" required="">
-                                    <label for="password">Contraseña</label>
+                                    <label for="contrasena">Contraseña</label>
                                 </div>   
                                 <div class="row center col s12">
                                     <button  type="submit" name="actualizar_boton" class="btn-large waves-effect waves-light orange">Actualizar</button>

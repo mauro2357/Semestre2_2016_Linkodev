@@ -21,12 +21,11 @@
         <div id="wrap">
             <div id="main">
                 <nav class="light-blue lighten-1" role="navigation">  
-                    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">IOInmuebles</a>
+                    <div class="nav-wrapper container"><a id="logo-container" href="index.jsp" class="brand-logo">IOInmuebles</a>
                         <ul class="right hide-on-med-and-down">
                             <li><a href="index.jsp">Inicio</a></li>
                             <li><a href="registrar.jsp">Registrese!</a></li>
                         </ul>
-
                         <ul id="nav-mobile" class="side-nav">
                             <li><a href="index.jsp">Inicio</a></li>
                             <li><a href="registrar.jsp">Registrese!</a></li>
@@ -43,8 +42,7 @@
                     <form action="ReestablecimientoContrasena" method="post">
                         <div class="input-field col s6">   
                             <input name="correo" type="email" class="validate" required="">
-                            <label for="correo">Correo</label>
-                            
+                            <label for="correo">Correo</label>                            
                         </div>
                         <button type="submit" name="enviar" class="btn  waves-effect waves-light orange">Enviar</button>
                     </form>

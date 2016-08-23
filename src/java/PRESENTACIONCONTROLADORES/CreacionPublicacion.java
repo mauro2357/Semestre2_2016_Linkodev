@@ -63,8 +63,7 @@ public class CreacionPublicacion extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sesion = request.getSession();
         Usuario usr = (Usuario) sesion.getAttribute("usuario");
-        Publicacion publicacion = new Publicacion();
-        PublicacionDAO nuevapublicacion = new PublicacionDAO();
+        Publicacion publicacion = new Publicacion();        
         publicacion.setDueno(usr.getCorreo());
         publicacion.setTipoOferta(request.getParameter("tipooferta"));
         publicacion.setTipoInmueble(request.getParameter("tipoinmueble"));
@@ -83,11 +82,9 @@ public class CreacionPublicacion extends HttpServlet {
             sesion.setAttribute("usuario", usr);
             request.getRequestDispatcher("MuestraPublicacion").forward(request, response);
         }catch(SQLException e){
-            String msgError=e.getMessage();
-            sesion.setAttribute("msg",msgError ); 
+            sesion.setAttribute("msg",e.getMessage()); 
             request.getRequestDispatcher("error.jsp").forward(request, response);
-        }
-        processRequest(request, response);
+        }        
     }
 
     /**

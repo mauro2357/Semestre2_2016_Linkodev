@@ -15,7 +15,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Publicaciones editables</title>
     </head>
     <body>
         <div id="contenidoCuenta" class="container1">
@@ -25,24 +25,21 @@
                             out.println("<div id='publicaciones' class='col s2'>");
                             out.println("<div class='card'>");
                             out.println("<div class='card-image'>");
-                            out.println("<img src='imagenes/logoCasa.png'>");                           
+                            out.println("<img src='imagenes/logoCasa.png'>");
                             out.println("</div>");
                             out.println("<div class='card-content'>");
                             out.println("<span class='card-title white-text'>" + pub.getTipoInmueble() + " - " + pub.getTipoOferta() + "</span><br>");
                             out.println("<span class='white-text'> Precio:$ " + pub.getPrecio() + "</span><br>");
                             out.println("<span class='white-text'> Ciudad: " + pub.getCiudad() + "</span>");
                             out.println("</div>");
-                            out.println("<div class='card-action'>");                            
-                            out.println("<a href='ModificacionPublicacion.jsp'><i class='material-icons'>more_vert</i></a>");
+                            out.println("<div class='card-action'>");
+                            out.println("<a href='DetallesPublicacionesEditables?id="+pub.getId()+"'><i class='material-icons'>more_vert</i></a>");
                             out.println("</div>");
                             out.println("</div>");
                             out.println("</div>");
                         }
                     %>
                 </div>
-
-                <!--   Icon Section   -->
-
             </div>
         </div>
     </body>

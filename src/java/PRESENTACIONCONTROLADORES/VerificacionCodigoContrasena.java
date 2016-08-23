@@ -7,8 +7,6 @@ package PRESENTACIONCONTROLADORES;
 
 import DOMAINENTITIES.Usuario;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -60,16 +58,15 @@ public class VerificacionCodigoContrasena extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String codigouno = request.getParameter("codigo");
-        String codigodos = (String) request.getSession().getAttribute("codigoingresado");
+        String codigodos = (String) request.getSession().getAttribute("codigoenviado");
         Usuario usuario =  (Usuario) request.getSession().getAttribute("usuario");
         Usuario usr = new Usuario();
         try {
             usr.verificarCodigoContrasena(codigouno,codigodos);
             request.getSession().setAttribute("usuario", usuario);
             request.getRequestDispatcher("NuevaContraseñaRecuperacion.jsp").forward(request, response);
-        } catch (Exception ex) {
-            String msgError = ex.getMessage();
-            request.getSession().setAttribute("msg", msgError);
+        } catch (Exception ex) {            
+            request.getSession().setAttribute("msg", ex.getMessage());
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
     }

@@ -5,12 +5,8 @@
  */
 package PRESENTACIONCONTROLADORES;
 
-import ConexionBaseDatos.UsuariosDAO;
 import DOMAINENTITIES.Usuario;  
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -68,15 +64,13 @@ public class Registro extends HttpServlet {
         String correo=request.getParameter("correo");
         String contraseña=request.getParameter("contrasena");
         String telefono=request.getParameter("telefono");
-        Usuario persona=new Usuario(nombre, correo, contraseña, telefono);
-        
+        Usuario persona=new Usuario(nombre, correo, contraseña, telefono);        
         try{
             persona.registrar();
             sesion.setAttribute("usuario",persona ); 
             request.getRequestDispatcher("MuestraPublicacion").forward(request, response);
-        }catch(Exception e){
-            String msgError=e.getMessage();
-            sesion.setAttribute("msg",msgError ); 
+        }catch(Exception e){            
+            sesion.setAttribute("msg",e.getMessage()); 
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
     }

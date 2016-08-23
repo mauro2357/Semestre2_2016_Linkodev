@@ -30,56 +30,57 @@
                     <div class="container">
                         <br><br>
                         <h4>Detalles publicación</h4>
+                        <br><br>
                         <div class="row">
                             <form class="col s12" action="" method="post">
                                 <div class="input-field col s6">
                                     Tipo de oferta:
-                                    <input  name="oferta" type="text" class="validate" value="<%=pub.getTipoOferta()%>">
+                                    <input  name="oferta" type="text" class="validate" value="<%=pub.getTipoOferta()%>" readonly="">
                                 </div>
                                 <div class="input-field col s6">
                                     Tipo de inmueble:
-                                    <input  name="tipo" type="text" class="validate" value="<%=pub.getTipoInmueble()%>">
+                                    <input  name="tipo" type="text" class="validate" value="<%=pub.getTipoInmueble()%>" readonly="">
                                 </div>
-                                <div class="input-field col s6">
+                                <div class="input-field col s6" >
                                     Ciudad:
-                                    <input  name="ciudad" type="text" class="validate" value="<%=pub.getCiudad()%>">
+                                    <input  name="ciudad" type="text" class="validate" value="<%=pub.getCiudad()%>" readonly="">
                                 </div>
                                 <div class="input-field col s6">
                                     Dirección:
-                                    <input  name="direccion" type="text" class="validate" value="<%=pub.getDireccion()%>">
+                                    <input  name="direccion" type="text" class="validate" value="<%=pub.getDireccion()%>" readonly="">
                                 </div>
                                 <div class="col s6">
                                     Barrio:
-                                    <input  name="barrio" type="text" class="validate" value="<%=pub.getBarrio()%>">
+                                    <input  name="barrio" type="text" class="validate" value="<%=pub.getBarrio()%>" readonly="">
                                 </div>
                                 <div class="col s6">
                                     Precio:
-                                    <input  name="precio" type="text" class="validate" value="<%=pub.getPrecio()%>">
+                                    <input  name="precio" type="text" class="validate" value="<%=pub.getPrecio()%>" readonly="">
                                 </div>
                                 <div class="col s6">
                                     Habitaciones:
-                                    <input  name="habitaciones" type="text" class="validate" value="<%=pub.getHabitaciones()%>">
+                                    <input  name="habitaciones" type="text" class="validate" value="<%=pub.getHabitaciones()%>" readonly="">
                                 </div>
                                 <div class="col s6">
                                     Baños:
-                                    <input  name="banos" type="text" class="validate" value="<%=pub.getBanos()%>">
+                                    <input  name="banos" type="text" class="validate" value="<%=pub.getBanos()%>" readonly="">
                                 </div>
                                 <div class="col s6">
                                     Piso:
-                                    <input  name="piso" type="text" class="validate" value="<%=pub.getPiso()%>">
+                                    <input  name="piso" type="text" class="validate" value="<%=pub.getPiso()%>" readonly="">
                                 </div>
                                 <div class="col s6">
                                     Área:
-                                    <input  name="area" type="text" class="validate" value="<%=pub.getArea()%>">
+                                    <input  name="area" type="text" class="validate" value="<%=pub.getArea()%>" readonly="">
                                 </div>
                                 <div class="col s6">
                                     Estrato:
-                                    <input  name="estrato" type="text" class="validate" value="<%=pub.getEstrato()%>">
+                                    <input  name="estrato" type="text" class="validate" value="<%=pub.getEstrato()%>" readonly="">
                                 </div>
 
                                 <br>
                                 <div class="row center col s12">
-                                    <button  type="submit" name="publicarboton" class="btn-large waves-effect waves-light orange">Modificar</button>
+                                    <button  type="submit" name="publicarboton" class="btn-large waves-effect waves-light orange">Atte modifi</button>
                                 </div>
                             </form>
 

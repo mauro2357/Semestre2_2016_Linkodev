@@ -5,10 +5,8 @@
  */
 package PRESENTACIONCONTROLADORES;
 
-import ConexionBaseDatos.UsuariosDAO;
 import DOMAINENTITIES.Usuario;
 import java.io.IOException;
-import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -68,7 +66,7 @@ public class ModificacionContrasena extends HttpServlet {
         try{
             Usuario usrmodificado=usr.cambiarContraseña();
             sesion.setAttribute("usuario",usrmodificado);
-            request.getRequestDispatcher("cuenta.jsp").forward(request, response);
+            request.getRequestDispatcher("MuestraPublicacion").forward(request, response);
         }catch(Exception e){
             String msgError=e.getMessage();
             sesion.setAttribute("msg",msgError ); 

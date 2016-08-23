@@ -8,20 +8,18 @@ package PRESENTACIONCONTROLADORES;
 import DOMAINENTITIES.Publicacion;
 import DOMAINENTITIES.Usuario;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Mateo Ortiz Cano
  */
-public class VerDetalles extends HttpServlet {
+public class DetallesPublicacionesEditables extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,18 +32,17 @@ public class VerDetalles extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String id=request.getParameter("id");        
-        Usuario usr=new Usuario();        
-        try {            
-            Publicacion pub=usr.DetallarInmueble(id);           
-            request.getSession().setAttribute("publicacion", pub);
-            
-            request.getRequestDispatcher("Detalles.jsp").forward(request, response);
-        } catch (SQLException ex) {
-            String msgError = ex.getMessage();
-            request.getSession().setAttribute("msg", msgError);
+        HttpSession sesion = request.getSession();        
+        String codPublicacion=request.getParameter("id");       
+        Usuario usuario=new Usuario();
+        try{
+            Publicacion publicacion=usuario.DetallarInmueble(codPublicacion);
+            sesion.setAttribute("publicacion", publicacion);
+            request.getRequestDispatcher("ModificacionPublicacion.jsp").forward(request, response);
+        }catch(SQLException e){
+            sesion.setAttribute("msg",e.getMessage()); 
             request.getRequestDispatcher("error.jsp").forward(request, response);
-        } 
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -74,7 +71,7 @@ public class VerDetalles extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                
+        processRequest(request, response);
     }
 
     /**

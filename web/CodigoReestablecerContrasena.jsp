@@ -26,7 +26,6 @@
                             <li><a href="index.jsp">Inicio</a></li>
                             <li><a href="registrar.jsp">Registrese!</a></li>
                         </ul>
-
                         <ul id="nav-mobile" class="side-nav">
                             <li><a href="index.jsp">Inicio</a></li>
                             <li><a href="registrar.jsp">Registrese!</a></li>
@@ -43,8 +42,7 @@
                     <form action="VerificacionCodigoContrasena" method="post">
                         <div class="input-field col s6">   
                             <input name="codigo" type="text" class="validate" required="">
-                            <label for="codigo">Código</label>
-                            
+                            <label for="codigo">Código</label>                            
                         </div>
                         <button type="submit" name="reestablecercontrasena" class="btn  waves-effect waves-light orange">Reestablecer contraseña</button>
                     </form>

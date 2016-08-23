@@ -5,10 +5,8 @@
  */
 package PRESENTACIONCONTROLADORES;
 
-import ConexionBaseDatos.UsuariosDAO;
 import DOMAINENTITIES.Usuario;
 import java.io.IOException;
-import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -71,10 +69,9 @@ public class ModificacionInformacion extends HttpServlet {
         try{
             Usuario usuarioModificado = persona.modificarInformacion();
             sesion.setAttribute("usuario",usuarioModificado);
-            request.getRequestDispatcher("cuenta.jsp").forward(request, response);
+            request.getRequestDispatcher("MuestraPublicacion").forward(request, response);
         }catch(Exception e){
-            String msgError=e.getMessage();
-            sesion.setAttribute("msg",msgError ); 
+            sesion.setAttribute("msg",e.getMessage()); 
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
     }

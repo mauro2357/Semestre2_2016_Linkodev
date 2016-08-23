@@ -5,31 +5,43 @@
  */
 package PRESENTACIONCONTROLADORES;
 
-import ConexionBaseDatos.PublicacionDAO;
 import DOMAINENTITIES.Publicacion;
 import DOMAINENTITIES.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author MARCS
+ * @author Mateo Ortiz Cano
  */
+public class VisualizacionDetalles extends HttpServlet {
 
-public class ModificacionDePublicacion extends HttpServlet {
-
-
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            
+        String id=request.getParameter("id");        
+        Usuario usr=new Usuario();        
+        try {            
+            Publicacion pub=usr.DetallarInmueble(id);           
+            request.getSession().setAttribute("publicacion", pub);            
+            request.getRequestDispatcher("Detalles.jsp").forward(request, response);
+        } catch (SQLException ex) {            
+            request.getSession().setAttribute("msg",ex.getMessage());
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+        } 
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -58,32 +70,6 @@ public class ModificacionDePublicacion extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession sesion = request.getSession();
-        Usuario usr = (Usuario) sesion.getAttribute("usuario");
-        Publicacion publicacion = new Publicacion();
-        PublicacionDAO nuevapublicacion = new PublicacionDAO();
-        publicacion.setDueno(usr.getCorreo());
-        publicacion.setTipoOferta(request.getParameter("tipooferta"));
-        publicacion.setTipoInmueble(request.getParameter("tipoinmueble"));
-        publicacion.setCiudad(request.getParameter("ciudad"));
-        publicacion.setDireccion(request.getParameter("direccion"));
-        publicacion.setBarrio(request.getParameter("barrio"));
-        publicacion.setPrecio(request.getParameter("precio"));
-        publicacion.setHabitaciones(request.getParameter("habitaciones"));
-        publicacion.setBanos(request.getParameter("banos"));
-        publicacion.setPiso(request.getParameter("piso"));
-        publicacion.setArea(request.getParameter("area"));
-        publicacion.setEstrato(request.getParameter("estrato"));
-        Usuario usuario=new Usuario();
-        try{
-            usuario.registrarPublicacion(publicacion);
-            sesion.setAttribute("usuario", usr);
-            request.getRequestDispatcher("PublicacionesEditables").forward(request, response);
-        }catch(SQLException e){
-            String msgError=e.getMessage();
-            sesion.setAttribute("msg",msgError ); 
-            request.getRequestDispatcher("error.jsp").forward(request, response);
-        }
         processRequest(request, response);
     }
 

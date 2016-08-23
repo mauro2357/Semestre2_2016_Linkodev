@@ -54,8 +54,7 @@ public class CambioFotoPerfil extends HttpServlet {
                         File directorio = new File(getServletContext().getRealPath("imagenes/"));
                         directorio.mkdir();
                         File archivo_server = new File(directorio + File.separator + item.getName());
-                        item.write(archivo_server);
-                        
+                        item.write(archivo_server);                        
                         usr = (Usuario) sesion.getAttribute("usuario");
                         usuario.cambiarFotoDePerfil("imagenes/"+item.getName(),usr.getCorreo());
                         item2=item;
@@ -64,8 +63,10 @@ public class CambioFotoPerfil extends HttpServlet {
             }
             usr.setFotourl("imagenes/"+item2.getName());
             sesion.setAttribute("usuario",usr);
-            request.getRequestDispatcher("cuenta.jsp").forward(request, response);
+            request.getRequestDispatcher("MuestraPublicacion").forward(request, response);
         } catch (Exception e) {
+            request.getSession().setAttribute("msg",e.getMessage()); 
+            request.getRequestDispatcher("error.jsp").forward(request, response);
         }
     }
 
