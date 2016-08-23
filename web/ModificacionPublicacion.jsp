@@ -29,8 +29,7 @@
                 <div class="section no-pad-bot" id="index-banner">
                     <div class="container">
                         <br><br>
-                        <h4>Nueva publicación</h4>
-                        <br><br>
+                        <h4>Edición de publicación</h4>
                         <div class="row">
                             <form class="col s12" action="Modificacionpublicacion" method="">
                                 <input  name="id" type="text" class="validate" value="<%=pub.getId()%>" hidden="true">

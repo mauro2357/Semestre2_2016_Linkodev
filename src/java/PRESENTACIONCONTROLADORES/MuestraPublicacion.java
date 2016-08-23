@@ -42,6 +42,7 @@ public class MuestraPublicacion extends HttpServlet {
         ArrayList<Publicacion> arrayPublicaciones;
         try {
             arrayPublicaciones = publicacion.mostrarPublicaciones();
+            System.out.println("cualsks");
             HttpSession sesion = request.getSession();
             sesion.setAttribute("publicaciones", arrayPublicaciones);
             request.getRequestDispatcher("cuenta.jsp").forward(request, response);
