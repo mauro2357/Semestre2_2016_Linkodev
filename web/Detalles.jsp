@@ -22,7 +22,7 @@
         <script src="js/accionesvarias.js"></script>
         <link rel="shortcut icon" href="imagenes/logoCasa.png">
     </head>
-    <body onload="mandarAlerta()">
+    <body>
         <div id="wrap">
             <div id="main">
                 <%@include file="barradeNavegacion.jsp"%>

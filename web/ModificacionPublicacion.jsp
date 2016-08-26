@@ -22,7 +22,7 @@
         <script src="js/accionesvarias.js"></script>
         <link rel="shortcut icon" href="imagenes/logoCasa.png">
     </head>
-    <body>
+    <body onload="mandarAlerta()">
         <div id="wrap">
             <div id="main">
                 <%@include file="barradeNavegacion.jsp"%>
@@ -91,6 +91,10 @@
                                 <div class="col s6">
                                     Estrato:
                                     <input  name="estrato" type="text" class="validate" onkeypress="return valida(event)" value="<%=pub.getEstrato()%>">
+                                </div>
+                                <div class="col s6">
+                                    Visitas publicación:
+                                    <input   id="contador" name="contador" type="text" class="validate" value="<%=pub.getContadorVisitas()%>" readonly="">
                                 </div>
                                 <br>
                                 <div class="row center col s12">

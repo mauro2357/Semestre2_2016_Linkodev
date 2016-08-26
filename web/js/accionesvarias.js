@@ -90,6 +90,14 @@ function mandarAlerta() {
     }
 }
 
+function mandarAlerta2(cont) {
+    contador = paresInt(cont);
+    if (contador > 1) {
+        alert("Don/Doña tal vez estes alquilando o vendiendo el inmueble muy caro");
+        return false;
+    }
+}
+
 
 
 
