@@ -82,4 +82,14 @@ function comprobarClave2() {
     }
 }
 
+function mandarAlerta() {
+    contador = document.getElementById("contador").value;
+    if (contador > 19 & contador < 26) {
+        alert("Don/Doña tal vez estes alquilando o vendiendo el inmueble muy caro");
+        return false;
+    }
+}
+
+
+
 

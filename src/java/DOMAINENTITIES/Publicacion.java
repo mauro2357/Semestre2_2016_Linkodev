@@ -23,6 +23,7 @@ public class Publicacion {
     private String piso;
     private String area;
     private String estrato;
+    private int contadorVisitas;
     
     public String getDueno() {
         return dueno;
@@ -127,4 +128,13 @@ public class Publicacion {
     public void setId(String id) {
         this.id = id;
     }    
+
+    public int getContadorVisitas() {
+        return contadorVisitas;
+    }
+
+    public void setContadorVisitas(int contadorVisitas) {
+        this.contadorVisitas = contadorVisitas;
+    }
+
 }

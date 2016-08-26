@@ -22,7 +22,7 @@
         <script src="js/accionesvarias.js"></script>
         <link rel="shortcut icon" href="imagenes/logoCasa.png">
     </head>
-    <body>
+    <body onload="mandarAlerta()">
         <div id="wrap">
             <div id="main">
                 <%@include file="barradeNavegacion.jsp"%>
@@ -32,7 +32,7 @@
                         <h4>Detalles publicación</h4>
                         <br><br>
                         <div class="row">
-                            <form class="col s12" action="" method="post">
+                            <form id="formularioDetalles" class="col s12" action="" method="post">
                                 <div class="input-field col s6">
                                     Tipo de oferta:
                                     <input  name="oferta" type="text" class="validate" value="<%=pub.getTipoOferta()%>" readonly="">
@@ -77,7 +77,11 @@
                                     Estrato:
                                     <input  name="estrato" type="text" class="validate" value="<%=pub.getEstrato()%>" readonly="">
                                 </div>
-
+                                <div class="col s6">
+                                    Visitas publicación:
+                                    <input   id="contador" name="contador" type="text" class="validate" value="<%=pub.getContadorVisitas()%>" readonly="">
+                                </div>
+                                
                                 <br>
                                 <div class="row center col s12">
                                     <button  type="submit" name="publicarboton" class="btn-large waves-effect waves-light orange">Atte modifi</button>

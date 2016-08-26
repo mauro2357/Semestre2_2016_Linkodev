@@ -137,6 +137,19 @@ public class PublicacionDAO {
         publicacion.setArea(res.getString("pub_area"));
         publicacion.setEstrato(res.getString("pub_estrato"));
         publicacion.setId(res.getString("pub_id"));
+        contadorVisitas(id);
+        publicacion.setContadorVisitas(res.getInt("pub_contador"));
         return publicacion;
     }
+    
+    
+    public void contadorVisitas(String id) throws SQLException{
+        ConexiónBD conexion = new ConexiónBD();
+        Statement statement = conexion.getConeccion().createStatement();
+        String query = " UPDATE publicacion as t1 SET t1.pub_contador = "
+                + "         (select * from (SELECT t2.pub_contador + 1 FROM publicacion as t2 "
+                + "         where t2.pub_id = '"+id+"') as x) where t1.pub_id ='" + id +"'";
+        statement.executeUpdate(query);
+    }
+    
 }
