@@ -21,7 +21,7 @@ public class PublicacionDAO {
     public void registrarPublicacion(Publicacion publicacion) throws SQLException {
         ConexiónBD nuevaconexion = new ConexiónBD();
         PreparedStatement stm;
-        String query = "INSERT INTO publicacion VALUES (" + null + ",?,?,?,?,?,?,?,?,?,?,?,?)";
+        String query = "INSERT INTO publicacion VALUES (" + null + ",?,?,?,?,?,?,?,?,?,?,?,?,0)";
         stm = nuevaconexion.getConeccion().prepareStatement(query);
         stm.setString(1, publicacion.getDueno());
         stm.setString(2, publicacion.getTipoOferta());
@@ -52,7 +52,7 @@ public class PublicacionDAO {
                 +"', pub_direccion='"+publicacion.getDireccion()+"', pub_barrio='"+publicacion.getBarrio()
                 +"', pub_precio='"+publicacion.getPrecio()+"',pub_habitaciones='"+publicacion.getHabitaciones()
                 +"',pub_banos='"+publicacion.getBanos()+"', pub_area='"+publicacion.getArea()
-                +"',pub_estrato='"+publicacion.getEstrato()+"' where pub_id="+publicacion.getId();
+                +"',pub_estrato='"+publicacion.getEstrato()+"',pub_contador="+publicacion.getContadorVisitas()+" where pub_id="+publicacion.getId();
         stm.executeUpdate(query);
     }
 

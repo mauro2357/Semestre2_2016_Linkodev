@@ -84,7 +84,7 @@
                                 
                                 <br>
                                 <div class="row center col s12">
-                                    <button  type="submit" name="publicarboton" class="btn-large waves-effect waves-light orange">Atte modifi</button>
+                                   
                                 </div>
                             </form>
 

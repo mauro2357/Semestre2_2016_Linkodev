@@ -51,7 +51,7 @@
                                     Ciudad:
                                     <select name="ciudad">
                                         <option value="">Seleccione</option>
-                                        <option value="Bogotá">Bogotá</option>
+                                        <option value="Bogotá">Bogota</option>
                                         <option value="Medellin">Medellín</option>
                                     </select>
                                 </div>

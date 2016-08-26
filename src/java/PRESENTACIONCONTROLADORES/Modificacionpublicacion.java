@@ -47,6 +47,7 @@ public class Modificacionpublicacion extends HttpServlet {
         publicacion.setPiso(request.getParameter("piso"));
         publicacion.setArea(request.getParameter("area"));
         publicacion.setEstrato(request.getParameter("estrato"));
+        publicacion.setContadorVisitas(Integer.parseInt(request.getParameter("contador")));
         publicacion.setId(request.getParameter("id"));
         Usuario usuario=new Usuario();
         try{
