@@ -60,6 +60,10 @@
         <servlet-name>VisualizacionDetalles</servlet-name>
         <servlet-class>PRESENTACIONCONTROLADORES.VisualizacionDetalles</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MuestraPublicacion</servlet-name>
+        <servlet-class>PRESENTACIONCONTROLADORES.MuestraPublicacion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Registro</servlet-name>
         <url-pattern>/Registro</url-pattern>
@@ -119,6 +123,10 @@
     <servlet-mapping>
         <servlet-name>VisualizacionDetalles</servlet-name>
         <url-pattern>/VisualizacionDetalles</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MuestraPublicacion</servlet-name>
+        <url-pattern>/MuestraPublicacion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

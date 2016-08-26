@@ -7,7 +7,6 @@ package PRESENTACIONCONTROLADORES;
 
 import ConexionBaseDatos.PublicacionDAO;
 import DOMAINENTITIES.Publicacion;
-import DOMAINENTITIES.Usuario;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -38,9 +37,11 @@ public class MuestraPublicacion extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        System.out.println("cualsks");
         PublicacionDAO publicacion = new PublicacionDAO();
         ArrayList<Publicacion> arrayPublicaciones;
         try {
+            System.out.println("cualsks");
             arrayPublicaciones = publicacion.mostrarPublicaciones();
             System.out.println("cualsks");
             HttpSession sesion = request.getSession();
@@ -78,8 +79,6 @@ public class MuestraPublicacion extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PublicacionDAO publicacion = new PublicacionDAO();
-        String usuario = request.getParameter("usuario");
-        Usuario usr = new Usuario();
         ArrayList<Publicacion> arrayPublicaciones;
         try {
             arrayPublicaciones = publicacion.mostrarPublicaciones();
