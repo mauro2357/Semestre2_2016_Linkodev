@@ -5,10 +5,10 @@
 --%>
 
 <%@page import="java.util.ArrayList"%>
-<%@page import="DOMAINENTITIES.Publicacion"%>
+<%@page import="DOMAINENTITIES.Inmueble"%>
 <%
     HttpSession sesion3 = request.getSession();
-    ArrayList<Publicacion> publicacioneseditables = (ArrayList) sesion3.getAttribute("publicaciones_editables");
+    ArrayList<Inmueble> publicacioneseditables = (ArrayList) sesion3.getAttribute("publicaciones_editables");
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -21,7 +21,7 @@
         <div id="contenidoCuenta" class="container1">
             <div class="section">
                 <div class="row">
-                    <%                    for (Publicacion pub : publicacioneseditables) {
+                    <%                    for (Inmueble pub : publicacioneseditables) {
                             out.println("<div id='publicaciones' class='col s2'>");
                             out.println("<div class='card'>");
                             out.println("<div class='card-image'>");

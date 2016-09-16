@@ -1,4 +1,4 @@
-<%@page import="DOMAINENTITIES.Publicacion"%>
+<%@page import="DOMAINENTITIES.Inmueble"%>
 <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 

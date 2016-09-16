@@ -4,12 +4,12 @@
     Author     : MARCS
 --%>
 
-<%@page import="DOMAINENTITIES.Publicacion"%>
+<%@page import="DOMAINENTITIES.Inmueble"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
     HttpSession sesionII = request.getSession();
-    Publicacion pub = (Publicacion) sesionII.getAttribute("publicacion");
+    Inmueble pub = (Inmueble) sesionII.getAttribute("publicacion");
 %>
 <html>
     <head>

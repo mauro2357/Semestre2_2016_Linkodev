@@ -4,12 +4,12 @@
     Author     : linkcodev
 --%>
 
-<%@page import="DOMAINENTITIES.Publicacion"%>
+<%@page import="DOMAINENTITIES.Inmueble"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
     HttpSession sesionI = request.getSession();
-    Publicacion pub = (Publicacion) sesionI.getAttribute("publicacion");
+    Inmueble pub = (Inmueble) sesionI.getAttribute("publicacion");
 %>
 <html>
     <head>

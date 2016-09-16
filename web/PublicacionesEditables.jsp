@@ -1,10 +1,4 @@
-<%-- 
-    Document   : PublicacionesEditables
-    Created on : 19-ago-2016, 12:03:51
-    Author     : MARCS
---%>
-
-<%@page import="DOMAINENTITIES.Publicacion"%>
+<%@page import="DOMAINENTITIES.Inmueble"%>
 <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 
