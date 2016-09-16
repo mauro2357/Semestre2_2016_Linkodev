@@ -197,7 +197,7 @@ public class Usuario {
         throw new Exception("El codigo de activación no concuerda");
     }
     
-    public void registrarPublicacion(Publicacion publicacion) throws SQLException{
+    public void registrarPublicacion(Inmueble publicacion) throws SQLException{
         PublicacionDAO conexion= new PublicacionDAO();
         try {
             conexion.registrarPublicacion(publicacion);
@@ -206,13 +206,13 @@ public class Usuario {
         }  
     }
     
-    public ArrayList<Publicacion> consultarPublicacionesByUsuario(String correo) throws Exception{
+    public ArrayList<Inmueble> consultarPublicacionesByUsuario(String correo) throws Exception{
         UsuariosDAO conexUsuario=new UsuariosDAO();
         if(!conexUsuario.consultarCorreo(correo)){
             throw new Exception("El usuario ingresado no existe");
         }
         PublicacionDAO conexion=new PublicacionDAO();
-        ArrayList<Publicacion> publicaciones= new ArrayList<>();
+        ArrayList<Inmueble> publicaciones= new ArrayList<>();
         try {
             publicaciones=conexion.consultarByUsuario(correo);
         } catch (SQLException ex) {
@@ -221,13 +221,13 @@ public class Usuario {
         return publicaciones;
     }
     
-    public Publicacion DetallarInmueble(String id) throws SQLException{
+    public Inmueble DetallarInmueble(String id) throws SQLException{
         PublicacionDAO conexion=new PublicacionDAO();
-        Publicacion pub=conexion.Detallar(id);
+        Inmueble pub=conexion.Detallar(id);
         return pub;
     }
     
-    public void ModificarPublicacion(Publicacion publicacion) throws SQLException{
+    public void ModificarPublicacion(Inmueble publicacion) throws SQLException{
         PublicacionDAO conexion= new PublicacionDAO();
         try {
             conexion.ModificarPublicacion(publicacion);

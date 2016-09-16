@@ -5,7 +5,7 @@
  */
 package PRESENTACIONCONTROLADORES;
 
-import DOMAINENTITIES.Publicacion;
+import DOMAINENTITIES.Inmueble;
 import DOMAINENTITIES.Usuario;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,7 +37,7 @@ public class MuestraPublicacionPropia extends HttpServlet {
         String correo = usuarioSesion.getCorreo();
         Usuario usr = new Usuario();
         try {
-            ArrayList<Publicacion> publicaciones = usr.consultarPublicacionesByUsuario(correo);
+            ArrayList<Inmueble> publicaciones = usr.consultarPublicacionesByUsuario(correo);
             request.getSession().setAttribute("publicaciones_editables", publicaciones);
             request.getRequestDispatcher("PublicacionesEditables.jsp").forward(request, response);
         } catch (Exception ex) {
@@ -78,7 +78,7 @@ public class MuestraPublicacionPropia extends HttpServlet {
         Usuario usr = new Usuario();
 
         try {
-            ArrayList<Publicacion> publicaciones = usr.consultarPublicacionesByUsuario(correo);
+            ArrayList<Inmueble> publicaciones = usr.consultarPublicacionesByUsuario(correo);
             request.getSession().setAttribute("publicaciones_editables", publicaciones);
             request.getRequestDispatcher("PublicacionesEditables.jsp").forward(request, response);
         } catch (Exception ex) {

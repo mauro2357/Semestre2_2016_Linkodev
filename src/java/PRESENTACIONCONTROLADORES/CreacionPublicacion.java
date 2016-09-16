@@ -5,8 +5,9 @@
  */
 package PRESENTACIONCONTROLADORES;
 
-import ConexionBaseDatos.PublicacionDAO;
-import DOMAINENTITIES.Publicacion;
+import DOMAINENTITIES.CreadorHabitacion;
+import DOMAINENTITIES.CreadorInmuebles;
+import DOMAINENTITIES.Inmueble;
 import DOMAINENTITIES.Usuario;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -63,22 +64,25 @@ public class CreacionPublicacion extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sesion = request.getSession();
         Usuario usr = (Usuario) sesion.getAttribute("usuario");
-        Publicacion publicacion = new Publicacion();        
-        publicacion.setDueno(usr.getCorreo());
-        publicacion.setTipoOferta(request.getParameter("tipooferta"));
-        publicacion.setTipoInmueble(request.getParameter("tipoinmueble"));
-        publicacion.setCiudad(request.getParameter("ciudad"));
-        publicacion.setDireccion(request.getParameter("direccion"));
-        publicacion.setBarrio(request.getParameter("barrio"));
-        publicacion.setPrecio(request.getParameter("precio"));
-        publicacion.setHabitaciones(request.getParameter("habitaciones"));
-        publicacion.setBanos(request.getParameter("banos"));
-        publicacion.setPiso(request.getParameter("piso"));
-        publicacion.setArea(request.getParameter("area"));
-        publicacion.setEstrato(request.getParameter("estrato"));
+        CreadorInmuebles creador;
+        //dependiendo de el tipon de inmueble que ingrese en el formulario
+        creador=new CreadorHabitacion();
+        Inmueble inmueble=creador.factoryMethod();
+        inmueble.setDueno(usr.getCorreo());
+        inmueble.setTipoOferta(request.getParameter("tipooferta"));
+        inmueble.setTipoInmueble(request.getParameter("tipoinmueble"));
+        inmueble.setCiudad(request.getParameter("ciudad"));
+        inmueble.setDireccion(request.getParameter("direccion"));
+        inmueble.setBarrio(request.getParameter("barrio"));
+        inmueble.setPrecio(request.getParameter("precio"));
+        inmueble.setHabitaciones(request.getParameter("habitaciones"));
+        inmueble.setBanos(request.getParameter("banos"));
+        inmueble.setPiso(request.getParameter("piso"));
+        inmueble.setArea(request.getParameter("area"));
+        inmueble.setEstrato(request.getParameter("estrato"));
         Usuario usuario=new Usuario();
         try{
-            usuario.registrarPublicacion(publicacion);
+            usuario.registrarPublicacion(inmueble);
             sesion.setAttribute("usuario", usr);
             request.getRequestDispatcher("MuestraPublicacion").forward(request, response);
         }catch(SQLException e){

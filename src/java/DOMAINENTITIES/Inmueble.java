@@ -9,7 +9,7 @@ package DOMAINENTITIES;
  *
  * @author Mateo Ortiz Cano
  */
-public class Publicacion {
+public class Inmueble {
     private String id;
     private String dueno;
     private String tipoOferta;
@@ -136,5 +136,4 @@ public class Publicacion {
     public void setContadorVisitas(int contadorVisitas) {
         this.contadorVisitas = contadorVisitas;
     }
-
 }

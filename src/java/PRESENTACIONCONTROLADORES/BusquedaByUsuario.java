@@ -5,7 +5,7 @@
  */
 package PRESENTACIONCONTROLADORES;
 
-import DOMAINENTITIES.Publicacion;
+import DOMAINENTITIES.Inmueble;
 import DOMAINENTITIES.Usuario;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,7 +34,7 @@ public class BusquedaByUsuario extends HttpServlet {
         String usuario=request.getParameter("usuario");
         Usuario usr=new Usuario();
         try{
-            ArrayList<Publicacion> publicaciones=usr.consultarPublicacionesByUsuario(usuario);
+            ArrayList<Inmueble> publicaciones=usr.consultarPublicacionesByUsuario(usuario);
         request.getSession().setAttribute("publicaciones", publicaciones);
         request.getRequestDispatcher("cuenta.jsp").forward(request, response);
         }catch(Exception ex){

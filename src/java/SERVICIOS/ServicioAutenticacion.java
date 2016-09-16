@@ -21,8 +21,8 @@ import javax.ws.rs.core.MediaType;
  *
  * @author Mateo Ortiz Cano
  */
-@Path("servicio1")
-public class ServicioPrueba {
+@Path("servicioAutenticacion")
+public class ServicioAutenticacion {
 
     @Context
     private UriInfo context;
@@ -30,26 +30,26 @@ public class ServicioPrueba {
     /**
      * Creates a new instance of ServicioPrueba
      */
-    public ServicioPrueba() {
+    public ServicioAutenticacion() {
     }
 
     /**
-     * Retrieves representation of an instance of SERVICIOS.ServicioPrueba
+     * Retrieves representation of an instance of SERVICIOS.ServicioAutenticacion
      * @param correo
      * @param contrasena
      * @return an instance of java.lang.String
      * @throws java.lang.Exception
      */
     @GET
-    @Produces(MediaType.TEXT_HTML)
+    @Produces(MediaType.APPLICATION_XML)
     public String getXml(@QueryParam ("correo") String correo,@QueryParam ("contrasena") String contrasena) throws Exception {
         Usuario usuario=new Usuario(correo, contrasena);
-        usuario=usuario.iniciarSesion();
+        usuario=usuario.iniciarSesion();       
         return usuario.getNombre()+usuario.getCorreo()+usuario.getTelefono();
     }
 
     /**
-     * PUT method for updating or creating an instance of ServicioPrueba
+     * PUT method for updating or creating an instance of ServicioAutenticacion
      * @param nombre
      * @param correo
      * @param telefono

@@ -5,7 +5,7 @@
  */
 package PRESENTACIONCONTROLADORES;
 
-import DOMAINENTITIES.Publicacion;
+import DOMAINENTITIES.Inmueble;
 import DOMAINENTITIES.Usuario;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -36,7 +36,7 @@ public class DetallesPublicacionesEditables extends HttpServlet {
         String codPublicacion=request.getParameter("id");       
         Usuario usuario=new Usuario();
         try{
-            Publicacion publicacion=usuario.DetallarInmueble(codPublicacion);
+            Inmueble publicacion=usuario.DetallarInmueble(codPublicacion);
             sesion.setAttribute("publicacion", publicacion);
             request.getRequestDispatcher("ModificacionPublicacion.jsp").forward(request, response);
         }catch(SQLException e){

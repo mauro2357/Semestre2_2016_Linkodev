@@ -5,7 +5,7 @@
  */
 package ConexionBaseDatos;
 
-import DOMAINENTITIES.Publicacion;
+import DOMAINENTITIES.Inmueble;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
  */
 public class PublicacionDAO {
 
-    public void registrarPublicacion(Publicacion publicacion) throws SQLException {
+    public void registrarPublicacion(Inmueble publicacion) throws SQLException {
         ConexiónBD nuevaconexion = new ConexiónBD();
         PreparedStatement stm;
         String query = "INSERT INTO publicacion VALUES (" + null + ",?,?,?,?,?,?,?,?,?,?,?,?,0)";
@@ -44,7 +44,7 @@ public class PublicacionDAO {
         }
     }
 
-    public void ModificarPublicacion(Publicacion publicacion) throws SQLException {
+    public void ModificarPublicacion(Inmueble publicacion) throws SQLException {
         ConexiónBD nuevaconexion=new ConexiónBD();
         Statement stm = nuevaconexion.getConeccion().createStatement();
         String query = "UPDATE  publicacion SET pub_tipooferta='"+publicacion.getTipoOferta()
@@ -56,17 +56,17 @@ public class PublicacionDAO {
         stm.executeUpdate(query);
     }
 
-    public ArrayList<Publicacion> mostrarPublicaciones() throws SQLException {
+    public ArrayList<Inmueble> mostrarPublicaciones() throws SQLException {
         ConexiónBD nuevaconexion = new ConexiónBD();
         Statement stm;
         ResultSet rs;
-        Publicacion publicacion;
-        ArrayList<Publicacion> arrayPublicaciones = new ArrayList<>();
+        Inmueble publicacion;
+        ArrayList<Inmueble> arrayPublicaciones = new ArrayList<>();
         stm = nuevaconexion.getConeccion().createStatement();
         String query = "select * from publicacion";
         rs = stm.executeQuery(query);
         while (rs.next()) {
-            publicacion = new Publicacion();
+            publicacion = new Inmueble();
             publicacion.setDueno(rs.getString("usu_correo"));
             publicacion.setTipoOferta(rs.getString("pub_tipooferta"));
             publicacion.setTipoInmueble(rs.getString("pub_tipoinmueble"));
@@ -85,16 +85,16 @@ public class PublicacionDAO {
         return arrayPublicaciones;
     }
     
-    public ArrayList<Publicacion> consultarByUsuario(String correo) throws SQLException {
+    public ArrayList<Inmueble> consultarByUsuario(String correo) throws SQLException {
         ConexiónBD conexion = new ConexiónBD();
         Statement statement = conexion.getConeccion().createStatement();
         String query = "SELECT * FROM publicacion WHERE usu_correo= '" + correo + "'";
         ResultSet res = statement.executeQuery(query);
-        Publicacion publicacion = new Publicacion();
-        ArrayList<Publicacion> arrayPublicaciones = new ArrayList<>();
+        Inmueble publicacion = new Inmueble();
+        ArrayList<Inmueble> arrayPublicaciones = new ArrayList<>();
         boolean existencia = false;
         while (res.next()) {
-            publicacion = new Publicacion();
+            publicacion = new Inmueble();
             publicacion.setDueno(res.getString("usu_correo"));
             publicacion.setTipoOferta(res.getString("pub_tipooferta"));
             publicacion.setTipoInmueble(res.getString("pub_tipoinmueble"));
@@ -117,12 +117,12 @@ public class PublicacionDAO {
         return arrayPublicaciones;
     }
 
-    public Publicacion Detallar(String id) throws SQLException {
+    public Inmueble Detallar(String id) throws SQLException {
         ConexiónBD conexion = new ConexiónBD();
         Statement statement = conexion.getConeccion().createStatement();
         String query = "SELECT * FROM publicacion WHERE pub_id= " + id;
         ResultSet res = statement.executeQuery(query);
-        Publicacion publicacion = new Publicacion();
+        Inmueble publicacion = new Inmueble();
         res.next();
         publicacion.setDueno(res.getString("usu_correo"));
         publicacion.setTipoOferta(res.getString("pub_tipooferta"));

@@ -5,7 +5,7 @@
  */
 package PRESENTACIONCONTROLADORES;
 
-import DOMAINENTITIES.Publicacion;
+import DOMAINENTITIES.Inmueble;
 import DOMAINENTITIES.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -35,7 +35,7 @@ public class VisualizacionDetalles extends HttpServlet {
         String id=request.getParameter("id");        
         Usuario usr=new Usuario();        
         try {            
-            Publicacion pub=usr.DetallarInmueble(id);           
+            Inmueble pub=usr.DetallarInmueble(id);           
             request.getSession().setAttribute("publicacion", pub);            
             request.getRequestDispatcher("Detalles.jsp").forward(request, response);
         } catch (SQLException ex) {            
