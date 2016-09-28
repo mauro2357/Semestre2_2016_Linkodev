@@ -16,8 +16,9 @@ import java.util.ArrayList;
  *
  * @author felipe
  */
-public class PublicacionDAO {
+public class PublicacionDAO implements IPublicacionDAO{
 
+    @Override
     public void registrarPublicacion(Inmueble publicacion) throws SQLException {
         ConexiónBD nuevaconexion = new ConexiónBD();
         PreparedStatement stm;
@@ -44,6 +45,7 @@ public class PublicacionDAO {
         }
     }
 
+    @Override
     public void ModificarPublicacion(Inmueble publicacion) throws SQLException {
         ConexiónBD nuevaconexion=new ConexiónBD();
         Statement stm = nuevaconexion.getConeccion().createStatement();
@@ -56,6 +58,7 @@ public class PublicacionDAO {
         stm.executeUpdate(query);
     }
 
+    @Override
     public ArrayList<Inmueble> mostrarPublicaciones() throws SQLException {
         ConexiónBD nuevaconexion = new ConexiónBD();
         Statement stm;
@@ -85,6 +88,7 @@ public class PublicacionDAO {
         return arrayPublicaciones;
     }
     
+    @Override
     public ArrayList<Inmueble> consultarByUsuario(String correo) throws SQLException {
         ConexiónBD conexion = new ConexiónBD();
         Statement statement = conexion.getConeccion().createStatement();
@@ -117,6 +121,7 @@ public class PublicacionDAO {
         return arrayPublicaciones;
     }
 
+    @Override
     public Inmueble Detallar(String id) throws SQLException {
         ConexiónBD conexion = new ConexiónBD();
         Statement statement = conexion.getConeccion().createStatement();
@@ -143,6 +148,7 @@ public class PublicacionDAO {
     }
     
     
+    @Override
     public void contadorVisitas(String id) throws SQLException{
         ConexiónBD conexion = new ConexiónBD();
         Statement statement = conexion.getConeccion().createStatement();

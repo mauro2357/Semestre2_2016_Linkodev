@@ -6,6 +6,7 @@
 package SERVICIOS;
 
 import DOMAINENTITIES.Usuario;
+import com.google.gson.Gson;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
@@ -41,11 +42,14 @@ public class ServicioAutenticacion {
      * @throws java.lang.Exception
      */
     @GET
-    @Produces(MediaType.APPLICATION_XML)
-    public String getXml(@QueryParam ("correo") String correo,@QueryParam ("contrasena") String contrasena) throws Exception {
-        Usuario usuario=new Usuario(correo, contrasena);
-        usuario=usuario.iniciarSesion();       
-        return usuario.getNombre()+usuario.getCorreo()+usuario.getTelefono();
+    @Produces(MediaType.TEXT_HTML)
+    public String getXml(String datosUsuario) throws Exception {
+        Gson g=new Gson();
+        Usuario usr=g.fromJson(datosUsuario,Usuario.class);
+        Usuario usuario=new Usuario(usr.getCorreo(),usr.getContraseña());
+        usuario=usuario.iniciarSesion();              
+        String UUSS=g.toJson(usuario);
+        return UUSS;
     }
 
     /**
