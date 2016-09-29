@@ -6,7 +6,7 @@
 package DOMAINENTITIES;
 
 import ConexionBaseDatos.AdministradorDAO;
-import ConexionBaseDatos.UsuariosDAO;
+import ConexionBaseDatos.UsuariosDAOMysql;
 import java.sql.SQLException;
 
 /**

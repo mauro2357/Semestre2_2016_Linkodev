@@ -14,8 +14,14 @@ import java.sql.Statement;
  *
  * @author Mateo Ortiz Cano
  */
-public class UsuariosDAO {
+public class UsuariosDAOMysql implements IUsuarioDAO{
     
+    /**
+     *
+     * @param persona
+     * @throws SQLException
+     */
+    @Override
     public void registrarUsuario(Usuario persona) throws SQLException{
         Encriptacion encriptarcontraseña = new Encriptacion();
         String contraseñaEncriptada =encriptarcontraseña.Encriptar(persona.getContraseña());
@@ -27,6 +33,7 @@ public class UsuariosDAO {
         stm.executeUpdate(query);
     }
     
+    @Override
     public String consultarContraseña(String correoUsuario) throws SQLException, Exception{
         ConexiónBD nuevaconexion=new ConexiónBD();
         Encriptacion desencriptarContraseña = new Encriptacion();
@@ -38,6 +45,7 @@ public class UsuariosDAO {
         return contraseña;
     }
     
+    @Override
     public String obtenerFoto(String correoUsuario) throws SQLException{
         ConexiónBD nuevaconexion=new ConexiónBD();
         Statement statement=nuevaconexion.getConeccion().createStatement();
@@ -48,6 +56,7 @@ public class UsuariosDAO {
         return foto;
     }
     
+    @Override
    public Usuario modificarInformacion(Usuario persona) throws SQLException{
         ConexiónBD nuevaconexion=new ConexiónBD();
         Statement stm = nuevaconexion.getConeccion().createStatement();
@@ -58,6 +67,7 @@ public class UsuariosDAO {
         return persona;
     }
    
+    @Override
    public boolean consultarCorreo(String correoUsuario) throws SQLException{
         ConexiónBD nuevaconexion=new ConexiónBD();
         Statement statement=nuevaconexion.getConeccion().createStatement();
@@ -69,6 +79,7 @@ public class UsuariosDAO {
         return true;
     }
    
+    @Override
    public String consultarEstado(String correoUsuario) throws SQLException{
         ConexiónBD nuevaconexion=new ConexiónBD();
         Statement statement=nuevaconexion.getConeccion().createStatement();
@@ -79,6 +90,7 @@ public class UsuariosDAO {
         return estado;
     }
    
+    @Override
    public Usuario obtenerDatos(String correoUsuario) throws SQLException{
         ConexiónBD nuevaconexion=new ConexiónBD();
         Statement statement=nuevaconexion.getConeccion().createStatement();
@@ -93,6 +105,7 @@ public class UsuariosDAO {
         return usuario;
     }
     
+    @Override
     public void modificarContrasena(Usuario usr) throws SQLException {
         ConexiónBD nuevaconexion=new ConexiónBD();
         Encriptacion encriptarcontraseña = new  Encriptacion();
@@ -105,6 +118,7 @@ public class UsuariosDAO {
         stm.executeUpdate(queryModificar);   
     }
    
+    @Override
     public void desactivarCuenta(Usuario usr) throws SQLException {
         ConexiónBD nuevaconexion=new ConexiónBD();
         Statement stm= nuevaconexion.getConeccion().createStatement();
@@ -113,6 +127,7 @@ public class UsuariosDAO {
         stm.executeUpdate(queryModificar);
     }
    
+    @Override
     public void cambiarFotoDePerfil(String fotourl, String correo) throws SQLException{
         ConexiónBD nuevaconexion=new ConexiónBD();
         Statement stm = nuevaconexion.getConeccion().createStatement();

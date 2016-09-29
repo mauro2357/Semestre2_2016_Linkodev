@@ -5,7 +5,7 @@
  */
 package PRESENTACIONCONTROLADORES;
 
-import ConexionBaseDatos.UsuariosDAO;
+import ConexionBaseDatos.UsuariosDAOMysql;
 import DOMAINENTITIES.Usuario;
 import java.io.File;
 import java.io.IOException;
@@ -43,7 +43,7 @@ public class CambioFotoPerfil extends HttpServlet {
             ServletFileUpload servlet_up = new ServletFileUpload(file_factory);
             List items = servlet_up.parseRequest(request);
             Usuario usr= new Usuario();
-            UsuariosDAO usuario = new UsuariosDAO();
+            UsuariosDAOMysql usuario = new UsuariosDAOMysql();
             FileItem item2 = null;
             for (int i = 0; i < items.size(); i++) {
                 FileItem item = (FileItem) items.get(i);

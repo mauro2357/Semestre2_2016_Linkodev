@@ -7,8 +7,10 @@ package DOMAINENTITIES;
 
 import CLASESAUXILIARES.EnvioMail;
 import CLASESAUXILIARES.GeneracionDeCodigos;
+import ConexionBaseDatos.IPublicacionDAO;
+import ConexionBaseDatos.IUsuarioDAO;
 import ConexionBaseDatos.PublicacionDAO;
-import ConexionBaseDatos.UsuariosDAO;
+import ConexionBaseDatos.UsuariosDAOMysql;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -23,23 +25,31 @@ public class Usuario {
     private String contraseñaCambio;
     private String telefono;
     private String fotourl;
+    private IUsuarioDAO iUsuarioDAO;
+    private IPublicacionDAO iPublicacionDAO;
 
     public Usuario(String nombre, String correo, String contraseña, String telefono) {
         this.nombre = nombre;
         this.correo = correo;
         this.contraseña = contraseña;
         this.telefono = telefono;
+        this.iUsuarioDAO=new UsuariosDAOMysql();
+        this.iPublicacionDAO=new PublicacionDAO();
     }
     
     public Usuario(String correo, String contraseña, String contraseñaCambio) {
         this.correo = correo;
         this.contraseña = contraseña;
         this.contraseñaCambio=contraseñaCambio;
+        this.iUsuarioDAO=new UsuariosDAOMysql();
+        this.iPublicacionDAO=new PublicacionDAO();
     }
     
     public Usuario(String correo, String contraseña) {
         this.correo = correo;
         this.contraseña = contraseña;
+        this.iUsuarioDAO=new UsuariosDAOMysql();
+        this.iPublicacionDAO=new PublicacionDAO();
     }
 
     public Usuario() {
@@ -48,9 +58,10 @@ public class Usuario {
         this.contraseña = "";
         this.telefono = "";
         this.fotourl = "";
+        this.iUsuarioDAO=new UsuariosDAOMysql();
+        this.iPublicacionDAO=new PublicacionDAO();
     }
     
-
     public String getNombre() {
         return nombre;
     }
@@ -98,26 +109,24 @@ public class Usuario {
     public void setContraseñaCambio(String contraseñaCambio) {
         this.contraseñaCambio = contraseñaCambio;
     }  
-    
-    public void registrar() throws Exception{
-        UsuariosDAO NuevoUsuario=new UsuariosDAO();
+        
+    public void registrar() throws Exception{        
         try {
-            NuevoUsuario.registrarUsuario(this);
+            iUsuarioDAO.registrarUsuario(this);
         } catch (SQLException ex) {
             throw new Exception("El correo ingresado ya se encuentra registrado");
         }
     }
     
-    public Usuario modificarInformacion() throws Exception{
-        UsuariosDAO conexion= new UsuariosDAO();
-        String contrasenaFromBD=conexion.consultarContraseña(this.getCorreo());
+    public Usuario modificarInformacion() throws Exception{        
+        String contrasenaFromBD=iUsuarioDAO.consultarContraseña(this.getCorreo());
         if(!contrasenaFromBD.equals(this.getContraseña())){
             throw new Exception("La contraseña no coincide con su contraseña actual");
         }
-        String url=conexion.obtenerFoto(this.getCorreo());
+        String url=iUsuarioDAO.obtenerFoto(this.getCorreo());
         Usuario usuarioI;
         try{
-            usuarioI=conexion.modificarInformacion(this);
+            usuarioI=iUsuarioDAO.modificarInformacion(this);
         }catch(SQLException ex){
             throw new Exception("No se realizo correcamente la actualización");
         }
@@ -125,65 +134,60 @@ public class Usuario {
         return usuarioI;
     }
     
-    public Usuario iniciarSesion() throws Exception{
-        UsuariosDAO conexion= new UsuariosDAO();
-        boolean existenciaUsuario=conexion.consultarCorreo(this.getCorreo());
+    public Usuario iniciarSesion() throws Exception{        
+        boolean existenciaUsuario=iUsuarioDAO.consultarCorreo(this.getCorreo());
         if(!existenciaUsuario)
             throw new Exception("El correo ingresado no esta registrado");
-        String estadoCuenta=conexion.consultarEstado(this.getCorreo());
+        String estadoCuenta=iUsuarioDAO.consultarEstado(this.getCorreo());
         if(estadoCuenta.equals("0"))
             throw new Exception("Su cuenta ha sido desactivada, dirijase al boton activar de la ventana de inicio de sesion");
-        String contrasenaFromBD=conexion.consultarContraseña(this.getCorreo());
+        String contrasenaFromBD=iUsuarioDAO.consultarContraseña(this.getCorreo());
         if(!contrasenaFromBD.equals(this.getContraseña())){
             throw new Exception("La contraseña no coincide con su contraseña actual");
         }
-        Usuario usuario=conexion.obtenerDatos(this.getCorreo());
+        Usuario usuario=iUsuarioDAO.obtenerDatos(this.getCorreo());
         return usuario;
     }
     
-    public Usuario cambiarContraseña() throws SQLException, Exception{
-        UsuariosDAO conexion= new UsuariosDAO();
-        String contrasenaFromBD=conexion.consultarContraseña(this.getCorreo());
+    public Usuario cambiarContraseña() throws SQLException, Exception{        
+        String contrasenaFromBD=iUsuarioDAO.consultarContraseña(this.getCorreo());
         if(!contrasenaFromBD.equals(this.getContraseña())){
             throw new Exception("La contraseña no coincide con su contraseña actual");
         }
         try{
-            conexion.modificarContrasena(this);
+            iUsuarioDAO.modificarContrasena(this);
         }catch(SQLException ex){
             throw new Exception("No se realizo correctamente la actualización");
         }
-        Usuario usuario=conexion.obtenerDatos(this.getCorreo());
+        Usuario usuario=iUsuarioDAO.obtenerDatos(this.getCorreo());
         return usuario;
     }
     
-    public void contraseñaNuevaConfirmacion() throws SQLException, Exception{
-        UsuariosDAO conexion= new UsuariosDAO();
+    public void contraseñaNuevaConfirmacion() throws SQLException, Exception{        
         try{
-            conexion.modificarContrasena(this);
+            iUsuarioDAO.modificarContrasena(this);
         }catch(SQLException ex){
             throw new Exception("No se pudo cambiar a la nueva contraseña");
         }
     }
     
-    public void desactivarCuenta() throws SQLException, Exception{
-        UsuariosDAO conexion= new UsuariosDAO();
-        String contrasenaFromBD=conexion.consultarContraseña(this.getCorreo());
+    public void desactivarCuenta() throws SQLException, Exception{        
+        String contrasenaFromBD=iUsuarioDAO.consultarContraseña(this.getCorreo());
         if(!contrasenaFromBD.equals(this.getContraseña())){
             throw new Exception("La contraseña no coincide con su contraseña actual");
         }
         try{
-            conexion.desactivarCuenta(this);
+            iUsuarioDAO.desactivarCuenta(this);
         }catch(SQLException ex){
             throw new Exception("La cuenta no se desactivo correctamente, intente nuevamente");
         }
     }
     
-    public String reestablecerContrasena(String correoaBuscar) throws Exception{
-        UsuariosDAO conexion = new UsuariosDAO();
+    public String reestablecerContrasena(String correoaBuscar) throws Exception{        
         GeneracionDeCodigos gencodigo = new GeneracionDeCodigos();
         String codigo = gencodigo.getPassword();
         EnvioMail mail = new EnvioMail();
-        if(!conexion.consultarCorreo(correoaBuscar)){
+        if(!iUsuarioDAO.consultarCorreo(correoaBuscar)){
             throw new Exception("No tenemos ningún usuario registrado con ese correo");
         }
         mail.enviarMail(correoaBuscar,codigo);
@@ -197,18 +201,16 @@ public class Usuario {
         throw new Exception("El codigo de activación no concuerda");
     }
     
-    public void registrarPublicacion(Inmueble publicacion) throws SQLException{
-        PublicacionDAO conexion= new PublicacionDAO();
+    public void registrarPublicacion(Inmueble publicacion) throws SQLException{        
         try {
-            conexion.registrarPublicacion(publicacion);
+            iPublicacionDAO.registrarPublicacion(publicacion);
         } catch (SQLException ex) {
             throw ex;
         }  
     }
     
-    public ArrayList<Inmueble> consultarPublicacionesByUsuario(String correo) throws Exception{
-        UsuariosDAO conexUsuario=new UsuariosDAO();
-        if(!conexUsuario.consultarCorreo(correo)){
+    public ArrayList<Inmueble> consultarPublicacionesByUsuario(String correo) throws Exception{        
+        if(!iUsuarioDAO.consultarCorreo(correo)){
             throw new Exception("El usuario ingresado no existe");
         }
         PublicacionDAO conexion=new PublicacionDAO();
@@ -221,16 +223,14 @@ public class Usuario {
         return publicaciones;
     }
     
-    public Inmueble DetallarInmueble(String id) throws SQLException{
-        PublicacionDAO conexion=new PublicacionDAO();
-        Inmueble pub=conexion.Detallar(id);
+    public Inmueble DetallarInmueble(String id) throws SQLException{        
+        Inmueble pub=iPublicacionDAO.Detallar(id);
         return pub;
     }
     
-    public void ModificarPublicacion(Inmueble publicacion) throws SQLException{
-        PublicacionDAO conexion= new PublicacionDAO();
+    public void ModificarPublicacion(Inmueble publicacion) throws SQLException{        
         try {
-            conexion.ModificarPublicacion(publicacion);
+            iPublicacionDAO.ModificarPublicacion(publicacion);
         } catch (SQLException ex) {
             throw ex;
         }  
