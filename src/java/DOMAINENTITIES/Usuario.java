@@ -19,6 +19,7 @@ import java.util.ArrayList;
  * @author Mateo Ortiz Cano
  */
 public class Usuario {
+
     private String nombre;
     private String correo;
     private String contraseña;
@@ -33,23 +34,23 @@ public class Usuario {
         this.correo = correo;
         this.contraseña = contraseña;
         this.telefono = telefono;
-        this.iUsuarioDAO=new UsuariosDAOMysql();
-        this.iPublicacionDAO=new PublicacionDAO();
+        this.iUsuarioDAO = new UsuariosDAOMysql();
+        this.iPublicacionDAO = new PublicacionDAO();
     }
-    
+
     public Usuario(String correo, String contraseña, String contraseñaCambio) {
         this.correo = correo;
         this.contraseña = contraseña;
-        this.contraseñaCambio=contraseñaCambio;
-        this.iUsuarioDAO=new UsuariosDAOMysql();
-        this.iPublicacionDAO=new PublicacionDAO();
+        this.contraseñaCambio = contraseñaCambio;
+        this.iUsuarioDAO = new UsuariosDAOMysql();
+        this.iPublicacionDAO = new PublicacionDAO();
     }
-    
+
     public Usuario(String correo, String contraseña) {
         this.correo = correo;
         this.contraseña = contraseña;
-        this.iUsuarioDAO=new UsuariosDAOMysql();
-        this.iPublicacionDAO=new PublicacionDAO();
+        this.iUsuarioDAO = new UsuariosDAOMysql();
+        this.iPublicacionDAO = new PublicacionDAO();
     }
 
     public Usuario() {
@@ -58,10 +59,10 @@ public class Usuario {
         this.contraseña = "";
         this.telefono = "";
         this.fotourl = "";
-        this.iUsuarioDAO=new UsuariosDAOMysql();
-        this.iPublicacionDAO=new PublicacionDAO();
+        this.iUsuarioDAO = new UsuariosDAOMysql();
+        this.iPublicacionDAO = new PublicacionDAO();
     }
-    
+
     public String getNombre() {
         return nombre;
     }
@@ -108,131 +109,146 @@ public class Usuario {
 
     public void setContraseñaCambio(String contraseñaCambio) {
         this.contraseñaCambio = contraseñaCambio;
-    }  
-        
-    public void registrar() throws Exception{        
+    }
+
+    public void registrar() throws Exception {
         try {
             iUsuarioDAO.registrarUsuario(this);
         } catch (SQLException ex) {
             throw new Exception("El correo ingresado ya se encuentra registrado");
         }
     }
-    
-    public Usuario modificarInformacion() throws Exception{        
-        String contrasenaFromBD=iUsuarioDAO.consultarContraseña(this.getCorreo());
-        if(!contrasenaFromBD.equals(this.getContraseña())){
+
+    public Usuario modificarInformacion() throws Exception {
+        String contrasenaFromBD = iUsuarioDAO.consultarContraseña(this.getCorreo());
+        if (!contrasenaFromBD.equals(this.getContraseña())) {
             throw new Exception("La contraseña no coincide con su contraseña actual");
         }
-        String url=iUsuarioDAO.obtenerFoto(this.getCorreo());
+        String url = iUsuarioDAO.obtenerFoto(this.getCorreo());
         Usuario usuarioI;
-        try{
-            usuarioI=iUsuarioDAO.modificarInformacion(this);
-        }catch(SQLException ex){
+        try {
+            usuarioI = iUsuarioDAO.modificarInformacion(this);
+        } catch (SQLException ex) {
             throw new Exception("No se realizo correcamente la actualización");
         }
         usuarioI.setFotourl(url);
         return usuarioI;
     }
-    
-    public Usuario iniciarSesion() throws Exception{        
-        boolean existenciaUsuario=iUsuarioDAO.consultarCorreo(this.getCorreo());
-        if(!existenciaUsuario)
+
+    public Usuario iniciarSesion() throws Exception {
+        boolean existenciaUsuario = iUsuarioDAO.consultarCorreo(this.getCorreo());
+        if (!existenciaUsuario) {
             throw new Exception("El correo ingresado no esta registrado");
-        String estadoCuenta=iUsuarioDAO.consultarEstado(this.getCorreo());
-        if(estadoCuenta.equals("0"))
+        }
+        String estadoCuenta = iUsuarioDAO.consultarEstado(this.getCorreo());
+        if (estadoCuenta.equals("0")) {
             throw new Exception("Su cuenta ha sido desactivada, dirijase al boton activar de la ventana de inicio de sesion");
-        String contrasenaFromBD=iUsuarioDAO.consultarContraseña(this.getCorreo());
-        if(!contrasenaFromBD.equals(this.getContraseña())){
+        }
+        String contrasenaFromBD = iUsuarioDAO.consultarContraseña(this.getCorreo());
+        if (!contrasenaFromBD.equals(this.getContraseña())) {
             throw new Exception("La contraseña no coincide con su contraseña actual");
         }
-        Usuario usuario=iUsuarioDAO.obtenerDatos(this.getCorreo());
+        Usuario usuario = iUsuarioDAO.obtenerDatos(this.getCorreo());
         return usuario;
     }
-    
-    public Usuario cambiarContraseña() throws SQLException, Exception{        
-        String contrasenaFromBD=iUsuarioDAO.consultarContraseña(this.getCorreo());
-        if(!contrasenaFromBD.equals(this.getContraseña())){
+
+    public Usuario cambiarContraseña() throws SQLException, Exception {
+        String contrasenaFromBD = iUsuarioDAO.consultarContraseña(this.getCorreo());
+        if (!contrasenaFromBD.equals(this.getContraseña())) {
             throw new Exception("La contraseña no coincide con su contraseña actual");
         }
-        try{
+        try {
             iUsuarioDAO.modificarContrasena(this);
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             throw new Exception("No se realizo correctamente la actualización");
         }
-        Usuario usuario=iUsuarioDAO.obtenerDatos(this.getCorreo());
+        Usuario usuario = iUsuarioDAO.obtenerDatos(this.getCorreo());
         return usuario;
     }
-    
-    public void contraseñaNuevaConfirmacion() throws SQLException, Exception{        
-        try{
+
+    public void contraseñaNuevaConfirmacion() throws SQLException, Exception {
+        try {
             iUsuarioDAO.modificarContrasena(this);
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             throw new Exception("No se pudo cambiar a la nueva contraseña");
         }
     }
-    
-    public void desactivarCuenta() throws SQLException, Exception{        
-        String contrasenaFromBD=iUsuarioDAO.consultarContraseña(this.getCorreo());
-        if(!contrasenaFromBD.equals(this.getContraseña())){
+
+    public void desactivarCuenta() throws SQLException, Exception {
+        String contrasenaFromBD = iUsuarioDAO.consultarContraseña(this.getCorreo());
+        if (!contrasenaFromBD.equals(this.getContraseña())) {
             throw new Exception("La contraseña no coincide con su contraseña actual");
         }
-        try{
+        try {
             iUsuarioDAO.desactivarCuenta(this);
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             throw new Exception("La cuenta no se desactivo correctamente, intente nuevamente");
         }
     }
-    
-    public String reestablecerContrasena(String correoaBuscar) throws Exception{        
+
+    public String reestablecerContrasena(String correoaBuscar) throws Exception {
         GeneracionDeCodigos gencodigo = new GeneracionDeCodigos();
         String codigo = gencodigo.getPassword();
         EnvioMail mail = new EnvioMail();
-        if(!iUsuarioDAO.consultarCorreo(correoaBuscar)){
+        if (!iUsuarioDAO.consultarCorreo(correoaBuscar)) {
             throw new Exception("No tenemos ningún usuario registrado con ese correo");
         }
-        mail.enviarMail(correoaBuscar,codigo);
+        mail.enviarMail(correoaBuscar, codigo);
         return codigo;
     }
-    
-    public void verificarCodigoContrasena(String codigouno, String codigodos) throws Exception{
-        if(codigouno.equals(codigodos)){
-            return;      
+
+    public void verificarCodigoContrasena(String codigouno, String codigodos) throws Exception {
+        if (codigouno.equals(codigodos)) {
+            return;
         }
         throw new Exception("El codigo de activación no concuerda");
     }
-    
-    public void registrarPublicacion(Inmueble publicacion) throws SQLException{        
+
+    public void registrarPublicacion(Inmueble publicacion) throws SQLException {
         try {
             iPublicacionDAO.registrarPublicacion(publicacion);
         } catch (SQLException ex) {
             throw ex;
-        }  
+        }
     }
-    
-    public ArrayList<Inmueble> consultarPublicacionesByUsuario(String correo) throws Exception{        
-        if(!iUsuarioDAO.consultarCorreo(correo)){
+
+    public ArrayList<Inmueble> consultarPublicacionesByUsuario(String correo) throws Exception {
+        if (!iUsuarioDAO.consultarCorreo(correo)) {
             throw new Exception("El usuario ingresado no existe");
         }
-        PublicacionDAO conexion=new PublicacionDAO();
-        ArrayList<Inmueble> publicaciones= new ArrayList<>();
+        PublicacionDAO conexion = new PublicacionDAO();
+        ArrayList<Inmueble> publicaciones = new ArrayList<>();
         try {
-            publicaciones=conexion.consultarByUsuario(correo);
+            publicaciones = conexion.consultarByUsuario(correo);
         } catch (SQLException ex) {
-            throw new Exception("El usuario: "+correo+" no tiene ningun inmueble publicado");
+            throw new Exception("El usuario: " + correo + " no tiene ningun inmueble publicado");
         }
         return publicaciones;
     }
-    
-    public Inmueble DetallarInmueble(String id) throws SQLException{        
-        Inmueble pub=iPublicacionDAO.Detallar(id);
+
+    public Inmueble DetallarInmueble(String id) throws SQLException {
+        Inmueble pub = iPublicacionDAO.Detallar(id);
         return pub;
     }
-    
-    public void ModificarPublicacion(Inmueble publicacion) throws SQLException{        
+
+    public void ModificarPublicacion(Inmueble publicacion) throws SQLException {
         try {
             iPublicacionDAO.ModificarPublicacion(publicacion);
         } catch (SQLException ex) {
             throw ex;
-        }  
+        }
+    }
+
+    public void adquirir(Inmueble inmueble) throws SQLException {
+        try {
+            iPublicacionDAO.ActualizarEstadoInmueble(inmueble);
+        } catch (SQLException ex) {
+            throw ex;
+        }
+        try {
+            iPublicacionDAO.registrarAdquisision(inmueble,this.correo);
+        } catch (SQLException ex) {
+            throw ex;
+        }
     }
 }

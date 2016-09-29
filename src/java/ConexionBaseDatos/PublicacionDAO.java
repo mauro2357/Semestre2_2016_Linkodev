@@ -66,7 +66,7 @@ public class PublicacionDAO implements IPublicacionDAO{
         Inmueble publicacion;
         ArrayList<Inmueble> arrayPublicaciones = new ArrayList<>();
         stm = nuevaconexion.getConeccion().createStatement();
-        String query = "select * from publicacion";
+        String query = "select * from publicacion WHERE pub_estado=0" ;
         rs = stm.executeQuery(query);
         while (rs.next()) {
             publicacion = new Inmueble();
@@ -158,4 +158,19 @@ public class PublicacionDAO implements IPublicacionDAO{
         statement.executeUpdate(query);
     }
     
+    @Override
+    public void ActualizarEstadoInmueble(Inmueble inmueble) throws SQLException{
+        ConexiónBD conexion = new ConexiónBD();
+        Statement statement = conexion.getConeccion().createStatement();
+        String query = " UPDATE publicacion set pub_estado=1 where pub_id="+inmueble.getId();
+        statement.executeUpdate(query);
+    }
+    
+    @Override
+    public void registrarAdquisision(Inmueble inmueble,String correo) throws SQLException{
+        ConexiónBD conexion = new ConexiónBD();
+        Statement statement = conexion.getConeccion().createStatement();
+        String query = "INSERT INTO adquisiciones VALUES ('"+correo+"',"+inmueble.getId()+")";
+        statement.executeUpdate(query);
+    }
 }

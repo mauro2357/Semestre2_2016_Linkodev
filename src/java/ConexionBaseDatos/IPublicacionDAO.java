@@ -29,4 +29,8 @@ public interface IPublicacionDAO {
     public Inmueble Detallar(String id) throws SQLException;
 
     public void contadorVisitas(String id) throws SQLException;
+
+    public void ActualizarEstadoInmueble(Inmueble inmueble) throws SQLException;
+
+    public void registrarAdquisision(Inmueble inmueble, String correo) throws SQLException;
 }

@@ -32,27 +32,30 @@
                                     Tipo de oferta:
                                     <select name="tipooferta" required aria-required="true">
                                         <option value="">Seleccione</option>
-                                        <option value="venta">Venta</option>
-                                        <option value="arriendo">Arriendo</option>
+                                        <option value="Venta">Venta</option>
+                                        <option value="Arriendo">Arriendo</option>
                                     </select>
                                 </div>
                                 <div class="input-field col s6">
                                     Tipo de inmueble:
                                     <select name="tipoinmueble">
                                         <option value="">Seleccione</option>
-                                        <option value="casa">Casa</option>
-                                        <option value="apartamento">Apartamento</option>
-                                        <option value="habitacion">Habitación</option>
-                                        <option value="local">Local</option>
-                                        <option value="finca">Finca</option>
+                                        <option value="Casa">Casa</option>
+                                        <option value="Apartamento">Apartamento</option>
+                                        <option value="Habitacion">Habitación</option>
+                                        <option value="Local">Local</option>
+                                        <option value="Finca">Finca</option>
                                     </select>
                                 </div>
                                 <div class="input-field col s6">
                                     Ciudad:
                                     <select name="ciudad">
                                         <option value="">Seleccione</option>
-                                        <option value="Bogotá">Bogota</option>
+                                        <option value="Bogota">Bogota</option>
                                         <option value="Medellin">Medellín</option>
+                                        <option value="Cali">Cali</option>
+                                        <option value="Barranquilla">Barranquilla</option>
+                                        <option value="Risaralda">Risaralda</option>
                                     </select>
                                 </div>
                                 <div class="input-field col s6">
