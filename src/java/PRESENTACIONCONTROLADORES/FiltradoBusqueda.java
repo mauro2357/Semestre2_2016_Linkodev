@@ -5,19 +5,17 @@
  */
 package PRESENTACIONCONTROLADORES;
 
-import DOMAINENTITIES.Usuario;  
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Mateo Ortiz Cano
+ * @author Pipe
  */
-public class Registro extends HttpServlet {
+public class FiltradoBusqueda extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,7 +28,6 @@ public class Registro extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -59,21 +56,12 @@ public class Registro extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession sesion = request.getSession();
-        String nombre=request.getParameter("nombre");
-        String correo=request.getParameter("correo");
-        String contraseña=request.getParameter("contrasena");
-        String telefono=request.getParameter("telefono");
-        Usuario persona=new Usuario(nombre, correo, contraseña, telefono); 
-        persona.setFotourl("imagenes/nopic.png");
-        try{
-            persona.registrar();
-            sesion.setAttribute("usuario",persona ); 
-            request.getRequestDispatcher("MuestraPublicacion").forward(request, response);
-        }catch(Exception e){            
-            sesion.setAttribute("msg",e.getMessage()); 
-            request.getRequestDispatcher("error.jsp").forward(request, response);
-        }
+        String tipooferta = request.getParameter("tipooferta");
+        String tipoinmueble = request.getParameter("tipooferta");
+        String ciudad = request.getParameter("ciudad");
+        String precio = request.getParameter("precio");
+        
+        processRequest(request, response);
     }
 
     /**

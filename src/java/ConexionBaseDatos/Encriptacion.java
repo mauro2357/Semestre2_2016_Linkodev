@@ -9,7 +9,6 @@ package ConexionBaseDatos;
  *
  * @author MARCS
  */
-import java.io.IOException;
 import java.security.MessageDigest;
 import java.util.Arrays;
 import javax.crypto.Cipher;
@@ -17,8 +16,6 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
-import ConexionBaseDatos.UsuariosDAOMysql;
-import java.sql.SQLException;
 
 
  public class Encriptacion {

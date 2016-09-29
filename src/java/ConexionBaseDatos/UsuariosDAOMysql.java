@@ -29,7 +29,7 @@ public class UsuariosDAOMysql implements IUsuarioDAO{
         Statement stm = nuevaconexion.getConeccion().createStatement();
         String query="INSERT INTO usuario VALUES ('"+persona.getNombre()+"','"
             +persona.getCorreo()+"','"+contraseñaEncriptada+"','"
-            +persona.getTelefono()+"','imagenes/nopic.png', 1)";
+            +persona.getTelefono()+"','imagenes/nopic.png', 1, 0)";
         stm.executeUpdate(query);
     }
     

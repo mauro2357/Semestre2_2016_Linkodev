@@ -67,6 +67,8 @@
     <servlet>
         <servlet-name>Compra_Arrendamiento</servlet-name>
         <servlet-class>PRESENTACIONCONTROLADORES.Compra_Arrendamiento</servlet-class>
+        <servlet-name>FiltradoBusqueda</servlet-name>
+        <servlet-class>PRESENTACIONCONTROLADORES.FiltradoBusqueda</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Registro</servlet-name>
@@ -135,6 +137,8 @@
     <servlet-mapping>
         <servlet-name>Compra_Arrendamiento</servlet-name>
         <url-pattern>/Compra_Arrendamiento</url-pattern>
+        <servlet-name>FiltradoBusqueda</servlet-name>
+        <url-pattern>/FiltradoBusqueda</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -5,6 +5,10 @@
  */
 package PRESENTACIONCONTROLADORES;
 
+import DOMAINENTITIES.CreadorApartamento;
+import DOMAINENTITIES.CreadorBodegas;
+import DOMAINENTITIES.CreadorCasas;
+import DOMAINENTITIES.CreadorFincas;
 import DOMAINENTITIES.CreadorHabitacion;
 import DOMAINENTITIES.CreadorInmuebles;
 import DOMAINENTITIES.Inmueble;
@@ -66,7 +70,25 @@ public class CreacionPublicacion extends HttpServlet {
         Usuario usr = (Usuario) sesion.getAttribute("usuario");
         CreadorInmuebles creador;
         //dependiendo de el tipon de inmueble que ingrese en el formulario
-        creador=new CreadorHabitacion();
+        switch (request.getParameter("tipoinmueble")) {
+            case "casa":
+                creador=new CreadorCasas();
+                break;
+            case "apartamento":
+                creador=new CreadorApartamento();
+                break;
+            case "habitacion":
+                creador=new CreadorCasas();
+                break;
+            case "local":
+                creador=new CreadorBodegas();
+                break;
+            case "finca":
+                creador=new CreadorFincas();
+                break;
+            default:
+                throw new AssertionError();
+        }
         Inmueble inmueble=creador.factoryMethod();
         inmueble.setDueno(usr.getCorreo());
         inmueble.setTipoOferta(request.getParameter("tipooferta"));
