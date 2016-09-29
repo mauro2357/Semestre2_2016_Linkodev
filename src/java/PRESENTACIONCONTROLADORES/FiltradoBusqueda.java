@@ -56,9 +56,11 @@ public class FiltradoBusqueda extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String tipo = request.getParameter("tipooferta");
+        String tipooferta = request.getParameter("tipooferta");
+        String tipoinmueble = request.getParameter("tipooferta");
         String ciudad = request.getParameter("ciudad");
         String precio = request.getParameter("precio");
+        
         processRequest(request, response);
     }
 

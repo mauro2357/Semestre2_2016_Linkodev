@@ -64,7 +64,8 @@ public class Registro extends HttpServlet {
         String correo=request.getParameter("correo");
         String contraseña=request.getParameter("contrasena");
         String telefono=request.getParameter("telefono");
-        Usuario persona=new Usuario(nombre, correo, contraseña, telefono);        
+        Usuario persona=new Usuario(nombre, correo, contraseña, telefono); 
+        persona.setFotourl("imagenes/nopic.png");
         try{
             persona.registrar();
             sesion.setAttribute("usuario",persona ); 

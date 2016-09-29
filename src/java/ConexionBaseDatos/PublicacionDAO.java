@@ -158,4 +158,36 @@ public class PublicacionDAO implements IPublicacionDAO{
         statement.executeUpdate(query);
     }
     
+    @Override
+    public ArrayList<Inmueble> filtrarPublicaciones(String tipooferta,String tipoinmueble,String ciudad,String precio) throws SQLException {
+        ConexiónBD conexion = new ConexiónBD();
+        Statement statement = conexion.getConeccion().createStatement();
+        String query = "SELECT * FROM publicacion WHERE usu_tipoinmueble= '" + tipoinmueble + "'";
+        ResultSet res = statement.executeQuery(query);
+        Inmueble publicacion;
+        ArrayList<Inmueble> arrayPublicaciones = new ArrayList<>();
+        boolean existencia = false;
+        while (res.next()) {
+            publicacion = new Inmueble();
+            publicacion.setDueno(res.getString("usu_correo"));
+            publicacion.setTipoOferta(res.getString("pub_tipooferta"));
+            publicacion.setTipoInmueble(res.getString("pub_tipoinmueble"));
+            publicacion.setCiudad(res.getString("pub_ciudad"));
+            publicacion.setDireccion(res.getString("pub_direccion"));
+            publicacion.setBarrio(res.getString("pub_barrio"));
+            publicacion.setPrecio(res.getString("pub_precio"));
+            publicacion.setHabitaciones(res.getString("pub_habitaciones"));
+            publicacion.setBanos(res.getString("pub_banos"));
+            publicacion.setPiso(res.getString("pub_piso"));
+            publicacion.setArea(res.getString("pub_area"));
+            publicacion.setEstrato(res.getString("pub_estrato"));
+            publicacion.setId(res.getString("pub_id"));
+            arrayPublicaciones.add(publicacion);
+            existencia = true;
+        }
+        if (!existencia) {
+            throw new SQLException("No se encontraron publicaciones que coincidan con tu búsqueda");
+        }
+        return arrayPublicaciones;
+    }
 }

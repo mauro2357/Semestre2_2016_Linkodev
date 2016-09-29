@@ -16,17 +16,27 @@
             <div class="browser-default">
                 <select name="tipooferta">
                     <option value="" disabled selected></option>
-                    <option value="Casa">Casa</option>
-                    <option value="2">Apartamento</option>
-                    <option value="3">Local</option>
+                    <option value="venta">Venta</option>
+                    <option value="arriendo">Arriendo</option>
+                </select>
+                <label>Tipo</label>
+            </div>
+            <div class="browser-default">
+                <select name="tipoinmueble">
+                    <option value="" disabled selected></option>
+                    <option value="casa">Casa</option>
+                    <option value="apartamento">Apartamento</option>
+                    <option value="habitacion">Habitacion</option>
+                    <option value="local">Local</option>
+                    <option value="finca">Finca</option>
                 </select>
                 <label>Tipo</label>
             </div>
             <div class="browser-default">
                 <select name="ciudad">
                     <option value="" disabled selected></option>
-                    <option value="1">Bogota</option>
-                    <option value="2">Medellin</option>
+                    <option value="bogota">Bogota</option>
+                    <option value="medellin">Medellin</option>
                 </select>
                 <label>Ciudad</label>
             </div>
