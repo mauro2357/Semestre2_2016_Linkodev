@@ -20,6 +20,7 @@
                 <%@include file="barradeNavegacion.jsp"%>
                 <div class="section no-pad-bot" id="index-banner">
                 </div>
+                <%@include file="FiltroBusqueda.jsp" %>
                 <%@include file="bodyCuenta.jsp" %>
             </div>
         </div>

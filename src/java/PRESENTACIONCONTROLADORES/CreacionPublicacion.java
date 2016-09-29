@@ -71,19 +71,19 @@ public class CreacionPublicacion extends HttpServlet {
         CreadorInmuebles creador;
         //dependiendo de el tipon de inmueble que ingrese en el formulario
         switch (request.getParameter("tipoinmueble")) {
-            case "casa":
+            case "Casa":
                 creador=new CreadorCasas();
                 break;
-            case "apartamento":
+            case "Apartamento":
                 creador=new CreadorApartamento();
                 break;
-            case "habitacion":
+            case "Habitacion":
                 creador=new CreadorCasas();
                 break;
-            case "local":
+            case "Local":
                 creador=new CreadorBodegas();
                 break;
-            case "finca":
+            case "Finca":
                 creador=new CreadorFincas();
                 break;
             default:

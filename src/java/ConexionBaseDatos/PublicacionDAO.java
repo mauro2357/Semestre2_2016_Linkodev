@@ -22,7 +22,7 @@ public class PublicacionDAO implements IPublicacionDAO{
     public void registrarPublicacion(Inmueble publicacion) throws SQLException {
         ConexiónBD nuevaconexion = new ConexiónBD();
         PreparedStatement stm;
-        String query = "INSERT INTO publicacion VALUES (" + null + ",?,?,?,?,?,?,?,?,?,?,?,?,0)";
+        String query = "INSERT INTO publicacion VALUES (" + null + ",?,?,?,?,?,?,?,?,?,?,?,?,0,0)";
         stm = nuevaconexion.getConeccion().prepareStatement(query);
         stm.setString(1, publicacion.getDueno());
         stm.setString(2, publicacion.getTipoOferta());
