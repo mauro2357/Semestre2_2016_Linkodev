@@ -5,6 +5,12 @@
  */
 package PRESENTACIONCONTROLADORES;
 
+import DOMAINENTITIES.CreadorApartamento;
+import DOMAINENTITIES.CreadorBodegas;
+import DOMAINENTITIES.CreadorCasas;
+import DOMAINENTITIES.CreadorFincas;
+import DOMAINENTITIES.CreadorInmuebles;
+import DOMAINENTITIES.Inmueble;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -56,10 +62,39 @@ public class FiltradoBusqueda extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String tipooferta = request.getParameter("tipooferta");
-        String tipoinmueble = request.getParameter("tipooferta");
-        String ciudad = request.getParameter("ciudad");
-        String precio = request.getParameter("precio");
+        CreadorInmuebles creador;
+        //dependiendo de el tipon de inmueble que ingrese en el formulario
+        switch (request.getParameter("tipoinmueble")) {
+            case "Casa":
+                creador=new CreadorCasas();
+                break;
+            case "Apartamento":
+                creador=new CreadorApartamento();
+                break;
+            case "Habitacion":
+                creador=new CreadorCasas();
+                break;
+            case "Local":
+                creador=new CreadorBodegas();
+                break;
+            case "Finca":
+                creador=new CreadorFincas();
+                break;
+            default:
+                throw new AssertionError();
+        }
+        Inmueble inmueble=creador.factoryMethod();
+        inmueble.setTipoOferta(request.getParameter("tipooferta"));
+        inmueble.setTipoInmueble(request.getParameter("tipoinmueble"));
+        inmueble.setCiudad(request.getParameter("ciudad"));
+        inmueble.setDireccion(request.getParameter("direccion"));
+        inmueble.setBarrio(request.getParameter("barrio"));
+        inmueble.setPrecio(request.getParameter("precio"));
+        inmueble.setHabitaciones(request.getParameter("habitaciones"));
+        inmueble.setBanos(request.getParameter("banos"));
+        inmueble.setPiso(request.getParameter("piso"));
+        inmueble.setArea(request.getParameter("area"));
+        inmueble.setEstrato(request.getParameter("estrato"));
         
         processRequest(request, response);
     }
