@@ -30,7 +30,7 @@ public interface IPublicacionDAO {
 
     public void contadorVisitas(String id) throws SQLException;
     
-    public ArrayList<Inmueble> filtrarPublicaciones(String tipooferta,String tipoinmueble,String ciudad,String precio) throws SQLException;
+    public ArrayList<Inmueble> filtrarPublicaciones(Inmueble inmueble) throws SQLException;
 
     public void ActualizarEstadoInmueble(Inmueble inmueble) throws SQLException;
 

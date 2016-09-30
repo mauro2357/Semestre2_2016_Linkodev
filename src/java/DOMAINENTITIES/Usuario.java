@@ -263,4 +263,23 @@ public class Usuario {
             mensajes.add("No tiene notificaciones pendientes");
         return mensajes;
     }
+    public ArrayList<Inmueble> filtrarPublicaciones(Inmueble inmueble) throws Exception {
+        ArrayList<Inmueble> publicaciones = new ArrayList<>();
+        try {
+            publicaciones = iPublicacionDAO.filtrarPublicaciones(inmueble);
+        } catch (SQLException ex) {
+            throw new Exception("No se encontraron publicaciones que coincidan con tu búsqueda ");
+        }
+        return publicaciones;
+    }
+    
+    public ArrayList<Inmueble> mostrarPublicaciones() throws Exception {
+        ArrayList<Inmueble> publicaciones = new ArrayList<>();
+        try {
+            publicaciones = iPublicacionDAO.mostrarPublicaciones();
+        } catch (SQLException ex) {
+            throw new Exception("No se encontraron publicaciones que mostrar");
+        }
+        return publicaciones;
+    }
 }
