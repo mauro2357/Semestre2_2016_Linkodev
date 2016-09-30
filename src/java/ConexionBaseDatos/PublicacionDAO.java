@@ -204,5 +204,13 @@ public class PublicacionDAO implements IPublicacionDAO{
         Statement statement = conexion.getConeccion().createStatement();
         String query = "INSERT INTO adquisiciones VALUES ('"+correo+"',"+inmueble.getId()+")";
         statement.executeUpdate(query);
+        this.agregarNotificacion(inmueble, correo);
+    }
+    private void agregarNotificacion(Inmueble inmueble,String correo) throws SQLException{
+        ConexiónBD conexion = new ConexiónBD();
+        Statement statement = conexion.getConeccion().createStatement();
+        String mensaje="El usuario "+correo+" ha adquirido tu publicacion "+inmueble.getId();
+        String query = "INSERT INTO notificaciones VALUES ('"+correo+"','"+inmueble.getDueno()+"','"+mensaje+"')";
+        statement.executeUpdate(query);
     }
 }

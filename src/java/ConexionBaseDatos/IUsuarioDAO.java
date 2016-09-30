@@ -7,6 +7,7 @@ package ConexionBaseDatos;
 
 import DOMAINENTITIES.Usuario;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -33,4 +34,6 @@ public interface IUsuarioDAO {
     public void desactivarCuenta(Usuario usr)throws SQLException;
 
     public void cambiarFotoDePerfil(String fotourl, String correo)throws SQLException;
+
+    public ArrayList obtenerNotificaciones(String correo) throws SQLException;
 }

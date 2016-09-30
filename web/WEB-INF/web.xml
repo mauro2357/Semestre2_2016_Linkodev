@@ -70,7 +70,11 @@
     </servlet>
     <servlet>
         <servlet-name>Compra_Arrendamiento</servlet-name>
-        <servlet-class>PRESENTACIONCONTROLADORES.Compra_Arrendamiento</servlet-class>        
+        <servlet-class>PRESENTACIONCONTROLADORES.Compra_Arrendamiento</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Notificaciones</servlet-name>
+        <servlet-class>PRESENTACIONCONTROLADORES.Notificaciones</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Registro</servlet-name>
@@ -143,6 +147,10 @@
     <servlet-mapping>
         <servlet-name>Compra_Arrendamiento</servlet-name>
         <url-pattern>/Compra_Arrendamiento</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Notificaciones</servlet-name>
+        <url-pattern>/Notificaciones</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
