@@ -7,6 +7,7 @@ package PRESENTACIONCONTROLADORES;
 
 import ConexionBaseDatos.PublicacionDAO;
 import DOMAINENTITIES.Inmueble;
+import DOMAINENTITIES.Usuario;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -52,14 +53,14 @@ public class MuestraPublicacion extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PublicacionDAO publicacion = new PublicacionDAO();
+        Usuario usr = new Usuario();
         ArrayList<Inmueble> arrayPublicaciones;
         try {            
-            arrayPublicaciones = publicacion.mostrarPublicaciones();
+            arrayPublicaciones = usr.mostrarPublicaciones();
             HttpSession sesion = request.getSession();
             sesion.setAttribute("publicaciones", arrayPublicaciones);
             request.getRequestDispatcher("cuenta.jsp").forward(request, response);
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(MuestraPublicacion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
