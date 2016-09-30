@@ -36,21 +36,8 @@ public class MuestraPublicacion extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        System.out.println("cualsks");
-        PublicacionDAO publicacion = new PublicacionDAO();
-        ArrayList<Inmueble> arrayPublicaciones;
-        try {
-            System.out.println("cualsks");
-            arrayPublicaciones = publicacion.mostrarPublicaciones();
-            System.out.println("cualsks");
-            HttpSession sesion = request.getSession();
-            sesion.setAttribute("publicaciones", arrayPublicaciones);
-            request.getRequestDispatcher("cuenta.jsp").forward(request, response);
-        } catch (SQLException e) {
-            request.getSession().setAttribute("msg",e.getMessage()); 
-            request.getRequestDispatcher("error.jsp").forward(request, response);
-        }
+            throws ServletException, IOException { 
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -65,6 +52,16 @@ public class MuestraPublicacion extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        PublicacionDAO publicacion = new PublicacionDAO();
+        ArrayList<Inmueble> arrayPublicaciones;
+        try {            
+            arrayPublicaciones = publicacion.mostrarPublicaciones();
+            HttpSession sesion = request.getSession();
+            sesion.setAttribute("publicaciones", arrayPublicaciones);
+            request.getRequestDispatcher("cuenta.jsp").forward(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(MuestraPublicacion.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -77,10 +74,10 @@ public class MuestraPublicacion extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException {        
         PublicacionDAO publicacion = new PublicacionDAO();
         ArrayList<Inmueble> arrayPublicaciones;
-        try {
+        try {            
             arrayPublicaciones = publicacion.mostrarPublicaciones();
             HttpSession sesion = request.getSession();
             sesion.setAttribute("publicaciones", arrayPublicaciones);

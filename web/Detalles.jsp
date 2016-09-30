@@ -32,7 +32,7 @@
                         <h4>Detalles publicación</h4>
                         <br><br>
                         <div class="row">
-                            <form id="formularioDetalles" class="col s12" action="" method="post">
+                            <form id="formularioDetalles" class="col s12" action="Compra_Arrendamiento" method="post">
                                 <div class="input-field col s6">
                                     Tipo de oferta:
                                     <input  name="oferta" type="text" class="validate" value="<%=pub.getTipoOferta()%>" readonly="">
@@ -80,11 +80,13 @@
                                 <div class="col s6">
                                     Visitas publicación:
                                     <input   id="contador" name="contador" type="text" class="validate" value="<%=pub.getContadorVisitas()%>" readonly="">
-                                </div>
-                                
+                                </div>                                
                                 <br>
+                                <input name="cliente" value="<%=usr.getCorreo()%>" hidden="">
+                                <input name="dueno" value="<%=pub.getDueno()%>" hidden="">
+                                <input name="publicacion" value="<%=pub.getId()%>" hidden="">
                                 <div class="row center col s12">
-                                   
+                                    <button  type="submit" name="compraArrendaButton" class="btn-large waves-effect waves-light orange">¡Lo tomo!</button>
                                 </div>
                             </form>
 

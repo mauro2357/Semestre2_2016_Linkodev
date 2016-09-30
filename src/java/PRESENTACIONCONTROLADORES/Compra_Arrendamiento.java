@@ -5,27 +5,23 @@
  */
 package PRESENTACIONCONTROLADORES;
 
-import DOMAINENTITIES.CreadorApartamento;
-import DOMAINENTITIES.CreadorBodegas;
-import DOMAINENTITIES.CreadorCasas;
-import DOMAINENTITIES.CreadorFincas;
-import DOMAINENTITIES.CreadorHabitacion;
-import DOMAINENTITIES.CreadorInmuebles;
 import DOMAINENTITIES.Inmueble;
 import DOMAINENTITIES.Usuario;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author felipe
+ * @author Mateo Ortiz Cano
  */
-public class CreacionPublicacion extends HttpServlet {
+public class Compra_Arrendamiento extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -52,7 +48,6 @@ public class CreacionPublicacion extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
     }
 
     /**
@@ -66,51 +61,25 @@ public class CreacionPublicacion extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession sesion = request.getSession();
-        Usuario usr = (Usuario) sesion.getAttribute("usuario");
-        CreadorInmuebles creador;
-        //dependiendo de el tipon de inmueble que ingrese en el formulario
-        switch (request.getParameter("tipoinmueble")) {
-            case "Casa":
-                creador=new CreadorCasas();
-                break;
-            case "Apartamento":
-                creador=new CreadorApartamento();
-                break;
-            case "Habitacion":
-                creador=new CreadorCasas();
-                break;
-            case "Local":
-                creador=new CreadorBodegas();
-                break;
-            case "Finca":
-                creador=new CreadorFincas();
-                break;
-            default:
-                throw new AssertionError();
-        }
-        Inmueble inmueble=creador.factoryMethod();
-        inmueble.setDueno(usr.getCorreo());
-        inmueble.setTipoOferta(request.getParameter("tipooferta"));
-        inmueble.setTipoInmueble(request.getParameter("tipoinmueble"));
-        inmueble.setCiudad(request.getParameter("ciudad"));
-        inmueble.setDireccion(request.getParameter("direccion"));
-        inmueble.setBarrio(request.getParameter("barrio"));
-        inmueble.setPrecio(request.getParameter("precio"));
-        inmueble.setHabitaciones(request.getParameter("habitaciones"));
-        inmueble.setBanos(request.getParameter("banos"));
-        inmueble.setPiso(request.getParameter("piso"));
-        inmueble.setArea(request.getParameter("area"));
-        inmueble.setEstrato(request.getParameter("estrato"));
-        Usuario usuario=new Usuario();
-        try{
-            usuario.registrarPublicacion(inmueble);
-            sesion.setAttribute("usuario", usr);
-            request.getRequestDispatcher("MuestraPublicacion").forward(request, response);
-        }catch(SQLException e){
-            sesion.setAttribute("msg",e.getMessage()); 
+        String dueno = request.getParameter("dueno");
+        String cliente = request.getParameter("cliente");
+        String publicacion = request.getParameter("publicacion");
+        if (dueno.equals(cliente)) {
+            request.getSession().setAttribute("msg", "No puedes negociar con tus propias publicaciones, si quieres que no aparezca mas eliminala!");
             request.getRequestDispatcher("error.jsp").forward(request, response);
-        }        
+            return;
+        }
+        Inmueble inmueble = new Inmueble();
+        inmueble.setId(publicacion);
+        Usuario usuario = new Usuario();
+        usuario.setCorreo(cliente);
+        try {
+            usuario.adquirir(inmueble);            
+            request.getRequestDispatcher("MuestraPublicacion").forward(request, response);
+        } catch (SQLException ex) {
+            request.getSession().setAttribute("msg", ex.getMessage());
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+        }
     }
 
     /**

@@ -27,7 +27,7 @@
                                 <i class="large material-icons">error</i>
                                 <p align=center>
                                     <%=(String) request.getSession().getAttribute("msg")%>
-                                    <a href="javascript:window.history.go(-1);">Reintentar.</a>
+                                    <a href="javascript:window.history.go(-1);"> CLIC AQUÍ PARA REINTENTAR.</a>
                                 </p>
                             </div>
                         </div>
