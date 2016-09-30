@@ -32,7 +32,7 @@ public class VisualizacionDetalles extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String id=request.getParameter("id");        
+        String id = request.getParameter("id");     
         Usuario usr=new Usuario();        
         try {            
             Inmueble pub=usr.DetallarInmueble(id);           

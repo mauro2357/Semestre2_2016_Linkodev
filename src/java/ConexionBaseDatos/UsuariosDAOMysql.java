@@ -14,7 +14,7 @@ import java.sql.Statement;
  *
  * @author Mateo Ortiz Cano
  */
-public class UsuariosDAOMysql implements IUsuarioDAO{
+public class UsuariosDAOMysql implements IUsuarioDAO,ICalificacionDAO{
     
     /**
      *
@@ -29,7 +29,7 @@ public class UsuariosDAOMysql implements IUsuarioDAO{
         Statement stm = nuevaconexion.getConeccion().createStatement();
         String query="INSERT INTO usuario VALUES ('"+persona.getNombre()+"','"
             +persona.getCorreo()+"','"+contraseñaEncriptada+"','"
-            +persona.getTelefono()+"','imagenes/nopic.png', 1, 0)";
+            +persona.getTelefono()+"','imagenes/nopic.png', 1, 0,0,0)";
         stm.executeUpdate(query);
     }
     
@@ -102,6 +102,8 @@ public class UsuariosDAOMysql implements IUsuarioDAO{
         usuario.setCorreo(res.getString("usu_correo"));
         usuario.setTelefono(res.getString("usu_telefono"));
         usuario.setFotourl(res.getString("usu_fotourl"));
+        usuario.setCalificacion(res.getInt("usu_sumacalificacion"));
+        usuario.setContadorCalificacion(res.getInt("usu_contadorcalificadores"));
         return usuario;
     }
     
@@ -138,5 +140,25 @@ public class UsuariosDAOMysql implements IUsuarioDAO{
         }catch(SQLException ex){
             throw new SQLException("Error! 404");
         }
+    }
+    
+    private void insertarSuma(int calificacion,String identificador) throws SQLException{
+        ConexiónBD conexion = new ConexiónBD();
+        Statement statement = conexion.getConeccion().createStatement();                      
+        String query = " UPDATE usuario as t1 SET t1.usu_sumacalificacion = "
+                + "         (select * from (SELECT t2.usu_sumacalificacion + "+calificacion+" FROM usuario as t2 "
+                + "         where t2.usu_correo = '"+identificador+"') as x) where t1.usu_correo ='" + identificador +"'";
+        statement.executeUpdate(query);
+    }
+
+    @Override
+    public void calificar(int calificacion, String identificador) throws SQLException {
+        ConexiónBD conexion = new ConexiónBD();
+        Statement statement = conexion.getConeccion().createStatement(); 
+        String query = " UPDATE usuario as t1 SET t1.usu_contadorcalificadores = "
+                + "         (select * from (SELECT t2.usu_contadorcalificadores +1 FROM usuario as t2 "
+                + "         where t2.usu_correo = '"+identificador+"') as x) where t1.usu_correo ='" + identificador +"'";
+        statement.executeUpdate(query);
+        insertarSuma(calificacion, identificador);
     }
 }

@@ -7,6 +7,7 @@ package DOMAINENTITIES;
 
 import CLASESAUXILIARES.EnvioMail;
 import CLASESAUXILIARES.GeneracionDeCodigos;
+import ConexionBaseDatos.ICalificacionDAO;
 import ConexionBaseDatos.IPublicacionDAO;
 import ConexionBaseDatos.IUsuarioDAO;
 import ConexionBaseDatos.PublicacionDAO;
@@ -28,6 +29,9 @@ public class Usuario {
     private String fotourl;
     private IUsuarioDAO iUsuarioDAO;
     private IPublicacionDAO iPublicacionDAO;
+    private ICalificacionDAO iCalificacionDAO;
+    private int calificacion;
+    private int contadorCalificacion;
 
     public Usuario(String nombre, String correo, String contraseña, String telefono) {
         this.nombre = nombre;
@@ -36,6 +40,7 @@ public class Usuario {
         this.telefono = telefono;
         this.iUsuarioDAO = new UsuariosDAOMysql();
         this.iPublicacionDAO = new PublicacionDAO();
+        this.iCalificacionDAO = new UsuariosDAOMysql();
     }
 
     public Usuario(String correo, String contraseña, String contraseñaCambio) {
@@ -44,6 +49,7 @@ public class Usuario {
         this.contraseñaCambio = contraseñaCambio;
         this.iUsuarioDAO = new UsuariosDAOMysql();
         this.iPublicacionDAO = new PublicacionDAO();
+        this.iCalificacionDAO = new UsuariosDAOMysql();
     }
 
     public Usuario(String correo, String contraseña) {
@@ -51,6 +57,7 @@ public class Usuario {
         this.contraseña = contraseña;
         this.iUsuarioDAO = new UsuariosDAOMysql();
         this.iPublicacionDAO = new PublicacionDAO();
+        this.iCalificacionDAO = new UsuariosDAOMysql();
     }
 
     public Usuario() {
@@ -61,6 +68,7 @@ public class Usuario {
         this.fotourl = "";
         this.iUsuarioDAO = new UsuariosDAOMysql();
         this.iPublicacionDAO = new PublicacionDAO();
+        this.iCalificacionDAO = new UsuariosDAOMysql();
     }
 
     public String getNombre() {
@@ -111,6 +119,21 @@ public class Usuario {
         this.contraseñaCambio = contraseñaCambio;
     }
 
+    public int getCalificacion() {
+        return calificacion;
+    }
+
+    public void setCalificacion(int calificacion) {
+        this.calificacion = calificacion;
+    }
+
+    public int getContadorCalificacion() {
+        return contadorCalificacion;
+    }
+
+    public void setContadorCalificacion(int contadorCalificacion) {
+        this.contadorCalificacion = contadorCalificacion;
+    }
     public void registrar() throws Exception {
         try {
             iUsuarioDAO.registrarUsuario(this);
@@ -251,4 +274,14 @@ public class Usuario {
             throw ex;
         }
     }
+    
+    public void calificar(int calificacion,String identificador) throws SQLException{
+        try{
+            iCalificacionDAO.calificar(calificacion, identificador);
+        }
+        catch (SQLException ex) {
+            throw ex;
+        }
+    }
+    
 }

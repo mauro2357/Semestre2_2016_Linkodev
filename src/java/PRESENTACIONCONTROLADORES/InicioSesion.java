@@ -69,7 +69,7 @@ public class InicioSesion extends HttpServlet {
             String contraseñaus=request.getParameter("contrasena");
             Usuario usuario = new Usuario(correous,contraseñaus);
             try{
-                Usuario usrActivo=usrActivo =usuario.iniciarSesion();
+                Usuario usrActivo = usuario.iniciarSesion();
                 sesion.setAttribute("usuario", usrActivo);                
                 request.getRequestDispatcher("MuestraPublicacion").forward(request, response);
             }catch(Exception ef){
