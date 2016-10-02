@@ -81,9 +81,9 @@
                                     Visitas publicación:
                                     <input   id="contador" name="contador" type="text" class="validate" value="<%=pub.getContadorVisitas()%>" readonly="">
                                 </div>                                
-                                <br>
-                                <input name="cliente" value="<%=usr.getCorreo()%>" hidden="">
+                                <br>                                
                                 <input name="dueno" value="<%=pub.getDueno()%>" hidden="">
+                                <input name="cliente" value="<%=usr.getCorreo()%>" hidden="">
                                 <input name="publicacion" value="<%=pub.getId()%>" hidden="">
                                 <div class="row center col s12">
                                     <button  type="submit" name="compraArrendaButton" class="btn-large waves-effect waves-light orange">¡Lo tomo!</button>

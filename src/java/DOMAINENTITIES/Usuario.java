@@ -251,7 +251,18 @@ public class Usuario {
             throw ex;
         }
     }
-    
+
+    public ArrayList obtenerNotificaciones() throws SQLException {
+        ArrayList mensajes=new ArrayList<>();
+        try {
+            mensajes= iUsuarioDAO.obtenerNotificaciones(this.correo);
+        } catch (SQLException ex) {
+            throw ex;
+        }        
+        if(mensajes.isEmpty())
+            mensajes.add("No tiene notificaciones pendientes");
+        return mensajes;
+    }
     public ArrayList<Inmueble> filtrarPublicaciones(Inmueble inmueble) throws Exception {
         ArrayList<Inmueble> publicaciones = new ArrayList<>();
         try {

@@ -45,15 +45,6 @@
                         </select>
                         <label class="black-text">Ciudad</label>
                     </div>
-                    <div class="input-field col s2">
-                        <select name="precio" >
-                            <option value="" disabled selected></option>
-                            <option value="1">Hasta $100.000.000</option>
-                            <option value="2">$100.000.000 a $500.000.000</option>
-                            <option value="3">$500.000.000 a $1000.000.000</option>
-                        </select>
-                        <label class="black-text">Precio</label>
-                    </div>
                     <div class="col s2">
                         <button type="submit" name="buscar" class="btn-large waves-effect waves-light orange">Buscar</button>
                     </div>
