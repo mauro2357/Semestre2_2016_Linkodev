@@ -5,6 +5,10 @@
  */
 package PRESENTACIONCONTROLADORES;
 
+import ConexionBaseDatos.IPublicacionDAO;
+import ConexionBaseDatos.IUsuarioDAO;
+import ConexionBaseDatos.PublicacionDAO;
+import ConexionBaseDatos.UsuariosDAOMysql;
 import DOMAINENTITIES.Usuario;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -63,6 +67,10 @@ public class DesactivacionCuenta extends HttpServlet {
         String usuario=request.getParameter("correo");
         String contrasena=request.getParameter("contrasena");
         Usuario usr=new Usuario(usuario,contrasena);
+        IPublicacionDAO iPublicacionDAO=new PublicacionDAO();
+        IUsuarioDAO iUsuarioDAO=new UsuariosDAOMysql();
+        usr.setiPublicacionDAO(iPublicacionDAO);
+        usr.setiUsuarioDAO(iUsuarioDAO);
         try{
             usr.desactivarCuenta();
             request.getRequestDispatcher("CerrarSesion").forward(request, response);

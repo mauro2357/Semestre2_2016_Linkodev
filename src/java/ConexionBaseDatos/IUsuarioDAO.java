@@ -17,7 +17,7 @@ public interface IUsuarioDAO {
 
     public void registrarUsuario(Usuario persona)throws SQLException;
 
-    public String consultarContraseña(String correoUsuario)throws SQLException, Exception;
+    public String consultarcontrasena(String correoUsuario)throws SQLException, Exception;
 
     public String obtenerFoto(String correoUsuario)throws SQLException;
 

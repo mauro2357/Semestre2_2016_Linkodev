@@ -5,6 +5,10 @@
  */
 package PRESENTACIONCONTROLADORES;
 
+import ConexionBaseDatos.IPublicacionDAO;
+import ConexionBaseDatos.IUsuarioDAO;
+import ConexionBaseDatos.PublicacionDAO;
+import ConexionBaseDatos.UsuariosDAOMysql;
 import DOMAINENTITIES.Inmueble;
 import DOMAINENTITIES.Usuario;
 import java.io.IOException;
@@ -36,6 +40,10 @@ public class MuestraPublicacionPropia extends HttpServlet {
         Usuario usuarioSesion = (Usuario) request.getSession().getAttribute("usuario");
         String correo = usuarioSesion.getCorreo();
         Usuario usr = new Usuario();
+        IPublicacionDAO iPublicacionDAO=new PublicacionDAO();
+        IUsuarioDAO iUsuarioDAO=new UsuariosDAOMysql();
+        usr.setiPublicacionDAO(iPublicacionDAO);
+        usr.setiUsuarioDAO(iUsuarioDAO);
         try {
             ArrayList<Inmueble> publicaciones = usr.consultarPublicacionesByUsuario(correo);
             request.getSession().setAttribute("publicaciones_editables", publicaciones);

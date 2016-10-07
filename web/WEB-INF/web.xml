@@ -45,8 +45,8 @@
         <servlet-class>PRESENTACIONCONTROLADORES.VerificacionCodigoContrasena</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ContraseñaNuevaRecuperacion</servlet-name>
-        <servlet-class>PRESENTACIONCONTROLADORES.ContraseñaNuevaRecuperacion</servlet-class>
+        <servlet-name>contrasenaNuevaRecuperacion</servlet-name>
+        <servlet-class>PRESENTACIONCONTROLADORES.contrasenaNuevaRecuperacion</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DetallesPublicacionesEditables</servlet-name>
@@ -121,7 +121,7 @@
         <url-pattern>/VerificacionCodigoContrasena</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ContraseñaNuevaRecuperacion</servlet-name>
+        <servlet-name>contrasenaNuevaRecuperacion</servlet-name>
         <url-pattern>/ContrasenaNuevaRecuperacion</url-pattern>
     </servlet-mapping>
     <servlet-mapping>

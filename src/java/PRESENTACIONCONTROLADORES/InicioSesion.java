@@ -5,6 +5,10 @@
  */
 package PRESENTACIONCONTROLADORES;
 
+import ConexionBaseDatos.IPublicacionDAO;
+import ConexionBaseDatos.IUsuarioDAO;
+import ConexionBaseDatos.PublicacionDAO;
+import ConexionBaseDatos.UsuariosDAOMysql;
 import DOMAINENTITIES.Usuario;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -30,9 +34,8 @@ public class InicioSesion extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            
+
     }
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -60,24 +63,28 @@ public class InicioSesion extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            HttpSession sesion = request.getSession();
+        HttpSession sesion = request.getSession();
 //            if(sesion.getAttribute("usuario") != null){      
 //                request.getRequestDispatcher("login.jsp").forward(request, response);
 //                return;
 //            }
-            String correous=request.getParameter("correo");
-            String contraseñaus=request.getParameter("contrasena");
-            Usuario usuario = new Usuario(correous,contraseñaus);
-            try{
-                Usuario usrActivo=usrActivo =usuario.iniciarSesion();
-                sesion.setAttribute("usuario", usrActivo);                
-                request.getRequestDispatcher("MuestraPublicacion").forward(request, response);
-            }catch(Exception ef){
-                sesion.setAttribute("msg",ef.getMessage());
-                request.getRequestDispatcher("error.jsp").forward(request, response);
-            }
+        String correous = request.getParameter("correo");
+        String contrasenaus = request.getParameter("contrasena");
+        Usuario usuario = new Usuario(correous, contrasenaus);
+        IPublicacionDAO iPublicacionDAO = new PublicacionDAO();
+        IUsuarioDAO iUsuarioDAO = new UsuariosDAOMysql();
+        usuario.setiPublicacionDAO(iPublicacionDAO);
+        usuario.setiUsuarioDAO(iUsuarioDAO);
+        try {
+            Usuario usrActivo = usrActivo = usuario.iniciarSesion();
+            sesion.setAttribute("usuario", usrActivo);
+            request.getRequestDispatcher("MuestraPublicacion").forward(request, response);
+        } catch (Exception ef) {
+            sesion.setAttribute("msg", ef.getMessage());
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+        }
     }
-    
+
     /**
      * Returns a short description of the servlet.
      *

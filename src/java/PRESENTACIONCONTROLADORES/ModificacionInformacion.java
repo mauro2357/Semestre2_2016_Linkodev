@@ -5,6 +5,10 @@
  */
 package PRESENTACIONCONTROLADORES;
 
+import ConexionBaseDatos.IPublicacionDAO;
+import ConexionBaseDatos.IUsuarioDAO;
+import ConexionBaseDatos.PublicacionDAO;
+import ConexionBaseDatos.UsuariosDAOMysql;
 import DOMAINENTITIES.Usuario;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -63,9 +67,13 @@ public class ModificacionInformacion extends HttpServlet {
         processRequest(request, response);
         String nombre=request.getParameter("nombre");
         String correo=request.getParameter("correo");
-        String contraseña=request.getParameter("contrasena");
+        String contrasena=request.getParameter("contrasena");
         String telefono=request.getParameter("telefono");
-        Usuario persona=new Usuario(nombre, correo, contraseña, telefono);
+        Usuario persona=new Usuario(nombre, correo, contrasena, telefono);
+        IPublicacionDAO iPublicacionDAO=new PublicacionDAO();
+        IUsuarioDAO iUsuarioDAO=new UsuariosDAOMysql();
+        persona.setiPublicacionDAO(iPublicacionDAO);
+        persona.setiUsuarioDAO(iUsuarioDAO);
         try{
             Usuario usuarioModificado = persona.modificarInformacion();
             sesion.setAttribute("usuario",usuarioModificado);

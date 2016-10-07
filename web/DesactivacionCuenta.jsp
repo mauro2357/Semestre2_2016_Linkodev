@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="input-field col s6">
                                     <input id="contrasena" name="contrasena" type="password" class="validate" required="">
-                                    <label for="contrasena">Contraseña</label>
+                                    <label for="contrasena">contrasena</label>
                                 </div>
                                 <div class="row center col s12">
                                     <button  type="submit" name="actualizar_boton" class="btn-large waves-effect waves-light orange">Confirmar desactivacion</button>

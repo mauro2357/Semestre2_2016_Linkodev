@@ -5,6 +5,10 @@
  */
 package PRESENTACIONCONTROLADORES;
 
+import ConexionBaseDatos.IPublicacionDAO;
+import ConexionBaseDatos.IUsuarioDAO;
+import ConexionBaseDatos.PublicacionDAO;
+import ConexionBaseDatos.UsuariosDAOMysql;
 import DOMAINENTITIES.CreadorApartamento;
 import DOMAINENTITIES.CreadorBodegas;
 import DOMAINENTITIES.CreadorCasas;
@@ -103,6 +107,10 @@ public class CreacionPublicacion extends HttpServlet {
         inmueble.setArea(request.getParameter("area"));
         inmueble.setEstrato(request.getParameter("estrato"));
         Usuario usuario=new Usuario();
+        IPublicacionDAO iPublicacionDAO=new PublicacionDAO();
+        IUsuarioDAO iUsuarioDAO=new UsuariosDAOMysql();
+        usuario.setiPublicacionDAO(iPublicacionDAO);
+        usuario.setiUsuarioDAO(iUsuarioDAO);
         try{
             usuario.registrarPublicacion(inmueble);
             sesion.setAttribute("usuario", usr);

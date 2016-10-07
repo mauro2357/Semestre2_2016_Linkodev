@@ -22,45 +22,45 @@ public class Usuario {
 
     private String nombre;
     private String correo;
-    private String contraseña;
-    private String contraseñaCambio;
+    private String contrasena;
+    private String contrasenaCambio;
     private String telefono;
     private String fotourl;
     private IUsuarioDAO iUsuarioDAO;
     private IPublicacionDAO iPublicacionDAO;
 
-    public Usuario(String nombre, String correo, String contraseña, String telefono) {
+    public Usuario(String nombre, String correo, String contrasena, String telefono) {
         this.nombre = nombre;
         this.correo = correo;
-        this.contraseña = contraseña;
+        this.contrasena = contrasena;
         this.telefono = telefono;
-        this.iUsuarioDAO = new UsuariosDAOMysql();
-        this.iPublicacionDAO = new PublicacionDAO();
     }
 
-    public Usuario(String correo, String contraseña, String contraseñaCambio) {
+    public Usuario(String correo, String contrasena, String contrasenaCambio) {
         this.correo = correo;
-        this.contraseña = contraseña;
-        this.contraseñaCambio = contraseñaCambio;
-        this.iUsuarioDAO = new UsuariosDAOMysql();
-        this.iPublicacionDAO = new PublicacionDAO();
+        this.contrasena = contrasena;
+        this.contrasenaCambio = contrasenaCambio;
     }
 
-    public Usuario(String correo, String contraseña) {
+    public Usuario(String correo, String contrasena) {
         this.correo = correo;
-        this.contraseña = contraseña;
-        this.iUsuarioDAO = new UsuariosDAOMysql();
-        this.iPublicacionDAO = new PublicacionDAO();
+        this.contrasena = contrasena;
     }
 
     public Usuario() {
         this.nombre = "";
         this.correo = "";
-        this.contraseña = "";
+        this.contrasena = "";
         this.telefono = "";
         this.fotourl = "";
-        this.iUsuarioDAO = new UsuariosDAOMysql();
-        this.iPublicacionDAO = new PublicacionDAO();
+    }
+
+    public void setiUsuarioDAO(IUsuarioDAO iUsuarioDAO) {
+        this.iUsuarioDAO = iUsuarioDAO;
+    }
+
+    public void setiPublicacionDAO(IPublicacionDAO iPublicacionDAO) {
+        this.iPublicacionDAO = iPublicacionDAO;
     }
 
     public String getNombre() {
@@ -79,12 +79,12 @@ public class Usuario {
         this.correo = correo;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getcontrasena() {
+        return contrasena;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setcontrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
     public String getTelefono() {
@@ -103,12 +103,12 @@ public class Usuario {
         this.fotourl = fotourl;
     }
 
-    public String getContraseñaCambio() {
-        return contraseñaCambio;
+    public String getcontrasenaCambio() {
+        return contrasenaCambio;
     }
 
-    public void setContraseñaCambio(String contraseñaCambio) {
-        this.contraseñaCambio = contraseñaCambio;
+    public void setcontrasenaCambio(String contrasenaCambio) {
+        this.contrasenaCambio = contrasenaCambio;
     }
 
     public void registrar() throws Exception {
@@ -120,9 +120,9 @@ public class Usuario {
     }
 
     public Usuario modificarInformacion() throws Exception {
-        String contrasenaFromBD = iUsuarioDAO.consultarContraseña(this.getCorreo());
-        if (!contrasenaFromBD.equals(this.getContraseña())) {
-            throw new Exception("La contraseña no coincide con su contraseña actual");
+        String contrasenaFromBD = iUsuarioDAO.consultarcontrasena(this.getCorreo());
+        if (!contrasenaFromBD.equals(this.getcontrasena())) {
+            throw new Exception("La contrasena no coincide con su contrasena actual");
         }
         String url = iUsuarioDAO.obtenerFoto(this.getCorreo());
         Usuario usuarioI;
@@ -144,18 +144,18 @@ public class Usuario {
         if (estadoCuenta.equals("0")) {
             throw new Exception("Su cuenta ha sido desactivada, dirijase al boton activar de la ventana de inicio de sesion");
         }
-        String contrasenaFromBD = iUsuarioDAO.consultarContraseña(this.getCorreo());
-        if (!contrasenaFromBD.equals(this.getContraseña())) {
-            throw new Exception("La contraseña no coincide con su contraseña actual");
+        String contrasenaFromBD = iUsuarioDAO.consultarcontrasena(this.getCorreo());
+        if (!contrasenaFromBD.equals(this.getcontrasena())) {
+            throw new Exception("La contrasena no coincide con su contrasena actual");
         }
         Usuario usuario = iUsuarioDAO.obtenerDatos(this.getCorreo());
         return usuario;
     }
 
-    public Usuario cambiarContraseña() throws SQLException, Exception {
-        String contrasenaFromBD = iUsuarioDAO.consultarContraseña(this.getCorreo());
-        if (!contrasenaFromBD.equals(this.getContraseña())) {
-            throw new Exception("La contraseña no coincide con su contraseña actual");
+    public Usuario cambiarcontrasena() throws SQLException, Exception {
+        String contrasenaFromBD = iUsuarioDAO.consultarcontrasena(this.getCorreo());
+        if (!contrasenaFromBD.equals(this.getcontrasena())) {
+            throw new Exception("La contrasena no coincide con su contrasena actual");
         }
         try {
             iUsuarioDAO.modificarContrasena(this);
@@ -166,18 +166,18 @@ public class Usuario {
         return usuario;
     }
 
-    public void contraseñaNuevaConfirmacion() throws SQLException, Exception {
+    public void contrasenaNuevaConfirmacion() throws SQLException, Exception {
         try {
             iUsuarioDAO.modificarContrasena(this);
         } catch (SQLException ex) {
-            throw new Exception("No se pudo cambiar a la nueva contraseña");
+            throw new Exception("No se pudo cambiar a la nueva contrasena");
         }
     }
 
     public void desactivarCuenta() throws SQLException, Exception {
-        String contrasenaFromBD = iUsuarioDAO.consultarContraseña(this.getCorreo());
-        if (!contrasenaFromBD.equals(this.getContraseña())) {
-            throw new Exception("La contraseña no coincide con su contraseña actual");
+        String contrasenaFromBD = iUsuarioDAO.consultarcontrasena(this.getCorreo());
+        if (!contrasenaFromBD.equals(this.getcontrasena())) {
+            throw new Exception("La contrasena no coincide con su contrasena actual");
         }
         try {
             iUsuarioDAO.desactivarCuenta(this);

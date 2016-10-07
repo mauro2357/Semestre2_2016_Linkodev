@@ -63,9 +63,9 @@ public class RegistroAdministrador extends HttpServlet {
         HttpSession sesion = request.getSession();
         String nombre=request.getParameter("nombre");
         String correo=request.getParameter("correo");
-        String contraseña=request.getParameter("contrasena");
+        String contrasena=request.getParameter("contrasena");
         Administrador admin;
-        admin = Administrador.getInstance(nombre, correo, contraseña);
+        admin = Administrador.getInstance(nombre, correo, contrasena);
         try{
             admin.registrar();
             //sesion.setAttribute("usuario",admin ); 

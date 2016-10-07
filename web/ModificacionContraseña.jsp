@@ -1,5 +1,5 @@
 <%-- 
-    Document   : ModificacionContraseña
+    Document   : Modificacioncontrasena
     Created on : 10/08/2016, 08:47:04 AM
     Author     : linkcodev
 --%>
@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-        <title>Cambio de contraseña</title>
+        <title>Cambio de contrasena</title>
         <!-- CSS  -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -27,7 +27,7 @@
                 <div class="section no-pad-bot" id="index-banner">
                     <div class="container">
                         <br><br>
-                        <h4>Cambio de contraseña</h4>
+                        <h4>Cambio de contrasena</h4>
                         <div class="row">
                             <form method="post" class="col s12" action="ModificacionContrasena" onsubmit="return comprobarClave2()">
                                 <div class="input-field col s6">
@@ -36,15 +36,15 @@
                                 </div>
                                 <div class="input-field col s6">
                                     <input id="contrasena" name="contrasenaNueva" type="password" class="validate" required="">
-                                    <label for="password">Contraseña Nueva</label>
+                                    <label for="password">contrasena Nueva</label>
                                 </div>
                                 <div class="input-field col s6">
                                     <input id="confirmarContrasena" name="confirmarContrasena" type="password" class="validate" required="">
-                                    <label for="password">Confirmar Contraseña Nueva</label>
+                                    <label for="password">Confirmar contrasena Nueva</label>
                                 </div> 
                                 <div class=" input-field col s6">
                                     <input name="contrasena" type="password" class="validate" required="">
-                                    <label for="password">Contraseña actual</label>
+                                    <label for="password">contrasena actual</label>
                                 </div>
                                 <div class="row center col s12">
                                     <button  type="submit" name="actualizar_boton" class="btn-large waves-effect waves-light orange">Actualizar</button>

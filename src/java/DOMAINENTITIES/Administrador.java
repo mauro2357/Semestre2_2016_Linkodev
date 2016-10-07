@@ -17,7 +17,7 @@ public class Administrador {
     private static Administrador INSTANCE = null;
     private String nombre;
     private String correo;
-    private String contraseña;
+    private String contrasena;
 
     public String getNombre() {
         return nombre;
@@ -35,17 +35,17 @@ public class Administrador {
         this.correo = correo;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getcontrasena() {
+        return contrasena;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setcontrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
     
-    public static Administrador getInstance(String nombre,String correo,String contraseña) {
+    public static Administrador getInstance(String nombre,String correo,String contrasena) {
         if (INSTANCE == null) {
-            createInstance(nombre,correo,contraseña);
+            createInstance(nombre,correo,contrasena);
         }
         return INSTANCE;
     }
@@ -66,15 +66,15 @@ public class Administrador {
         }
     }
     
-    private Administrador(String nombre,String correo,String contraseña){
+    private Administrador(String nombre,String correo,String contrasena){
         this.nombre = nombre;
         this.correo = correo;
-        this.contraseña = contraseña;
+        this.contrasena = contrasena;
     }
 
-    private synchronized static void createInstance(String nombre,String correo,String contraseña) {
+    private synchronized static void createInstance(String nombre,String correo,String contrasena) {
         if (INSTANCE == null) { 
-            INSTANCE = new Administrador(nombre,correo,contraseña);
+            INSTANCE = new Administrador(nombre,correo,contrasena);
         }
     }
 

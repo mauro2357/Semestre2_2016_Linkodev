@@ -5,6 +5,10 @@
  */
 package PRESENTACIONCONTROLADORES;
 
+import ConexionBaseDatos.IPublicacionDAO;
+import ConexionBaseDatos.IUsuarioDAO;
+import ConexionBaseDatos.PublicacionDAO;
+import ConexionBaseDatos.UsuariosDAOMysql;
 import DOMAINENTITIES.Usuario;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -17,7 +21,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author mateohenaocardona
  */
-public class ContraseñaNuevaRecuperacion extends HttpServlet {
+public class contrasenaNuevaRecuperacion extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -63,8 +67,12 @@ public class ContraseñaNuevaRecuperacion extends HttpServlet {
         String correo=request.getParameter("correo");
         String contrasenaNueva=request.getParameter("contrasenaNueva");
         Usuario usr=new Usuario(correo,"",contrasenaNueva);
+        IPublicacionDAO iPublicacionDAO=new PublicacionDAO();
+        IUsuarioDAO iUsuarioDAO=new UsuariosDAOMysql();
+        usr.setiPublicacionDAO(iPublicacionDAO);
+        usr.setiUsuarioDAO(iUsuarioDAO);
         try{
-            usr.contraseñaNuevaConfirmacion();
+            usr.contrasenaNuevaConfirmacion();
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }catch(Exception e){
             sesion.setAttribute("msg",e.getMessage()); 

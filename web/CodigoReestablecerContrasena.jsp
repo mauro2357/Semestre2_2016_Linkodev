@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Reestablecer contraseña</title>
+        <title>Reestablecer contrasena</title>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="css/newcss.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -44,7 +44,7 @@
                             <input name="codigo" type="text" class="validate" required="">
                             <label for="codigo">Código</label>                            
                         </div>
-                        <button type="submit" name="reestablecercontrasena" class="btn  waves-effect waves-light orange">Reestablecer contraseña</button>
+                        <button type="submit" name="reestablecercontrasena" class="btn  waves-effect waves-light orange">Reestablecer contrasena</button>
                     </form>
                 </div>
             </div>
