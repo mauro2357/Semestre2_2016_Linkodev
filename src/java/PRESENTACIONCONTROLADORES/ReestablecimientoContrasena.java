@@ -5,6 +5,10 @@
  */
 package PRESENTACIONCONTROLADORES;
 
+import ConexionBaseDatos.IPublicacionDAO;
+import ConexionBaseDatos.IUsuarioDAO;
+import ConexionBaseDatos.PublicacionDAO;
+import ConexionBaseDatos.UsuariosDAOMysql;
 import DOMAINENTITIES.Usuario;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -61,14 +65,18 @@ public class ReestablecimientoContrasena extends HttpServlet {
         HttpSession sesion = request.getSession();
         try {
             Usuario usr = new Usuario();
+            IPublicacionDAO iPublicacionDAO = new PublicacionDAO();
+            IUsuarioDAO iUsuarioDAO = new UsuariosDAOMysql();
+            usr.setiPublicacionDAO(iPublicacionDAO);
+            usr.setiUsuarioDAO(iUsuarioDAO);
             String correo = request.getParameter("correo");
             usr.setCorreo(correo);
             String codigo = usr.reestablecerContrasena(usr.getCorreo());
             request.getSession().setAttribute("usuario", usr);
             request.getSession().setAttribute("codigoenviado", codigo);
             request.getRequestDispatcher("CodigoReestablecerContrasena.jsp").forward(request, response);
-        } catch (Exception ex) {           
-            sesion.setAttribute("msg",ex.getMessage());
+        } catch (Exception ex) {
+            sesion.setAttribute("msg", ex.getMessage());
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
     }

@@ -5,6 +5,10 @@
  */
 package PRESENTACIONCONTROLADORES;
 
+import ConexionBaseDatos.IPublicacionDAO;
+import ConexionBaseDatos.IUsuarioDAO;
+import ConexionBaseDatos.PublicacionDAO;
+import ConexionBaseDatos.UsuariosDAOMysql;
 import DOMAINENTITIES.CreadorHabitacion;
 import DOMAINENTITIES.CreadorInmuebles;
 import DOMAINENTITIES.Inmueble;
@@ -55,6 +59,10 @@ public class Modificacionpublicacion extends HttpServlet {
         inmueble.setContadorVisitas(Integer.parseInt(request.getParameter("contador")));
         inmueble.setId(request.getParameter("id"));
         Usuario usuario=new Usuario();
+        IPublicacionDAO iPublicacionDAO=new PublicacionDAO();
+        IUsuarioDAO iUsuarioDAO=new UsuariosDAOMysql();
+        usuario.setiPublicacionDAO(iPublicacionDAO);
+        usuario.setiUsuarioDAO(iUsuarioDAO);
         try{
             usuario.ModificarPublicacion(inmueble);
             sesion.setAttribute("usuario", usr);

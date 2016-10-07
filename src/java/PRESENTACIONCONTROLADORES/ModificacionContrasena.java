@@ -5,6 +5,10 @@
  */
 package PRESENTACIONCONTROLADORES;
 
+import ConexionBaseDatos.IPublicacionDAO;
+import ConexionBaseDatos.IUsuarioDAO;
+import ConexionBaseDatos.PublicacionDAO;
+import ConexionBaseDatos.UsuariosDAOMysql;
 import DOMAINENTITIES.Usuario;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -63,8 +67,12 @@ public class ModificacionContrasena extends HttpServlet {
         String contrasenaNueva=request.getParameter("contrasenaNueva");
         String contrasenaAntigua=request.getParameter("contrasena");
         Usuario usr=new Usuario(usuario,contrasenaAntigua,contrasenaNueva);
+        IPublicacionDAO iPublicacionDAO=new PublicacionDAO();
+        IUsuarioDAO iUsuarioDAO=new UsuariosDAOMysql();
+        usr.setiPublicacionDAO(iPublicacionDAO);
+        usr.setiUsuarioDAO(iUsuarioDAO);
         try{
-            Usuario usrmodificado=usr.cambiarContraseña();
+            Usuario usrmodificado=usr.cambiarcontrasena();
             sesion.setAttribute("usuario",usrmodificado);
             request.getRequestDispatcher("MuestraPublicacion").forward(request, response);
         }catch(Exception e){

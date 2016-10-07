@@ -16,12 +16,12 @@ import java.sql.Statement;
 public class AdministradorDAO {
     
     public void registrarAdministrador(Administrador admin) throws SQLException{
-        Encriptacion encriptarcontraseña = new Encriptacion();
-        String contraseñaEncriptada =encriptarcontraseña.Encriptar(admin.getContraseña());
+        Encriptacion encriptarcontrasena = new Encriptacion();
+        String contrasenaEncriptada =encriptarcontrasena.Encriptar(admin.getcontrasena());
         ConexiónBD nuevaconexion=new ConexiónBD();
         Statement stm = nuevaconexion.getConeccion().createStatement();
         String query="INSERT INTO usuario VALUES ('"+admin.getNombre()+"','"
-            +admin.getCorreo()+"','"+contraseñaEncriptada+"','1234567890','imagenes/nopic.png',1,1)";
+            +admin.getCorreo()+"','"+contrasenaEncriptada+"','1234567890','imagenes/nopic.png',1,1)";
         System.out.println("query: "+query);
         stm.executeUpdate(query);
     }

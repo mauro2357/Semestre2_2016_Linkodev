@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author mateohenaocardona
  */
-public class CierreSesion extends HttpServlet {
+public class contrasenaNuevaRecuperacion extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,22 +33,8 @@ public class CierreSesion extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {        
-        HttpSession sesion = request.getSession();
-        sesion.removeAttribute("usuario");
-        sesion.invalidate();
-        Usuario usr = new Usuario();   
-        IPublicacionDAO iPublicacionDAO=new PublicacionDAO();
-        IUsuarioDAO iUsuarioDAO=new UsuariosDAOMysql();
-        usr.setiPublicacionDAO(iPublicacionDAO);
-        usr.setiUsuarioDAO(iUsuarioDAO);
-        usr = (Usuario) request.getSession().getAttribute("usuario");
-        response.setHeader( "Pragma", "no-cache" ); 
-        response.addHeader( "Cache-Control", "must-revalidate" ); 
-        response.addHeader( "Cache-Control", "no-cache" ); 
-        response.addHeader( "Cache-Control", "no-store" ); 
-        response.setDateHeader("Expires", 2);
-        response.sendRedirect("login.jsp");
+            throws ServletException, IOException {
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -77,7 +63,21 @@ public class CierreSesion extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession sesion = request.getSession();
+        String correo=request.getParameter("correo");
+        String contrasenaNueva=request.getParameter("contrasenaNueva");
+        Usuario usr=new Usuario(correo,"",contrasenaNueva);
+        IPublicacionDAO iPublicacionDAO=new PublicacionDAO();
+        IUsuarioDAO iUsuarioDAO=new UsuariosDAOMysql();
+        usr.setiPublicacionDAO(iPublicacionDAO);
+        usr.setiUsuarioDAO(iUsuarioDAO);
+        try{
+            usr.contrasenaNuevaConfirmacion();
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        }catch(Exception e){
+            sesion.setAttribute("msg",e.getMessage()); 
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+        }
     }
 
     /**

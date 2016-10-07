@@ -49,11 +49,11 @@
                                 </div>
                                 <div class="input-field col s6">
                                     <input id="contrasena" name="contrasena" type="password" class="validate" required="">
-                                    <label for="contrasena">Contraseña</label>
+                                    <label for="contrasena">contrasena</label>
                                 </div>
                                 <div class="input-field col s6">
                                     <input id="confirmarContrasena"  name="contrasena1" type="password" class="validate" required="">
-                                    <label for="contrasena2">Confirmar Contraseña</label>
+                                    <label for="contrasena2">Confirmar contrasena</label>
                                 </div>
                                 <div class="row center col s12">
                                     <button  type="submit" name="registro_boton" class="btn-large waves-effect waves-light orange">Registrar</button>

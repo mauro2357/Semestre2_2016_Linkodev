@@ -5,19 +5,24 @@
  */
 package PRESENTACIONCONTROLADORES;
 
+import ConexionBaseDatos.ICalificacionDAO;
+import ConexionBaseDatos.PublicacionDAO;
+import ConexionBaseDatos.UsuariosDAOMysql;
+import DOMAINENTITIES.Inmueble;
 import DOMAINENTITIES.Usuario;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author mateohenaocardona
  */
-public class ContraseñaNuevaRecuperacion extends HttpServlet {
+public class Calificacion extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,7 +35,7 @@ public class ContraseñaNuevaRecuperacion extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -59,19 +64,24 @@ public class ContraseñaNuevaRecuperacion extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession sesion = request.getSession();
-        String correo=request.getParameter("correo");
-        String contrasenaNueva=request.getParameter("contrasenaNueva");
-        Usuario usr=new Usuario(correo,"",contrasenaNueva);
-        try{
-            usr.contraseñaNuevaConfirmacion();
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-        }catch(Exception e){
-            sesion.setAttribute("msg",e.getMessage()); 
+        int calificacionInmueble = Integer.parseInt(request.getParameter("estrellasInmueble"));
+        int calificacionUsuario = Integer.parseInt(request.getParameter("estrellasVendedor"));
+        String dueno = request.getParameter("dueno");
+        String publicacion = request.getParameter("publicacion");
+        ICalificacionDAO iCalificacionDAOPublicacion = new PublicacionDAO();
+        ICalificacionDAO iCalificacionDAOUsuario = new UsuariosDAOMysql();
+        
+        try {
+            iCalificacionDAOPublicacion.calificar(calificacionInmueble, publicacion);
+            iCalificacionDAOUsuario.calificar(calificacionUsuario,dueno);
+            request.getRequestDispatcher("MuestraPublicacion").forward(request, response);
+        } catch (SQLException ex) {
+            request.getSession().setAttribute("msg", ex.getMessage());
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
-    }
 
+        processRequest(request, response);
+    }
     /**
      * Returns a short description of the servlet.
      *

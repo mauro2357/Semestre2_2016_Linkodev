@@ -33,9 +33,9 @@ import sun.misc.BASE64Encoder;
         try {
  
             MessageDigest md = MessageDigest.getInstance(patroncifrado);
-            byte[] valorContraseña = md.digest(clavesecreta.getBytes("utf-8"));
-            byte[] BytesDeContraseña = Arrays.copyOf(valorContraseña, 24);
-            Clave = new SecretKeySpec(BytesDeContraseña, "DESede");
+            byte[] valorcontrasena = md.digest(clavesecreta.getBytes("utf-8"));
+            byte[] BytesDecontrasena = Arrays.copyOf(valorcontrasena, 24);
+            Clave = new SecretKeySpec(BytesDecontrasena, "DESede");
             cifrar  = cifrar.getInstance("DESede");
             cifrar.init(Cipher.ENCRYPT_MODE, Clave);
  
@@ -56,9 +56,9 @@ import sun.misc.BASE64Encoder;
         try {
             byte[] valoresdecript = new BASE64Decoder().decodeBuffer(textoEncriptado);
             MessageDigest md = MessageDigest.getInstance(patroncifrado);
-            byte[] ValorContraseña = md.digest(clavesecreta.getBytes("utf-8"));
-            byte[] BytesDeContraseña = Arrays.copyOf(ValorContraseña, 24);
-            Clave = new SecretKeySpec(BytesDeContraseña, "DESede");
+            byte[] Valorcontrasena = md.digest(clavesecreta.getBytes("utf-8"));
+            byte[] BytesDecontrasena = Arrays.copyOf(Valorcontrasena, 24);
+            Clave = new SecretKeySpec(BytesDecontrasena, "DESede");
             descifrar = descifrar.getInstance("DESede");
             descifrar.init(Cipher.DECRYPT_MODE, Clave);
             byte[] BytesDeTexto = descifrar.doFinal(valoresdecript);

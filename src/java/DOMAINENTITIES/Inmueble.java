@@ -5,6 +5,11 @@
  */
 package DOMAINENTITIES;
 
+import ConexionBaseDatos.ICalificacionDAO;
+import ConexionBaseDatos.PublicacionDAO;
+import ConexionBaseDatos.UsuariosDAOMysql;
+import java.sql.SQLException;
+
 /**
  *
  * @author Mateo Ortiz Cano
@@ -24,6 +29,9 @@ public class Inmueble {
     private String area;
     private String estrato;
     private int contadorVisitas;
+    private int calificacion;
+    private int contadorCalificacion;
+    private ICalificacionDAO iCalificacionDAO;
     
     public String getDueno() {
         return dueno;
@@ -136,4 +144,21 @@ public class Inmueble {
     public void setContadorVisitas(int contadorVisitas) {
         this.contadorVisitas = contadorVisitas;
     }
+
+    public int getCalificacion() {
+        return calificacion;
+    }
+
+    public void setCalificacion(int calificacion) {
+        this.calificacion = calificacion;
+    }
+
+    public int getContadorCalificacion() {
+        return contadorCalificacion;
+    }
+
+    public void setContadorCalificacion(int contadorCalificacion) {
+        this.contadorCalificacion = contadorCalificacion;
+    }
+    
 }

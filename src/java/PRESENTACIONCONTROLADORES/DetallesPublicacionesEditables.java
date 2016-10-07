@@ -5,6 +5,10 @@
  */
 package PRESENTACIONCONTROLADORES;
 
+import ConexionBaseDatos.IPublicacionDAO;
+import ConexionBaseDatos.IUsuarioDAO;
+import ConexionBaseDatos.PublicacionDAO;
+import ConexionBaseDatos.UsuariosDAOMysql;
 import DOMAINENTITIES.Inmueble;
 import DOMAINENTITIES.Usuario;
 import java.io.IOException;
@@ -35,6 +39,10 @@ public class DetallesPublicacionesEditables extends HttpServlet {
         HttpSession sesion = request.getSession();        
         String codPublicacion=request.getParameter("id");       
         Usuario usuario=new Usuario();
+        IPublicacionDAO iPublicacionDAO=new PublicacionDAO();
+        IUsuarioDAO iUsuarioDAO=new UsuariosDAOMysql();
+        usuario.setiPublicacionDAO(iPublicacionDAO);
+        usuario.setiUsuarioDAO(iUsuarioDAO);
         try{
             Inmueble publicacion=usuario.DetallarInmueble(codPublicacion);
             sesion.setAttribute("publicacion", publicacion);

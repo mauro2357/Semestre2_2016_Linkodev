@@ -9,6 +9,10 @@
         <servlet-class>PRESENTACIONCONTROLADORES.ModificacionInformacion</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>Notificaciones</servlet-name>
+        <servlet-class>PRESENTACIONCONTROLADORES.Notificaciones</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>CreacionPublicacion</servlet-name>
         <servlet-class>PRESENTACIONCONTROLADORES.CreacionPublicacion</servlet-class>
     </servlet>
@@ -45,8 +49,8 @@
         <servlet-class>PRESENTACIONCONTROLADORES.VerificacionCodigoContrasena</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ContraseñaNuevaRecuperacion</servlet-name>
-        <servlet-class>PRESENTACIONCONTROLADORES.ContraseñaNuevaRecuperacion</servlet-class>
+        <servlet-name>contrasenaNuevaRecuperacion</servlet-name>
+        <servlet-class>PRESENTACIONCONTROLADORES.contrasenaNuevaRecuperacion</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DetallesPublicacionesEditables</servlet-name>
@@ -73,8 +77,8 @@
         <servlet-class>PRESENTACIONCONTROLADORES.Compra_Arrendamiento</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Notificaciones</servlet-name>
-        <servlet-class>PRESENTACIONCONTROLADORES.Notificaciones</servlet-class>
+        <servlet-name>Calificacion</servlet-name>
+        <servlet-class>PRESENTACIONCONTROLADORES.Calificacion</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Registro</servlet-name>
@@ -87,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>InicioSesion</servlet-name>
         <url-pattern>/InicioSesion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Notificaciones</servlet-name>
+        <url-pattern>/Notificaciones</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ModificacionContrasena</servlet-name>
@@ -121,7 +129,7 @@
         <url-pattern>/VerificacionCodigoContrasena</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ContraseñaNuevaRecuperacion</servlet-name>
+        <servlet-name>contrasenaNuevaRecuperacion</servlet-name>
         <url-pattern>/ContrasenaNuevaRecuperacion</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
@@ -147,6 +155,10 @@
     <servlet-mapping>
         <servlet-name>Compra_Arrendamiento</servlet-name>
         <url-pattern>/Compra_Arrendamiento</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Calificacion</servlet-name>
+        <url-pattern>/Calificacion</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Notificaciones</servlet-name>

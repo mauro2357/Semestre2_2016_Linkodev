@@ -5,6 +5,9 @@
  */
 package PRESENTACIONCONTROLADORES;
 
+import ConexionBaseDatos.IPublicacionDAO;
+import ConexionBaseDatos.IUsuarioDAO;
+import ConexionBaseDatos.PublicacionDAO;
 import ConexionBaseDatos.UsuariosDAOMysql;
 import DOMAINENTITIES.Usuario;
 import java.io.File;
@@ -37,12 +40,16 @@ public class CambioFotoPerfil extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            HttpSession sesion = request.getSession();
+        HttpSession sesion = request.getSession();
         try {
             FileItemFactory file_factory = new DiskFileItemFactory();
             ServletFileUpload servlet_up = new ServletFileUpload(file_factory);
             List items = servlet_up.parseRequest(request);
-            Usuario usr= new Usuario();
+            Usuario usr = new Usuario();
+            IPublicacionDAO iPublicacionDAO = new PublicacionDAO();
+            IUsuarioDAO iUsuarioDAO = new UsuariosDAOMysql();
+            usr.setiPublicacionDAO(iPublicacionDAO);
+            usr.setiUsuarioDAO(iUsuarioDAO);
             UsuariosDAOMysql usuario = new UsuariosDAOMysql();
             for (int i = 0; i < items.size(); i++) {
                 FileItem item = (FileItem) items.get(i);
@@ -55,7 +62,7 @@ public class CambioFotoPerfil extends HttpServlet {
                         File directorio = new File(direccion);
                         directorio.mkdir();
                         File archivo_server = new File(directorio + File.separator + item.getName());
-                        item.write(archivo_server);                        
+                        item.write(archivo_server);
                         usr = (Usuario) sesion.getAttribute("usuario");
                         usuario.cambiarFotoDePerfil("imagenes/"+item.getName(),usr.getCorreo());
                         usr.setFotourl("imagenes/"+item.getName());
@@ -65,7 +72,7 @@ public class CambioFotoPerfil extends HttpServlet {
             }
             request.getRequestDispatcher("MuestraPublicacion").forward(request, response);
         } catch (Exception e) {
-            request.getSession().setAttribute("msg",e.getMessage()); 
+            request.getSession().setAttribute("msg", e.getMessage());
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
     }

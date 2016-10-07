@@ -5,6 +5,10 @@
  */
 package PRESENTACIONCONTROLADORES;
 
+import ConexionBaseDatos.IPublicacionDAO;
+import ConexionBaseDatos.IUsuarioDAO;
+import ConexionBaseDatos.PublicacionDAO;
+import ConexionBaseDatos.UsuariosDAOMysql;
 import DOMAINENTITIES.Inmueble;
 import DOMAINENTITIES.Usuario;
 import java.io.IOException;
@@ -33,6 +37,10 @@ public class BusquedaByUsuario extends HttpServlet {
             throws ServletException, IOException {
         String usuario=request.getParameter("usuario");
         Usuario usr=new Usuario();
+        IPublicacionDAO iPublicacionDAO=new PublicacionDAO();
+        IUsuarioDAO iUsuarioDAO=new UsuariosDAOMysql();
+        usr.setiPublicacionDAO(iPublicacionDAO);
+        usr.setiUsuarioDAO(iUsuarioDAO);
         try{
             ArrayList<Inmueble> publicaciones=usr.consultarPublicacionesByUsuario(usuario);
         request.getSession().setAttribute("publicaciones", publicaciones);
