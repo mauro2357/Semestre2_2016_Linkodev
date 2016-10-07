@@ -76,6 +76,10 @@
         <servlet-name>Notificaciones</servlet-name>
         <servlet-class>PRESENTACIONCONTROLADORES.Notificaciones</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>IngresarCalificacionHotelito</servlet-name>
+        <servlet-class>PRESENTACIONCONTROLADORES.IngresarCalificacionHotelito</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Registro</servlet-name>
         <url-pattern>/Registro</url-pattern>
@@ -151,6 +155,10 @@
     <servlet-mapping>
         <servlet-name>Notificaciones</servlet-name>
         <url-pattern>/Notificaciones</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IngresarCalificacionHotelito</servlet-name>
+        <url-pattern>/IngresarCalificacionHotelito</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
