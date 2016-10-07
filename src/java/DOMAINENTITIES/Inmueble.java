@@ -161,13 +161,4 @@ public class Inmueble {
         this.contadorCalificacion = contadorCalificacion;
     }
     
-    public void calificar(int calificacion,String identificador) throws SQLException{
-        this.iCalificacionDAO = new PublicacionDAO();
-        try{
-            iCalificacionDAO.calificar(calificacion, identificador);
-        }
-        catch (SQLException ex) {
-            throw ex;
-        }
-    }
 }

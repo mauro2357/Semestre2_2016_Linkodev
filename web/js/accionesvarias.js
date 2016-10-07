@@ -10,6 +10,12 @@ function cancelarsubmit() {
         return false;
     }
 }
+function filtroIncorrecto() {
+    if (document.getElementById('imagenperfil').files.length === 0) {
+        alert("Por favor seleccione un archivo");
+        return false;
+    }
+}
 
 function previewFile() {
     var preview = document.querySelector('img');

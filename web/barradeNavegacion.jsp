@@ -38,6 +38,7 @@
                 </ul>
                 <ul class="right hide-on-med-and-down">                    
                     <li><a data-activates="slide-out" class="button-collapses"><i class="material-icons">person</i></a></li>                    
+                    <li><a href="Notificaciones"><i class="material-icons">notifications</i></a></li>                    
                 </ul>                
                 <ul class="right hide-on-med-and-down">                    
                     <form action="BusquedaByUsuario" method="">

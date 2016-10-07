@@ -5,6 +5,9 @@
  */
 package PRESENTACIONCONTROLADORES;
 
+import ConexionBaseDatos.ICalificacionDAO;
+import ConexionBaseDatos.PublicacionDAO;
+import ConexionBaseDatos.UsuariosDAOMysql;
 import DOMAINENTITIES.Inmueble;
 import DOMAINENTITIES.Usuario;
 import java.io.IOException;
@@ -65,11 +68,12 @@ public class Calificacion extends HttpServlet {
         int calificacionUsuario = Integer.parseInt(request.getParameter("estrellasVendedor"));
         String dueno = request.getParameter("dueno");
         String publicacion = request.getParameter("publicacion");
-        Inmueble inmueble = new Inmueble();
+        ICalificacionDAO iCalificacionDAO = new PublicacionDAO();
         Usuario usuario = new Usuario();
         try {
-            inmueble.calificar(calificacionInmueble, publicacion);
-            usuario.calificar(calificacionUsuario,dueno);
+            iCalificacionDAO.calificar(calificacionInmueble, publicacion);
+            iCalificacionDAO = (UsuariosDAOMysql)iCalificacionDAO;
+            iCalificacionDAO.calificar(calificacionUsuario,dueno);
             request.getRequestDispatcher("MuestraPublicacion").forward(request, response);
         } catch (SQLException ex) {
             request.getSession().setAttribute("msg", ex.getMessage());

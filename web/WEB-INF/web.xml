@@ -9,6 +9,10 @@
         <servlet-class>PRESENTACIONCONTROLADORES.ModificacionInformacion</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>Notificaciones</servlet-name>
+        <servlet-class>PRESENTACIONCONTROLADORES.Notificaciones</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>CreacionPublicacion</servlet-name>
         <servlet-class>PRESENTACIONCONTROLADORES.CreacionPublicacion</servlet-class>
     </servlet>
@@ -89,6 +93,10 @@
         <url-pattern>/InicioSesion</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>Notificaciones</servlet-name>
+        <url-pattern>/Notificaciones</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ModificacionContrasena</servlet-name>
         <url-pattern>/ModificacionContrasena</url-pattern>
     </servlet-mapping>
@@ -151,6 +159,8 @@
     <servlet-mapping>
         <servlet-name>Calificacion</servlet-name>
         <url-pattern>/Calificacion</url-pattern>
+        <servlet-name>Notificaciones</servlet-name>
+        <url-pattern>/Notificaciones</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

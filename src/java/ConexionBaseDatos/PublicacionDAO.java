@@ -95,7 +95,7 @@ public class PublicacionDAO implements IPublicacionDAO,ICalificacionDAO{
         Statement statement = conexion.getConeccion().createStatement();
         String query = "SELECT * FROM publicacion WHERE usu_correo= '" + correo + "'";
         ResultSet res = statement.executeQuery(query);
-        Inmueble publicacion = new Inmueble();
+        Inmueble publicacion;
         ArrayList<Inmueble> arrayPublicaciones = new ArrayList<>();
         boolean existencia = false;
         while (res.next()) {
@@ -162,10 +162,23 @@ public class PublicacionDAO implements IPublicacionDAO,ICalificacionDAO{
     }
     
     @Override
-    public ArrayList<Inmueble> filtrarPublicaciones(String tipooferta,String tipoinmueble,String ciudad,String precio) throws SQLException {
+    public ArrayList<Inmueble> filtrarPublicaciones(Inmueble inmueble) throws SQLException {
         ConexiónBD conexion = new ConexiónBD();
         Statement statement = conexion.getConeccion().createStatement();
-        String query = "SELECT * FROM publicacion WHERE usu_tipoinmueble= '" + tipoinmueble + "'";
+        boolean tipooferta = false,tipoinmueble = false,ciudad = false,precio = false;
+        if(inmueble.getTipoOferta() != null)
+            tipooferta = true;
+        if(inmueble.getTipoInmueble() != null)
+            tipoinmueble = true;
+        if(inmueble.getCiudad() != null)
+            ciudad = true;
+        if(inmueble.getPrecio() != null)
+            precio = true;
+        String query = "select * from publicacion "
+                + "where IF("+tipooferta+", pub_tipooferta = '"+inmueble.getTipoOferta()+"' , true) and "
+                + "IF("+tipoinmueble+", pub_tipoinmueble = '"+inmueble.getTipoInmueble()+"' ,true) and "
+                + "IF("+ciudad+", pub_ciudad = '"+inmueble.getCiudad()+"' , true) and "
+                + "IF("+precio+", pub_precio= '"+inmueble.getPrecio()+"' , true)";
         ResultSet res = statement.executeQuery(query);
         Inmueble publicacion;
         ArrayList<Inmueble> arrayPublicaciones = new ArrayList<>();
@@ -189,7 +202,7 @@ public class PublicacionDAO implements IPublicacionDAO,ICalificacionDAO{
             existencia = true;
         }
         if (!existencia) {
-            throw new SQLException("No se encontraron publicaciones que coincidan con tu búsqueda");
+            throw new SQLException("No se encontraron publicaciones que coincidan con tu búsqueda 2");
         }
         return arrayPublicaciones;
     }
@@ -206,6 +219,14 @@ public class PublicacionDAO implements IPublicacionDAO,ICalificacionDAO{
         ConexiónBD conexion = new ConexiónBD();
         Statement statement = conexion.getConeccion().createStatement();
         String query = "INSERT INTO adquisiciones VALUES ('"+correo+"',"+inmueble.getId()+")";
+        statement.executeUpdate(query);
+        this.agregarNotificacion(inmueble, correo);
+    }
+    private void agregarNotificacion(Inmueble inmueble,String correo) throws SQLException{
+        ConexiónBD conexion = new ConexiónBD();
+        Statement statement = conexion.getConeccion().createStatement();
+        String mensaje="El usuario "+correo+" ha adquirido tu publicacion "+inmueble.getId();
+        String query = "INSERT INTO notificaciones VALUES ('"+correo+"','"+inmueble.getDueno()+"','"+mensaje+"')";
         statement.executeUpdate(query);
     }
 

@@ -274,14 +274,36 @@ public class Usuario {
             throw ex;
         }
     }
-    
-    public void calificar(int calificacion,String identificador) throws SQLException{
-        try{
-            iCalificacionDAO.calificar(calificacion, identificador);
-        }
-        catch (SQLException ex) {
+
+    public ArrayList obtenerNotificaciones() throws SQLException {
+        ArrayList mensajes=new ArrayList<>();
+        try {
+            mensajes= iUsuarioDAO.obtenerNotificaciones(this.correo);
+        } catch (SQLException ex) {
             throw ex;
+        }        
+        if(mensajes.isEmpty())
+            mensajes.add("No tiene notificaciones pendientes");
+        return mensajes;
+    }
+    public ArrayList<Inmueble> filtrarPublicaciones(Inmueble inmueble) throws Exception {
+        ArrayList<Inmueble> publicaciones = new ArrayList<>();
+        try {
+            publicaciones = iPublicacionDAO.filtrarPublicaciones(inmueble);
+        } catch (SQLException ex) {
+            throw new Exception("No se encontraron publicaciones que coincidan con tu búsqueda ");
         }
+        return publicaciones;
     }
     
+    public ArrayList<Inmueble> mostrarPublicaciones() throws Exception {
+        ArrayList<Inmueble> publicaciones = new ArrayList<>();
+        try {
+            publicaciones = iPublicacionDAO.mostrarPublicaciones();
+        } catch (SQLException ex) {
+            throw new Exception("No se encontraron publicaciones que mostrar");
+        }
+        return publicaciones;
+    }
+
 }

@@ -1,7 +1,8 @@
-<%@page import="DOMAINENTITIES.Inmueble"%>
 <%@page import="java.util.ArrayList"%>
-<!DOCTYPE html>
-
+<%
+    HttpSession sesion2 = request.getSession();
+    ArrayList<String> mensajes =(ArrayList) sesion2.getAttribute("mensajes");
+%>
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -21,9 +22,15 @@
                 <div class="section no-pad-bot" id="index-banner">
                 </div>
                 <%@include file="FiltroBusqueda.jsp" %>
-                <%@include file="bodyCuenta.jsp" %>
+                <div class="collection">                                     
+                    <%                    for (String mens : mensajes) {
+                            out.println("<a href='#!' class='collection-item'>"+mens+"</a>");
+                        }
+                    %>                
+                </div>                
             </div>
         </div>
         <%@include file="footer.html" %>
     </body> 
 </html>
+

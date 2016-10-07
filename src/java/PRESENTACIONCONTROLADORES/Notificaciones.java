@@ -5,8 +5,6 @@
  */
 package PRESENTACIONCONTROLADORES;
 
-import ConexionBaseDatos.PublicacionDAO;
-import DOMAINENTITIES.Inmueble;
 import DOMAINENTITIES.Usuario;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -14,7 +12,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,10 +19,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author felipe
+ * @author Mateo Ortiz Cano
  */
-@WebServlet(name = "MuestraPublicacion", urlPatterns = {"/MuestraPublicacion"})
-public class MuestraPublicacion extends HttpServlet {
+public class Notificaciones extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,8 +33,18 @@ public class MuestraPublicacion extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException { 
-        
+            throws ServletException, IOException {
+        HttpSession sesion = request.getSession();
+        Usuario usuario = (Usuario) sesion.getAttribute("usuario");
+        System.out.println(usuario.getNombre() + "fffff");
+        try {
+            ArrayList mensajes = usuario.obtenerNotificaciones();            
+            sesion.setAttribute("mensajes", mensajes);
+            request.getRequestDispatcher("Notificaciones.jsp").forward(request, response);
+        } catch (SQLException ex) {
+            sesion.setAttribute("msg", ex.getMessage());
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -53,16 +59,7 @@ public class MuestraPublicacion extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Usuario usr = new Usuario();
-        ArrayList<Inmueble> arrayPublicaciones;
-        try {            
-            arrayPublicaciones = usr.mostrarPublicaciones();
-            HttpSession sesion = request.getSession();
-            sesion.setAttribute("publicaciones", arrayPublicaciones);
-            request.getRequestDispatcher("cuenta.jsp").forward(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(MuestraPublicacion.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -75,17 +72,8 @@ public class MuestraPublicacion extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {        
-        PublicacionDAO publicacion = new PublicacionDAO();
-        ArrayList<Inmueble> arrayPublicaciones;
-        try {            
-            arrayPublicaciones = publicacion.mostrarPublicaciones();
-            HttpSession sesion = request.getSession();
-            sesion.setAttribute("publicaciones", arrayPublicaciones);
-            request.getRequestDispatcher("cuenta.jsp").forward(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(MuestraPublicacion.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            throws ServletException, IOException {
+        processRequest(request, response);
     }
 
     /**

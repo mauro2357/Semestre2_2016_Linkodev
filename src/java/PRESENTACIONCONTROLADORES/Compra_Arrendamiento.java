@@ -71,6 +71,7 @@ public class Compra_Arrendamiento extends HttpServlet {
         }
         Inmueble inmueble = new Inmueble();
         inmueble.setId(publicacion);
+        inmueble.setDueno(dueno);
         Usuario usuario = new Usuario();
         usuario.setCorreo(cliente);
         try {
