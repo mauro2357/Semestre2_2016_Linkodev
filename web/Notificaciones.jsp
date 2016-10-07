@@ -24,7 +24,7 @@
                 <%@include file="FiltroBusqueda.jsp" %>
                 <div class="collection">                                     
                     <%                    for (String mens : mensajes) {
-                            out.println("<a href='#!' class='collection-item'>"+mens+"</a>");
+                            out.println("<a href='EliminacionNotificacion?mens="+mens+"&correo="+usr.getCorreo()+"' class='collection-item'>"+mens+"</a>");
                         }
                     %>                
                 </div>                

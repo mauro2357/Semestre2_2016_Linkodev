@@ -36,4 +36,6 @@ public interface IUsuarioDAO {
     public void cambiarFotoDePerfil(String fotourl, String correo)throws SQLException;
 
     public ArrayList obtenerNotificaciones(String correo) throws SQLException;
+    
+    public void eliminarNotificacion(String mensaje,String correo)throws SQLException;
 }

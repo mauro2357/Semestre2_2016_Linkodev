@@ -120,7 +120,6 @@ public class CreacionPublicacion extends HttpServlet {
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }        
     }
-
     /**
      * Returns a short description of the servlet.
      *

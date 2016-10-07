@@ -175,4 +175,12 @@ public class UsuariosDAOMysql implements IUsuarioDAO,ICalificacionDAO{
         }
         return mensajes;
     }
+
+    @Override
+    public void eliminarNotificacion(String mensaje,String correo) throws SQLException {
+        ConexiónBD conexionBD=new  ConexiónBD();
+        Statement statement= conexionBD.getConeccion().createStatement();
+        String query="DELETE FROM notificaciones WHERE dueno='"+correo+"' AND mensaje='"+mensaje+"'";
+        statement.executeUpdate(query);
+    }
 }

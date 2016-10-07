@@ -14,6 +14,8 @@ import ConexionBaseDatos.PublicacionDAO;
 import ConexionBaseDatos.UsuariosDAOMysql;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -321,5 +323,12 @@ public class Usuario {
         }
         return publicaciones;
     }
-
+    
+    public void eliminarNotificacion(String mensaje) throws Exception{
+        try {
+            iUsuarioDAO.eliminarNotificacion(mensaje,this.correo);
+        } catch (SQLException ex) {
+            throw new Exception("Error!");
+        }
+    }
 }
