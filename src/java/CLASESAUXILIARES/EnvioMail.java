@@ -35,6 +35,7 @@ public class EnvioMail {
             String correoOrigen = "linkodevs@gmail.com";
             Properties propiedades = System.getProperties();
             propiedades.put("mail.smtp.starttls.enable", "true");
+            propiedades.put("mail.smtp.ssl.trust", "smtp.gmail.com");
             propiedades.put("mail.smtp.host", host);
             propiedades.put("mail.smtp.user", correoOrigen);
             propiedades.put("mail.smtp.password", "linkodevs123");

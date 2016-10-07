@@ -44,25 +44,25 @@ public class CambioFotoPerfil extends HttpServlet {
             List items = servlet_up.parseRequest(request);
             Usuario usr= new Usuario();
             UsuariosDAOMysql usuario = new UsuariosDAOMysql();
-            FileItem item2 = null;
             for (int i = 0; i < items.size(); i++) {
                 FileItem item = (FileItem) items.get(i);
                 if (!item.isFormField()) {
                     if (item.getContentType().equals("image/jpeg") || item.getContentType().equals("image/png")
                             || item.getContentType().equals("image/jpg") || item.getContentType().equals("image/gif")
                             || item.getContentType().equals("image/bmp")) {
-                        File directorio = new File(getServletContext().getRealPath("imagenes/"));
+                        String direccion = getServletContext().getRealPath("");
+                        direccion = direccion.replace("build\\web", "web\\imagenes");
+                        File directorio = new File(direccion);
                         directorio.mkdir();
                         File archivo_server = new File(directorio + File.separator + item.getName());
                         item.write(archivo_server);                        
                         usr = (Usuario) sesion.getAttribute("usuario");
                         usuario.cambiarFotoDePerfil("imagenes/"+item.getName(),usr.getCorreo());
-                        item2=item;
+                        usr.setFotourl("imagenes/"+item.getName());
+                        sesion.setAttribute("usuario",usr);
                     }
                 }
             }
-            usr.setFotourl("imagenes/"+item2.getName());
-            sesion.setAttribute("usuario",usr);
             request.getRequestDispatcher("MuestraPublicacion").forward(request, response);
         } catch (Exception e) {
             request.getSession().setAttribute("msg",e.getMessage()); 
