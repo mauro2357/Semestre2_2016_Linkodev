@@ -7,6 +7,7 @@ package DOMAINENTITIES;
 
 import CLASESAUXILIARES.EnvioMail;
 import CLASESAUXILIARES.GeneracionDeCodigos;
+import ConexionBaseDatos.ICalificacionDAO;
 import ConexionBaseDatos.IPublicacionDAO;
 import ConexionBaseDatos.IUsuarioDAO;
 import ConexionBaseDatos.PublicacionDAO;
@@ -28,16 +29,27 @@ public class Usuario {
     private String fotourl;
     private IUsuarioDAO iUsuarioDAO;
     private IPublicacionDAO iPublicacionDAO;
+    private ICalificacionDAO iCalificacionDAO;
+    private int calificacion;
+    private int contadorCalificacion;
 
     public Usuario(String nombre, String correo, String contrasena, String telefono) {
         this.nombre = nombre;
         this.correo = correo;
         this.contrasena = contrasena;
         this.telefono = telefono;
+        this.iUsuarioDAO = new UsuariosDAOMysql();
+        this.iPublicacionDAO = new PublicacionDAO();
+        this.iCalificacionDAO = new UsuariosDAOMysql();
     }
 
     public Usuario(String correo, String contrasena, String contrasenaCambio) {
         this.correo = correo;
+        this.contrasena = contrasena;
+        this.contrasenaCambio = contrasenaCambio;
+        this.iUsuarioDAO = new UsuariosDAOMysql();
+        this.iPublicacionDAO = new PublicacionDAO();
+        this.iCalificacionDAO = new UsuariosDAOMysql();
         this.contrasena = contrasena;
         this.contrasenaCambio = contrasenaCambio;
     }
@@ -45,6 +57,12 @@ public class Usuario {
     public Usuario(String correo, String contrasena) {
         this.correo = correo;
         this.contrasena = contrasena;
+        this.iUsuarioDAO = new UsuariosDAOMysql();
+        this.iPublicacionDAO = new PublicacionDAO();
+        this.iCalificacionDAO = new UsuariosDAOMysql();
+
+        this.contrasena = contrasena;
+
     }
 
     public Usuario() {
@@ -53,6 +71,11 @@ public class Usuario {
         this.contrasena = "";
         this.telefono = "";
         this.fotourl = "";
+
+        this.iUsuarioDAO = new UsuariosDAOMysql();
+        this.iPublicacionDAO = new PublicacionDAO();
+        this.iCalificacionDAO = new UsuariosDAOMysql();
+
     }
 
     public void setiUsuarioDAO(IUsuarioDAO iUsuarioDAO) {
@@ -61,6 +84,7 @@ public class Usuario {
 
     public void setiPublicacionDAO(IPublicacionDAO iPublicacionDAO) {
         this.iPublicacionDAO = iPublicacionDAO;
+
     }
 
     public String getNombre() {
@@ -111,6 +135,21 @@ public class Usuario {
         this.contrasenaCambio = contrasenaCambio;
     }
 
+    public int getCalificacion() {
+        return calificacion;
+    }
+
+    public void setCalificacion(int calificacion) {
+        this.calificacion = calificacion;
+    }
+
+    public int getContadorCalificacion() {
+        return contadorCalificacion;
+    }
+
+    public void setContadorCalificacion(int contadorCalificacion) {
+        this.contadorCalificacion = contadorCalificacion;
+    }
     public void registrar() throws Exception {
         try {
             iUsuarioDAO.registrarUsuario(this);
@@ -282,4 +321,5 @@ public class Usuario {
         }
         return publicaciones;
     }
+
 }

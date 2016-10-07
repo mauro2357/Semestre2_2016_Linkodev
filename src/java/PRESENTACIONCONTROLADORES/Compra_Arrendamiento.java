@@ -84,7 +84,7 @@ public class Compra_Arrendamiento extends HttpServlet {
         usuario.setCorreo(cliente);
         try {
             usuario.adquirir(inmueble);            
-            request.getRequestDispatcher("MuestraPublicacion").forward(request, response);
+            request.getRequestDispatcher("Calificacion.jsp").forward(request, response);
         } catch (SQLException ex) {
             request.getSession().setAttribute("msg", ex.getMessage());
             request.getRequestDispatcher("error.jsp").forward(request, response);
