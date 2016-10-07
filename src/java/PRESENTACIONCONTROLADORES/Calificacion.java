@@ -68,12 +68,12 @@ public class Calificacion extends HttpServlet {
         int calificacionUsuario = Integer.parseInt(request.getParameter("estrellasVendedor"));
         String dueno = request.getParameter("dueno");
         String publicacion = request.getParameter("publicacion");
-        ICalificacionDAO iCalificacionDAO = new PublicacionDAO();
-        Usuario usuario = new Usuario();
+        ICalificacionDAO iCalificacionDAOPublicacion = new PublicacionDAO();
+        ICalificacionDAO iCalificacionDAOUsuario = new UsuariosDAOMysql();
+        
         try {
-            iCalificacionDAO.calificar(calificacionInmueble, publicacion);
-            iCalificacionDAO = (UsuariosDAOMysql)iCalificacionDAO;
-            iCalificacionDAO.calificar(calificacionUsuario,dueno);
+            iCalificacionDAOPublicacion.calificar(calificacionInmueble, publicacion);
+            iCalificacionDAOUsuario.calificar(calificacionUsuario,dueno);
             request.getRequestDispatcher("MuestraPublicacion").forward(request, response);
         } catch (SQLException ex) {
             request.getSession().setAttribute("msg", ex.getMessage());

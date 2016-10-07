@@ -178,7 +178,7 @@ public class PublicacionDAO implements IPublicacionDAO,ICalificacionDAO{
                 + "where IF("+tipooferta+", pub_tipooferta = '"+inmueble.getTipoOferta()+"' , true) and "
                 + "IF("+tipoinmueble+", pub_tipoinmueble = '"+inmueble.getTipoInmueble()+"' ,true) and "
                 + "IF("+ciudad+", pub_ciudad = '"+inmueble.getCiudad()+"' , true) and "
-                + "IF("+precio+", pub_precio= '"+inmueble.getPrecio()+"' , true)";
+                + "IF("+precio+", pub_precio= '"+inmueble.getPrecio()+"' , true) and pub_estado = 0";
         ResultSet res = statement.executeQuery(query);
         Inmueble publicacion;
         ArrayList<Inmueble> arrayPublicaciones = new ArrayList<>();

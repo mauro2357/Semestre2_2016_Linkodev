@@ -5,6 +5,10 @@
  */
 package PRESENTACIONCONTROLADORES;
 
+import ConexionBaseDatos.IPublicacionDAO;
+import ConexionBaseDatos.IUsuarioDAO;
+import ConexionBaseDatos.PublicacionDAO;
+import ConexionBaseDatos.UsuariosDAOMysql;
 import DOMAINENTITIES.CreadorApartamento;
 import DOMAINENTITIES.CreadorBodegas;
 import DOMAINENTITIES.CreadorCasas;
@@ -13,7 +17,6 @@ import DOMAINENTITIES.CreadorInmuebles;
 import DOMAINENTITIES.Inmueble;
 import DOMAINENTITIES.Usuario;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -72,6 +75,10 @@ public class FiltradoBusqueda extends HttpServlet {
         CreadorInmuebles creador;
         ArrayList<Inmueble> arrayPublicaciones;
         Usuario usr = new Usuario();
+        IPublicacionDAO iPublicacionDAO=new PublicacionDAO();
+        IUsuarioDAO iUsuarioDAO=new UsuariosDAOMysql();
+        usr.setiPublicacionDAO(iPublicacionDAO);
+        usr.setiUsuarioDAO(iUsuarioDAO);
         //dependiendo de el tipon de inmueble que ingrese en el formulario
         if(request.getParameter("tipoinmueble") != null){
             switch (request.getParameter("tipoinmueble")) {

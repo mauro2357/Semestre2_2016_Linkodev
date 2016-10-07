@@ -48,8 +48,8 @@
                                 </div>                                
                                 <div class="input-field col s12">
                                     <input  name="contrasena" type="password" class="validate" required="">                                    
-                                    <label for="contraseña">Contraseña</label>
-                                    <a class="blue-text" href="RecuperacionContrasena.jsp">¿Has olvidado tu contraseña?</a>
+                                    <label for="contrasena">contrasena</label>
+                                    <a class="blue-text" href="RecuperacionContrasena.jsp">¿Has olvidado tu contrasena?</a>
                                 </div>                                
                                 <div class="row center col s12">
                                     <button type="submit" name="Login_boton" class="btn-large waves-effect waves-light orange">Iniciar Sesión</button>

@@ -43,10 +43,10 @@ public class ServicioAutenticacion {
      */
     @GET
     @Produces(MediaType.TEXT_HTML)
-    public String getXml(String datosUsuario) throws Exception {
-        Gson g=new Gson();
+    public String getXml(@QueryParam ("datosUsuario") String datosUsuario) throws Exception {                
+        Gson g=new Gson();        
         Usuario usr=g.fromJson(datosUsuario,Usuario.class);
-        Usuario usuario=new Usuario(usr.getCorreo(),usr.getContraseña());
+        Usuario usuario=new Usuario(usr.getCorreo(),usr.getcontrasena());
         usuario=usuario.iniciarSesion();              
         String UUSS=g.toJson(usuario);
         return UUSS;

@@ -35,7 +35,7 @@
                 </nav>
                 <div class="centrototal">
                     <h6 class="small">
-                        Ingresa tu correo electrónico y te enviaremos un código para reestablecer tu contraseña
+                        Ingresa tu correo electrónico y te enviaremos un código para reestablecer tu contrasena
                     </h6>
                     <br/>
                     <hr/>

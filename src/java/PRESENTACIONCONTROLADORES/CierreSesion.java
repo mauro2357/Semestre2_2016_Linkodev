@@ -5,6 +5,10 @@
  */
 package PRESENTACIONCONTROLADORES;
 
+import ConexionBaseDatos.IPublicacionDAO;
+import ConexionBaseDatos.IUsuarioDAO;
+import ConexionBaseDatos.PublicacionDAO;
+import ConexionBaseDatos.UsuariosDAOMysql;
 import DOMAINENTITIES.Usuario;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -34,6 +38,10 @@ public class CierreSesion extends HttpServlet {
         sesion.removeAttribute("usuario");
         sesion.invalidate();
         Usuario usr = new Usuario();   
+        IPublicacionDAO iPublicacionDAO=new PublicacionDAO();
+        IUsuarioDAO iUsuarioDAO=new UsuariosDAOMysql();
+        usr.setiPublicacionDAO(iPublicacionDAO);
+        usr.setiUsuarioDAO(iUsuarioDAO);
         usr = (Usuario) request.getSession().getAttribute("usuario");
         response.setHeader( "Pragma", "no-cache" ); 
         response.addHeader( "Cache-Control", "must-revalidate" ); 

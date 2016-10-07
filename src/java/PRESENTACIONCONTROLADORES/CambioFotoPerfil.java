@@ -5,6 +5,9 @@
  */
 package PRESENTACIONCONTROLADORES;
 
+import ConexionBaseDatos.IPublicacionDAO;
+import ConexionBaseDatos.IUsuarioDAO;
+import ConexionBaseDatos.PublicacionDAO;
 import ConexionBaseDatos.UsuariosDAOMysql;
 import DOMAINENTITIES.Usuario;
 import java.io.File;
@@ -37,12 +40,16 @@ public class CambioFotoPerfil extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            HttpSession sesion = request.getSession();
+        HttpSession sesion = request.getSession();
         try {
             FileItemFactory file_factory = new DiskFileItemFactory();
             ServletFileUpload servlet_up = new ServletFileUpload(file_factory);
             List items = servlet_up.parseRequest(request);
-            Usuario usr= new Usuario();
+            Usuario usr = new Usuario();
+            IPublicacionDAO iPublicacionDAO = new PublicacionDAO();
+            IUsuarioDAO iUsuarioDAO = new UsuariosDAOMysql();
+            usr.setiPublicacionDAO(iPublicacionDAO);
+            usr.setiUsuarioDAO(iUsuarioDAO);
             UsuariosDAOMysql usuario = new UsuariosDAOMysql();
             FileItem item2 = null;
             for (int i = 0; i < items.size(); i++) {
@@ -54,18 +61,18 @@ public class CambioFotoPerfil extends HttpServlet {
                         File directorio = new File(getServletContext().getRealPath("imagenes/"));
                         directorio.mkdir();
                         File archivo_server = new File(directorio + File.separator + item.getName());
-                        item.write(archivo_server);                        
+                        item.write(archivo_server);
                         usr = (Usuario) sesion.getAttribute("usuario");
-                        usuario.cambiarFotoDePerfil("imagenes/"+item.getName(),usr.getCorreo());
-                        item2=item;
+                        usuario.cambiarFotoDePerfil("imagenes/" + item.getName(), usr.getCorreo());
+                        item2 = item;
                     }
                 }
             }
-            usr.setFotourl("imagenes/"+item2.getName());
-            sesion.setAttribute("usuario",usr);
+            usr.setFotourl("imagenes/" + item2.getName());
+            sesion.setAttribute("usuario", usr);
             request.getRequestDispatcher("MuestraPublicacion").forward(request, response);
         } catch (Exception e) {
-            request.getSession().setAttribute("msg",e.getMessage()); 
+            request.getSession().setAttribute("msg", e.getMessage());
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
     }

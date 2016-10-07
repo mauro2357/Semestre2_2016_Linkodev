@@ -5,6 +5,10 @@
  */
 package PRESENTACIONCONTROLADORES;
 
+import ConexionBaseDatos.IPublicacionDAO;
+import ConexionBaseDatos.IUsuarioDAO;
+import ConexionBaseDatos.PublicacionDAO;
+import ConexionBaseDatos.UsuariosDAOMysql;
 import DOMAINENTITIES.Inmueble;
 import DOMAINENTITIES.Usuario;
 import java.io.IOException;
@@ -73,6 +77,10 @@ public class Compra_Arrendamiento extends HttpServlet {
         inmueble.setId(publicacion);
         inmueble.setDueno(dueno);
         Usuario usuario = new Usuario();
+        IPublicacionDAO iPublicacionDAO=new PublicacionDAO();
+        IUsuarioDAO iUsuarioDAO=new UsuariosDAOMysql();
+        usuario.setiPublicacionDAO(iPublicacionDAO);
+        usuario.setiUsuarioDAO(iUsuarioDAO);
         usuario.setCorreo(cliente);
         try {
             usuario.adquirir(inmueble);            

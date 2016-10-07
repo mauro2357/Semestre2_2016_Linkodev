@@ -5,6 +5,10 @@
  */
 package PRESENTACIONCONTROLADORES;
 
+import ConexionBaseDatos.IPublicacionDAO;
+import ConexionBaseDatos.IUsuarioDAO;
+import ConexionBaseDatos.PublicacionDAO;
+import ConexionBaseDatos.UsuariosDAOMysql;
 import DOMAINENTITIES.Usuario;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -36,9 +40,12 @@ public class Notificaciones extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sesion = request.getSession();
         Usuario usuario = (Usuario) sesion.getAttribute("usuario");
-        System.out.println(usuario.getNombre() + "fffff");
+        IPublicacionDAO iPublicacionDAO = new PublicacionDAO();
+        IUsuarioDAO iUsuarioDAO = new UsuariosDAOMysql();
+        usuario.setiPublicacionDAO(iPublicacionDAO);
+        usuario.setiUsuarioDAO(iUsuarioDAO);
         try {
-            ArrayList mensajes = usuario.obtenerNotificaciones();            
+            ArrayList mensajes = usuario.obtenerNotificaciones();
             sesion.setAttribute("mensajes", mensajes);
             request.getRequestDispatcher("Notificaciones.jsp").forward(request, response);
         } catch (SQLException ex) {

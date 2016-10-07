@@ -5,6 +5,10 @@
  */
 package PRESENTACIONCONTROLADORES;
 
+import ConexionBaseDatos.IPublicacionDAO;
+import ConexionBaseDatos.IUsuarioDAO;
+import ConexionBaseDatos.PublicacionDAO;
+import ConexionBaseDatos.UsuariosDAOMysql;
 import DOMAINENTITIES.Usuario;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -61,10 +65,14 @@ public class VerificacionCodigoContrasena extends HttpServlet {
         String codigodos = (String) request.getSession().getAttribute("codigoenviado");
         Usuario usuario =  (Usuario) request.getSession().getAttribute("usuario");
         Usuario usr = new Usuario();
+        IPublicacionDAO iPublicacionDAO=new PublicacionDAO();
+        IUsuarioDAO iUsuarioDAO=new UsuariosDAOMysql();
+        usr.setiPublicacionDAO(iPublicacionDAO);
+        usr.setiUsuarioDAO(iUsuarioDAO);
         try {
             usr.verificarCodigoContrasena(codigouno,codigodos);
             request.getSession().setAttribute("usuario", usuario);
-            request.getRequestDispatcher("NuevaContraseñaRecuperacion.jsp").forward(request, response);
+            request.getRequestDispatcher("NuevacontrasenaRecuperacion.jsp").forward(request, response);
         } catch (Exception ex) {            
             request.getSession().setAttribute("msg", ex.getMessage());
             request.getRequestDispatcher("error.jsp").forward(request, response);

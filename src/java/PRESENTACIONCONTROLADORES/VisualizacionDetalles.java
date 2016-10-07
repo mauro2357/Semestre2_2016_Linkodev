@@ -5,6 +5,10 @@
  */
 package PRESENTACIONCONTROLADORES;
 
+import ConexionBaseDatos.IPublicacionDAO;
+import ConexionBaseDatos.IUsuarioDAO;
+import ConexionBaseDatos.PublicacionDAO;
+import ConexionBaseDatos.UsuariosDAOMysql;
 import DOMAINENTITIES.Inmueble;
 import DOMAINENTITIES.Usuario;
 import java.io.IOException;
@@ -32,16 +36,20 @@ public class VisualizacionDetalles extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String id = request.getParameter("id");     
-        Usuario usr=new Usuario();        
-        try {            
-            Inmueble pub=usr.DetallarInmueble(id);           
-            request.getSession().setAttribute("publicacion", pub);            
+        String id = request.getParameter("id");
+        Usuario usr = new Usuario();
+        IPublicacionDAO iPublicacionDAO = new PublicacionDAO();
+        IUsuarioDAO iUsuarioDAO = new UsuariosDAOMysql();
+        usr.setiPublicacionDAO(iPublicacionDAO);
+        usr.setiUsuarioDAO(iUsuarioDAO);
+        try {
+            Inmueble pub = usr.DetallarInmueble(id);
+            request.getSession().setAttribute("publicacion", pub);
             request.getRequestDispatcher("Detalles.jsp").forward(request, response);
-        } catch (SQLException ex) {            
-            request.getSession().setAttribute("msg",ex.getMessage());
+        } catch (SQLException ex) {
+            request.getSession().setAttribute("msg", ex.getMessage());
             request.getRequestDispatcher("error.jsp").forward(request, response);
-        } 
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

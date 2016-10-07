@@ -24,26 +24,26 @@ public class UsuariosDAOMysql implements IUsuarioDAO,ICalificacionDAO{
      */
     @Override
     public void registrarUsuario(Usuario persona) throws SQLException {
-        Encriptacion encriptarcontraseña = new Encriptacion();
-        String contraseñaEncriptada = encriptarcontraseña.Encriptar(persona.getContraseña());
+        Encriptacion encriptarcontrasena = new Encriptacion();
+        String contrasenaEncriptada = encriptarcontrasena.Encriptar(persona.getcontrasena());
         ConexiónBD nuevaconexion = new ConexiónBD();
         Statement stm = nuevaconexion.getConeccion().createStatement();
         String query="INSERT INTO usuario VALUES ('"+persona.getNombre()+"','"
-            +persona.getCorreo()+"','"+contraseñaEncriptada+"','"
+            +persona.getCorreo()+"','"+contrasenaEncriptada+"','"
             +persona.getTelefono()+"','imagenes/nopic.png', 1, 0,0,0)";
         stm.executeUpdate(query);
     }
 
     @Override
-    public String consultarContraseña(String correoUsuario) throws SQLException, Exception {
+    public String consultarcontrasena(String correoUsuario) throws SQLException, Exception {
         ConexiónBD nuevaconexion = new ConexiónBD();
-        Encriptacion desencriptarContraseña = new Encriptacion();
+        Encriptacion desencriptarcontrasena = new Encriptacion();
         Statement statement = nuevaconexion.getConeccion().createStatement();
         String query = "SELECT * FROM usuario WHERE usu_correo ='" + correoUsuario + "'";
         ResultSet res = statement.executeQuery(query);
         res.next();
-        String contraseña = desencriptarContraseña.Desencriptar(res.getString("usu_contrasena"));
-        return contraseña;
+        String contrasena = desencriptarcontrasena.Desencriptar(res.getString("usu_contrasena"));
+        return contrasena;
     }
 
     @Override
@@ -111,12 +111,12 @@ public class UsuariosDAOMysql implements IUsuarioDAO,ICalificacionDAO{
     @Override
     public void modificarContrasena(Usuario usr) throws SQLException {
         ConexiónBD nuevaconexion = new ConexiónBD();
-        Encriptacion encriptarcontraseña = new Encriptacion();
-        System.out.println("contraseña actual" + usr.getContraseñaCambio());
-        System.out.println("contraseña encriptada" + encriptarcontraseña.Encriptar(usr.getContraseñaCambio()));
-        String contraseña = encriptarcontraseña.Encriptar(usr.getContraseñaCambio());
+        Encriptacion encriptarcontrasena = new Encriptacion();
+        System.out.println("contrasena actual" + usr.getcontrasenaCambio());
+        System.out.println("contrasena encriptada" + encriptarcontrasena.Encriptar(usr.getcontrasenaCambio()));
+        String contrasena = encriptarcontrasena.Encriptar(usr.getcontrasenaCambio());
         Statement stm = nuevaconexion.getConeccion().createStatement();
-        String queryModificar = "UPDATE usuario SET usu_contrasena='" + contraseña + "' "
+        String queryModificar = "UPDATE usuario SET usu_contrasena='" + contrasena + "' "
                 + "where usu_correo = '" + usr.getCorreo() + "'";
         stm.executeUpdate(queryModificar);
     }
