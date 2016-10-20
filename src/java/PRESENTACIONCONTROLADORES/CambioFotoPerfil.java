@@ -58,11 +58,14 @@ public class CambioFotoPerfil extends HttpServlet {
                             || item.getContentType().equals("image/jpg") || item.getContentType().equals("image/gif")
                             || item.getContentType().equals("image/bmp")) {
                         String direccion = getServletContext().getRealPath("");
-                        direccion = direccion.replace("build\\web", "web\\imagenes");
+                        System.out.println(direccion);
+                        direccion = direccion.replace("build/web", "web/imagenes");
+                        System.out.println(direccion);
                         File directorio = new File(direccion);
                         directorio.mkdir();
                         File archivo_server = new File(directorio + File.separator + item.getName());
                         item.write(archivo_server);
+                        System.out.println("aaaa  "+direccion+ File.separator + item.getName());
                         usr = (Usuario) sesion.getAttribute("usuario");
                         usuario.cambiarFotoDePerfil("imagenes/"+item.getName(),usr.getCorreo());
                         usr.setFotourl("imagenes/"+item.getName());

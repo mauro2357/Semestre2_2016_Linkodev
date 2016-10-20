@@ -18,9 +18,9 @@
         <link rel="shortcut icon" href="imagenes/logoCasa.png">
     </head>
     <body>
-        <nav class="light-blue lighten-1" role="navigation">
+        <nav class="blue darken-4" role="navigation">
             <div class="nav-wrapper container"><a id="logo-container" href="MuestraPublicacion" class="brand-logo">IOInmuebles</a>
-                <ul id="slide-out" class="right side-nav">
+                <ul id="slide-out" class="right side-nav blue darken-4">
                     <li><div class="userView">
                             <a><img onClick=" window.location.href = 'fotodeperfil.jsp'" class="circle" src="<%=usr.getFotourl()%>"></a>
                             <a><span class="white-text name"><%=usr.getNombre()%></span></a>

@@ -22,13 +22,13 @@
                 <div class="row">
                     <%                    for (Inmueble pub : publicaciones) {
                             out.println("<div id='publicaciones' class='col s2'>");
-                            out.println("<div class='card'>");
+                            out.println("<div class='card grey accent-4'>");
                             out.println("<div class='card-image'>");
-                            out.println("<img src='imagenes/logoCasa.png'>");                           
+                            out.println("<img src='imagenes/descargar.jpeg'>");                           
                             out.println("</div>");
-                            out.println("<div class='card-content'>");
-                            out.println("<span class='card-title white-text'>" + pub.getTipoInmueble() + "</span><br>");
-                            out.println("<span class='card-title white-text'>" + pub.getTipoOferta() + "</span><br>");
+                            out.println("<div class='card-content'>");                  
+                            out.println("<span class='white-text'>" + pub.getTipoInmueble() + "</span><br>");
+                            out.println("<span class='white-text'>" + pub.getTipoOferta() + "</span><br>");
                             out.println("<span class='white-text'> Precio:$ " + pub.getPrecio() + "</span><br>");
                             out.println("<span class='white-text'> Ciudad: " + pub.getCiudad() + "</span>");
                             out.println("</div>");
