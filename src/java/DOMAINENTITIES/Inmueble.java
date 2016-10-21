@@ -22,6 +22,8 @@ public class Inmueble {
     private String ciudad;
     private String direccion;
     private String barrio;
+    private String latitud;
+    private String longitud;
     private String precio;
     private String habitaciones;
     private String banos;
@@ -32,6 +34,22 @@ public class Inmueble {
     private int calificacion;
     private int contadorCalificacion;
     private ICalificacionDAO iCalificacionDAO;
+
+    public String getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(String lalitud) {
+        this.latitud = lalitud;
+    }
+
+    public String getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(String longitud) {
+        this.longitud = longitud;
+    }
     
     public String getDueno() {
         return dueno;

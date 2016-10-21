@@ -53,6 +53,30 @@
                                     Barrio:
                                     <input  name="barrio" type="text" class="validate" value="<%=pub.getBarrio()%>" readonly="">
                                 </div>
+                                <div>
+                                    <input name="latitud" id="latitud" type="text" value="<%=pub.getLatitud()%>" hidden="true">
+                                </div>
+                                <div>
+                                    <input name="longitud" id="longitud" type="text" value="<%=pub.getLongitud()%>" hidden="true">
+                                </div> 
+                                <div id="map" style="width:100%;height:500px"></div>
+
+                                <script>
+                                    function myMap() {
+                                        var latitud=document.getElementById("latitud").value;
+                                        var longitud=document.getElementById("longitud").value;
+                                        var myCenter = new google.maps.LatLng(latitud,longitud);
+                                        var mapCanvas = document.getElementById("map");
+                                        var mapOptions = {center: myCenter, zoom: 17};
+                                        var map = new google.maps.Map(mapCanvas, mapOptions);
+                                        var marker = new google.maps.Marker({position: myCenter});
+                                        marker.setMap(map);
+                                    }
+                                </script>
+
+                                <script src="https://maps.googleapis.com/maps/api/js?callback=myMap&key=AIzaSyClkrRnbW8WB2Rl7_L_RuXDcJmbhSKPjfM"></script>                               
+
+                                <br><br>
                                 <div class="col s6">
                                     Precio:
                                     <input  name="precio" type="text" class="validate" value="<%=pub.getPrecio()%>" readonly="">

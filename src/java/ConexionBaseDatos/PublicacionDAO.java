@@ -22,7 +22,7 @@ public class PublicacionDAO implements IPublicacionDAO,ICalificacionDAO{
     public void registrarPublicacion(Inmueble publicacion) throws SQLException {
         ConexiónBD nuevaconexion = new ConexiónBD();
         PreparedStatement stm;
-        String query = "INSERT INTO publicacion VALUES (" + null + ",?,?,?,?,?,?,?,?,?,?,?,?,0,0,0,0)";
+        String query = "INSERT INTO publicacion VALUES (" + null + ",?,?,?,?,?,?,?,?,?,?,?,?,0,0,0,0,?,?)";
         stm = nuevaconexion.getConeccion().prepareStatement(query);
         stm.setString(1, publicacion.getDueno());
         stm.setString(2, publicacion.getTipoOferta());
@@ -36,6 +36,8 @@ public class PublicacionDAO implements IPublicacionDAO,ICalificacionDAO{
         stm.setString(10, publicacion.getPiso());
         stm.setString(11, publicacion.getArea());
         stm.setString(12, publicacion.getEstrato());
+        stm.setString(13, publicacion.getLatitud());
+        stm.setString(14, publicacion.getLongitud());
         
         try {
             stm.executeUpdate();
@@ -55,7 +57,8 @@ public class PublicacionDAO implements IPublicacionDAO,ICalificacionDAO{
                 +"', pub_direccion='"+publicacion.getDireccion()+"', pub_barrio='"+publicacion.getBarrio()
                 +"', pub_precio='"+publicacion.getPrecio()+"',pub_habitaciones='"+publicacion.getHabitaciones()
                 +"',pub_banos='"+publicacion.getBanos()+"', pub_area='"+publicacion.getArea()
-                +"',pub_estrato='"+publicacion.getEstrato()+"',pub_contador="+publicacion.getContadorVisitas()+" where pub_id="+publicacion.getId();
+                +"',pub_estrato='"+publicacion.getEstrato()+"',pub_contador="+publicacion.getContadorVisitas()+"', pub_latitud='"+publicacion.getLatitud()
+                +"',pub_longitud='"+publicacion.getLongitud()+" where pub_id="+publicacion.getId();
         stm.executeUpdate(query);
     }
 
@@ -84,6 +87,8 @@ public class PublicacionDAO implements IPublicacionDAO,ICalificacionDAO{
             publicacion.setArea(rs.getString("pub_area"));
             publicacion.setEstrato(rs.getString("pub_estrato"));
             publicacion.setId(rs.getString("pub_id"));
+            publicacion.setLongitud(rs.getString("pub_longitud"));
+            publicacion.setLatitud(rs.getString("pub_latitud"));
             arrayPublicaciones.add(publicacion);            
         }
         return arrayPublicaciones;
@@ -113,6 +118,8 @@ public class PublicacionDAO implements IPublicacionDAO,ICalificacionDAO{
             publicacion.setArea(res.getString("pub_area"));
             publicacion.setEstrato(res.getString("pub_estrato"));
             publicacion.setId(res.getString("pub_id"));
+            publicacion.setLongitud(res.getString("pub_longitud"));
+            publicacion.setLatitud(res.getString("pub_latitud"));
             arrayPublicaciones.add(publicacion);
             existencia = true;
         }
@@ -147,6 +154,8 @@ public class PublicacionDAO implements IPublicacionDAO,ICalificacionDAO{
         publicacion.setContadorVisitas(res.getInt("pub_contador"));
         publicacion.setCalificacion(res.getInt("pub_contadorcalificadores"));
         publicacion.setContadorCalificacion(res.getInt("pub_sumacalificacion"));
+        publicacion.setLongitud(res.getString("pub_longitud"));
+        publicacion.setLatitud(res.getString("pub_latitud"));
         return publicacion;
     }
     
@@ -198,6 +207,8 @@ public class PublicacionDAO implements IPublicacionDAO,ICalificacionDAO{
             publicacion.setArea(res.getString("pub_area"));
             publicacion.setEstrato(res.getString("pub_estrato"));
             publicacion.setId(res.getString("pub_id"));
+            publicacion.setLongitud(res.getString("pub_longitud"));
+            publicacion.setLatitud(res.getString("pub_latitud"));
             arrayPublicaciones.add(publicacion);
             existencia = true;
         }
