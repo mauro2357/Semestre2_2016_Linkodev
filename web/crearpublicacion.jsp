@@ -72,8 +72,8 @@
                                 <script>
                                 function myMap() {
                                   var mapCanvas = document.getElementById("map");
-                                  var myCenter=new google.maps.LatLng(51.508742,-0.120850);
-                                  var mapOptions = {center: myCenter, zoom: 5};
+                                  var myCenter=new google.maps.LatLng(6.219082,-75.332379);
+                                  var mapOptions = {center: myCenter, zoom: 19};
                                   var map = new google.maps.Map(mapCanvas, mapOptions);
                                   google.maps.event.addListener(map, 'click', function(event) {
                                     placeMarker(map, event.latLng);
