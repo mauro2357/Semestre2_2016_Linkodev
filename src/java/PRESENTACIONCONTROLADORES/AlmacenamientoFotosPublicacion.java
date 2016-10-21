@@ -12,6 +12,7 @@ import ConexionBaseDatos.UsuariosDAOMysql;
 import DOMAINENTITIES.Usuario;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,9 +26,9 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
- * @author Mateo Ortiz Cano
+ * @author Pipe
  */
-public class CambioFotoPerfil extends HttpServlet {
+public class AlmacenamientoFotosPublicacion extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,41 +41,6 @@ public class CambioFotoPerfil extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession sesion = request.getSession();
-        try {
-            FileItemFactory file_factory = new DiskFileItemFactory();
-            ServletFileUpload servlet_up = new ServletFileUpload(file_factory);
-            List items = servlet_up.parseRequest(request);
-            Usuario usr = new Usuario();
-            IPublicacionDAO iPublicacionDAO = new PublicacionDAO();
-            IUsuarioDAO iUsuarioDAO = new UsuariosDAOMysql();
-            usr.setiPublicacionDAO(iPublicacionDAO);
-            usr.setiUsuarioDAO(iUsuarioDAO);
-            UsuariosDAOMysql usuario = new UsuariosDAOMysql();
-            for (int i = 0; i < items.size(); i++) {
-                FileItem item = (FileItem) items.get(i);
-                if (!item.isFormField()) {
-                    if (item.getContentType().equals("image/jpeg") || item.getContentType().equals("image/png")
-                            || item.getContentType().equals("image/jpg") || item.getContentType().equals("image/gif")
-                            || item.getContentType().equals("image/bmp")) {
-                        String direccion = getServletContext().getRealPath("");
-                        usr = (Usuario) sesion.getAttribute("usuario");
-                        direccion = direccion.replace("build"+ File.separator +"web", "web"+ File.separator +"imagenes"+ File.separator +usr.getCorreo());
-                        File directorio = new File(direccion);
-                        directorio.mkdir();
-                        File archivo_server = new File(directorio + File.separator + item.getName());
-                        item.write(archivo_server);
-                        usuario.cambiarFotoDePerfil("imagenes/"+usr.getCorreo()+"/"+item.getName(),usr.getCorreo());
-                        usr.setFotourl("imagenes/"+usr.getCorreo()+"/"+item.getName());
-                        sesion.setAttribute("usuario",usr);
-                    }
-                }
-            }
-            request.getRequestDispatcher("MuestraPublicacion").forward(request, response);
-        } catch (Exception e) {
-            request.getSession().setAttribute("msg", e.getMessage());
-            request.getRequestDispatcher("error.jsp").forward(request, response);
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -103,6 +69,48 @@ public class CambioFotoPerfil extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession sesion = request.getSession();
+        try {
+            FileItemFactory file_factory = new DiskFileItemFactory();
+            ServletFileUpload servlet_up = new ServletFileUpload(file_factory);
+            List items = servlet_up.parseRequest(request);
+            Usuario usr = new Usuario();
+            IPublicacionDAO iPublicacionDAO = new PublicacionDAO();
+            IUsuarioDAO iUsuarioDAO = new UsuariosDAOMysql();
+            usr.setiPublicacionDAO(iPublicacionDAO);
+            usr.setiUsuarioDAO(iUsuarioDAO);
+            UsuariosDAOMysql usuario = new UsuariosDAOMysql();
+            String url = null;
+            int Idpublicacion = 0;
+            for (int i = 0; i < items.size(); i++) {
+                FileItem item = (FileItem) items.get(i);
+                if (!item.isFormField()) {
+                    if (item.getContentType().equals("image/jpeg") || item.getContentType().equals("image/png")
+                            || item.getContentType().equals("image/jpg") || item.getContentType().equals("image/gif")
+                            || item.getContentType().equals("image/bmp")) {
+                        String direccion = getServletContext().getRealPath("");
+                        usr = (Usuario) sesion.getAttribute("usuario");
+                        Idpublicacion = usr.consultarIdUltimaPublicacion(usr.getCorreo());
+                        direccion = direccion.replace("build"+ File.separator +"web", "web"+ File.separator +"imagenes"+ File.separator +usr.getCorreo()+ File.separator +"publicacion"+Idpublicacion);
+                        url = "imagenes/"+usr.getCorreo()+"/publicacion"+Idpublicacion+"/"+item.getName();
+                        if(i == 0)
+                            usr.establecerFotoPublicacion(url, Idpublicacion);
+                        File directorio = new File(direccion);
+                        directorio.mkdir();
+                        File archivo_server = new File(directorio + File.separator + item.getName());
+                        item.write(archivo_server);
+                        usr.guardarFotosPublicacion(url,Idpublicacion);
+                        sesion.setAttribute("usuario", usr);
+                        System.out.println(url);
+                        System.out.println(direccion);
+                    }
+                }
+            }
+            request.getRequestDispatcher("MuestraPublicacion").forward(request, response);
+        } catch (Exception e) {
+            request.getSession().setAttribute("msg", e.getMessage());
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+        }
         processRequest(request, response);
     }
 

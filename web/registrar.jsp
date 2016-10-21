@@ -16,7 +16,7 @@
     <body>
         <div id="wrap">
             <div id="main">
-                <nav class="light-blue lighten-1" role="navigation">
+                <nav class="blue darken-4" role="navigation">
                     <div class="nav-wrapper container"><a id="logo-container" href="index.jsp" class="brand-logo">IOInmuebles</a>
                         <ul class="right hide-on-med-and-down">
                             <li><a href="index.jsp">Inicio</a></li>

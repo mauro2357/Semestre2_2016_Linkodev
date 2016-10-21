@@ -84,6 +84,10 @@
         <servlet-name>EliminacionNotificacion</servlet-name>
         <servlet-class>PRESENTACIONCONTROLADORES.EliminacionNotificacion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AlmacenamientoFotosPublicacion</servlet-name>
+        <servlet-class>PRESENTACIONCONTROLADORES.AlmacenamientoFotosPublicacion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Registro</servlet-name>
         <url-pattern>/Registro</url-pattern>
@@ -171,6 +175,10 @@
     <servlet-mapping>
         <servlet-name>EliminacionNotificacion</servlet-name>
         <url-pattern>/EliminacionNotificacion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AlmacenamientoFotosPublicacion</servlet-name>
+        <url-pattern>/AlmacenamientoFotosPublicacion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

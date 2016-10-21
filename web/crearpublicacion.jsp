@@ -15,6 +15,7 @@
         <link href="css/newcss.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <script src="js/accionesvarias.js"></script>
+        <script type="text/javascript" src="http://maps.google.com/maps?file=api&v=2&key=AIzaSyClkrRnbW8WB2Rl7_L_RuXDcJmbhSKPjfM"></script>
         <link rel="shortcut icon" href="imagenes/logoCasa.png">
     </head>
     <body>
@@ -66,6 +67,40 @@
                                     Barrio:
                                     <input  name="barrio" type="text" class="validate">
                                 </div>
+
+                                <div id="map" align="center" style="width: 500px; height: 500px"></div>
+                                <script>
+                                    function myMap() {
+                                        var mapCanvas = document.getElementById("map");
+                                        var myCenter = new google.maps.LatLng(51.508742, -0.120850);
+                                        var mapOptions = {center: myCenter, zoom: 5};
+                                        var map = new google.maps.Map(mapCanvas, mapOptions);
+                                        google.maps.event.addListener(map, 'click', function (event) {
+                                            placeMarker(map, event.latLng);
+                                        });
+                                    }
+
+                                    function placeMarker(map, location) {
+                                        var marker = new google.maps.Marker({
+                                            position: location,
+                                            map: map
+                                        });
+                                        var infowindow = new google.maps.InfoWindow({
+                                            content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
+                                        });
+                                        infowindow.open(map, marker);
+                                        document.getElementById('latitud').value = location.lat();
+                                        document.getElementById('longitud').value = location.lng();
+                                    }
+                                </script>
+
+                                <script src="https://maps.googleapis.com/maps/api/js?callback=myMap&key=AIzaSyClkrRnbW8WB2Rl7_L_RuXDcJmbhSKPjfM"></script>
+                                <div>
+                                    <input id="latitud" type="text" value="" hidden="true">
+                                </div>
+                                <div>
+                                    <input id="longitud" type="text" value="" hidden="true">
+                                </div>  
                                 <div class="col s6">
                                     Precio:
                                     <input  name="precio" type="text" class="validate" onkeypress="return valida(event)">
@@ -93,7 +128,7 @@
                                 <br>
                                 <div class="row center col s12">
                                     <button  type="submit" name="publicarboton" class="btn-large waves-effect waves-light orange">Publicar</button>
-                                </div>
+                                </div> 
                             </form>
                         </div>
                     </div>

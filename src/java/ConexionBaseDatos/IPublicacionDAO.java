@@ -35,4 +35,10 @@ public interface IPublicacionDAO {
     public void ActualizarEstadoInmueble(Inmueble inmueble) throws SQLException;
 
     public void registrarAdquisision(Inmueble inmueble, String correo) throws SQLException;
+    
+    public int obtenerIdUltimaPublicacion(String correo)throws SQLException;
+    
+    public void guardarFotosPublicacion(String url,int id)throws SQLException;
+    
+    public void establecerFotoPublicacion(String url,int id)throws SQLException;
 }

@@ -56,7 +56,7 @@
                                     Ciudad:
                                     <select name="ciudad">
                                         <option value="<%=pub.getCiudad()%>"><%=pub.getCiudad()%></option>
-                                        <option value="Bogotá">Bogotá</option>
+                                        <option value="Bogota">Bogotá</option>
                                         <option value="Medellin">Medellín</option>
                                     </select>
                                 </div>

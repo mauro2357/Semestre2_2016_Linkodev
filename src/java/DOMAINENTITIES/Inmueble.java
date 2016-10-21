@@ -28,6 +28,7 @@ public class Inmueble {
     private String piso;
     private String area;
     private String estrato;
+    private String fotourl;
     private int contadorVisitas;
     private int calificacion;
     private int contadorCalificacion;
@@ -136,6 +137,14 @@ public class Inmueble {
     public void setId(String id) {
         this.id = id;
     }    
+
+    public String getFotourl() {
+        return fotourl;
+    }
+
+    public void setFotourl(String fotourl) {
+        this.fotourl = fotourl;
+    }
 
     public int getContadorVisitas() {
         return contadorVisitas;

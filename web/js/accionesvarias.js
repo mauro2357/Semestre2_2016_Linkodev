@@ -16,20 +16,34 @@ function filtroIncorrecto() {
         return false;
     }
 }
+function previewPictures(input,img) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
 
-function previewFile() {
-    var preview = document.querySelector('img');
-    var file = document.querySelector('input[type=file]').files[0];
-    var reader = new FileReader();
-    document.write("holaaa");
-    reader.addEventListener("load", function () {
-        preview.src = reader.result;
-    }, false);
+        reader.onload = function (e) {
+            $('#'+img).attr('src', e.target.result);
+        };
 
-    if (file) {
-        reader.readAsDataURL(file);
+        reader.readAsDataURL(input.files[0]);
     }
 }
+
+function previewFile(input) {
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#imagenprev').attr('src', e.target.result);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$("#imagenperfil").change(function(){
+    readURL(this);
+});
 
 function valida(e) {
     tecla = (document.all) ? e.keyCode : e.which;
@@ -102,6 +116,41 @@ function mandarAlerta2(cont) {
         alert("Don/Doña tal vez estes alquilando o vendiendo el inmueble muy caro");
         return false;
     }
+}
+
+function load() {
+    if (GBrowserIsCompatible()) {
+      var map = new GMap2(document.getElementById("map"));
+      //map.setCenter(new GLatLng(37.4419, -122.1419), 13);
+      map.setCenter(new GLatLng(-19.435514, 48.603516), 5);
+      map.addControl(new GMapTypeControl());
+      map.addControl(new GLargeMapControl());
+      map.addControl(new GScaleControl());
+      map.addControl(new GOverviewMapControl());
+      var point = new GLatLng(-19.000514,46.603516);
+      map.addOverlay(new GMarker(point));
+    }
+  }
+  
+function myMap() {
+  var mapCanvas = document.getElementById("map");
+  var myCenter=new google.maps.LatLng(51.508742,-0.120850);
+  var mapOptions = {center: myCenter, zoom: 5};
+  var map = new google.maps.Map(mapCanvas, mapOptions);
+  google.maps.event.addListener(map, 'click', function(event) {
+    placeMarker(map, event.latLng);
+  });
+}
+
+function placeMarker(map, location) {
+  var marker = new google.maps.Marker({
+    position: location,
+    map: map
+  });
+  var infowindow = new google.maps.InfoWindow({
+    content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
+  });
+  infowindow.open(map,marker);
 }
 
 

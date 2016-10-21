@@ -22,7 +22,7 @@ public class PublicacionDAO implements IPublicacionDAO,ICalificacionDAO{
     public void registrarPublicacion(Inmueble publicacion) throws SQLException {
         ConexiónBD nuevaconexion = new ConexiónBD();
         PreparedStatement stm;
-        String query = "INSERT INTO publicacion VALUES (" + null + ",?,?,?,?,?,?,?,?,?,?,?,?,0,0,0,0)";
+        String query = "INSERT INTO publicacion VALUES (" + null + ",?,?,?,?,?,?,?,?,?,?,?,?,0,0,0,0,0)";
         stm = nuevaconexion.getConeccion().prepareStatement(query);
         stm.setString(1, publicacion.getDueno());
         stm.setString(2, publicacion.getTipoOferta());
@@ -84,6 +84,7 @@ public class PublicacionDAO implements IPublicacionDAO,ICalificacionDAO{
             publicacion.setArea(rs.getString("pub_area"));
             publicacion.setEstrato(rs.getString("pub_estrato"));
             publicacion.setId(rs.getString("pub_id"));
+            publicacion.setFotourl(rs.getString("pub_fotourl"));
             arrayPublicaciones.add(publicacion);            
         }
         return arrayPublicaciones;
@@ -249,4 +250,45 @@ public class PublicacionDAO implements IPublicacionDAO,ICalificacionDAO{
         statement.executeUpdate(query);
         insertarSuma(calificacion, identificador);
     }   
+
+    @Override
+    public int obtenerIdUltimaPublicacion(String correo) throws SQLException {
+        ConexiónBD conexion = new ConexiónBD();
+        Statement statement = conexion.getConeccion().createStatement();
+        String query = "SELECT max(pub_id) from publicacion where usu_correo = '"+correo+"'";
+        ResultSet res = statement.executeQuery(query);
+        while (res.next()) {
+            return res.getInt(1);
+        }
+        return -1;
+    }
+
+    @Override
+    public void guardarFotosPublicacion(String url,int id) throws SQLException {
+        ConexiónBD conexion = new ConexiónBD();
+        Statement statement = conexion.getConeccion().createStatement();
+        String query = "INSERT INTO fotos VALUES(" + null + ",'"+id+"','"+url+"')";
+        try {
+            statement.executeUpdate(query);
+            conexion.getConeccion().close();
+            statement.close();
+        } catch (SQLException ex) {
+            throw new SQLException(ex.getMessage());
+        }
+    }
+
+    @Override
+    public void establecerFotoPublicacion(String url, int id) throws SQLException {
+        ConexiónBD conexion = new ConexiónBD();
+        Statement statement = conexion.getConeccion().createStatement();
+        String query = "UPDATE publicacion set pub_fotourl = '"+url+"' where pub_id="+id;
+        System.out.println(query);
+        try {
+            statement.executeUpdate(query);
+            conexion.getConeccion().close();
+            statement.close();
+        } catch (SQLException ex) {
+            throw new SQLException(ex.getMessage());
+        }
+    }
 }

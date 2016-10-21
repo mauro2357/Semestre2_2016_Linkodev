@@ -38,7 +38,7 @@
                                         <div class="file-field input-field">
                                             <div class="btn-large waves-effect waves-light orange">
                                                 <span>Elegir foto</span>
-                                                <input id="imagenperfil"  type="file" name="inputFile" value="" accept="image/*" onchange="previewFile()"/><br>
+                                                <input id="imagenperfil"  type="file" name="inputFile" value="" accept="image/*" onchange="previewFile(this)"/><br>
                                             </div>
                                             <div class="file-path-wrapper col s3">
                                                 <input class="file-path validate" type="text" >

@@ -114,7 +114,7 @@ public class CreacionPublicacion extends HttpServlet {
         try{
             usuario.registrarPublicacion(inmueble);
             sesion.setAttribute("usuario", usr);
-            request.getRequestDispatcher("MuestraPublicacion").forward(request, response);
+            request.getRequestDispatcher("FotosPublicacion.jsp").forward(request, response);
         }catch(SQLException e){
             sesion.setAttribute("msg",e.getMessage()); 
             request.getRequestDispatcher("error.jsp").forward(request, response);

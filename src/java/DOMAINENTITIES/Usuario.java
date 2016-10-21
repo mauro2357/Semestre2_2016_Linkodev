@@ -331,4 +331,32 @@ public class Usuario {
             throw new Exception("Error!");
         }
     }
+    
+    public int consultarIdUltimaPublicacion(String correo) throws Exception{
+        int IdPublicacion = -1;
+        try {
+            IdPublicacion = iPublicacionDAO.obtenerIdUltimaPublicacion(correo);
+            if(IdPublicacion != -1)
+                return IdPublicacion;
+        } catch (SQLException ex) {
+            throw new Exception("Error! "+ex.getMessage());
+        } 
+        return IdPublicacion;
+    }
+    
+    public void guardarFotosPublicacion(String url, int id) throws Exception{
+        try {
+            iPublicacionDAO.guardarFotosPublicacion(url,id);
+        } catch (SQLException ex) {
+            throw new Exception("Error! "+ex.getMessage());
+        }
+    }
+    
+    public void establecerFotoPublicacion(String url,int id) throws Exception {
+        try {
+            iPublicacionDAO.establecerFotoPublicacion(url,id);
+        } catch (SQLException ex) {
+            throw new Exception("Error! "+ex.getMessage());
+        }
+    }
 }
