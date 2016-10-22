@@ -131,7 +131,7 @@ function load() {
   function initMap() {
       var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 19,
-        center: {lat: -34.397, lng: 150.644}
+        center: {lat: 6.219077, lng: -75.332346}
       });
       var geocoder = new google.maps.Geocoder();
 
