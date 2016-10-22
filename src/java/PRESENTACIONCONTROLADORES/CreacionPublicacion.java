@@ -100,6 +100,8 @@ public class CreacionPublicacion extends HttpServlet {
         inmueble.setCiudad(request.getParameter("ciudad"));
         inmueble.setDireccion(request.getParameter("direccion"));
         inmueble.setBarrio(request.getParameter("barrio"));
+        inmueble.setLatitud(request.getParameter("latitud"));
+        inmueble.setLongitud(request.getParameter("longitud"));
         inmueble.setPrecio(request.getParameter("precio"));
         inmueble.setHabitaciones(request.getParameter("habitaciones"));
         inmueble.setBanos(request.getParameter("banos"));

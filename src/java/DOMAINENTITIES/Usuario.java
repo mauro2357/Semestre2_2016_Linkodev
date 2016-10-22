@@ -40,8 +40,6 @@ public class Usuario {
         this.correo = correo;
         this.contrasena = contrasena;
         this.telefono = telefono;
-        this.iUsuarioDAO = new UsuariosDAOMysql();
-        this.iPublicacionDAO = new PublicacionDAO();
         this.iCalificacionDAO = new UsuariosDAOMysql();
     }
 
@@ -49,8 +47,6 @@ public class Usuario {
         this.correo = correo;
         this.contrasena = contrasena;
         this.contrasenaCambio = contrasenaCambio;
-        this.iUsuarioDAO = new UsuariosDAOMysql();
-        this.iPublicacionDAO = new PublicacionDAO();
         this.iCalificacionDAO = new UsuariosDAOMysql();
         this.contrasena = contrasena;
         this.contrasenaCambio = contrasenaCambio;
@@ -59,8 +55,6 @@ public class Usuario {
     public Usuario(String correo, String contrasena) {
         this.correo = correo;
         this.contrasena = contrasena;
-        this.iUsuarioDAO = new UsuariosDAOMysql();
-        this.iPublicacionDAO = new PublicacionDAO();
         this.iCalificacionDAO = new UsuariosDAOMysql();
 
         this.contrasena = contrasena;
@@ -73,9 +67,6 @@ public class Usuario {
         this.contrasena = "";
         this.telefono = "";
         this.fotourl = "";
-
-        this.iUsuarioDAO = new UsuariosDAOMysql();
-        this.iPublicacionDAO = new PublicacionDAO();
         this.iCalificacionDAO = new UsuariosDAOMysql();
 
     }

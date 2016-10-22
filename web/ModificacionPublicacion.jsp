@@ -68,6 +68,43 @@
                                     Barrio:
                                     <input  name="barrio" type="text" class="validate" value="<%=pub.getBarrio()%>">
                                 </div>
+                                
+                                <div id="map" align="center" style="width: 500px; height: 500px"></div>
+                                <script>
+                                function myMap() {
+                                  var mapCanvas = document.getElementById("map");
+                                  var myCenter=new google.maps.LatLng(4.724252074523265,-74.0643310546875);
+                                  var mapOptions = {center: myCenter, zoom: 5};
+                                  var map = new google.maps.Map(mapCanvas, mapOptions);
+                                  google.maps.event.addListener(map, 'click', function(event) {
+                                    placeMarker(map, event.latLng);
+                                  });
+                                }
+
+                                function placeMarker(map, location) {
+                                  var marker = new google.maps.Marker({
+                                    position: location,
+                                    map: map
+                                  });
+                                  var infowindow = new google.maps.InfoWindow({
+                                    content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
+                                  });
+                                  infowindow.open(map,marker);
+                                  document.getElementById('latitud').value = location.lat();
+                                  document.getElementById('longitud').value = location.lng();
+                                }
+                                </script>
+
+                                <script src="https://maps.googleapis.com/maps/api/js?callback=myMap&key=AIzaSyClkrRnbW8WB2Rl7_L_RuXDcJmbhSKPjfM"></script>
+                                <br><br>
+                                <div>
+                                    <input name="latitud" id="latitud" type="text" value="" hidden="true">
+                                </div>
+                                <div>
+                                    <input name="longitud" id="longitud" type="text" value="" hidden="true">
+                                </div>
+                                
+                                
                                 <div class="col s6">
                                     Precio:
                                     <input  name="precio" type="text" class="validate" value="<%=pub.getPrecio()%>">

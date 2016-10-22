@@ -67,40 +67,23 @@
                                     Barrio:
                                     <input  name="barrio" type="text" class="validate">
                                 </div>
+                                <div id="map" align="center" style="width: 500px; height: 500px">
                                 
-                                <div id="map" align="center" style="width: 500px; height: 500px"></div>
-                                <script>
-                                function myMap() {
-                                  var mapCanvas = document.getElementById("map");
-                                  var myCenter=new google.maps.LatLng(6.219082,-75.332379);
-                                  var mapOptions = {center: myCenter, zoom: 19};
-                                  var map = new google.maps.Map(mapCanvas, mapOptions);
-                                  google.maps.event.addListener(map, 'click', function(event) {
-                                    placeMarker(map, event.latLng);
-                                  });
-                                }
-
-                                function placeMarker(map, location) {
-                                  var marker = new google.maps.Marker({
-                                    position: location,
-                                    map: map
-                                  });
-                                  var infowindow = new google.maps.InfoWindow({
-                                    content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
-                                  });
-                                  infowindow.open(map,marker);
-                                  document.getElementById('latitud').value = location.lat();
-                                  document.getElementById('longitud').value = location.lng();
-                                }
-                                </script>
-
-                                <script src="https://maps.googleapis.com/maps/api/js?callback=myMap&key=AIzaSyClkrRnbW8WB2Rl7_L_RuXDcJmbhSKPjfM"></script>
-                                <div>
-                                    <input id="latitud" type="text" value="" hidden="true">
                                 </div>
                                 <div>
-                                    <input id="longitud" type="text" value="" hidden="true">
+                                    <input id="address" type="textbox" value="Rionegro,antioquia">
+                                    <input id="submit" type="button" value="Buscar">
+                                </div>
+                                <script src="https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyClkrRnbW8WB2Rl7_L_RuXDcJmbhSKPjfM"></script>
+                                <div>
+                                    Longitud:
+                                    <input name="latitud" id="latitud" type="text" value="">
+                                </div>
+                                <div>
+                                    Latitud:
+                                    <input name="longitud" id="longitud" type="text" value="">
                                 </div>  
+                                <br><br>
                                 <div class="col s6">
                                     Precio:
                                     <input  name="precio" type="text" class="validate" onkeypress="return valida(event)">
