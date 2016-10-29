@@ -79,9 +79,7 @@ public class AlmacenamientoFotosPublicacion extends HttpServlet {
             IUsuarioDAO iUsuarioDAO = new UsuariosDAOMysql();
             usr.setiPublicacionDAO(iPublicacionDAO);
             usr.setiUsuarioDAO(iUsuarioDAO);
-            UsuariosDAOMysql usuario = new UsuariosDAOMysql();
             String url = null;
-            int Idpublicacion = 0;
             for (int i = 0; i < items.size(); i++) {
                 FileItem item = (FileItem) items.get(i);
                 if (!item.isFormField()) {
@@ -90,19 +88,17 @@ public class AlmacenamientoFotosPublicacion extends HttpServlet {
                             || item.getContentType().equals("image/bmp")) {
                         String direccion = getServletContext().getRealPath("");
                         usr = (Usuario) sesion.getAttribute("usuario");
-                        Idpublicacion = usr.consultarIdUltimaPublicacion(usr.getCorreo());
+                        int Idpublicacion = iPublicacionDAO.consultarIdUltimaPublicacion(usr.getCorreo());
                         direccion = direccion.replace("build"+ File.separator +"web", "web"+ File.separator +"imagenes"+ File.separator +usr.getCorreo()+ File.separator +"publicacion"+Idpublicacion);
                         url = "imagenes/"+usr.getCorreo()+"/publicacion"+Idpublicacion+"/"+item.getName();
                         if(i == 0)
-                            usr.establecerFotoPublicacion(url, Idpublicacion);
+                            iPublicacionDAO.establecerFotoPublicacion(url, Idpublicacion);
                         File directorio = new File(direccion);
                         directorio.mkdir();
                         File archivo_server = new File(directorio + File.separator + item.getName());
                         item.write(archivo_server);
-                        usr.guardarFotosPublicacion(url,Idpublicacion);
+                        iPublicacionDAO.guardarFotosPublicacion(url,Idpublicacion);
                         sesion.setAttribute("usuario", usr);
-                        System.out.println(url);
-                        System.out.println(direccion);
                     }
                 }
             }

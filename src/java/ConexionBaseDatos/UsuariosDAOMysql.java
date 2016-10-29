@@ -139,7 +139,7 @@ public class UsuariosDAOMysql implements IUsuarioDAO,ICalificacionDAO{
         try {
             stm.executeUpdate(query);
         } catch (SQLException ex) {
-            throw new SQLException("Error! 404");
+            throw new SQLException("Error! 404 "+ex.getMessage());
         }
     }
     

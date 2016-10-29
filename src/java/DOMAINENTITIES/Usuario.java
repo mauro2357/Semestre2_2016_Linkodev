@@ -40,8 +40,6 @@ public class Usuario {
         this.correo = correo;
         this.contrasena = contrasena;
         this.telefono = telefono;
-        this.iUsuarioDAO = new UsuariosDAOMysql();
-        this.iPublicacionDAO = new PublicacionDAO();
         this.iCalificacionDAO = new UsuariosDAOMysql();
     }
 
@@ -49,8 +47,6 @@ public class Usuario {
         this.correo = correo;
         this.contrasena = contrasena;
         this.contrasenaCambio = contrasenaCambio;
-        this.iUsuarioDAO = new UsuariosDAOMysql();
-        this.iPublicacionDAO = new PublicacionDAO();
         this.iCalificacionDAO = new UsuariosDAOMysql();
         this.contrasena = contrasena;
         this.contrasenaCambio = contrasenaCambio;
@@ -59,8 +55,6 @@ public class Usuario {
     public Usuario(String correo, String contrasena) {
         this.correo = correo;
         this.contrasena = contrasena;
-        this.iUsuarioDAO = new UsuariosDAOMysql();
-        this.iPublicacionDAO = new PublicacionDAO();
         this.iCalificacionDAO = new UsuariosDAOMysql();
 
         this.contrasena = contrasena;
@@ -73,9 +67,6 @@ public class Usuario {
         this.contrasena = "";
         this.telefono = "";
         this.fotourl = "";
-
-        this.iUsuarioDAO = new UsuariosDAOMysql();
-        this.iPublicacionDAO = new PublicacionDAO();
         this.iCalificacionDAO = new UsuariosDAOMysql();
 
     }
@@ -333,15 +324,13 @@ public class Usuario {
     }
     
     public int consultarIdUltimaPublicacion(String correo) throws Exception{
-        int IdPublicacion = -1;
+        int Idpub = 0;
         try {
-            IdPublicacion = iPublicacionDAO.obtenerIdUltimaPublicacion(correo);
-            if(IdPublicacion != -1)
-                return IdPublicacion;
+            Idpub =iPublicacionDAO.consultarIdUltimaPublicacion(correo);
         } catch (SQLException ex) {
             throw new Exception("Error! "+ex.getMessage());
-        } 
-        return IdPublicacion;
+        }
+        return Idpub;
     }
     
     public void guardarFotosPublicacion(String url, int id) throws Exception{

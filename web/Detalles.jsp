@@ -4,12 +4,14 @@
     Author     : linkcodev
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="DOMAINENTITIES.Inmueble"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
     HttpSession sesionI = request.getSession();
     Inmueble pub = (Inmueble) sesionI.getAttribute("publicacion");
+    ArrayList<String> fotos = (ArrayList) sesionI.getAttribute("fotos");
 %>
 <html>
     <head>
@@ -19,10 +21,10 @@
         <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="css/newcss.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-        <script src="js/accionesvarias.js"></script>
         <link rel="shortcut icon" href="imagenes/logoCasa.png">
     </head>
     <body>
+
         <div id="wrap">
             <div id="main">
                 <%@include file="barradeNavegacion.jsp"%>
@@ -31,6 +33,19 @@
                         <br><br>
                         <h4>Detalles publicación</h4>
                         <br><br>
+                        <%String foto1 = (String) ((fotos.get(0) == null) ? "imagenes/no-imagen.jpg" : fotos.get(0));
+                            String foto2 = (String) ((fotos.get(1) == null) ? "imagenes/no-imagen.jpg" : fotos.get(1));
+                            String foto3 = (String) ((fotos.get(2) == null) ? "imagenes/no-imagen.jpg" : fotos.get(2));
+                            String foto4 = (String) ((fotos.get(3) == null) ? "imagenes/no-imagen.jpg" : fotos.get(3));
+                            String foto5 = (String) ((fotos.get(4) == null) ? "imagenes/no-imagen.jpg" : fotos.get(4));
+                        %>
+                        <div class="carousel">
+                            <a class="carousel-item" href="#one!"><img src="<%=foto1%>"></a>
+                            <a class="carousel-item" href="#two!"><img src="<%=foto2%>"></a>
+                            <a class="carousel-item" href="#three!"><img src="<%=foto3%>"></a>
+                            <a class="carousel-item" href="#four!"><img src="<%=foto4%>"></a>
+                            <a class="carousel-item" href="#five!"><img src="<%=foto5%>"></a>
+                        </div>
                         <div class="row">
                             <form id="formularioDetalles" class="col s12" action="Compra_Arrendamiento" method="post">
                                 <div class="input-field col s6">
@@ -53,6 +68,30 @@
                                     Barrio:
                                     <input  name="barrio" type="text" class="validate" value="<%=pub.getBarrio()%>" readonly="">
                                 </div>
+                                <div>
+                                    <input name="latitud" id="latitud" type="text" value="<%=pub.getLatitud()%>" hidden="true">
+                                </div>
+                                <div>
+                                    <input name="longitud" id="longitud" type="text" value="<%=pub.getLongitud()%>" hidden="true">
+                                </div> 
+                                <div id="map" style="width:100%;height:500px"></div>
+
+                                <script>
+                                    function myMap() {
+                                        var latitud = document.getElementById("latitud").value;
+                                        var longitud = document.getElementById("longitud").value;
+                                        var myCenter = new google.maps.LatLng(latitud, longitud);
+                                        var mapCanvas = document.getElementById("map");
+                                        var mapOptions = {center: myCenter, zoom: 17};
+                                        var map = new google.maps.Map(mapCanvas, mapOptions);
+                                        var marker = new google.maps.Marker({position: myCenter});
+                                        marker.setMap(map);
+                                    }
+                                </script>
+
+                                <script src="https://maps.googleapis.com/maps/api/js?callback=myMap&key=AIzaSyClkrRnbW8WB2Rl7_L_RuXDcJmbhSKPjfM"></script>                               
+
+                                <br><br>
                                 <div class="col s6">
                                     Precio:
                                     <input  name="precio" type="text" class="validate" value="<%=pub.getPrecio()%>" readonly="">
@@ -94,7 +133,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> 
         <%@include file="footer.html" %>
     </body>
 </html>

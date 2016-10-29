@@ -11,9 +11,11 @@ import ConexionBaseDatos.PublicacionDAO;
 import ConexionBaseDatos.UsuariosDAOMysql;
 import DOMAINENTITIES.Inmueble;
 import DOMAINENTITIES.Usuario;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -44,7 +46,25 @@ public class VisualizacionDetalles extends HttpServlet {
         usr.setiUsuarioDAO(iUsuarioDAO);
         try {
             Inmueble pub = usr.DetallarInmueble(id);
+            String directorio = getServletContext().getRealPath("");
+            directorio = directorio.replace("build"+ File.separator +"web", "web"+ File.separator +"imagenes"+ File.separator +pub.getDueno()+File.separator+"publicacion"+pub.getId());
+            File f = new File(directorio);
+            ArrayList<String> fotos = new ArrayList<>(5);
+            if (f.exists()){ 
+                File[] ficheros = f.listFiles();
+                for (File fichero : ficheros) {
+                    String fotourl = "imagenes"+File.separator+pub.getDueno()+File.separator+"publicacion"+pub.getId()+File.separator+fichero.getName();
+                    fotos.add(fotourl);
+                }
+                fotos.add(null);
+                fotos.add(null);
+                fotos.add(null);
+                fotos.add(null);
+                fotos.add(null);
+                
+            }
             request.getSession().setAttribute("publicacion", pub);
+            request.getSession().setAttribute("fotos", fotos);
             request.getRequestDispatcher("Detalles.jsp").forward(request, response);
         } catch (SQLException ex) {
             request.getSession().setAttribute("msg", ex.getMessage());

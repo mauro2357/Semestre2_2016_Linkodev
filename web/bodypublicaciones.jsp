@@ -25,7 +25,7 @@
                             out.println("<div id='publicaciones' class='col s2'>");
                             out.println("<div class='card'>");
                             out.println("<div class='card-image'>");
-                            out.println("<img src='imagenes/logoCasa.png'>");
+                            out.println("<img src='"+pub.getFotourl()+"' height='150' width='200'>");
                             out.println("</div>");
                             out.println("<div class='card-content'>");
                             out.println("<span class='card-title white-text'>" + pub.getTipoInmueble() + " - " + pub.getTipoOferta() + "</span><br>");
