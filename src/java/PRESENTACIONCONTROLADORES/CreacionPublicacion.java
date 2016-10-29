@@ -73,7 +73,6 @@ public class CreacionPublicacion extends HttpServlet {
         HttpSession sesion = request.getSession();
         Usuario usr = (Usuario) sesion.getAttribute("usuario");
         CreadorInmuebles creador;
-        System.out.println("asfawfwwwwwwwwwwwwwwwwwwwwwww");
         //dependiendo de el tipon de inmueble que ingrese en el formulario
         switch (request.getParameter("tipoinmueble")) {
             case "Casa":
@@ -116,7 +115,6 @@ public class CreacionPublicacion extends HttpServlet {
         usuario.setiUsuarioDAO(iUsuarioDAO);
         
         try{
-            System.out.println("aaaaa"+inmueble.getLatitud());
             usuario.registrarPublicacion(inmueble);
             sesion.setAttribute("usuario", usr);
             request.getRequestDispatcher("FotosPublicacion.jsp").forward(request, response);

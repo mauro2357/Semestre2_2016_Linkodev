@@ -167,8 +167,8 @@ public class Usuario {
         return usuarioI;
     }
 
-    public Usuario iniciarSesion() throws Exception {
-        boolean existenciaUsuario = iUsuarioDAO.consultarCorreo(this.getCorreo());
+    public Usuario iniciarSesion() throws Exception {        
+        boolean existenciaUsuario = iUsuarioDAO.consultarCorreo(this.getCorreo());        
         if (!existenciaUsuario) {
             throw new Exception("El correo ingresado no esta registrado");
         }

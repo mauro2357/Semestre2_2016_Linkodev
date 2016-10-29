@@ -212,6 +212,7 @@ public class PublicacionDAO implements IPublicacionDAO,ICalificacionDAO{
             publicacion.setId(res.getString("pub_id"));
             publicacion.setLongitud(res.getString("pub_longitud"));
             publicacion.setLatitud(res.getString("pub_latitud"));
+            publicacion.setFotourl(res.getString("pub_fotourl"));
             arrayPublicaciones.add(publicacion);
             existencia = true;
         }

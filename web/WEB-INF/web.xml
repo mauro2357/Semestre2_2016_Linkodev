@@ -85,6 +85,10 @@
         <servlet-class>PRESENTACIONCONTROLADORES.EliminacionNotificacion</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>IngresoHotelito</servlet-name>
+        <servlet-class>PRESENTACIONCONTROLADORES.IngresoHotelito</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>AlmacenamientoFotosPublicacion</servlet-name>
         <servlet-class>PRESENTACIONCONTROLADORES.AlmacenamientoFotosPublicacion</servlet-class>
     </servlet>
@@ -175,6 +179,10 @@
     <servlet-mapping>
         <servlet-name>EliminacionNotificacion</servlet-name>
         <url-pattern>/EliminacionNotificacion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IngresoHotelito</servlet-name>
+        <url-pattern>/IngresoHotelito</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AlmacenamientoFotosPublicacion</servlet-name>

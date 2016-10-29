@@ -133,27 +133,58 @@ function load() {
     }
   }
   
-function myMap() {
-  var mapCanvas = document.getElementById("map");
-  var myCenter=new google.maps.LatLng(51.508742,-0.120850);
-  var mapOptions = {center: myCenter, zoom: 5};
-  var map = new google.maps.Map(mapCanvas, mapOptions);
-  google.maps.event.addListener(map, 'click', function(event) {
-    placeMarker(map, event.latLng);
-  });
-}
-
-function placeMarker(map, location) {
-  var marker = new google.maps.Marker({
-    position: location,
-    map: map
-  });
-  var infowindow = new google.maps.InfoWindow({
-    content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
-  });
-  infowindow.open(map,marker);
-}
+  function myMap() {
+    var mapCanvas = document.getElementById("map");
+    var myCenter=new google.maps.LatLng(6.219082,-75.332379);
+    var mapOptions = {center: myCenter, zoom: 19};
+    var map = new google.maps.Map(mapCanvas, mapOptions);
+    google.maps.event.addListener(map, 'click', function(event) {
+      placeMarker(map, event.latLng);
+    });
+  }
 
 
+  function initMap() {
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 19,
+        center: {lat: 6.219077, lng: -75.332346}
+      });
+      var geocoder = new google.maps.Geocoder();
 
+      document.getElementById('submit').addEventListener('click', function(event) {
+        geocodeAddress(geocoder, map);
+        //placeMarker(map, event.latLng);
+      });
+  }
 
+  function geocodeAddress(geocoder, resultsMap) {
+      var address = document.getElementById('address').value;
+      geocoder.geocode({'address': address}, function(results, status) {
+        if (status === google.maps.GeocoderStatus.OK) {
+          resultsMap.setCenter(results[0].geometry.location);
+          var marker = new google.maps.Marker({
+            map: resultsMap,
+            position: results[0].geometry.location
+          });
+          //alert(results[0].geometry.location.lat()+" Se supone es la latitud");
+          //alert(+results[0].geometry.location.lng()+"y la longitud");
+          document.getElementById('latitud').value = results[0].geometry.location.lat();
+          document.getElementById('longitud').value = results[0].geometry.location.lng();
+        } else {
+          alert('Geocode was not successful for the following reason: ' + status);
+        }
+      });
+  }
+
+  function placeMarker(map, location) {
+    var marker = new google.maps.Marker({
+      position: location,
+      map: map
+    });
+    var infowindow = new google.maps.InfoWindow({
+      content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
+    });
+    infowindow.open(map,marker);
+    document.getElementById('latitud').value = location.lat();
+    document.getElementById('longitud').value = location.lng();
+  }

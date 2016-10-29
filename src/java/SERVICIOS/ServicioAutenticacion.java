@@ -5,8 +5,12 @@
  */
 package SERVICIOS;
 
+import ConexionBaseDatos.IUsuarioDAO;
+import ConexionBaseDatos.UsuariosDAOMysql;
 import DOMAINENTITIES.Usuario;
 import com.google.gson.Gson;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
@@ -43,13 +47,19 @@ public class ServicioAutenticacion {
      */
     @GET
     @Produces(MediaType.TEXT_HTML)
-    public String getXml(@QueryParam ("datosUsuario") String datosUsuario) throws Exception {                
+    public String getXml(@QueryParam ("datosUsuario") String datosUsuario){                
         Gson g=new Gson();        
         Usuario usr=g.fromJson(datosUsuario,Usuario.class);
+        IUsuarioDAO iUsuarioDAO=new UsuariosDAOMysql();
         Usuario usuario=new Usuario(usr.getCorreo(),usr.getcontrasena());
-        usuario=usuario.iniciarSesion();              
-        String UUSS=g.toJson(usuario);
-        return UUSS;
+        usuario.setiUsuarioDAO(iUsuarioDAO);
+        try {              
+            usuario=usuario.iniciarSesion();
+            String UUSS=g.toJson(usuario);
+            return UUSS;
+        } catch (Exception ex) { 
+            return g.toJson(ex.getMessage());
+        }        
     }
 
     /**
