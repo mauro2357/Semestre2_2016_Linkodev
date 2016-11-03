@@ -16,7 +16,7 @@
         <div id="wrap">
             <div id="main">
                 <nav class="light-blue lighten-1" role="navigation">
-                    <div class="nav-wrapper container"><a id="logo-container" href="index.jsp" class="brand-logo">IOInmuebles</a>                        
+                    <div class="nav-wrapper container"><a id="logo-container" href="MuestraPublicacionesIndex" class="brand-logo">IOInmuebles</a>                        
                     </div>
                 </nav>
                 <div class="section no-pad-bot" id="index-banner">

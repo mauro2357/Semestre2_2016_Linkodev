@@ -48,7 +48,7 @@ public class CierreSesion extends HttpServlet {
         response.addHeader( "Cache-Control", "no-cache" ); 
         response.addHeader( "Cache-Control", "no-store" ); 
         response.setDateHeader("Expires", 2);
-        response.sendRedirect("login.jsp");
+        response.sendRedirect("MuestraPublicacionesIndex");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

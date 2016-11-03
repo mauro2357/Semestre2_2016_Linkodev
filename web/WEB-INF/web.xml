@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <welcome-file-list>
+        <welcome-file>MuestraPublicacionesIndex</welcome-file>
+    </welcome-file-list>
     <servlet>
         <servlet-name>Registro</servlet-name>
         <servlet-class>PRESENTACIONCONTROLADORES.Registro</servlet-class>
@@ -91,6 +94,10 @@
     <servlet>
         <servlet-name>AlmacenamientoFotosPublicacion</servlet-name>
         <servlet-class>PRESENTACIONCONTROLADORES.AlmacenamientoFotosPublicacion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MuestraPublicacionesIndex</servlet-name>
+        <servlet-class>PRESENTACIONCONTROLADORES.MuestraPublicacionesIndex</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Registro</servlet-name>
@@ -187,6 +194,10 @@
     <servlet-mapping>
         <servlet-name>AlmacenamientoFotosPublicacion</servlet-name>
         <url-pattern>/AlmacenamientoFotosPublicacion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MuestraPublicacionesIndex</servlet-name>
+        <url-pattern>/MuestraPublicacionesIndex</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
