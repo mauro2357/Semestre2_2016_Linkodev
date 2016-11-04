@@ -15,7 +15,7 @@ import java.util.ArrayList;
  *
  * @author Mateo Ortiz Cano
  */
-public class UsuariosDAOMysql implements IUsuarioDAO,ICalificacionDAO{
+public class UsuariosDAOMysql implements IUsuarioDAO, ICalificacionDAO{
 
     /**
      *
@@ -30,7 +30,7 @@ public class UsuariosDAOMysql implements IUsuarioDAO,ICalificacionDAO{
         Statement stm = nuevaconexion.getConeccion().createStatement();
         String query="INSERT INTO usuario VALUES ('"+persona.getNombre()+"','"
             +persona.getCorreo()+"','"+contrasenaEncriptada+"','"
-            +persona.getTelefono()+"','imagenes/nopic.png', 1, 0,0,0)";
+            +persona.getTelefono()+"','imagenes/nopic.png', 1, 0,0,0,0)";
         stm.executeUpdate(query);
     }
 
@@ -39,7 +39,8 @@ public class UsuariosDAOMysql implements IUsuarioDAO,ICalificacionDAO{
         ConexiónBD nuevaconexion = new ConexiónBD();
         Encriptacion desencriptarcontrasena = new Encriptacion();
         Statement statement = nuevaconexion.getConeccion().createStatement();
-        String query = "SELECT * FROM usuario WHERE usu_correo ='" + correoUsuario + "'";
+        String query = "SELECT * FROM usuario WHERE usu_correo ='" + correoUsuario + "'"
+                + "or usu_correo2 ='" + correoUsuario +"'";
         ResultSet res = statement.executeQuery(query);
         res.next();
         String contrasena = desencriptarcontrasena.Desencriptar(res.getString("usu_contrasena"));
@@ -72,30 +73,69 @@ public class UsuariosDAOMysql implements IUsuarioDAO,ICalificacionDAO{
     public boolean consultarCorreo(String correoUsuario) throws SQLException {
         ConexiónBD nuevaconexion = new ConexiónBD();
         Statement statement = nuevaconexion.getConeccion().createStatement();
-        String query = "SELECT * FROM usuario WHERE usu_correo ='" + correoUsuario + "'";
+        String query = "SELECT * FROM usuario WHERE usu_correo ='" + correoUsuario + "'"
+                + " or usu_correo2='" + correoUsuario + "'";
         ResultSet res = statement.executeQuery(query);
         if (!res.next()) {
             return false;
         }
         return true;
     }
-
+    
+    
+    @Override
+    public boolean consultarNickName(Usuario usr) throws SQLException {
+        ConexiónBD nuevaconexion = new ConexiónBD();
+        Statement statement = nuevaconexion.getConeccion().createStatement();
+        String query = "SELECT usu_nickactivo FROM usuario WHERE usu_correo='" + usr.getCorreo() + "'";
+        ResultSet res = statement.executeQuery(query);
+        if("0".equals(res.getString(query))){
+            return true;
+        }
+        return false;
+    }
+     @Override
+    public void agregarNick(Usuario persona) throws SQLException {
+        ConexiónBD nuevaconexiondb = new ConexiónBD();
+        Statement statement = nuevaconexiondb.getConeccion().createStatement();
+        String queryModificar = "UPDATE usuario SET usu_nickname='" + persona.getNickName() 
+                +"', "+"usu_nickactivo='" +"1"+"' "+ " where usu_correo = '" + persona.getCorreo() + "'";
+                
+        statement.executeUpdate(queryModificar);
+        
+    }
+    
     @Override
     public String consultarEstado(String correoUsuario) throws SQLException {
         ConexiónBD nuevaconexion = new ConexiónBD();
         Statement statement = nuevaconexion.getConeccion().createStatement();
-        String query = "SELECT * FROM usuario WHERE usu_correo ='" + correoUsuario + "'";
+        String query = "SELECT * FROM usuario WHERE usu_correo ='" + correoUsuario + "'"
+                + "or usu_correo2 ='" +correoUsuario+"'";
         ResultSet res = statement.executeQuery(query);
         res.next();
         String estado = res.getString("usu_estado");
         return estado;
     }
+    
+    @Override
+    public void agregarCorreoNuevo(Usuario usr) throws SQLException {
+        ConexiónBD nuevaconexion = new ConexiónBD();
+        Statement statement = nuevaconexion.getConeccion().createStatement();
+        
+        String queryModificar = "UPDATE usuario SET usu_correo2='" + usr.getCorreoNuevo() + "'"
+                + "where usu_correo = '" + usr.getCorreo() + "'";
+        statement.executeUpdate(queryModificar);
+       
+    
+    }
+        
 
     @Override
     public Usuario obtenerDatos(String correoUsuario) throws SQLException {
         ConexiónBD nuevaconexion = new ConexiónBD();
         Statement statement = nuevaconexion.getConeccion().createStatement();
-        String query = "SELECT * FROM usuario WHERE usu_correo ='" + correoUsuario + "'";
+        String query = "SELECT * FROM usuario WHERE usu_correo ='" + correoUsuario + "'"
+                +"or  usu_correo2= '" +correoUsuario+ "'";
         ResultSet res = statement.executeQuery(query);
         res.next();
         Usuario usuario = new Usuario();
@@ -103,6 +143,8 @@ public class UsuariosDAOMysql implements IUsuarioDAO,ICalificacionDAO{
         usuario.setCorreo(res.getString("usu_correo"));
         usuario.setTelefono(res.getString("usu_telefono"));
         usuario.setFotourl(res.getString("usu_fotourl"));
+        usuario.setCorreoNuevo("usu_correo2");
+        usuario.setNickName("usu_nickname");
         usuario.setCalificacion(res.getInt("usu_sumacalificacion"));
         usuario.setContadorCalificacion(res.getInt("usu_contadorcalificadores"));
         return usuario;
@@ -183,4 +225,6 @@ public class UsuariosDAOMysql implements IUsuarioDAO,ICalificacionDAO{
         String query="DELETE FROM notificaciones WHERE dueno='"+correo+"' AND mensaje='"+mensaje+"'";
         statement.executeUpdate(query);
     }
+
+    
 }

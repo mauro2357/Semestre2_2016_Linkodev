@@ -16,7 +16,7 @@
         <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="js/accionesvarias.js"></script>
-        
+
         <link rel="shortcut icon" href="imagenes/logoCasa.png">
     </head>
     <body>
@@ -60,29 +60,24 @@
                                         <option value="Risaralda">Risaralda</option>
                                     </select>
                                 </div>
-                                <div class="input-field col s6">
-                                    Dirección:
-                                    <input  name="direccion" type="text" class="validate">
-                                </div>
                                 <div class="col s6">
                                     Barrio:
                                     <input  name="barrio" type="text" class="validate">
                                 </div>
                                 <div id="map" align="center" style="width: 500px; height: 500px">
-                                
                                 </div>
-                                <div>
-                                    <input id="address" type="textbox" value="Rionegro,antioquia">
+
+                                <div class="input-field col s6">
+                                    Dirección:
+                                    <input  name="direccion" id="address" type="text" value="Rionegro,antioquia" class="validate">
                                     <input id="submit" type="button" value="Buscar">
                                 </div>
                                 <script src="https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyClkrRnbW8WB2Rl7_L_RuXDcJmbhSKPjfM"></script>
-                                <div>
-                                    Longitud:
-                                    <input name="latitud" id="latitud" type="text" value="">
+                                <div>                                    
+                                    <input name="latitud" id="latitud" type="text" value="" hidden="true">
                                 </div>
-                                <div>
-                                    Latitud:
-                                    <input name="longitud" id="longitud" type="text" value="">
+                                <div>                                    
+                                    <input name="longitud" id="longitud" type="text" value="" hidden="true">
                                 </div>  
                                 <br><br>
                                 <div class="col s6">
@@ -113,7 +108,7 @@
                                 <div class="row center col s12">
                                     <button  type="submit" name="publicarboton" class="btn-large waves-effect waves-light orange">Publicar</button>
                                 </div>
-                                
+
                             </form>
                         </div>
                     </div>
