@@ -94,7 +94,7 @@ public class AlmacenamientoFotosPublicacion extends HttpServlet {
                         if(i == 0)
                             iPublicacionDAO.establecerFotoPublicacion(url, Idpublicacion);
                         File directorio = new File(direccion);
-                        directorio.mkdir();
+                        directorio.mkdirs();
                         File archivo_server = new File(directorio + File.separator + item.getName());
                         item.write(archivo_server);
                         iPublicacionDAO.guardarFotosPublicacion(url,Idpublicacion);

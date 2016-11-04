@@ -63,6 +63,7 @@ public class ModificacionContrasena extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession sesion = request.getSession();
+        System.out.println("paso1");
         String usuario=request.getParameter("correo");
         String contrasenaNueva=request.getParameter("contrasenaNueva");
         String contrasenaAntigua=request.getParameter("contrasena");

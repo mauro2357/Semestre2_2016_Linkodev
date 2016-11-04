@@ -22,6 +22,7 @@
         <link href="css/newcss.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link rel="shortcut icon" href="imagenes/logoCasa.png">
+        <script src="js/Mapa.js"></script>
     </head>
     <body>
 
@@ -62,7 +63,7 @@
                                 </div>
                                 <div class="input-field col s6">
                                     Dirección:
-                                    <input  name="direccion" type="text" class="validate" value="<%=pub.getDireccion()%>" readonly="">
+                                    <input  name="direccion" id="address" type="text" class="validate" value="<%=pub.getDireccion()%>" readonly="">
                                 </div>
                                 <div class="col s6">
                                     Barrio:
@@ -74,22 +75,13 @@
                                 <div>
                                     <input name="longitud" id="longitud" type="text" value="<%=pub.getLongitud()%>" hidden="true">
                                 </div> 
-                                <div id="map" style="width:100%;height:500px"></div>
-
-                                <script>
-                                    function myMap() {
-                                        var latitud = document.getElementById("latitud").value;
-                                        var longitud = document.getElementById("longitud").value;
-                                        var myCenter = new google.maps.LatLng(latitud, longitud);
-                                        var mapCanvas = document.getElementById("map");
-                                        var mapOptions = {center: myCenter, zoom: 17};
-                                        var map = new google.maps.Map(mapCanvas, mapOptions);
-                                        var marker = new google.maps.Marker({position: myCenter});
-                                        marker.setMap(map);
-                                    }
-                                </script>
-
-                                <script src="https://maps.googleapis.com/maps/api/js?callback=myMap&key=AIzaSyClkrRnbW8WB2Rl7_L_RuXDcJmbhSKPjfM"></script>                               
+                                <div>
+                                    <input name="destino" id="destino" type="text" value="Bogotá, Colombia">
+                                    <input id="submit" type="button" value="Buscar">
+                                </div>
+                                <div id="map" style="width:100%;height:500px"></div>                               
+                                <script src="https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyClkrRnbW8WB2Rl7_L_RuXDcJmbhSKPjfM"></script>                               
+                                <br>
 
                                 <br><br>
                                 <div class="col s6">
