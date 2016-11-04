@@ -11,21 +11,22 @@ import ConexionBaseDatos.PublicacionDAO;
 import ConexionBaseDatos.UsuariosDAOMysql;
 import DOMAINENTITIES.Inmueble;
 import DOMAINENTITIES.Usuario;
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Mateo Ortiz Cano
  */
-public class VisualizacionDetalles extends HttpServlet {
+public class MuestraPublicacionesIndex extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,40 +39,19 @@ public class VisualizacionDetalles extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String id = request.getParameter("id");
         Usuario usr = new Usuario();
-        IPublicacionDAO iPublicacionDAO = new PublicacionDAO();
-        IUsuarioDAO iUsuarioDAO = new UsuariosDAOMysql();
+        IPublicacionDAO iPublicacionDAO=new PublicacionDAO();
+        IUsuarioDAO iUsuarioDAO=new UsuariosDAOMysql();
         usr.setiPublicacionDAO(iPublicacionDAO);
         usr.setiUsuarioDAO(iUsuarioDAO);
-        try {
-            Inmueble pub = usr.DetallarInmueble(id);
-            String directorio = getServletContext().getRealPath("");
-            directorio = directorio.replace("build"+ File.separator +"web", "web"+ File.separator +"imagenes"+ File.separator +pub.getDueno()+File.separator+"publicacion"+pub.getId());
-            File f = new File(directorio);
-            ArrayList<String> fotos = new ArrayList<>(5);
-            if (f.exists()){ 
-                File[] ficheros = f.listFiles();
-                for (File fichero : ficheros) {
-                    String fotourl = "imagenes"+File.separator+pub.getDueno()+File.separator+"publicacion"+pub.getId()+File.separator+fichero.getName();
-                    fotos.add(fotourl);
-                }
-                fotos.add(null);
-                fotos.add(null);
-                fotos.add(null);
-                fotos.add(null);
-                fotos.add(null);
-                
-            }
-            request.getSession().setAttribute("publicacion", pub);
-            request.getSession().setAttribute("fotos", fotos);
-            request.getRequestDispatcher("Detalles.jsp").forward(request, response);
-        } catch (SQLException ex) {
-            request.getSession().setAttribute("msg", ex.getMessage());
-            request.getRequestDispatcher("error.jsp").forward(request, response);
-        }
-        catch (Exception ex) {            
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+        ArrayList<Inmueble> arrayPublicaciones;
+        try {            
+            arrayPublicaciones = usr.mostrarPublicaciones();
+            HttpSession sesion = request.getSession();
+            sesion.setAttribute("publicaciones", arrayPublicaciones);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        } catch (Exception ex) {
+            Logger.getLogger(MuestraPublicacion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

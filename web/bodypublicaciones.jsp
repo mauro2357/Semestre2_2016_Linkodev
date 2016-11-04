@@ -14,6 +14,10 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta http-equiv="Expires" content="0">
+        <meta http-equiv="Last-Modified" content="0">
+        <meta http-equiv="Cache-Control: no-store, no-cache, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Publicaciones editables</title>
         <script src="js/accionesvarias.js"></script>

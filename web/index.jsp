@@ -32,6 +32,7 @@
                         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
                     </div>
                 </nav>
+                <%@include file="bodyCuenta.jsp" %>
                 <%--<%@include file="bodyCuenta.jsp" %>--%>
             </div>   
         </div>
