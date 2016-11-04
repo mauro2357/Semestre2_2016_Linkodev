@@ -24,12 +24,6 @@ public interface IUsuarioDAO {
     public Usuario modificarInformacion(Usuario persona)throws SQLException;
 
     public boolean consultarCorreo(String correoUsuario)throws SQLException;
-    
-    public boolean consultarNickName(Usuario persona)throws  SQLException;
-    
-    public void agregarCorreoNuevo (Usuario persona) throws  SQLException;
-    
-    public void agregarNick(Usuario user)throws  SQLException;
 
     public String consultarEstado(String correoUsuario)throws SQLException;
 
@@ -40,13 +34,8 @@ public interface IUsuarioDAO {
     public void desactivarCuenta(Usuario usr)throws SQLException;
 
     public void cambiarFotoDePerfil(String fotourl, String correo)throws SQLException;
+
     public ArrayList obtenerNotificaciones(String correo) throws SQLException;
     
     public void eliminarNotificacion(String mensaje,String correo)throws SQLException;
-
-
-
-    
-
-
 }
