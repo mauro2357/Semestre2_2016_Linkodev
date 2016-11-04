@@ -57,7 +57,7 @@
                                         <option value="Medellin">Medellín</option>
                                         <option value="Cali">Cali</option>
                                         <option value="Barranquilla">Barranquilla</option>
-                                        <option value="Risaralda">Risaralda</option>
+                                        <option value="Rionegro">Rionegro</option>
                                     </select>
                                 </div>
                                 <div class="col s6">
