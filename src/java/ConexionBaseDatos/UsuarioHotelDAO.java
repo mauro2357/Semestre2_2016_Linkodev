@@ -5,6 +5,7 @@
  */
 package ConexionBaseDatos;
 
+import DOMAINENTITIES.Usuario;
 import DOMAINENTITIES.UsuarioHotel;
 import com.google.gson.Gson;
 import java.io.BufferedReader;
@@ -21,8 +22,9 @@ import java.net.URL;
 public class UsuarioHotelDAO {
 
     public UsuarioHotel IniciarSesion(UsuarioHotel usuarioHotel) throws MalformedURLException, IOException {
-
-        URL url = new URL("URL");
+        Gson g = new Gson();
+        String datosUsuario = g.toJson(usuarioHotel);
+        URL url = new URL("http://172.16.100.186:8080/Semestre2_2016_Small_Programmers/serviciosweb/servicioautenticacion?datosUsuario=" + datosUsuario);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11");
@@ -33,18 +35,18 @@ public class UsuarioHotelDAO {
                     + conn.getResponseCode());
         }
 
-        BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+        BufferedReader br = new BufferedReader(new InputStreamReader(
+                (conn.getInputStream())));
 
-        String output;        
+        String output;
         String jsonRespuesta = "";
         while ((output = br.readLine()) != null) {
             jsonRespuesta += output;
-        }        
+        }
         conn.disconnect();
-        Gson g=new Gson();
-        UsuarioHotel usuarioHotel1=new UsuarioHotel();
-        usuarioHotel1=g.fromJson(jsonRespuesta, UsuarioHotel.class);
+        g = new Gson();
+        UsuarioHotel usuarioHotel1 = new UsuarioHotel();
+        usuarioHotel1 = g.fromJson(jsonRespuesta, UsuarioHotel.class);
         return usuarioHotel1;
-
     }
 }
