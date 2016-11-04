@@ -19,8 +19,8 @@ public class ConexiónBD {
     Connection co;    
     String bd = "inmuebles_schema";
     String login = "root";
-    String password = "root";
-    String url = "jdbc:mysql://localhost/"+bd;
+    String password = "HMXprs17586";
+    String url = "jdbc:mysql://mysql19711-inmuio.j.facilcloud.com/"+bd;
     
     public ConexiónBD(){    
         try{

@@ -1,7 +1,7 @@
 <%-- 
     Document   : NuevacontrasenaRecuperacion
     Created on : 19-ago-2016, 14:42:42
-    Author     : mateohenaocardona
+    Author     : Pipe
 --%>
 
 <%@page import="DOMAINENTITIES.Usuario"%>

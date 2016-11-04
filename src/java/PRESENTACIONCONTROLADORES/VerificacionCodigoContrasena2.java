@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author felipe
  */
-public class VerificacionCodigoContrasena extends HttpServlet {
+public class VerificacionCodigoContrasena2 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -72,7 +72,6 @@ public class VerificacionCodigoContrasena extends HttpServlet {
         try {
             usr.verificarCodigoContrasena(codigouno,codigodos);
             request.getSession().setAttribute("usuario", usuario);
-            System.out.println("contrase");
             request.getRequestDispatcher("NuevacontrasenaRecuperacion.jsp").forward(request, response);
         } catch (Exception ex) {            
             request.getSession().setAttribute("msg", ex.getMessage());
