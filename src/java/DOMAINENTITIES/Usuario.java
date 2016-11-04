@@ -29,6 +29,8 @@ public class Usuario {
     private String contrasenaCambio;
     private String telefono;
     private String fotourl;
+    private String nickName;
+    private String CorreoNuevo;
     private IUsuarioDAO iUsuarioDAO;
     private IPublicacionDAO iPublicacionDAO;
     private ICalificacionDAO iCalificacionDAO;
@@ -78,6 +80,21 @@ public class Usuario {
     public void setiPublicacionDAO(IPublicacionDAO iPublicacionDAO) {
         this.iPublicacionDAO = iPublicacionDAO;
 
+    }
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public String getCorreoNuevo() {
+        return CorreoNuevo;
+    }
+
+    public void setCorreoNuevo(String CorreoNuevo) {
+        this.CorreoNuevo = CorreoNuevo;
     }
 
     public String getNombre() {
@@ -243,6 +260,29 @@ public class Usuario {
             throw ex;
         }
     }
+    public Usuario agregarCorreo(Usuario user) throws  SQLException, Exception{
+        boolean existe  = iUsuarioDAO.consultarCorreo(user.getCorreoNuevo());
+        if(existe){
+            throw  new Exception ("El correo ya existe");
+        }
+        else{
+            iUsuarioDAO.agregarCorreoNuevo(user);
+        }
+        Usuario userConNuevoCorreo = iUsuarioDAO.obtenerDatos(user.getCorreo());
+       return userConNuevoCorreo;
+    }
+    public Usuario agregarNickName(Usuario user) throws SQLException, Exception{
+       
+        boolean existe = iUsuarioDAO.consultarNickName(user);
+       if(existe ){
+            throw new Exception("El nickname ya existe");
+       }
+       else{
+            iUsuarioDAO.agregarNick(user);
+       }
+        Usuario usernicknamed=iUsuarioDAO.obtenerDatos(user.getCorreo());
+        return usernicknamed;
+    }
 
     public ArrayList<Inmueble> consultarPublicacionesByUsuario(String correo) throws Exception {
         if (!iUsuarioDAO.consultarCorreo(correo)) {
@@ -348,4 +388,14 @@ public class Usuario {
             throw new Exception("Error! "+ex.getMessage());
         }
     }
+    
+    public void eliminarInmueble(String id) throws SQLException {
+        try {
+            iPublicacionDAO.eliminarPublicacion(id);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
+    }
+
 }

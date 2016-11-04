@@ -64,6 +64,7 @@ public class CambioFotoPerfil extends HttpServlet {
                         directorio.mkdir();
                         File archivo_server = new File(directorio + File.separator + item.getName());
                         item.write(archivo_server);
+                         
                         usuario.cambiarFotoDePerfil("imagenes/"+usr.getCorreo()+"/"+item.getName(),usr.getCorreo());
                         usr.setFotourl("imagenes/"+usr.getCorreo()+"/"+item.getName());
                         usr = (Usuario) sesion.getAttribute("usuario");

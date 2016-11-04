@@ -41,4 +41,6 @@ public interface IPublicacionDAO {
     public void establecerFotoPublicacion(String url,int id)throws SQLException;
     
     public int consultarIdUltimaPublicacion(String correo) throws SQLException;
+    
+    public void eliminarPublicacion(String id) throws SQLException;
 }

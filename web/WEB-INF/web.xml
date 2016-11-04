@@ -99,6 +99,10 @@
         <servlet-name>MuestraPublicacionesIndex</servlet-name>
         <servlet-class>PRESENTACIONCONTROLADORES.MuestraPublicacionesIndex</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EliminacionPublicacion</servlet-name>
+        <servlet-class>PRESENTACIONCONTROLADORES.EliminacionPublicacion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Registro</servlet-name>
         <url-pattern>/Registro</url-pattern>
@@ -198,6 +202,10 @@
     <servlet-mapping>
         <servlet-name>MuestraPublicacionesIndex</servlet-name>
         <url-pattern>/MuestraPublicacionesIndex</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminacionPublicacion</servlet-name>
+        <url-pattern>/EliminacionPublicacion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

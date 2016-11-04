@@ -24,7 +24,7 @@
                             out.println("<div id='publicaciones' class='col s2'>");
                             out.println("<div class='card grey accent-4'>");
                             out.println("<div class='card-image'>");
-                            out.println("<img src='http://localhost:8080/Semestre2_2016_Linkodev/"+pub.getFotourl()+"' height='150' width='200'>");                           
+                            out.println("<img src='./"+pub.getFotourl()+"' height='150' width='200'>");                           
                             out.println("</div>");
                             out.println("<div class='card-content'>");                  
                             out.println("<span class='white-text'>" + pub.getTipoInmueble() + "</span><br>");

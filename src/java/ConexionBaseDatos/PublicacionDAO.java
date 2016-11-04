@@ -305,4 +305,18 @@ public class PublicacionDAO implements IPublicacionDAO,ICalificacionDAO{
         return -1;
     }
 
+    @Override
+    public void eliminarPublicacion(String id) throws SQLException {
+        ConexiónBD conexion = new ConexiónBD();
+        Statement statement = conexion.getConeccion().createStatement();
+        String query1 = "DELETE FROM fotos WHERE pub_id ='"+id+"'";
+        String query2 = "DELETE FROM publicacion WHERE pub_id ='"+id+"'";
+        try {
+            statement.executeUpdate(query1);
+            statement.executeUpdate(query2);
+        } catch (Exception e) {
+            throw new SQLException(e.getMessage());
+        }
+    }
+
 }

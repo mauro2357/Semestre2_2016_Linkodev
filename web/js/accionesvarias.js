@@ -3,6 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+function confirmarEliminacion() {
+    confirm("Esta seguro de querer eliminar esta publicacion?");
+}
 
 function cancelarsubmit() {
     if (document.getElementById('imagenperfil').files.length === 0) {
