@@ -9,12 +9,13 @@ import ConexionBaseDatos.ICalificacionDAO;
 import ConexionBaseDatos.PublicacionDAO;
 import ConexionBaseDatos.UsuariosDAOMysql;
 import java.sql.SQLException;
+import java.io.Serializable;
 
 /**
  *
  * @author Mateo Ortiz Cano
  */
-public class Inmueble {
+public class Inmueble implements Serializable {
     private String id;
     private String dueno;
     private String tipoOferta;

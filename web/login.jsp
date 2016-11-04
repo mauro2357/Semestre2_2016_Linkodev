@@ -5,7 +5,11 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%
+    if(request.getSession().getAttribute("usuario") != null){
+        request.getRequestDispatcher("MuestraPublicacion").forward(request, response);
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
     <head>

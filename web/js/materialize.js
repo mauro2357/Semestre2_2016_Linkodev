@@ -6,6 +6,7 @@
 // Check for jQuery.
 $(document).ready(function () {
     $('.carousel').carousel();
+    
 });
 if (typeof (jQuery) === 'undefined') {
     var jQuery;

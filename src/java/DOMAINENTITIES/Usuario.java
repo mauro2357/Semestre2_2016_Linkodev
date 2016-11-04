@@ -348,4 +348,13 @@ public class Usuario {
             throw new Exception("Error! "+ex.getMessage());
         }
     }
+    
+    public void eliminarInmueble(String id) throws SQLException {
+        try {
+            iPublicacionDAO.eliminarPublicacion(id);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
+    }
 }

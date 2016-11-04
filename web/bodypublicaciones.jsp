@@ -16,6 +16,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Publicaciones editables</title>
+        <script src="js/accionesvarias.js"></script>
     </head>
     <body>
         <div id="contenidoCuenta" class="container1">
@@ -25,6 +26,7 @@
                             out.println("<div id='publicaciones' class='col s2'>");
                             out.println("<div class='card'>");
                             out.println("<div class='card-image'>");
+                            out.println("<a onclick='confirmarEliminacion()' class='waves-effect right hoverable red' href='EliminacionPublicacion?id="+pub.getId()+"'><i class='material-icons'>close</i></a>");
                             out.println("<img src='"+pub.getFotourl()+"' height='150' width='200'>");
                             out.println("</div>");
                             out.println("<div class='card-content'>");
