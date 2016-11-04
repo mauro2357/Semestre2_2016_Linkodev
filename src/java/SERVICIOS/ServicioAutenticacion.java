@@ -46,7 +46,7 @@ public class ServicioAutenticacion {
      * @throws java.lang.Exception
      */
     @GET
-    @Produces(MediaType.TEXT_HTML)
+    @Produces("application/json")
     public String getXml(@QueryParam ("datosUsuario") String datosUsuario){                
         Gson g=new Gson();        
         Usuario usr=g.fromJson(datosUsuario,Usuario.class);
