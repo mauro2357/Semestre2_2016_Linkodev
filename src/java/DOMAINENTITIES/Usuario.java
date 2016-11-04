@@ -164,7 +164,7 @@ public class Usuario {
         try {
             iUsuarioDAO.registrarUsuario(this);
         } catch (SQLException ex) {
-            throw new Exception("El correo ingresado ya se encuentra registrado");
+            throw new Exception("El correo ingresado ya se encuentra registrado "+ex.getMessage());
         }
     }
 
