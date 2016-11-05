@@ -31,18 +31,18 @@ public class EnvioMail {
     
     public boolean enviarMail(String correoDestinatario,String codigo){
         try {
-            String host = "smtp.gmail.com";
-            String correoOrigen = "linkodevs@gmail.com";
+            String host = "smtp-mail.outlook.com";
+            String correoOrigen = "linkcodev@outlook.com";
             Properties propiedades = System.getProperties();
             propiedades.put("mail.smtp.starttls.enable", "true");
-            propiedades.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+            propiedades.put("mail.smtp.ssl.trust", "smtp-mail.outlook.com");
             propiedades.put("mail.smtp.host", host);
             propiedades.put("mail.smtp.user", correoOrigen);
-            propiedades.put("mail.smtp.password", "linkodevs123");
+            propiedades.put("mail.smtp.password", "ABCD.efgh.123");
             propiedades.put("mail.smtp.port", 587);
             propiedades.put("mail.smtp.auth", "true");
             
-            Session sesion = Session.getDefaultInstance(propiedades,null);
+            Session sesion = Session.getInstance(propiedades, null);
             MimeMessage  mensaje = new MimeMessage(sesion);
             mensaje.setFrom(new InternetAddress(correoOrigen));
             mensaje.setRecipient(Message.RecipientType.TO, new InternetAddress(correoDestinatario));
@@ -54,7 +54,7 @@ public class EnvioMail {
                     + "El equipo de Linkcodev");
             
             Transport transporte = sesion.getTransport("smtp");
-            transporte.connect(host,correoOrigen,"linkodevs123");
+            transporte.connect(host,correoOrigen,"ABCD.efgh.123");
             transporte.sendMessage(mensaje, mensaje.getAllRecipients());
             transporte.close();
             

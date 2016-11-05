@@ -12,6 +12,7 @@ import ConexionBaseDatos.UsuariosDAOMysql;
 import DOMAINENTITIES.Usuario;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -40,6 +41,7 @@ public class CambioFotoPerfil extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         HttpSession sesion = request.getSession();
         try {
             FileItemFactory file_factory = new DiskFileItemFactory();
