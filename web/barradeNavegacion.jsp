@@ -15,7 +15,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Barra de navegacion</title>
-        <link rel="shortcut icon" href="imagenes/logoCasa.png">
+        <link rel="shortcut icon" href="/imagenes/logoCasa.png">
     </head>
     <body>
         <nav class="blue darken-4" role="navigation">
@@ -30,7 +30,7 @@
                     </li>
                     <li><div class="divider"></div></li>
                     <li><a class="waves-effect" href="crearpublicacion.jsp"><i class="material-icons">publish</i>Publicar</a></li>  
-                    <li><a class="waves-effect" href="ModificacionContraseña.jsp"><i class="material-icons">vpn_key</i>Cambiar contrasena</a></li>  
+                    <li><a class="waves-effect" href="Modificacioncontraseña.jsp"><i class="material-icons">vpn_key</i>Cambiar contrasena</a></li>  
                     <li><a class="waves-effect" href="modificarInformacion.jsp"><i class="material-icons">settings</i>Actualizar información</a></li>
                     <li><a class="waves-effect" href="MuestraPublicacionPropia"><i class="material-icons">build</i>Editar publicaciones</a></li>
                     <li><a class="waves-effect" href="DesactivacionCuenta.jsp"><i class="material-icons">delete</i>Desactivar cuenta</a></li>
