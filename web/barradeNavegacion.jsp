@@ -15,7 +15,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Barra de navegacion</title>
-        <link rel="shortcut icon" href="imagenes/logoCasa.png">
+        <link rel="shortcut icon" href="/imagenes/logoCasa.png">
     </head>
     <body>
         <nav class="blue darken-4" role="navigation">

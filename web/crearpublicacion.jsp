@@ -17,7 +17,7 @@
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="js/accionesvarias.js"></script>
 
-        <link rel="shortcut icon" href="imagenes/logoCasa.png">
+        <link rel="shortcut icon" href="/imagenes/logoCasa.png">
     </head>
     <body>
         <div id="wrap">
@@ -57,7 +57,7 @@
                                         <option value="Medellin">Medellín</option>
                                         <option value="Cali">Cali</option>
                                         <option value="Barranquilla">Barranquilla</option>
-                                        <option value="Risaralda">Risaralda</option>
+                                        <option value="Rionegro">Rionegro</option>
                                     </select>
                                 </div>
                                 <div class="col s6">
