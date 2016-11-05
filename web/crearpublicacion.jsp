@@ -17,7 +17,7 @@
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="js/accionesvarias.js"></script>
 
-        <link rel="shortcut icon" href="imagenes/logoCasa.png">
+        <link rel="shortcut icon" href="/imagenes/logoCasa.png">
     </head>
     <body>
         <div id="wrap">

@@ -18,7 +18,7 @@
         <link href="css/newcss.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <script src="js/jquery-3.1.0.min.js" type="text/javascript"></script>
         <script src="js/accionesvarias.js"></script>
-        <link rel="shortcut icon" href="imagenes/logoCasa.png">
+        <link rel="shortcut icon" href="/imagenes/logoCasa.png">
     </head>
     <body>
         <div id="wrap">

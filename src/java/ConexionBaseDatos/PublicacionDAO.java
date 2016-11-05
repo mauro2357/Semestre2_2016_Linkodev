@@ -22,7 +22,7 @@ public class PublicacionDAO implements IPublicacionDAO,ICalificacionDAO{
     public void registrarPublicacion(Inmueble publicacion) throws SQLException {
         ConexiónBD nuevaconexion = new ConexiónBD();
         PreparedStatement stm;
-        String query = "INSERT INTO publicacion VALUES (" + null + ",?,?,?,?,?,?,?,?,?,?,?,?,0,0,0,0,?,?,0)";
+        String query = "INSERT INTO publicacion (pub_id,usu_correo,pub_tipooferta,pub_tipoinmueble,pub_ciudad,pub_direccion,pub_barrio,pub_precio,pub_habitaciones,pub_banos,pub_piso,pub_area,pub_estrato,pub_contador,pub_estado,pub_sumacalificacion,pub_contadorcalificadores,pub_latitud,pub_longitud,pub_fotourl) VALUES (" + null + ",?,?,?,?,?,?,?,?,?,?,?,?,0,0,0,0,?,?,0)";
         stm = nuevaconexion.getConeccion().prepareStatement(query);
         stm.setString(1, publicacion.getDueno());
         stm.setString(2, publicacion.getTipoOferta());
@@ -167,10 +167,14 @@ public class PublicacionDAO implements IPublicacionDAO,ICalificacionDAO{
     public void contadorVisitas(String id) throws SQLException{
         ConexiónBD conexion = new ConexiónBD();
         Statement statement = conexion.getConeccion().createStatement();
-        String query = " UPDATE publicacion as t1 SET t1.pub_contador = "
-                + "         (select * from (SELECT t2.pub_contador + 1 FROM publicacion as t2 "
-                + "         where t2.pub_id = '"+id+"') as x) where t1.pub_id ='" + id +"'";
-        statement.executeUpdate(query);
+        String query1 = "SELECT * FROM publicacion WHERE pub_id= " + id;
+        ResultSet res = statement.executeQuery(query1);
+        res.next();
+        int valor;
+        valor = Integer.parseInt(res.getString("pub_contador"));
+        valor++;
+        String query2 = "UPDATE publicacion SET pub_contador ="+valor+" where pub_id = "+id;
+        statement.executeUpdate(query2);
     }
     
     @Override
@@ -233,7 +237,7 @@ public class PublicacionDAO implements IPublicacionDAO,ICalificacionDAO{
     public void registrarAdquisision(Inmueble inmueble,String correo) throws SQLException{
         ConexiónBD conexion = new ConexiónBD();
         Statement statement = conexion.getConeccion().createStatement();
-        String query = "INSERT INTO adquisiciones VALUES ('"+correo+"',"+inmueble.getId()+")";
+        String query = "INSERT INTO Adquisiciones (usu_correo,pub_id) VALUES ('"+correo+"',"+inmueble.getId()+")";
         statement.executeUpdate(query);
         this.agregarNotificacion(inmueble, correo);
     }
@@ -241,27 +245,35 @@ public class PublicacionDAO implements IPublicacionDAO,ICalificacionDAO{
         ConexiónBD conexion = new ConexiónBD();
         Statement statement = conexion.getConeccion().createStatement();
         String mensaje="El usuario "+correo+" ha adquirido tu publicacion "+inmueble.getId();
-        String query = "INSERT INTO notificaciones VALUES ('"+correo+"','"+inmueble.getDueno()+"','"+mensaje+"')";
+        String query = "INSERT INTO notificaciones (cliente,dueno,mensaje) VALUES ('"+correo+"','"+inmueble.getDueno()+"','"+mensaje+"')";
         statement.executeUpdate(query);
     }
 
     private void insertarSuma(int calificacion,String identificador) throws SQLException{
         ConexiónBD conexion = new ConexiónBD();
-        Statement statement = conexion.getConeccion().createStatement();                  
-        String query = " UPDATE publicacion as t1 SET t1.pub_sumacalificacion = "
-                + "         (select * from (SELECT t2.pub_sumacalificacion + "+calificacion+" FROM publicacion as t2 "
-                + "         where t2.pub_id = '"+identificador+"') as x) where t1.pub_id ='" + identificador +"'";
-        statement.executeUpdate(query);
+        Statement statement = conexion.getConeccion().createStatement();  
+        String query1 = "SELECT (pub_sumacalificacion) FROM publicacion WHERE pub_id= " + identificador;
+        ResultSet res = statement.executeQuery(query1);
+        res.next();
+        int valor;
+        valor = Integer.parseInt(res.getString("pub_sumacalificacion"));
+        valor += calificacion;
+        String query2 = "UPDATE publicacion SET pub_sumacalificacion ="+valor+" where pub_id = "+identificador;
+        statement.executeUpdate(query2);
     }
     
     @Override
     public void calificar(int calificacion,String identificador) throws SQLException {
         ConexiónBD conexion = new ConexiónBD();
         Statement statement = conexion.getConeccion().createStatement();
-        String query = " UPDATE publicacion as t1 SET t1.pub_contadorcalificadores = "
-                + "         (select * from (SELECT t2.pub_contadorcalificadores +1 FROM publicacion as t2 "
-                + "         where t2.pub_id = '"+identificador+"') as x) where t1.pub_id ='" + identificador +"'";
-        statement.executeUpdate(query);
+        String query1 = "SELECT (pub_contadorcalificadores) FROM publicacion WHERE pub_id= " + identificador;
+        ResultSet res = statement.executeQuery(query1);
+        res.next();
+        int valor;
+        valor = Integer.parseInt(res.getString("pub_contadorcalificadores"));
+        valor += calificacion;
+        String query2 = "UPDATE publicacion SET pub_contadorcalificadores ="+valor+" where pub_id = "+identificador;
+        statement.executeUpdate(query2);
         insertarSuma(calificacion, identificador);
     }   
 
@@ -269,7 +281,7 @@ public class PublicacionDAO implements IPublicacionDAO,ICalificacionDAO{
     public void guardarFotosPublicacion(String url,int id) throws SQLException {
         ConexiónBD conexion = new ConexiónBD();
         Statement statement = conexion.getConeccion().createStatement();
-        String query = "INSERT INTO fotos VALUES(" + null + ",'"+id+"','"+url+"')";
+        String query = "INSERT INTO fotos (fot_id,pub_id,fot_url) VALUES(" + null + ",'"+id+"','"+url+"')";
         try {
             statement.executeUpdate(query);
             conexion.getConeccion().close();
