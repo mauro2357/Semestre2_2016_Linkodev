@@ -28,9 +28,9 @@ public class UsuariosDAOMysql implements IUsuarioDAO, ICalificacionDAO{
         String contrasenaEncriptada = encriptarcontrasena.Encriptar(persona.getcontrasena());
         ConexiónBD nuevaconexion = new ConexiónBD();
         Statement stm = nuevaconexion.getConeccion().createStatement();
-        String query="INSERT INTO usuario VALUES ('"+persona.getNombre()+"','"
+        String query="INSERT INTO usuario (usu_nombre,usu_correo,usu_contrasena,usu_telefono,usu_fotourl,usu_estado,usu_admin,usu_sumacalificacion,usu_contadorcalificadores,usu_correo2,usu_nickname,usu_nickactivo) VALUES ('"+persona.getNombre()+"','"
             +persona.getCorreo()+"','"+contrasenaEncriptada+"','"
-            +persona.getTelefono()+"','imagenes/nopic.png', 1, 0,0,0,0)";
+            +persona.getTelefono()+"','imagenes/nopic.png', 1,0,0,0,'','',0)";
         stm.executeUpdate(query);
     }
 
